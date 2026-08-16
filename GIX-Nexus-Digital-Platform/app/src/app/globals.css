@@ -1,0 +1,190 @@
+/* GIX Nexus Digital Platform — Global Styles */
+/* Tailwind CSS v4 */
+@import "tailwindcss";
+
+/* ── Google Fonts ────────────────────────────────────────────────
+   Loaded via <head> in locale layout.tsx for performance.
+   Fallback declarations here ensure correct font-family mapping.
+──────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* ── Brand Colors ─────────────────────────────────────────
+       OPEN QUESTION: Official brand colors TBD — using placeholders
+       Placeholder: #0066CC (brand-blue), #2D7D46 (brand-green)
+       Update when official brand palette is confirmed.
+    ─────────────────────────────────────────────────────────── */
+    --brand-blue: #0066CC;
+    --brand-blue-dark: #004fa3;
+    --brand-green: #2D7D46;
+    --brand-green-dark: #236138;
+
+    /* ── Light theme tokens ───────────────────────────────── */
+    --background: #ffffff;
+    --foreground: #111827;
+    --card: #f9fafb;
+    --card-foreground: #111827;
+    --muted: #f3f4f6;
+    --muted-foreground: #6b7280;
+    --border: #e5e7eb;
+    --input: #e5e7eb;
+    --ring: #0066CC;
+
+    /* ── Typography ──────────────────────────────────────── */
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-amharic: 'Noto Sans Ethiopic', 'Ethiopic', serif;
+  }
+
+  /* ── Dark theme ──────────────────────────────────────────── */
+  .dark {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --card: #1e293b;
+    --card-foreground: #f1f5f9;
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+    --border: #334155;
+    --input: #334155;
+    --ring: #3b82f6;
+
+    /* Brand colors adjust slightly for dark contrast */
+    --brand-blue: #4d9de0;
+    --brand-green: #4ade80;
+  }
+}
+
+/* ── Base styles ──────────────────────────────────────────────── */
+@layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Amharic content — apply Noto Sans Ethiopic */
+  :lang(am),
+  .font-amharic {
+    font-family: var(--font-amharic);
+    /* Ethiopic script is LTR, no direction change needed */
+    /* Slightly increased line-height for Ethiopic characters */
+    line-height: 1.8;
+  }
+
+  /* Focus visible — accessibility D-08 */
+  :focus-visible {
+    outline: 2px solid var(--brand-blue);
+    outline-offset: 2px;
+  }
+
+  /* Remove default focus ring for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* Skip to main content link — accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--brand-blue);
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: 0 0 4px 0;
+  }
+
+  .skip-link:focus {
+    top: 0;
+  }
+
+  /* Minimum touch target — spec requirement D-08 */
+  button,
+  a,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Inline elements (anchor in text) can be narrower */
+  p a,
+  li a {
+    min-height: unset;
+    min-width: unset;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--foreground);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ── Utility classes ──────────────────────────────────────────── */
+@layer utilities {
+  .font-amharic {
+    font-family: var(--font-amharic);
+  }
+
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  /* Brand color utilities */
+  .text-brand-blue {
+    color: var(--brand-blue);
+  }
+
+  .text-brand-green {
+    color: var(--brand-green);
+  }
+
+  .bg-brand-blue {
+    background-color: var(--brand-blue);
+  }
+
+  .bg-brand-green {
+    background-color: var(--brand-green);
+  }
+
+  /* Line clamp */
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Smooth transitions */
+  .transition-colors {
+    transition-property: color, background-color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+  }
+}

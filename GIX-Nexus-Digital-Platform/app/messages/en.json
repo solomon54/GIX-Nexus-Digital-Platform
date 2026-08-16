@@ -1,0 +1,359 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "company": "Company",
+    "hseq": "HSEQ & Safety",
+    "industries": "Industries",
+    "capabilities": "Capabilities",
+    "futureGoals": "Future Goals",
+    "contact": "Contact"
+  },
+  "home": {
+    "heroTitle": "Telecommunications & Power Engineering",
+    "heroSubtitle": "GIX Nexus Telecom and Power delivers reliable, innovative, and cost-effective telecommunications and power engineering infrastructure solutions across Ethiopia.",
+    "heroTagline": "Across Ethiopia",
+    "ctaProfile": "Company Profile",
+    "ctaServices": "Our Services",
+    "stats": {
+      "title": "Our Scale",
+      "serviceDomainsLabel": "Service Domains",
+      "serviceDomainsValue": "7+",
+      "serviceDomainsNote": "\"7+ Service Domains\"",
+      "supportLabel": "Technical Support",
+      "supportValue": "24/7",
+      "safetyLabel": "Safety-First Policy",
+      "safetyValue": "100%",
+      "safetyNote": "Safety-first approach on every project — policy commitment"
+    },
+    "featureTitle": "Why Partner with Us",
+    "featureSubtitle": "Bringing qualified expertise and dependable delivery to every project",
+    "features": {
+      "qualifiedTeam": {
+        "title": "Qualified Technical Team",
+        "description": "Our team includes Cisco Certified professionals, Fiber Optic Technicians, OSP Technicians, Telecommunications Technicians, and HSEQ Representatives with practical field experience."
+      },
+      "reliableDelivery": {
+        "title": "Reliable Project Delivery",
+        "description": "We commit to delivering dependable, safe, and high-quality telecommunications and power engineering services that meet international engineering standards."
+      },
+      "safetyCommitment": {
+        "title": "Safety First, Always",
+        "description": "Our Zero Accident Objective and 100% safety-first approach on every project means your team and infrastructure are protected at every step."
+      },
+      "ethiopianOwned": {
+        "title": "Ethiopian-Owned & Operated",
+        "description": "Proudly Ethiopian-owned and headquartered in Addis Ababa, we are invested in building Ethiopia's digital infrastructure for the long term."
+      }
+    },
+    "servicesTitle": "Our Services",
+    "servicesSubtitle": "Six core service groupings covering the full lifecycle of telecom and power infrastructure",
+    "sectorsTitle": "Sectors We Serve",
+    "sectorsSubtitle": "We provide services to a broad range of target sectors across Ethiopia",
+    "sectorsDisclaimer": "These are target sectors. GIX Nexus serves these industries as a contractor and subcontractor.",
+    "viewAllSectors": "View All Sectors",
+    "ctaTitle": "Ready to Work Together?",
+    "ctaSubtitle": "Contact us to discuss your telecommunications or power engineering requirements.",
+    "ctaContact": "Get in Touch"
+  },
+  "services": {
+    "pageTitle": "Our Services",
+    "pageDescription": "GIX Nexus Telecom and Power offers six core service groupings covering the full lifecycle of telecommunications and power infrastructure, from site survey through installation, commissioning, and ongoing maintenance.",
+    "capabilitiesLabel": "Capabilities",
+    "groups": {
+      "telecomInfrastructure": {
+        "name": "Telecommunications Infrastructure",
+        "description": "Comprehensive installation and maintenance of outdoor and indoor telecommunications facilities, equipment, and site support services.",
+        "capabilities": [
+          "Outdoor & Indoor Facilities Installation and Maintenance",
+          "Telecom Equipment Installation and Commissioning",
+          "Site Survey and Technical Support"
+        ]
+      },
+      "fiberOptic": {
+        "name": "Fiber Optic Solutions",
+        "description": "End-to-end fiber optic services from cable installation to testing and preventive maintenance.",
+        "capabilities": [
+          "Fiber Optic Cable Installation",
+          "Fiber Optic Splicing and Termination",
+          "Fiber Optic Testing and Troubleshooting",
+          "Preventive and Corrective Maintenance"
+        ]
+      },
+      "satelliteWireless": {
+        "name": "Satellite & Wireless Communications",
+        "description": "Installation, alignment, and maintenance of VSAT, satellite, microwave, and RF communication systems.",
+        "capabilities": [
+          "VSAT Installation and Maintenance",
+          "Satellite Communication Systems",
+          "Microwave Radio Installation and Alignment",
+          "RF Equipment Installation and Maintenance"
+        ]
+      },
+      "networkInfrastructure": {
+        "name": "Network Infrastructure",
+        "description": "Structured cabling, LAN/WAN infrastructure, network rack installation, and commissioning services.",
+        "capabilities": [
+          "Structured Cabling Systems",
+          "LAN and WAN Infrastructure Installation",
+          "Network Rack Installation and Cable Management",
+          "Network Testing and Commissioning"
+        ]
+      },
+      "telecomPower": {
+        "name": "Telecom Power Systems",
+        "description": "DC power systems, rectifiers, UPS, battery banks, and earthing and lightning protection for telecom sites.",
+        "capabilities": [
+          "DC Power System Installation",
+          "Rectifier and UPS Installation",
+          "Battery Bank Installation and Replacement",
+          "Earthing and Lightning Protection Systems"
+        ]
+      },
+      "maintenance": {
+        "name": "Maintenance & Technical Support",
+        "description": "Preventive and corrective maintenance, emergency fault response, and technical inspection services.",
+        "capabilities": [
+          "Preventive and Corrective Maintenance",
+          "Emergency Fault Response",
+          "Equipment Replacement and Upgrades",
+          "Technical Inspection and Performance Testing"
+        ]
+      }
+    }
+  },
+  "company": {
+    "pageTitle": "About GIX Nexus",
+    "overviewTitle": "Company Overview",
+    "overviewText": "GIX Nexus Telecom and Power is an Ethiopian-owned telecommunications and power engineering company headquartered in Addis Ababa, Ethiopia. We deliver reliable, innovative, and cost-effective infrastructure solutions, operating across Ethiopia with a commitment to quality, safety, and professionalism.",
+    "vendorStatus": "Vendor Registration Ready",
+    "visionTitle": "Our Vision",
+    "vision": "To become one of Ethiopia's leading telecommunications and power engineering companies, recognized for quality, innovation, reliability, and customer satisfaction.",
+    "missionTitle": "Our Mission",
+    "missionPoints": [
+      "Deliver high-quality telecom engineering services",
+      "Build long-term partnerships",
+      "Provide innovative and reliable technical solutions",
+      "Promote safety, integrity, and professionalism",
+      "Contribute to the growth of Ethiopia's digital infrastructure"
+    ],
+    "valuesTitle": "Our Core Values",
+    "values": {
+      "timeToMarket": {
+        "name": "Time-to-Market Focus",
+        "description": "We prioritize efficient delivery schedules without compromising quality, ensuring your projects are completed on time."
+      },
+      "qualityWorkmanship": {
+        "name": "Quality Workmanship",
+        "description": "Every installation, commissioning, and maintenance task is executed to international engineering standards."
+      },
+      "safetyFirst": {
+        "name": "Safety First",
+        "description": "Safety is our highest priority on every project, guided by our Zero Accident Objective and HSEQ policy."
+      },
+      "customerFocused": {
+        "name": "Customer-Focused Approach",
+        "description": "We build long-term relationships by understanding and exceeding the expectations of the sectors we serve."
+      },
+      "integrity": {
+        "name": "Integrity & Professionalism",
+        "description": "We operate with honesty, transparency, and professional standards in every engagement."
+      },
+      "continuousImprovement": {
+        "name": "Continuous Improvement",
+        "description": "We continually refine our processes, skills, and technologies to deliver better outcomes."
+      }
+    },
+    "leadershipTitle": "Leadership",
+    "mdTitle": "Managing Director",
+    "mdName": "Getachew Teshome",
+    "mdMessage": "We are committed to delivering dependable, safe, and high-quality telecommunications and power engineering services that support the growth of Ethiopia's communications infrastructure.",
+    "hqLabel": "Headquarters",
+    "hqValue": "Addis Ababa, Ethiopia",
+    "operationsLabel": "Operations",
+    "operationsValue": "Across Ethiopia"
+  },
+  "hseq": {
+    "pageTitle": "HSEQ & Safety",
+    "pageSubtitle": "Health, Safety, Environment & Quality",
+    "policyHeading": "Our HSEQ Policy",
+    "policyText": "At GIX Nexus Telecom and Power, safety is our highest priority. Our HSEQ Policy governs every project, ensuring all personnel, partners, and the environment are protected throughout the project lifecycle.",
+    "zeroAccidentLabel": "Zero Accident Objective",
+    "zeroAccidentDescription": "Our Zero Accident Objective represents our unwavering commitment to eliminate workplace incidents. This is a goal and safety commitment, not a reported metric.",
+    "zeroAccidentBadge": "Objective / Commitment",
+    "safetyFirstLabel": "100% Safety-First Approach",
+    "safetyFirstDescription": "100% Safety-first approach on every project is our operating policy — applied without exception to every job site and task.",
+    "safetyFirstBadge": "Policy Statement",
+    "programTitle": "HSEQ Program Elements",
+    "programElements": [
+      "Safe Working Procedures",
+      "PPE Compliance",
+      "Electrical Safety",
+      "Working at Height Safety",
+      "Environmental Protection",
+      "Continuous Safety Training"
+    ],
+    "equipmentTitle": "Safety Equipment",
+    "equipmentItems": [
+      "Personal Protective Equipment (PPE)",
+      "Insulated Hand Tools",
+      "First Aid Kits",
+      "Fall Arrest Systems",
+      "High-Visibility Vests",
+      "Safety Harnesses"
+    ]
+  },
+  "industries": {
+    "pageTitle": "Sectors We Serve",
+    "pageSubtitle": "Target Sectors",
+    "disclaimer": "The following are target sectors that GIX Nexus Telecom and Power serves as a contractor and subcontractor. These represent prospective clients and partner organizations, not confirmed existing clients.",
+    "sectors": [
+      "Telecommunications Network Operators",
+      "Telecommunications Equipment Vendors",
+      "Internet Service Providers (ISPs)",
+      "Government Ministries and Public Institutions",
+      "Utility Companies",
+      "International Organizations and United Nations Agencies",
+      "Embassies and Diplomatic Missions",
+      "Non-Governmental Organizations (NGOs)",
+      "Banks and Financial Institutions",
+      "Data Centers",
+      "Military (Defence)",
+      "Universities and Educational Institutions",
+      "Commercial and Industrial Organizations",
+      "Engineering, Procurement, and Construction (EPC) Contractors"
+    ]
+  },
+  "capabilities": {
+    "pageTitle": "Our Capabilities",
+    "pageSubtitle": "Technical Personnel & Equipment",
+    "personnelTitle": "Technical Personnel",
+    "personnelRoles": [
+      "Project Engineer",
+      "Field Supervisor",
+      "Cisco Certified Professional",
+      "Fiber Optic Technician",
+      "OSP (Outside Plant) Technician",
+      "Telecommunications Technician",
+      "HSEQ Representative"
+    ],
+    "equipmentTitle": "Equipment & Tools",
+    "equipmentCategories": {
+      "testInstruments": {
+        "name": "Test Instruments",
+        "items": [
+          "OTDR (Optical Time-Domain Reflectometer)",
+          "Digital Multimeters",
+          "Network Cable Testers (Fluke)",
+          "RF Signal Analyzers",
+          "Power Quality Analyzers"
+        ]
+      },
+      "installationTools": {
+        "name": "Installation Tools",
+        "items": [
+          "Fiber Optic Fusion Splicer",
+          "Cable Pulling Equipment",
+          "Crimping and Termination Tools",
+          "Torque Wrenches",
+          "Antenna Alignment Tools"
+        ]
+      },
+      "safetyEquipment": {
+        "name": "Safety Equipment",
+        "items": [
+          "Personal Protective Equipment (PPE)",
+          "Insulated Hand Tools",
+          "Fall Arrest Systems",
+          "Safety Harnesses",
+          "High-Visibility Vests"
+        ]
+      }
+    }
+  },
+  "futureGoals": {
+    "pageTitle": "Future Goals",
+    "pageSubtitle": "Strategic Objectives",
+    "disclaimerBanner": "These are planned strategic objectives for the future. They are not current achievements or active capabilities. All items below are labeled \"Objective / Planned\".",
+    "objectiveBadge": "Objective / Planned",
+    "objectives": [
+      {
+        "number": "01",
+        "title": "Expand Operations",
+        "description": "Expand our operational footprint within Ethiopia and into the broader East African region."
+      },
+      {
+        "number": "02",
+        "title": "Build Partnerships",
+        "description": "Establish strategic partnerships with leading telecom equipment vendors and EPC contractors."
+      },
+      {
+        "number": "03",
+        "title": "Enhance Technical Capacity",
+        "description": "Grow and develop our technical workforce with specialized training and certification programs."
+      },
+      {
+        "number": "04",
+        "title": "Invest in Technology",
+        "description": "Invest in advanced tools, equipment, and technology platforms to improve service delivery."
+      },
+      {
+        "number": "05",
+        "title": "Maintain HSEQ Standards",
+        "description": "Continuously strengthen our Health, Safety, Environment, and Quality management systems."
+      },
+      {
+        "number": "06",
+        "title": "Deliver Innovative Solutions",
+        "description": "Develop and deliver innovative technical solutions that address emerging telecommunications challenges."
+      },
+      {
+        "number": "07",
+        "title": "Achieve Industry Certifications",
+        "description": "Pursue and obtain corporate-level industry certifications to demonstrate our commitment to quality and standards."
+      },
+      {
+        "number": "08",
+        "title": "Support Digital Transformation",
+        "description": "Play an active role in supporting Ethiopia's national digital transformation and communications infrastructure growth."
+      }
+    ]
+  },
+  "contact": {
+    "pageTitle": "Contact Us",
+    "pageSubtitle": "Get in Touch",
+    "intro": "For inquiries about our services, vendor registration, or to discuss a project, please contact our Managing Director directly.",
+    "mdLabel": "Managing Director",
+    "mdName": "Getachew Teshome",
+    "phoneLabel": "Phone",
+    "phone": "+251 911509555",
+    "emailLabel": "Email",
+    "email": "gixnexustelecom@gmail.com",
+    "addressLabel": "Address",
+    "address": "Addis Ababa, Ethiopia",
+    "responseNote": "We aim to respond to all inquiries within 2 business days.",
+    "operationsNote": "GIX Nexus Telecom and Power operates across Ethiopia."
+  },
+  "footer": {
+    "tagline": "Delivering reliable, innovative, and cost-effective telecommunications and power engineering infrastructure solutions across Ethiopia.",
+    "rights": "All rights reserved.",
+    "company": "GIX Nexus Telecom and Power",
+    "linksTitle": "Quick Links",
+    "contactTitle": "Contact",
+    "legalNote": "Ethiopian-owned telecommunications and power engineering company. Headquarters: Addis Ababa, Ethiopia."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred. Please try again.",
+    "backToHome": "Back to Home",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "languageToggle": "አማርኛ",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "toggleTheme": "Toggle theme",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "companyName": "GIX Nexus Telecom and Power"
+  }
+}
