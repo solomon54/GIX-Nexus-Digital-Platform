@@ -1,0 +1,42 @@
+# ── Dependencies ──────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Next.js build output ──────────────────────────────────────
+GIX-Nexus-Digital-Platform/app/.next/
+GIX-Nexus-Digital-Platform/app/out/
+GIX-Nexus-Digital-Platform/app/build/
+
+# ── Payload CMS generated files ───────────────────────────────
+GIX-Nexus-Digital-Platform/app/src/payload-types.ts
+
+# ── Environment variables — NEVER commit these ────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ── macOS system files ────────────────────────────────────────
+.DS_Store
+**/.DS_Store
+
+# ── Editor / IDE ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── TypeScript ────────────────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ── Testing ───────────────────────────────────────────────────
+coverage/
