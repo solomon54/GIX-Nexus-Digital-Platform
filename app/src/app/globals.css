@@ -1,65 +1,81 @@
-/* GIX Nexus Digital Platform — Global Styles */
-/* Tailwind CSS v4 */
+/**
+ * GIX Nexus Digital Platform — Global Styles
+ * Design direction: GIX NEXUS — MASTER PRODUCT & DESIGN DIRECTION
+ * Rule: "Engineered, not decorated."
+ */
+
 @import "tailwindcss";
 
-/* ── Google Fonts ────────────────────────────────────────────────
-   Loaded via <head> in locale layout.tsx for performance.
-   Fallback declarations here ensure correct font-family mapping.
+/* ── Fonts ───────────────────────────────────────────────────────
+   Noto Sans (English) + Noto Sans Ethiopic (Amharic)
+   Source: §18 Typography — locked decision
 ──────────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,650;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
+
 @layer base {
+
+  /* ── Design tokens ─────────────────────────────────────────────
+     Source: §15 Color System — LOCKED v1
+     Brand: GIX Blue #008CFF · GIX Cyan #12C8FF · GIX Green #65D51A
+  ──────────────────────────────────────────────────────────────── */
   :root {
-    /* ── Brand Colors ─────────────────────────────────────────
-       OPEN QUESTION: Official brand colors TBD — using placeholders
-       Placeholder: #0066CC (brand-blue), #2D7D46 (brand-green)
-       Update when official brand palette is confirmed.
-    ─────────────────────────────────────────────────────────── */
-    --brand-blue: #0066CC;
-    --brand-blue-dark: #004fa3;
-    --brand-green: #2D7D46;
-    --brand-green-dark: #236138;
+    /* Brand */
+    --gix-blue:  #008CFF;
+    --gix-cyan:  #12C8FF;
+    --gix-green: #65D51A;
 
-    /* ── Light theme tokens ───────────────────────────────── */
-    --background: #ffffff;
-    --foreground: #111827;
-    --card: #f9fafb;
-    --card-foreground: #111827;
-    --muted: #f3f4f6;
-    --muted-foreground: #6b7280;
-    --border: #e5e7eb;
-    --input: #e5e7eb;
-    --ring: #0066CC;
+    /* Gradients — §16: every gradient must have a reason */
+    --gradient-connectivity: linear-gradient(135deg, #008CFF, #12C8FF);
+    --gradient-telecom-power: linear-gradient(135deg, #008CFF, #65D51A);
+    --gradient-metallic: linear-gradient(135deg, #D9E1E8, #708090);
 
-    /* ── Typography ──────────────────────────────────────── */
-    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-amharic: 'Noto Sans Ethiopic', 'Ethiopic', serif;
+    /* Light foundation — §15 */
+    --background:   #F7F9FB;  /* Canvas */
+    --surface:      #FFFFFF;  /* Surface */
+    --soft-surface: #EEF3F7;  /* Soft Surface */
+    --border:       #D9E1E8;
+
+    /* Text — light mode */
+    --foreground:         #0B1720;  /* Dark Primary */
+    --foreground-muted:   #465463;  /* Dark Secondary */
+    --foreground-subtle:  #708090;  /* Dark Muted */
+
+    /* Semantic */
+    --success: #16A34A;
+    --warning: #D99A00;
+    --danger:  #D83A3A;
+    --info:    #1687D9;
+
+    /* Typography — §18 */
+    --font-sans:     'Noto Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-ethiopic: 'Noto Sans Ethiopic', Ethiopic, serif;
+
+    /* Grid — §22 */
+    --container-max: 1280px;
+
+    /* Focus ring */
+    --ring: #008CFF;
   }
 
-  /* ── Dark theme ──────────────────────────────────────────── */
+  /* ── Dark theme — §15 Dark foundation ─────────────────────────── */
   .dark {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --card: #1e293b;
-    --card-foreground: #f1f5f9;
-    --muted: #1e293b;
-    --muted-foreground: #94a3b8;
-    --border: #334155;
-    --input: #334155;
-    --ring: #3b82f6;
+    --background:   #07111C;  /* Midnight */
+    --surface:      #0B1726;  /* Deep Navy */
+    --soft-surface: #111C27;  /* Graphite */
+    --border:       #172331;  /* Elevated */
 
-    /* Brand colors adjust slightly for dark contrast */
-    --brand-blue: #4d9de0;
-    --brand-green: #4ade80;
+    --foreground:         #F4F8FC;  /* Light Primary */
+    --foreground-muted:   #B9C6D3;  /* Light Secondary */
+    --foreground-subtle:  #708090;  /* Dark Muted — same in both */
+
+    /* Brand slightly brightened for dark contrast */
+    --gix-blue:  #3FABFF;
+    --gix-cyan:  #3DD9FF;
+    --gix-green: #7DE832;
   }
-}
 
-/* ── Base styles ──────────────────────────────────────────────── */
-@layer base {
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+  /* ── Base ──────────────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
 
   html {
     scroll-behavior: smooth;
@@ -71,120 +87,82 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    line-height: 1.6;
+    font-size: 16px;      /* body base — §19 */
+    line-height: 1.625;   /* 26px / 16px ≈ §19 body line-height */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Amharic content — apply Noto Sans Ethiopic */
-  :lang(am),
-  .font-amharic {
-    font-family: var(--font-amharic);
-    /* Ethiopic script is LTR, no direction change needed */
-    /* Slightly increased line-height for Ethiopic characters */
+  /* Amharic — §18: Noto Sans Ethiopic, slightly more line-height */
+  :lang(am), .font-ethiopic {
+    font-family: var(--font-ethiopic);
     line-height: 1.8;
   }
 
-  /* Focus visible — accessibility D-08 */
+  /* Focus — accessible, visible */
   :focus-visible {
-    outline: 2px solid var(--brand-blue);
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
   }
+  :focus:not(:focus-visible) { outline: none; }
 
-  /* Remove default focus ring for mouse users */
-  :focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  /* Skip to main content link — accessibility */
+  /* Skip link — accessibility */
   .skip-link {
     position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--brand-blue);
-    color: white;
+    top: -40px; left: 0;
+    background: var(--gix-blue);
+    color: #fff;
     padding: 8px 16px;
     text-decoration: none;
     z-index: 9999;
     border-radius: 0 0 4px 0;
   }
+  .skip-link:focus { top: 0; }
 
-  .skip-link:focus {
-    top: 0;
-  }
+  /* Touch targets — §42 Accessibility / D-08: min 44×44px */
+  button, [role="button"] { min-height: 44px; min-width: 44px; }
+  nav a { min-height: 44px; display: inline-flex; align-items: center; }
 
-  /* Minimum touch target — spec requirement D-08 */
-  button,
-  a,
-  [role="button"] {
-    min-height: 44px;
-    min-width: 44px;
-  }
+  /* Type hierarchy — §19 (desktop defaults, mobile overridden by responsive utilities) */
+  h1 { font-size: 44px; line-height: 52px; font-weight: 650; }
+  h2 { font-size: 36px; line-height: 44px; font-weight: 650; }
+  h3 { font-size: 28px; line-height: 36px; font-weight: 600; }
+  h4 { font-size: 22px; line-height: 30px; font-weight: 600; }
 
-  /* Inline elements (anchor in text) can be narrower */
-  p a,
-  li a {
-    min-height: unset;
-    min-width: unset;
-  }
+  img, svg { max-width: 100%; height: auto; }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-weight: 700;
-    line-height: 1.25;
-    color: var(--foreground);
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
+  /* Reduced motion — §51 Motion Rule */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-/* ── Utility classes ──────────────────────────────────────────── */
+/* ── Utilities ─────────────────────────────────────────────────── */
 @layer utilities {
-  .font-amharic {
-    font-family: var(--font-amharic);
-  }
+  .font-sans     { font-family: var(--font-sans); }
+  .font-ethiopic { font-family: var(--font-ethiopic); }
 
-  .font-sans {
-    font-family: var(--font-sans);
-  }
+  /* Brand colors */
+  .text-gix-blue  { color: var(--gix-blue); }
+  .text-gix-cyan  { color: var(--gix-cyan); }
+  .text-gix-green { color: var(--gix-green); }
+  .bg-gix-blue    { background-color: var(--gix-blue); }
+  .bg-gix-cyan    { background-color: var(--gix-cyan); }
+  .bg-gix-green   { background-color: var(--gix-green); }
 
-  /* Brand color utilities */
-  .text-brand-blue {
-    color: var(--brand-blue);
-  }
+  /* Gradients */
+  .bg-gradient-connectivity   { background: var(--gradient-connectivity); }
+  .bg-gradient-telecom-power  { background: var(--gradient-telecom-power); }
+  .bg-gradient-metallic       { background: var(--gradient-metallic); }
 
-  .text-brand-green {
-    color: var(--brand-green);
-  }
+  /* Semantic surfaces */
+  .bg-surface      { background-color: var(--surface); }
+  .bg-soft-surface { background-color: var(--soft-surface); }
+  .border-default  { border-color: var(--border); }
 
-  .bg-brand-blue {
-    background-color: var(--brand-blue);
-  }
-
-  .bg-brand-green {
-    background-color: var(--brand-green);
-  }
-
-  /* Line clamp */
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-
-  /* Smooth transitions */
-  .transition-colors {
-    transition-property: color, background-color, border-color;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
+  .text-muted   { color: var(--foreground-muted); }
+  .text-subtle  { color: var(--foreground-subtle); }
 }
