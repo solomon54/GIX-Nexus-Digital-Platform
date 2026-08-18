@@ -67,7 +67,7 @@ function HomePage({ locale }: { locale: string }) {
     <>
       {/* ── Hero ──────────────────────────────────────────────────── */}
       <section
-        className="relative overflow-hidden bg-gradient-to-br from-[var(--brand-blue)] to-[var(--brand-blue)]/80 py-20 sm:py-28"
+        className="relative overflow-hidden bg-gradient-to-br from-[var(--gix-blue)] to-[var(--gix-blue)]/80 py-20 sm:py-28"
         aria-labelledby="hero-heading"
       >
         {/* Subtle background pattern */}
@@ -103,13 +103,13 @@ function HomePage({ locale }: { locale: string }) {
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
                 href={`/${locale}/services`}
-                className="inline-flex min-h-[44px] items-center rounded-lg bg-white px-6 py-2.5 text-sm font-semibold text-[var(--brand-blue)] shadow hover:bg-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--brand-blue)]"
+                className="inline-flex min-h-[44px] items-center rounded-lg bg-white px-6 py-2.5 text-sm font-semibold text-[var(--gix-blue)] shadow hover:bg-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--gix-blue)]"
               >
                 {t('ctaServices')}
               </Link>
               <Link
                 href={`/${locale}/company`}
-                className="inline-flex min-h-[44px] items-center rounded-lg border-2 border-white px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--brand-blue)]"
+                className="inline-flex min-h-[44px] items-center rounded-lg border-2 border-white px-6 py-2.5 text-sm font-semibold text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--gix-blue)]"
               >
                 {t('ctaProfile')}
               </Link>
@@ -121,48 +121,48 @@ function HomePage({ locale }: { locale: string }) {
       {/* ── Stats bar ─────────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Pages 1, 3, 8 */}
       <section
-        className="border-b border-[var(--border)] bg-[var(--card)]"
+        className="border-b border-[var(--border)] bg-[var(--surface)]"
         aria-label="Key facts"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <dl className="grid grid-cols-1 divide-y divide-[var(--border)] sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {/* 7+ Service Domains — headline only, not a structural claim */}
             <div className="flex flex-col items-center py-8 px-4 text-center">
-              <dt className="text-sm font-medium text-[var(--muted-foreground)]">
+              <dt className="text-sm font-medium text-[var(--foreground-subtle)]">
                 {t('stats.serviceDomainsLabel')}
               </dt>
               <dd
-                className="mt-2 text-4xl font-extrabold text-[var(--brand-blue)]"
+                className="mt-2 text-4xl font-extrabold text-[var(--gix-blue)]"
                 aria-label="7 plus service domains"
               >
                 {/* Source: Company Profile PDF, Page 3 — quoted headline */}
                 {t('stats.serviceDomainsValue')}+
               </dd>
               {/* Quoted to signal source language, not a precise structural count */}
-              <p className="mt-1 text-xs text-[var(--muted-foreground)]">
+              <p className="mt-1 text-xs text-[var(--foreground-subtle)]">
                 {t('stats.serviceDomainsNote')}
               </p>
             </div>
 
             {/* 24/7 Technical Support */}
             <div className="flex flex-col items-center py-8 px-4 text-center">
-              <dt className="text-sm font-medium text-[var(--muted-foreground)]">
+              <dt className="text-sm font-medium text-[var(--foreground-subtle)]">
                 {t('stats.supportLabel')}
               </dt>
-              <dd className="mt-2 text-4xl font-extrabold text-[var(--brand-blue)]">
+              <dd className="mt-2 text-4xl font-extrabold text-[var(--gix-blue)]">
                 {t('stats.supportValue')}
               </dd>
             </div>
 
             {/* 100% Safety-First — policy statement, never a metric */}
             <div className="flex flex-col items-center py-8 px-4 text-center">
-              <dt className="text-sm font-medium text-[var(--muted-foreground)]">
+              <dt className="text-sm font-medium text-[var(--foreground-subtle)]">
                 {t('stats.safetyLabel')}
               </dt>
-              <dd className="mt-2 text-4xl font-extrabold text-[var(--brand-green)]">
+              <dd className="mt-2 text-4xl font-extrabold text-[var(--gix-green)]">
                 {t('stats.safetyValue')}
               </dd>
-              <p className="mt-1 text-xs text-[var(--muted-foreground)]">
+              <p className="mt-1 text-xs text-[var(--foreground-subtle)]">
                 {t('stats.safetyNote')}
               </p>
             </div>
@@ -184,7 +184,7 @@ function HomePage({ locale }: { locale: string }) {
             >
               {t('servicesTitle')}
             </h2>
-            <p className="mt-3 text-[var(--muted-foreground)]">{t('servicesSubtitle')}</p>
+            <p className="mt-3 text-[var(--foreground-subtle)]">{t('servicesSubtitle')}</p>
           </div>
 
           {/* 6-column grid on desktop, 1-column on mobile */}
@@ -210,7 +210,7 @@ function HomePage({ locale }: { locale: string }) {
           <div className="mt-10 text-center">
             <Link
               href={`/${locale}/services`}
-              className="inline-flex min-h-[44px] items-center rounded-lg bg-[var(--brand-blue)] px-8 py-2.5 text-sm font-semibold text-white hover:bg-[var(--brand-blue)]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-2"
+              className="inline-flex min-h-[44px] items-center rounded-lg bg-[var(--gix-blue)] px-8 py-2.5 text-sm font-semibold text-white hover:bg-[var(--gix-blue)]/90 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2"
             >
               {t('viewAllSectors')}
             </Link>
@@ -221,7 +221,7 @@ function HomePage({ locale }: { locale: string }) {
       {/* ── Why Partner with Us ───────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 9 */}
       <section
-        className="bg-[var(--card)] py-16 sm:py-20"
+        className="bg-[var(--surface)] py-16 sm:py-20"
         aria-labelledby="features-heading"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -232,7 +232,7 @@ function HomePage({ locale }: { locale: string }) {
             >
               {t('featureTitle')}
             </h2>
-            <p className="mt-3 text-[var(--muted-foreground)]">{t('featureSubtitle')}</p>
+            <p className="mt-3 text-[var(--foreground-subtle)]">{t('featureSubtitle')}</p>
           </div>
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -248,7 +248,7 @@ function HomePage({ locale }: { locale: string }) {
                 key={key}
                 className="flex gap-4 rounded-xl border border-[var(--border)] bg-[var(--background)] p-6"
               >
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--brand-blue)]/10 text-[var(--brand-blue)]">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-[var(--gix-blue)]/10 text-[var(--gix-blue)]">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -267,7 +267,7 @@ function HomePage({ locale }: { locale: string }) {
                   <h3 className="font-semibold text-[var(--foreground)]">
                     {t(`features.${key}.title`)}
                   </h3>
-                  <p className="mt-1 text-sm text-[var(--muted-foreground)]">
+                  <p className="mt-1 text-sm text-[var(--foreground-subtle)]">
                     {t(`features.${key}.description`)}
                   </p>
                 </div>
@@ -291,11 +291,11 @@ function HomePage({ locale }: { locale: string }) {
             >
               {t('sectorsTitle')}
             </h2>
-            <p className="mt-3 text-[var(--muted-foreground)]">{t('sectorsSubtitle')}</p>
+            <p className="mt-3 text-[var(--foreground-subtle)]">{t('sectorsSubtitle')}</p>
           </div>
 
           {/* Disclaimer — sectors are target/prospective, not confirmed clients */}
-          <p className="mb-8 text-center text-sm text-[var(--muted-foreground)] italic">
+          <p className="mb-8 text-center text-sm text-[var(--foreground-subtle)] italic">
             {t('sectorsDisclaimer')}
           </p>
 
@@ -312,7 +312,7 @@ function HomePage({ locale }: { locale: string }) {
           <div className="mt-8 text-center">
             <Link
               href={`/${locale}/industries`}
-              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--background)] px-6 py-2.5 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-2"
+              className="inline-flex min-h-[44px] items-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--background)] px-6 py-2.5 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--soft-surface)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2"
             >
               {t('viewAllSectors')}
               <svg
@@ -335,7 +335,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── CTA ───────────────────────────────────────────────────── */}
       <section
-        className="bg-[var(--brand-blue)] py-16"
+        className="bg-[var(--gix-blue)] py-16"
         aria-labelledby="cta-heading"
       >
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
@@ -348,7 +348,7 @@ function HomePage({ locale }: { locale: string }) {
           <p className="mt-4 text-lg text-white/85">{t('ctaSubtitle')}</p>
           <Link
             href={`/${locale}/contact`}
-            className="mt-8 inline-flex min-h-[44px] items-center rounded-lg bg-white px-8 py-3 text-sm font-semibold text-[var(--brand-blue)] hover:bg-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--brand-blue)]"
+            className="mt-8 inline-flex min-h-[44px] items-center rounded-lg bg-white px-8 py-3 text-sm font-semibold text-[var(--gix-blue)] hover:bg-white/90 transition-colors focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--gix-blue)]"
           >
             {t('ctaContact')}
           </Link>

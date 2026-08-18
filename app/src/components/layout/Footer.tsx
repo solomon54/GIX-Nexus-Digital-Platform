@@ -25,18 +25,18 @@ export function Footer({ locale }: FooterProps) {
   ]
 
   return (
-    <footer className="mt-auto border-t border-[var(--border)] bg-[var(--card)]">
+    <footer className="mt-auto border-t border-[var(--border)] bg-[var(--surface)]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand column */}
           <div className="lg:col-span-2">
-            <p className="text-xl font-bold text-[var(--brand-blue)]">GIX Nexus</p>
+            <p className="text-xl font-bold text-[var(--gix-blue)]">GIX Nexus</p>
             <p className="text-sm font-medium text-[var(--foreground)]">Telecom and Power</p>
-            <p className="mt-3 max-w-sm text-sm text-[var(--muted-foreground)]">
+            <p className="mt-3 max-w-sm text-sm text-[var(--foreground-subtle)]">
               {t('tagline')}
             </p>
             {/* Legal note */}
-            <p className="mt-3 text-xs text-[var(--muted-foreground)]">{t('legalNote')}</p>
+            <p className="mt-3 text-xs text-[var(--foreground-subtle)]">{t('legalNote')}</p>
           </div>
 
           {/* Navigation links */}
@@ -47,7 +47,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-[var(--muted-foreground)] hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded"
+                    className="text-sm text-[var(--foreground-subtle)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
                   >
                     {link.label}
                   </Link>
@@ -62,7 +62,7 @@ export function Footer({ locale }: FooterProps) {
             {/* Source: Company Profile PDF, Page 10 */}
             <address className="mt-4 not-italic">
               <ul className="flex flex-col gap-2" role="list">
-                <li className="text-sm text-[var(--muted-foreground)]">
+                <li className="text-sm text-[var(--foreground-subtle)]">
                   <span className="font-medium text-[var(--foreground)]">{CONTACT.name}</span>
                   <br />
                   {CONTACT.title}
@@ -70,7 +70,7 @@ export function Footer({ locale }: FooterProps) {
                 <li>
                   <a
                     href={`tel:${CONTACT.phone}`}
-                    className="text-sm text-[var(--muted-foreground)] hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded"
+                    className="text-sm text-[var(--foreground-subtle)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
                   >
                     {CONTACT.phone}
                   </a>
@@ -78,12 +78,12 @@ export function Footer({ locale }: FooterProps) {
                 <li>
                   <a
                     href={`mailto:${CONTACT.email}`}
-                    className="text-sm text-[var(--muted-foreground)] hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded break-all"
+                    className="text-sm text-[var(--foreground-subtle)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded break-all"
                   >
                     {CONTACT.email}
                   </a>
                 </li>
-                <li className="text-sm text-[var(--muted-foreground)]">
+                <li className="text-sm text-[var(--foreground-subtle)]">
                   {CONTACT.address}
                 </li>
               </ul>
@@ -93,7 +93,7 @@ export function Footer({ locale }: FooterProps) {
 
         {/* Bottom bar */}
         <div className="mt-8 border-t border-[var(--border)] pt-6">
-          <p className="text-center text-xs text-[var(--muted-foreground)]">
+          <p className="text-center text-xs text-[var(--foreground-subtle)]">
             &copy; {currentYear} {t('company')}. {t('rights')}
           </p>
         </div>

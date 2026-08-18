@@ -38,7 +38,7 @@ function ServicesPage({ locale }: { locale: string }) {
           <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">
             {t('pageTitle')}
           </h1>
-          <p className="mt-4 text-lg text-[var(--muted-foreground)]">{t('pageDescription')}</p>
+          <p className="mt-4 text-lg text-[var(--foreground-subtle)]">{t('pageDescription')}</p>
         </div>
 
         {/* Services grid */}

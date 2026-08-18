@@ -11,7 +11,7 @@ export function SectorCard({ name, description, order, className }: SectorCardPr
   return (
     <div
       className={cn(
-        'flex flex-col gap-3 rounded-xl border border-[var(--border)] bg-[var(--card)] p-5',
+        'flex flex-col gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5',
         'transition-shadow duration-200 hover:shadow-md',
         className,
       )}
@@ -19,7 +19,7 @@ export function SectorCard({ name, description, order, className }: SectorCardPr
       {/* Order badge */}
       <div className="flex items-center gap-3">
         <span
-          className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-green)]/10 text-xs font-bold text-[var(--brand-green)]"
+          className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-green)]/10 text-xs font-bold text-[var(--gix-green)]"
           aria-label={`Sector ${order}`}
         >
           {String(order).padStart(2, '0')}
@@ -28,7 +28,7 @@ export function SectorCard({ name, description, order, className }: SectorCardPr
       </div>
 
       {description && (
-        <p className="text-sm text-[var(--muted-foreground)]">{description}</p>
+        <p className="text-sm text-[var(--foreground-subtle)]">{description}</p>
       )}
     </div>
   )

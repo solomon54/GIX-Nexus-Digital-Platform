@@ -31,7 +31,7 @@ function IndustriesPage() {
           <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">
             {t('pageTitle')}
           </h1>
-          <p className="mt-2 text-lg font-medium text-[var(--brand-blue)]">
+          <p className="mt-2 text-lg font-medium text-[var(--gix-blue)]">
             {t('pageSubtitle')}
           </p>
         </div>

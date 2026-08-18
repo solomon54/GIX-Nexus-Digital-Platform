@@ -1,81 +1,148 @@
 /**
  * GIX Nexus Digital Platform — Global Styles
+ * Tailwind CSS v4 (CSS-first configuration)
  * Design direction: GIX NEXUS — MASTER PRODUCT & DESIGN DIRECTION
- * Rule: "Engineered, not decorated."
+ * Rule §50: "Engineered, not decorated."
  */
+
+/* Google Fonts must come first, before any @layer or @theme */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
-/* ── Fonts ───────────────────────────────────────────────────────
-   Noto Sans (English) + Noto Sans Ethiopic (Amharic)
-   Source: §18 Typography — locked decision
+/* ── Tailwind v4 theme (CSS-first, replaces tailwind.config.ts) ──
+   All design tokens declared here.
+   Source: §15 Color System, §18–19 Typography, §21 Spacing, §22 Grid, §23 Radius
+   Status: LOCKED v1
 ──────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,650;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
+@theme {
 
+  /* Fonts — §18 */
+  --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-ethiopic: "Noto Sans Ethiopic", Ethiopic, serif;
+
+  /* Brand colors — §15 */
+  --color-gix-blue: #008CFF;
+  --color-gix-cyan: #12C8FF;
+  --color-gix-green: #65D51A;
+
+  /* Dark foundation — §15 */
+  --color-midnight: #07111C;
+  --color-deep-navy: #0B1726;
+  --color-graphite: #111C27;
+  --color-elevated: #172331;
+
+  /* Light foundation — §15 */
+  --color-canvas: #F7F9FB;
+  --color-surface: #FFFFFF;
+  --color-soft-surface: #EEF3F7;
+  --color-border-light: #D9E1E8;
+
+  /* Text — §15 */
+  --color-dark-primary: #0B1720;
+  --color-dark-secondary: #465463;
+  --color-dark-muted: #708090;
+  --color-light-primary: #F4F8FC;
+  --color-light-secondary: #B9C6D3;
+
+  /* Semantic — §15 */
+  --color-success: #16A34A;
+  --color-warning: #D99A00;
+  --color-danger: #D83A3A;
+  --color-info: #1687D9;
+
+  /* Border radius — §23 */
+  --radius-sm: 4px;
+  --radius-DEFAULT: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-expressive: 24px;
+
+  /* Spacing — §21 (exact values, no arbitrary invention) */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-16: 64px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-30: 120px;
+  --spacing-40: 160px;
+
+  /* Container max-width — §22 */
+  --container-max: 1280px;
+
+  /* Type scale — §19 Desktop (exact px, not utility aliases) */
+  --text-display: 52px;
+  --text-h1: 44px;
+  --text-h2: 36px;
+  --text-h3: 28px;
+  --text-h4: 22px;
+  --text-lead: 19px;
+  --text-body: 16px;
+  --text-small: 14px;
+  --text-caption: 12px;
+
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* ── Semantic CSS variables (theme-aware, used in components) ────
+   Referenced as var(--background), var(--foreground), etc.
+──────────────────────────────────────────────────────────────── */
+:root {
+  --background: #F7F9FB;
+  --surface: #FFFFFF;
+  --soft-surface: #EEF3F7;
+  --border: #D9E1E8;
+  --foreground: #0B1720;
+  --foreground-muted: #465463;
+  --foreground-subtle: #708090;
+
+  /* Brand aliases for components */
+  --gix-blue: #008CFF;
+  --gix-cyan: #12C8FF;
+  --gix-green: #65D51A;
+
+  /* Gradients — §16 */
+  --gradient-connectivity: linear-gradient(135deg, #008CFF, #12C8FF);
+  --gradient-telecom-power: linear-gradient(135deg, #008CFF, #65D51A);
+  --gradient-metallic: linear-gradient(135deg, #D9E1E8, #708090);
+}
+
+.dark {
+  --background: #07111C;
+  --surface: #0B1726;
+  --soft-surface: #111C27;
+  --border: #172331;
+  --foreground: #F4F8FC;
+  --foreground-muted: #B9C6D3;
+  --foreground-subtle: #708090;
+
+  --gix-blue: #3FABFF;
+  --gix-cyan: #3DD9FF;
+  --gix-green: #7DE832;
+}
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+/* (loaded above via @import url() — must precede @layer/tailwindcss) */
+
+/* ── Base styles ─────────────────────────────────────────────── */
 @layer base {
 
-  /* ── Design tokens ─────────────────────────────────────────────
-     Source: §15 Color System — LOCKED v1
-     Brand: GIX Blue #008CFF · GIX Cyan #12C8FF · GIX Green #65D51A
-  ──────────────────────────────────────────────────────────────── */
-  :root {
-    /* Brand */
-    --gix-blue:  #008CFF;
-    --gix-cyan:  #12C8FF;
-    --gix-green: #65D51A;
-
-    /* Gradients — §16: every gradient must have a reason */
-    --gradient-connectivity: linear-gradient(135deg, #008CFF, #12C8FF);
-    --gradient-telecom-power: linear-gradient(135deg, #008CFF, #65D51A);
-    --gradient-metallic: linear-gradient(135deg, #D9E1E8, #708090);
-
-    /* Light foundation — §15 */
-    --background:   #F7F9FB;  /* Canvas */
-    --surface:      #FFFFFF;  /* Surface */
-    --soft-surface: #EEF3F7;  /* Soft Surface */
-    --border:       #D9E1E8;
-
-    /* Text — light mode */
-    --foreground:         #0B1720;  /* Dark Primary */
-    --foreground-muted:   #465463;  /* Dark Secondary */
-    --foreground-subtle:  #708090;  /* Dark Muted */
-
-    /* Semantic */
-    --success: #16A34A;
-    --warning: #D99A00;
-    --danger:  #D83A3A;
-    --info:    #1687D9;
-
-    /* Typography — §18 */
-    --font-sans:     'Noto Sans', ui-sans-serif, system-ui, sans-serif;
-    --font-ethiopic: 'Noto Sans Ethiopic', Ethiopic, serif;
-
-    /* Grid — §22 */
-    --container-max: 1280px;
-
-    /* Focus ring */
-    --ring: #008CFF;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
   }
-
-  /* ── Dark theme — §15 Dark foundation ─────────────────────────── */
-  .dark {
-    --background:   #07111C;  /* Midnight */
-    --surface:      #0B1726;  /* Deep Navy */
-    --soft-surface: #111C27;  /* Graphite */
-    --border:       #172331;  /* Elevated */
-
-    --foreground:         #F4F8FC;  /* Light Primary */
-    --foreground-muted:   #B9C6D3;  /* Light Secondary */
-    --foreground-subtle:  #708090;  /* Dark Muted — same in both */
-
-    /* Brand slightly brightened for dark contrast */
-    --gix-blue:  #3FABFF;
-    --gix-cyan:  #3DD9FF;
-    --gix-green: #7DE832;
-  }
-
-  /* ── Base ──────────────────────────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; }
 
   html {
     scroll-behavior: smooth;
@@ -87,29 +154,80 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
-    font-size: 16px;      /* body base — §19 */
-    line-height: 1.625;   /* 26px / 16px ≈ §19 body line-height */
+    font-size: 16px;
+    line-height: 1.625;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Amharic — §18: Noto Sans Ethiopic, slightly more line-height */
-  :lang(am), .font-ethiopic {
-    font-family: var(--font-ethiopic);
+  /* Amharic — §18 */
+  :lang(am),
+  .font-ethiopic {
+    font-family: "Noto Sans Ethiopic", Ethiopic, serif;
     line-height: 1.8;
   }
 
-  /* Focus — accessible, visible */
+  /* Type hierarchy — §19 */
+  h1 {
+    font-size: 44px;
+    line-height: 52px;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 36px;
+    line-height: 44px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 28px;
+    line-height: 36px;
+    font-weight: 600;
+  }
+
+  h4 {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 34px;
+      line-height: 42px;
+    }
+
+    h2 {
+      font-size: 30px;
+      line-height: 38px;
+    }
+
+    h3 {
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    h4 {
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  /* Accessibility */
   :focus-visible {
-    outline: 2px solid var(--ring);
+    outline: 2px solid var(--gix-blue);
     outline-offset: 2px;
   }
-  :focus:not(:focus-visible) { outline: none; }
 
-  /* Skip link — accessibility */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
   .skip-link {
     position: absolute;
-    top: -40px; left: 0;
+    top: -40px;
+    left: 0;
     background: var(--gix-blue);
     color: #fff;
     padding: 8px 16px;
@@ -117,52 +235,32 @@
     z-index: 9999;
     border-radius: 0 0 4px 0;
   }
-  .skip-link:focus { top: 0; }
 
-  /* Touch targets — §42 Accessibility / D-08: min 44×44px */
-  button, [role="button"] { min-height: 44px; min-width: 44px; }
-  nav a { min-height: 44px; display: inline-flex; align-items: center; }
+  .skip-link:focus {
+    top: 0;
+  }
 
-  /* Type hierarchy — §19 (desktop defaults, mobile overridden by responsive utilities) */
-  h1 { font-size: 44px; line-height: 52px; font-weight: 650; }
-  h2 { font-size: 36px; line-height: 44px; font-weight: 650; }
-  h3 { font-size: 28px; line-height: 36px; font-weight: 600; }
-  h4 { font-size: 22px; line-height: 30px; font-weight: 600; }
+  /* Touch targets — D-08 */
+  button,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 
-  img, svg { max-width: 100%; height: auto; }
+  img,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
 
-  /* Reduced motion — §51 Motion Rule */
+  /* Reduced motion — §51 */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }
   }
-}
-
-/* ── Utilities ─────────────────────────────────────────────────── */
-@layer utilities {
-  .font-sans     { font-family: var(--font-sans); }
-  .font-ethiopic { font-family: var(--font-ethiopic); }
-
-  /* Brand colors */
-  .text-gix-blue  { color: var(--gix-blue); }
-  .text-gix-cyan  { color: var(--gix-cyan); }
-  .text-gix-green { color: var(--gix-green); }
-  .bg-gix-blue    { background-color: var(--gix-blue); }
-  .bg-gix-cyan    { background-color: var(--gix-cyan); }
-  .bg-gix-green   { background-color: var(--gix-green); }
-
-  /* Gradients */
-  .bg-gradient-connectivity   { background: var(--gradient-connectivity); }
-  .bg-gradient-telecom-power  { background: var(--gradient-telecom-power); }
-  .bg-gradient-metallic       { background: var(--gradient-metallic); }
-
-  /* Semantic surfaces */
-  .bg-surface      { background-color: var(--surface); }
-  .bg-soft-surface { background-color: var(--soft-surface); }
-  .border-default  { border-color: var(--border); }
-
-  .text-muted   { color: var(--foreground-muted); }
-  .text-subtle  { color: var(--foreground-subtle); }
 }

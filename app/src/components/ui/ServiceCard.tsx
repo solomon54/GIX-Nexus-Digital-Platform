@@ -58,13 +58,13 @@ export function ServiceCard({
   return (
     <div
       className={cn(
-        'group flex flex-col gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-6',
+        'group flex flex-col gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6',
         'transition-shadow duration-200 hover:shadow-lg',
         className,
       )}
     >
       {/* Icon */}
-      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--brand-blue)]/10 text-[var(--brand-blue)]">
+      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-[var(--gix-blue)]/10 text-[var(--gix-blue)]">
         <ServiceIcon name={icon} className="h-6 w-6" />
       </div>
 
@@ -73,7 +73,7 @@ export function ServiceCard({
 
       {/* Description */}
       {description && (
-        <p className="text-sm text-[var(--muted-foreground)] line-clamp-3">{description}</p>
+        <p className="text-sm text-[var(--foreground-subtle)] line-clamp-3">{description}</p>
       )}
 
       {/* Capabilities list */}
@@ -82,14 +82,14 @@ export function ServiceCard({
           {capabilities.slice(0, 3).map((cap, i) => (
             <li key={i} className="flex items-start gap-2 text-sm text-[var(--foreground)]">
               <span
-                className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-blue)]"
+                className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--gix-blue)]"
                 aria-hidden="true"
               />
               {cap}
             </li>
           ))}
           {capabilities.length > 3 && (
-            <li className="text-sm text-[var(--muted-foreground)]">
+            <li className="text-sm text-[var(--foreground-subtle)]">
               +{capabilities.length - 3} more
             </li>
           )}
@@ -99,7 +99,7 @@ export function ServiceCard({
       {/* Learn more link */}
       <Link
         href={`/${locale}/services/${slug}`}
-        className="mt-2 inline-flex min-h-[44px] items-center gap-1 text-sm font-medium text-[var(--brand-blue)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-2 rounded"
+        className="mt-2 inline-flex min-h-[44px] items-center gap-1 text-sm font-medium text-[var(--gix-blue)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded"
         aria-label={`Learn more about ${name}`}
       >
         Learn more

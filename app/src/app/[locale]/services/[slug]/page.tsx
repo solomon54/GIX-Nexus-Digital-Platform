@@ -63,17 +63,17 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
     <div className="py-12 sm:py-16">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-[var(--muted-foreground)]" aria-label="Breadcrumb">
+        <nav className="mb-8 flex items-center gap-2 text-sm text-[var(--foreground-subtle)]" aria-label="Breadcrumb">
           <Link
             href={`/${locale}`}
-            className="hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded"
+            className="hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
           >
             Home
           </Link>
           <span aria-hidden="true">/</span>
           <Link
             href={`/${locale}/services`}
-            className="hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded"
+            className="hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
           >
             {tNav('services')}
           </Link>
@@ -84,7 +84,7 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
         {/* Header */}
         <div className="mb-10">
           <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">{name}</h1>
-          <p className="mt-4 text-lg text-[var(--muted-foreground)]">{description}</p>
+          <p className="mt-4 text-lg text-[var(--foreground-subtle)]">{description}</p>
         </div>
 
         {/* Capabilities */}
@@ -99,10 +99,10 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
             {capabilities.map((cap, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] p-4"
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4"
               >
                 <span
-                  className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-blue)]/10"
+                  className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10"
                   aria-hidden="true"
                 >
                   <svg
@@ -113,7 +113,7 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-3.5 w-3.5 text-[var(--brand-blue)]"
+                    className="h-3.5 w-3.5 text-[var(--gix-blue)]"
                     aria-hidden="true"
                   >
                     <polyline points="20 6 9 17 4 12" />
@@ -129,7 +129,7 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
         <div className="mt-12">
           <Link
             href={`/${locale}/services`}
-            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[var(--brand-blue)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-2 rounded"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[var(--gix-blue)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

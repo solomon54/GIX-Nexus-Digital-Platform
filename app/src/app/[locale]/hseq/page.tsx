@@ -30,7 +30,7 @@ function HseqPage() {
           <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">
             {t('pageTitle')}
           </h1>
-          <p className="mt-2 text-lg font-medium text-[var(--brand-blue)]">
+          <p className="mt-2 text-lg font-medium text-[var(--gix-blue)]">
             {t('pageSubtitle')}
           </p>
         </div>
@@ -44,7 +44,7 @@ function HseqPage() {
           >
             {t('policyHeading')}
           </h2>
-          <p className="text-[var(--muted-foreground)] leading-relaxed">{t('policyText')}</p>
+          <p className="text-[var(--foreground-subtle)] leading-relaxed">{t('policyText')}</p>
         </section>
 
         {/* ── HSEQ Key Statements ───────────────────────────────── */}
@@ -87,10 +87,10 @@ function HseqPage() {
             {programElements.map((element, i) => (
               <li
                 key={i}
-                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4"
+                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"
               >
                 <span
-                  className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-green)]/10"
+                  className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-green)]/10"
                   aria-hidden="true"
                 >
                   <svg
@@ -101,7 +101,7 @@ function HseqPage() {
                     strokeWidth="2.5"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-4 w-4 text-[var(--brand-green)]"
+                    className="h-4 w-4 text-[var(--gix-green)]"
                     aria-hidden="true"
                   >
                     <polyline points="20 6 9 17 4 12" />
@@ -126,10 +126,10 @@ function HseqPage() {
             {equipmentItems.map((item, i) => (
               <li
                 key={i}
-                className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--card)] px-4 py-3"
+                className="flex items-center gap-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] px-4 py-3"
               >
                 <span
-                  className="h-2 w-2 flex-shrink-0 rounded-full bg-[var(--brand-blue)]"
+                  className="h-2 w-2 flex-shrink-0 rounded-full bg-[var(--gix-blue)]"
                   aria-hidden="true"
                 />
                 <span className="text-sm text-[var(--foreground)]">{item}</span>

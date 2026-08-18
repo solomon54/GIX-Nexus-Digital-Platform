@@ -1,8 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useTheme } from 'next-themes'
 
@@ -14,9 +14,11 @@ export function Navigation({ locale }: NavigationProps) {
   const t = useTranslations('nav')
   const tCommon = useTranslations('common')
   const pathname = usePathname()
-  const router = useRouter()
   const { theme, setTheme } = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
+  // Prevent hydration mismatch: next-themes resolves theme client-side only
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => setMounted(true), [])
 
   const otherLocale = locale === 'en' ? 'am' : 'en'
 
@@ -53,15 +55,14 @@ export function Navigation({ locale }: NavigationProps) {
         {/* Logo */}
         <Link
           href={`/${locale}`}
-          className="flex min-h-[44px] items-center gap-3 focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-2 rounded"
+          className="flex min-h-[44px] items-center gap-3 focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded"
           aria-label="GIX Nexus Telecom and Power — Home"
         >
-          {/* Fallback text logo if image not yet available */}
           <div className="flex flex-col">
-            <span className="text-lg font-bold leading-tight text-[var(--brand-blue)]">
+            <span className="text-lg font-bold leading-tight text-[var(--gix-blue)]">
               GIX Nexus
             </span>
-            <span className="text-xs text-[var(--muted-foreground)] leading-tight">
+            <span className="text-xs text-[var(--foreground-subtle)] leading-tight">
               Telecom and Power
             </span>
           </div>
@@ -75,10 +76,10 @@ export function Navigation({ locale }: NavigationProps) {
                 href={link.href}
                 className={[
                   'inline-flex min-h-[44px] items-center px-3 py-2 text-sm font-medium rounded-md transition-colors',
-                  'focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-1',
+                  'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
                   isActive(link.href)
-                    ? 'bg-[var(--brand-blue)]/10 text-[var(--brand-blue)]'
-                    : 'text-[var(--foreground)] hover:bg-[var(--muted)] hover:text-[var(--brand-blue)]',
+                    ? 'bg-[var(--gix-blue)]/10 text-[var(--gix-blue)]'
+                    : 'text-[var(--foreground)] hover:bg-[var(--soft-surface)] hover:text-[var(--gix-blue)]',
                 ].join(' ')}
                 aria-current={isActive(link.href) ? 'page' : undefined}
               >
@@ -96,8 +97,8 @@ export function Navigation({ locale }: NavigationProps) {
             className={[
               'hidden sm:inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md px-3',
               'border border-[var(--border)] text-sm font-medium',
-              'text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-1',
+              'text-[var(--foreground)] hover:bg-[var(--soft-surface)] transition-colors',
+              'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
             ].join(' ')}
             aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
             hrefLang={otherLocale}
@@ -105,56 +106,44 @@ export function Navigation({ locale }: NavigationProps) {
             {locale === 'en' ? tCommon('languageToggle') : 'English'}
           </Link>
 
-          {/* Theme toggle */}
-          <button
-            type="button"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className={[
-              'inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md',
-              'border border-[var(--border)] text-[var(--foreground)]',
-              'hover:bg-[var(--muted)] transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-1',
-            ].join(' ')}
-            aria-label={tCommon('toggleTheme')}
-          >
-            {theme === 'dark' ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <circle cx="12" cy="12" r="5" />
-                <line x1="12" y1="1" x2="12" y2="3" />
-                <line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" />
-                <line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-4 w-4"
-                aria-hidden="true"
-              >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            )}
-          </button>
+          {/* Theme toggle — only rendered after mount to avoid hydration mismatch */}
+          {mounted && (
+            <button
+              type="button"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className={[
+                'inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md',
+                'border border-[var(--border)] text-[var(--foreground)]',
+                'hover:bg-[var(--soft-surface)] transition-colors',
+                'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
+              ].join(' ')}
+              aria-label={tCommon('toggleTheme')}
+            >
+              {theme === 'dark' ? (
+                /* Sun icon */
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  className="h-4 w-4" aria-hidden="true">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                /* Moon icon */
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  className="h-4 w-4" aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              )}
+            </button>
+          )}
 
           {/* Mobile hamburger */}
           <button
@@ -163,8 +152,8 @@ export function Navigation({ locale }: NavigationProps) {
             className={[
               'inline-flex lg:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-md',
               'border border-[var(--border)] text-[var(--foreground)]',
-              'hover:bg-[var(--muted)] transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-1',
+              'hover:bg-[var(--soft-surface)] transition-colors',
+              'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
             ].join(' ')}
             aria-label={mobileOpen ? tCommon('closeMenu') : tCommon('openMenu')}
             aria-expanded={mobileOpen}
@@ -220,10 +209,10 @@ export function Navigation({ locale }: NavigationProps) {
                   onClick={() => setMobileOpen(false)}
                   className={[
                     'flex min-h-[44px] items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                    'focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] focus:ring-offset-1',
+                    'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
                     isActive(link.href)
-                      ? 'bg-[var(--brand-blue)]/10 text-[var(--brand-blue)]'
-                      : 'text-[var(--foreground)] hover:bg-[var(--muted)]',
+                      ? 'bg-[var(--gix-blue)]/10 text-[var(--gix-blue)]'
+                      : 'text-[var(--foreground)] hover:bg-[var(--soft-surface)]',
                   ].join(' ')}
                   aria-current={isActive(link.href) ? 'page' : undefined}
                 >
@@ -238,7 +227,7 @@ export function Navigation({ locale }: NavigationProps) {
             <Link
               href={getLocaleSwitchHref()}
               onClick={() => setMobileOpen(false)}
-              className="flex min-h-[44px] items-center rounded-md px-3 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--muted)] transition-colors"
+              className="flex min-h-[44px] items-center rounded-md px-3 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--soft-surface)] transition-colors"
               hrefLang={otherLocale}
             >
               {locale === 'en' ? tCommon('languageToggle') : 'English'}

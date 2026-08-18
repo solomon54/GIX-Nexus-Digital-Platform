@@ -48,21 +48,21 @@ function CompanyPage() {
           >
             {t('overviewTitle')}
           </h2>
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8">
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
             <p className="text-[var(--foreground)] leading-relaxed">{t('overviewText')}</p>
             <div className="mt-6 flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 rounded-full bg-[var(--brand-blue)]/10 px-4 py-1.5 text-sm font-medium text-[var(--brand-blue)]">
+              <div className="flex items-center gap-2 rounded-full bg-[var(--gix-blue)]/10 px-4 py-1.5 text-sm font-medium text-[var(--gix-blue)]">
                 {/* Source: Company Profile PDF, Page 1 */}
                 🇪🇹 Ethiopian-Owned
               </div>
-              <div className="flex items-center gap-2 rounded-full bg-[var(--muted)] px-4 py-1.5 text-sm font-medium text-[var(--foreground)]">
+              <div className="flex items-center gap-2 rounded-full bg-[var(--soft-surface)] px-4 py-1.5 text-sm font-medium text-[var(--foreground)]">
                 📍 {t('hqValue')}
               </div>
-              <div className="flex items-center gap-2 rounded-full bg-[var(--muted)] px-4 py-1.5 text-sm font-medium text-[var(--foreground)]">
+              <div className="flex items-center gap-2 rounded-full bg-[var(--soft-surface)] px-4 py-1.5 text-sm font-medium text-[var(--foreground)]">
                 🗺️ {t('operationsValue')}
               </div>
               {/* Source: Company Profile PDF, Page 1 — status only, no portal */}
-              <div className="flex items-center gap-2 rounded-full bg-[var(--brand-green)]/10 px-4 py-1.5 text-sm font-medium text-[var(--brand-green)]">
+              <div className="flex items-center gap-2 rounded-full bg-[var(--gix-green)]/10 px-4 py-1.5 text-sm font-medium text-[var(--gix-green)]">
                 ✓ {t('vendorStatus')}
               </div>
             </div>
@@ -78,7 +78,7 @@ function CompanyPage() {
           >
             {t('visionTitle')}
           </h2>
-          <blockquote className="rounded-xl border-l-4 border-[var(--brand-blue)] bg-[var(--brand-blue)]/5 p-6 sm:p-8">
+          <blockquote className="rounded-xl border-l-4 border-[var(--gix-blue)] bg-[var(--gix-blue)]/5 p-6 sm:p-8">
             <p className="text-lg font-medium italic text-[var(--foreground)] leading-relaxed">
               &ldquo;{t('vision')}&rdquo;
             </p>
@@ -98,10 +98,10 @@ function CompanyPage() {
             {missionPoints.map((point, i) => (
               <li
                 key={i}
-                className="flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-5"
+                className="flex items-start gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5"
               >
                 <span
-                  className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-blue)] text-sm font-bold text-white"
+                  className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)] text-sm font-bold text-white"
                   aria-hidden="true"
                 >
                   {i + 1}
@@ -125,13 +125,13 @@ function CompanyPage() {
             {values.map((key) => (
               <div
                 key={key}
-                className="flex flex-col gap-3 rounded-xl border border-[var(--border)] bg-[var(--card)] p-5"
+                className="flex flex-col gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5"
               >
-                <div className="h-1 w-10 rounded-full bg-[var(--brand-blue)]" aria-hidden="true" />
+                <div className="h-1 w-10 rounded-full bg-[var(--gix-blue)]" aria-hidden="true" />
                 <h3 className="font-semibold text-[var(--foreground)]">
                   {t(`values.${key}.name`)}
                 </h3>
-                <p className="text-sm text-[var(--muted-foreground)]">
+                <p className="text-sm text-[var(--foreground-subtle)]">
                   {t(`values.${key}.description`)}
                 </p>
               </div>
@@ -148,11 +148,11 @@ function CompanyPage() {
           >
             {t('leadershipTitle')}
           </h2>
-          <div className="rounded-xl border border-[var(--border)] bg-[var(--card)] p-6 sm:p-8">
+          <div className="rounded-xl border border-[var(--border)] bg-[var(--surface)] p-6 sm:p-8">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
               {/* Avatar placeholder */}
               <div
-                className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-blue)]/10 text-3xl"
+                className="flex h-20 w-20 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10 text-3xl"
                 aria-hidden="true"
               >
                 GT
@@ -164,13 +164,13 @@ function CompanyPage() {
                   <p className="text-xl font-bold text-[var(--foreground)]">
                     {CONTACT.name}
                   </p>
-                  <p className="text-sm font-medium text-[var(--brand-blue)]">
+                  <p className="text-sm font-medium text-[var(--gix-blue)]">
                     {t('mdTitle')}
                   </p>
                 </div>
 
                 {/* Source: Company Profile PDF, Page 10 — MD message verbatim */}
-                <blockquote className="border-l-4 border-[var(--brand-blue)] pl-4">
+                <blockquote className="border-l-4 border-[var(--gix-blue)] pl-4">
                   <p className="italic text-[var(--foreground)] leading-relaxed">
                     &ldquo;{t('mdMessage')}&rdquo;
                   </p>
@@ -179,13 +179,13 @@ function CompanyPage() {
                 <div className="flex flex-wrap gap-4 text-sm">
                   <a
                     href={`tel:${CONTACT.phone}`}
-                    className="flex items-center gap-1.5 text-[var(--muted-foreground)] hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded"
+                    className="flex items-center gap-1.5 text-[var(--foreground-subtle)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
                   >
                     📞 {CONTACT.phone}
                   </a>
                   <a
                     href={`mailto:${CONTACT.email}`}
-                    className="flex items-center gap-1.5 text-[var(--muted-foreground)] hover:text-[var(--brand-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--brand-blue)] rounded"
+                    className="flex items-center gap-1.5 text-[var(--foreground-subtle)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
                   >
                     ✉️ {CONTACT.email}
                   </a>

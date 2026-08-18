@@ -68,15 +68,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       suppressHydrationWarning
     >
       <head>
-        {/* Google Fonts: Inter (English) + Noto Sans Ethiopic (Amharic) */}
+        {/* Noto Sans + Noto Sans Ethiopic — preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
       </head>
-      <body className={locale === 'am' ? 'font-amharic' : 'font-sans'}>
+      <body className={locale === 'am' ? 'font-ethiopic' : 'font-sans'}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -84,7 +80,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             enableSystem
             disableTransitionOnChange
           >
-            <div className="flex min-h-screen flex-col bg-[var(--background)] text-[var(--foreground)]">
+            <div className="flex min-h-screen flex-col" style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}>
               <Navigation locale={locale} />
               <main id="main-content" className="flex-1">
                 {children}

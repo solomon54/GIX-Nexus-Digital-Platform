@@ -21,7 +21,7 @@ export function FutureObjectiveCard({
   return (
     <div
       className={cn(
-        'flex flex-col gap-4 rounded-xl border border-[var(--border)] border-l-4 border-l-[var(--brand-green)] bg-[var(--card)] p-6',
+        'flex flex-col gap-4 rounded-xl border border-[var(--border)] border-l-4 border-l-[var(--gix-green)] bg-[var(--surface)] p-6',
         'transition-shadow duration-200 hover:shadow-md',
         className,
       )}
@@ -31,7 +31,7 @@ export function FutureObjectiveCard({
         <div className="flex items-center gap-3">
           {/* Objective number */}
           <span
-            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-green)]/10 text-sm font-bold text-[var(--brand-green)]"
+            className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-green)]/10 text-sm font-bold text-[var(--gix-green)]"
             aria-label={`Objective ${number}`}
           >
             {number}
@@ -49,7 +49,7 @@ export function FutureObjectiveCard({
       </div>
 
       {description && (
-        <p className="text-sm text-[var(--muted-foreground)]">{description}</p>
+        <p className="text-sm text-[var(--foreground-subtle)]">{description}</p>
       )}
     </div>
   )

@@ -36,7 +36,7 @@ function CapabilitiesPage() {
           <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">
             {t('pageTitle')}
           </h1>
-          <p className="mt-2 text-lg text-[var(--muted-foreground)]">{t('pageSubtitle')}</p>
+          <p className="mt-2 text-lg text-[var(--foreground-subtle)]">{t('pageSubtitle')}</p>
         </div>
 
         {/* ── Technical Personnel ───────────────────────────────── */}
@@ -55,10 +55,10 @@ function CapabilitiesPage() {
             {personnelRoles.map((role, i) => (
               <li
                 key={i}
-                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--card)] p-4"
+                className="flex items-center gap-3 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-4"
               >
                 <div
-                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--brand-blue)]/10"
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10"
                   aria-hidden="true"
                 >
                   <svg
@@ -69,7 +69,7 @@ function CapabilitiesPage() {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="h-5 w-5 text-[var(--brand-blue)]"
+                    className="h-5 w-5 text-[var(--gix-blue)]"
                     aria-hidden="true"
                   >
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -99,7 +99,7 @@ function CapabilitiesPage() {
               return (
                 <div
                   key={category}
-                  className="flex flex-col gap-4 rounded-xl border border-[var(--border)] bg-[var(--card)] p-5"
+                  className="flex flex-col gap-4 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-5"
                 >
                   <h3 className="font-semibold text-[var(--foreground)]">
                     {t(`equipmentCategories.${category}.name`)}
@@ -108,10 +108,10 @@ function CapabilitiesPage() {
                     {items.map((item, i) => (
                       <li
                         key={i}
-                        className="flex items-start gap-2 text-sm text-[var(--muted-foreground)]"
+                        className="flex items-start gap-2 text-sm text-[var(--foreground-subtle)]"
                       >
                         <span
-                          className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--brand-blue)]"
+                          className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--gix-blue)]"
                           aria-hidden="true"
                         />
                         {item}
