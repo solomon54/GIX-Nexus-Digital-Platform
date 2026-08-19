@@ -53,7 +53,7 @@ function CapabilitiesPage() {
       </section>
 
       {/* Personnel — Source: Company Profile PDF, Page 8 */}
-      <section className="py-20" style={{ background: 'var(--background)' }}>
+      <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-20">
             <div>

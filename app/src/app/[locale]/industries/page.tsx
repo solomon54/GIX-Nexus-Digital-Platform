@@ -40,7 +40,7 @@ function IndustriesPage({ locale }: { locale: string }) {
         </div>
       </section>
 
-      <section className="py-20" style={{ background: 'var(--background)' }}>
+      <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {sectors.map((sector, i) => (

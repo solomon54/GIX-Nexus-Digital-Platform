@@ -93,9 +93,9 @@ function ServicesPage({ locale }: { locale: string }) {
       </section>
 
       {/* ── Service Cards ─────────────────────────────────────────── */}
-      <section className="py-20" style={{ background: 'var(--background)' }}>
+      <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-16">
+          <div className="space-y-0 divide-y divide-[var(--border)]">
             {SERVICES.map((service, index) => {
               const capabilities = t.raw(`groups.${service.nameKey}.capabilities`) as string[]
               const isEven = index % 2 === 0

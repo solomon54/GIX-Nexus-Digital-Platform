@@ -17,15 +17,19 @@ export function Navigation({ locale }: NavigationProps) {
   const pathname = usePathname()
   const { theme, setTheme } = useTheme()
   const [mobileOpen, setMobileOpen] = useState(false)
-  // Prevent hydration mismatch: next-themes resolves theme client-side only
   const [mounted, setMounted] = useState(false)
-  useEffect(() => setMounted(true), [])
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+    const onScroll = () => setScrolled(window.scrollY > 12)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const otherLocale = locale === 'en' ? 'am' : 'en'
 
-  // Swap the locale prefix in the current pathname
   const getLocaleSwitchHref = () => {
-    // pathname is like /en/services or /am/company
     const segments = pathname.split('/')
     segments[1] = otherLocale
     return segments.join('/')
@@ -48,84 +52,127 @@ export function Navigation({ locale }: NavigationProps) {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[var(--background)]/95 backdrop-blur-sm">
+    <header
+      className="sticky top-0 z-50 w-full transition-all duration-300"
+      style={{
+        background: scrolled
+          ? 'rgba(var(--background-rgb, 255,255,255), 0.92)'
+          : 'var(--background)',
+        backdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
+        borderBottom: `1px solid ${scrolled ? 'var(--border)' : 'transparent'}`,
+        boxShadow: scrolled ? '0 1px 0 var(--border)' : 'none',
+      }}
+    >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8"
         aria-label="Main navigation"
       >
-        {/* Logo */}
+        {/* Logo — transparent, no box, no border */}
         <Link
           href={`/${locale}`}
-          className="flex min-h-[44px] items-center gap-3 focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded"
           aria-label="GIX Nexus Telecom and Power — Home"
+          className="flex min-h-[44px] items-center"
         >
-          {/* Source: Company Profile — company logo */}
+          {/* Source: company-logo.png — rendered as-is, no clipping or background */}
           <Image
             src="/assets/company-logo.png"
             alt="GIX Nexus Telecom and Power"
-            width={120}
-            height={44}
-            className="object-contain h-9 w-auto"
+            width={140}
+            height={40}
+            className="h-8 w-auto object-contain"
+            style={{ imageRendering: 'crisp-edges' }}
             priority
           />
         </Link>
 
-        {/* Desktop nav links */}
-        <ul className="hidden lg:flex items-center gap-1" role="list">
+        {/* Desktop nav */}
+        <ul className="hidden lg:flex items-center" role="list">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={[
-                  'inline-flex min-h-[44px] items-center px-3 py-2 text-sm font-medium rounded-md transition-colors',
-                  'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
-                  isActive(link.href)
-                    ? 'bg-[var(--gix-blue)]/10 text-[var(--gix-blue)]'
-                    : 'text-[var(--foreground)] hover:bg-[var(--soft-surface)] hover:text-[var(--gix-blue)]',
-                ].join(' ')}
                 aria-current={isActive(link.href) ? 'page' : undefined}
+                className={[
+                  'relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200',
+                  isActive(link.href)
+                    ? 'text-[var(--gix-blue)]'
+                    : 'text-[var(--foreground-muted)] hover:text-[var(--foreground)]',
+                ].join(' ')}
+                style={{
+                  background: isActive(link.href) ? 'rgba(0,128,240,0.06)' : 'transparent',
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive(link.href))
+                    (e.currentTarget as HTMLElement).style.background = 'var(--soft-surface)'
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive(link.href))
+                    (e.currentTarget as HTMLElement).style.background = 'transparent'
+                }}
               >
                 {link.label}
+                {/* Active indicator — thin bottom line */}
+                {isActive(link.href) && (
+                  <span
+                    className="absolute bottom-1 left-1/2 h-0.5 w-4 rounded-full -translate-x-1/2"
+                    style={{ background: 'var(--gix-blue)' }}
+                  />
+                )}
               </Link>
             </li>
           ))}
         </ul>
 
-        {/* Controls: locale + theme + mobile */}
-        <div className="flex items-center gap-2">
+        {/* Controls */}
+        <div className="flex items-center gap-1.5">
           {/* Language toggle */}
           <Link
             href={getLocaleSwitchHref()}
-            className={[
-              'hidden sm:inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md px-3',
-              'border border-[var(--border)] text-sm font-medium',
-              'text-[var(--foreground)] hover:bg-[var(--soft-surface)] transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
-            ].join(' ')}
-            aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
             hrefLang={otherLocale}
+            aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
+            className="hidden sm:inline-flex min-h-[36px] items-center justify-center rounded-lg px-3 text-sm font-medium border transition-all duration-200"
+            style={{
+              borderColor: 'var(--border)',
+              color: 'var(--foreground-muted)',
+            }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = 'var(--soft-surface)'
+              el.style.color = 'var(--foreground)'
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = 'transparent'
+              el.style.color = 'var(--foreground-muted)'
+            }}
           >
-            {locale === 'en' ? tCommon('languageToggle') : 'English'}
+            {locale === 'en' ? tCommon('languageToggle') : 'EN'}
           </Link>
 
-          {/* Theme toggle — only rendered after mount to avoid hydration mismatch */}
+          {/* Theme toggle */}
           {mounted && (
             <button
               type="button"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className={[
-                'inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md',
-                'border border-[var(--border)] text-[var(--foreground)]',
-                'hover:bg-[var(--soft-surface)] transition-colors',
-                'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
-              ].join(' ')}
               aria-label={tCommon('toggleTheme')}
+              className="inline-flex min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border transition-all duration-200"
+              style={{ borderColor: 'var(--border)', color: 'var(--foreground-muted)' }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.background = 'var(--soft-surface)'
+                el.style.color = 'var(--foreground)'
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.background = 'transparent'
+                el.style.color = 'var(--foreground-muted)'
+              }}
             >
               {theme === 'dark' ? (
-                /* Sun icon */
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                  className="h-4 w-4" aria-hidden="true">
+                  className="h-[17px] w-[17px]" aria-hidden="true">
                   <circle cx="12" cy="12" r="5" />
                   <line x1="12" y1="1" x2="12" y2="3" />
                   <line x1="12" y1="21" x2="12" y2="23" />
@@ -137,10 +184,9 @@ export function Navigation({ locale }: NavigationProps) {
                   <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                 </svg>
               ) : (
-                /* Moon icon */
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                  className="h-4 w-4" aria-hidden="true">
+                  className="h-[17px] w-[17px]" aria-hidden="true">
                   <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                 </svg>
               )}
@@ -151,92 +197,83 @@ export function Navigation({ locale }: NavigationProps) {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className={[
-              'inline-flex lg:hidden min-h-[44px] min-w-[44px] items-center justify-center rounded-md',
-              'border border-[var(--border)] text-[var(--foreground)]',
-              'hover:bg-[var(--soft-surface)] transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
-            ].join(' ')}
             aria-label={mobileOpen ? tCommon('closeMenu') : tCommon('openMenu')}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
+            className="inline-flex lg:hidden min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border transition-all duration-200"
+            style={{ borderColor: 'var(--border)', color: 'var(--foreground-muted)' }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = 'var(--soft-surface)'
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement
+              el.style.background = 'transparent'
+            }}
           >
-            {mobileOpen ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-              >
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-                aria-hidden="true"
-              >
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-              </svg>
-            )}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              className="h-5 w-5" aria-hidden="true">
+              {mobileOpen ? (
+                <>
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </>
+              ) : (
+                <>
+                  <line x1="3" y1="7" x2="21" y2="7" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="17" x2="21" y2="17" />
+                </>
+              )}
+            </svg>
           </button>
         </div>
       </nav>
 
-      {/* Mobile nav drawer */}
-      {mobileOpen && (
-        <div
-          id="mobile-nav"
-          className="lg:hidden border-t border-[var(--border)] bg-[var(--background)] px-4 pb-4 pt-2"
-        >
-          <ul className="flex flex-col gap-1" role="list">
+      {/* Mobile drawer — slides down smoothly */}
+      <div
+        id="mobile-nav"
+        className="lg:hidden overflow-hidden transition-all duration-300 ease-in-out"
+        style={{
+          maxHeight: mobileOpen ? '600px' : '0',
+          opacity: mobileOpen ? 1 : 0,
+          borderTop: mobileOpen ? '1px solid var(--border)' : 'none',
+          background: 'var(--background)',
+        }}
+      >
+        <div className="px-4 pb-5 pt-3">
+          <ul className="flex flex-col" role="list">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={[
-                    'flex min-h-[44px] items-center rounded-md px-3 py-2 text-sm font-medium transition-colors',
-                    'focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-1',
-                    isActive(link.href)
-                      ? 'bg-[var(--gix-blue)]/10 text-[var(--gix-blue)]'
-                      : 'text-[var(--foreground)] hover:bg-[var(--soft-surface)]',
-                  ].join(' ')}
                   aria-current={isActive(link.href) ? 'page' : undefined}
+                  className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150"
+                  style={{
+                    color: isActive(link.href) ? 'var(--gix-blue)' : 'var(--foreground)',
+                    background: isActive(link.href) ? 'rgba(0,128,240,0.06)' : 'transparent',
+                  }}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
           </ul>
-
-          {/* Mobile locale toggle */}
-          <div className="mt-3 border-t border-[var(--border)] pt-3">
+          <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--border)' }}>
             <Link
               href={getLocaleSwitchHref()}
               onClick={() => setMobileOpen(false)}
-              className="flex min-h-[44px] items-center rounded-md px-3 py-2 text-sm font-medium text-[var(--foreground)] hover:bg-[var(--soft-surface)] transition-colors"
+              className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150"
+              style={{ color: 'var(--foreground-muted)' }}
               hrefLang={otherLocale}
             >
               {locale === 'en' ? tCommon('languageToggle') : 'English'}
             </Link>
           </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }

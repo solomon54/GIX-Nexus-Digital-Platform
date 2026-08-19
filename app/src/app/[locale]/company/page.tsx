@@ -55,7 +55,7 @@ function CompanyPage({ locale }: { locale: string }) {
 
       {/* ── Vision & Mission ─────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 4 — verbatim, attributed */}
-      <section className="py-20" style={{ background: 'var(--background)' }}>
+      <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
@@ -105,7 +105,7 @@ function CompanyPage({ locale }: { locale: string }) {
 
       {/* ── Core Values ──────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 4 — 6 core values */}
-      <section className="py-20" style={{ background: 'var(--surface)' }}>
+      <section className="py-20 section-top-divide bg-section-even">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">What Guides Us</p>
@@ -131,7 +131,7 @@ function CompanyPage({ locale }: { locale: string }) {
 
       {/* ── Leadership ───────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Pages 2, 10 */}
-      <section className="py-20" style={{ background: 'var(--background)' }}>
+      <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Leadership</p>

@@ -3,69 +3,42 @@
  * Tailwind CSS v4 (CSS-first configuration)
  * Design direction: GIX NEXUS — MASTER PRODUCT & DESIGN DIRECTION
  * Rule §50: "Engineered, not decorated."
+ * Rule §51: "Motion shall guide attention, not demand attention."
  */
 
-/* Google Fonts must come first, before any @layer or @theme */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-/* ── Tailwind v4 theme (CSS-first, replaces tailwind.config.ts) ──
-   All design tokens declared here.
-   Source: §15 Color System, §18–19 Typography, §21 Spacing, §22 Grid, §23 Radius
-   Status: LOCKED v1
-──────────────────────────────────────────────────────────────── */
 @theme {
-
-  /* Fonts — §18 */
-  --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:     "Noto Sans", ui-sans-serif, system-ui, sans-serif;
   --font-ethiopic: "Noto Sans Ethiopic", Ethiopic, serif;
-
-  /* Brand colors — §15 */
-  --color-gix-blue: #008CFF;
-  --color-gix-cyan: #12C8FF;
+  --color-gix-blue:  #008CFF;
+  --color-gix-cyan:  #12C8FF;
   --color-gix-green: #65D51A;
-
-  /* Dark foundation — §15 */
-  --color-midnight: #07111C;
+  --color-midnight:  #07111C;
   --color-deep-navy: #0B1726;
-  --color-graphite: #111C27;
-  --color-elevated: #172331;
-
-  /* Light foundation — §15 */
-  --color-canvas: #F7F9FB;
-  --color-surface: #FFFFFF;
-  --color-soft-surface: #EEF3F7;
-  --color-border-light: #D9E1E8;
-
-  /* Text — §15 */
-  --color-dark-primary: #0B1720;
-  --color-dark-secondary: #465463;
-  --color-dark-muted: #708090;
-  --color-light-primary: #F4F8FC;
-  --color-light-secondary: #B9C6D3;
-
-  /* Semantic — §15 */
+  --color-graphite:  #111C27;
+  --color-elevated:  #172331;
+  --color-canvas:       #FAFBFC;
+  --color-surface:      #FFFFFF;
+  --color-soft-surface: #F1F5F9;
+  --color-border-light: #E2E8F0;
   --color-success: #16A34A;
   --color-warning: #D99A00;
-  --color-danger: #D83A3A;
-  --color-info: #1687D9;
-
-  /* Border radius — §23 */
-  --radius-sm: 4px;
-  --radius-DEFAULT: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+  --color-danger:  #D83A3A;
+  --color-info:    #1687D9;
+  --radius-sm:         4px;
+  --radius-DEFAULT:    8px;
+  --radius-lg:         12px;
+  --radius-xl:         16px;
   --radius-expressive: 24px;
-
-  /* Spacing — §21 (exact values, no arbitrary invention) */
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-5: 20px;
-  --spacing-6: 24px;
-  --spacing-8: 32px;
+  --spacing-1:  4px;
+  --spacing-2:  8px;
+  --spacing-3:  12px;
+  --spacing-4:  16px;
+  --spacing-5:  20px;
+  --spacing-6:  24px;
+  --spacing-8:  32px;
   --spacing-10: 40px;
   --spacing-12: 48px;
   --spacing-16: 64px;
@@ -73,81 +46,74 @@
   --spacing-24: 96px;
   --spacing-30: 120px;
   --spacing-40: 160px;
-
-  /* Container max-width — §22 */
   --container-max: 1280px;
-
-  /* Type scale — §19 Desktop (exact px, not utility aliases) */
-  --text-display: 52px;
-  --text-h1: 44px;
-  --text-h2: 36px;
-  --text-h3: 28px;
-  --text-h4: 22px;
-  --text-lead: 19px;
-  --text-body: 16px;
-  --text-small: 14px;
-  --text-caption: 12px;
-
-  /* Breakpoints */
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 1024px;
   --breakpoint-xl: 1280px;
 }
 
-/* ── Semantic CSS variables (theme-aware, used in components) ────
-   Referenced as var(--background), var(--foreground), etc.
-──────────────────────────────────────────────────────────────── */
+/* Light theme — elegant, clean, professional */
 :root {
-  --background: #F7F9FB;
-  --surface: #FFFFFF;
-  --soft-surface: #EEF3F7;
-  --border: #D9E1E8;
-  --foreground: #0B1720;
-  --foreground-muted: #465463;
-  --foreground-subtle: #708090;
-
-  /* Brand aliases for components */
-  --gix-blue: #008CFF;
-  --gix-cyan: #12C8FF;
-  --gix-green: #65D51A;
-
-  /* Gradients — §16 */
-  --gradient-connectivity: linear-gradient(135deg, #008CFF, #12C8FF);
-  --gradient-telecom-power: linear-gradient(135deg, #008CFF, #65D51A);
-  --gradient-metallic: linear-gradient(135deg, #D9E1E8, #708090);
+  --background:        #FFFFFF;
+  --background-alt:    #F8FAFC;
+  --surface:           #FFFFFF;
+  --surface-elevated:  #FFFFFF;
+  --soft-surface:      #F1F5F9;
+  --border:            #E2E8F0;
+  --border-subtle:     #F1F5F9;
+  --foreground:        #0F172A;
+  --foreground-muted:  #475569;
+  --foreground-subtle: #94A3B8;
+  --gix-blue:  #0080F0;
+  --gix-cyan:  #0EA5E9;
+  --gix-green: #16A34A;
+  /* Section alternation for visual rhythm */
+  --section-odd:  #FFFFFF;
+  --section-even: #F8FAFC;
+  --section-accent: #F0F7FF;
+  /* Shadows — depth without noise */
+  --shadow-sm:  0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow-md:  0 4px 12px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.04);
+  --shadow-lg:  0 12px 32px rgba(15,23,42,0.10), 0 4px 8px rgba(15,23,42,0.04);
+  --shadow-glow: 0 0 0 1px rgba(0,128,240,0.10), 0 4px 20px rgba(0,128,240,0.14);
+  --gradient-connectivity:  linear-gradient(135deg, #0080F0, #0EA5E9);
+  --gradient-telecom-power: linear-gradient(135deg, #0080F0, #16A34A);
+  --gradient-metallic:      linear-gradient(135deg, #CBD5E1, #64748B);
 }
 
+/* Dark theme */
 .dark {
-  --background: #07111C;
-  --surface: #0B1726;
-  --soft-surface: #111C27;
-  --border: #172331;
-  --foreground: #F4F8FC;
-  --foreground-muted: #B9C6D3;
-  --foreground-subtle: #708090;
-
-  --gix-blue: #3FABFF;
-  --gix-cyan: #3DD9FF;
-  --gix-green: #7DE832;
+  --background:        #07111C;
+  --background-alt:    #0B1726;
+  --surface:           #0B1726;
+  --surface-elevated:  #111C27;
+  --soft-surface:      #172331;
+  --border:            #1E2D40;
+  --border-subtle:     #172331;
+  --foreground:        #F1F5F9;
+  --foreground-muted:  #94A3B8;
+  --foreground-subtle: #64748B;
+  --gix-blue:  #3FABFF;
+  --gix-cyan:  #38BDF8;
+  --gix-green: #4ADE80;
+  --section-odd:  #07111C;
+  --section-even: #0B1726;
+  --section-accent: #0B1F2E;
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.3);
+  --shadow-md:  0 4px 12px rgba(0,0,0,0.4);
+  --shadow-lg:  0 12px 32px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 0 1px rgba(63,171,255,0.15), 0 4px 16px rgba(63,171,255,0.12);
 }
 
-/* ── Google Fonts ─────────────────────────────────────────────── */
-/* (loaded above via @import url() — must precede @layer/tailwindcss) */
-
-/* ── Base styles ─────────────────────────────────────────────── */
 @layer base {
-
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scroll-padding-top: 72px;
   }
 
   body {
@@ -156,111 +122,171 @@
     font-family: var(--font-sans);
     font-size: 16px;
     line-height: 1.625;
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 
-  /* Amharic — §18 */
-  :lang(am),
-  .font-ethiopic {
+  :lang(am), .font-ethiopic {
     font-family: "Noto Sans Ethiopic", Ethiopic, serif;
     line-height: 1.8;
   }
 
-  /* Type hierarchy — §19 */
-  h1 {
-    font-size: 44px;
-    line-height: 52px;
-    font-weight: 700;
-  }
+  h1 { font-size: clamp(34px, 5vw, 44px); line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(26px, 4vw, 36px); line-height: 1.22; font-weight: 700; letter-spacing: -0.015em; }
+  h3 { font-size: clamp(20px, 3vw, 26px); line-height: 1.3; font-weight: 600; letter-spacing: -0.01em; }
+  h4 { font-size: clamp(17px, 2.5vw, 20px); line-height: 1.4; font-weight: 600; }
 
-  h2 {
-    font-size: 36px;
-    line-height: 44px;
-    font-weight: 700;
-  }
-
-  h3 {
-    font-size: 28px;
-    line-height: 36px;
-    font-weight: 600;
-  }
-
-  h4 {
-    font-size: 22px;
-    line-height: 30px;
-    font-weight: 600;
-  }
-
-  @media (max-width: 640px) {
-    h1 {
-      font-size: 34px;
-      line-height: 42px;
-    }
-
-    h2 {
-      font-size: 30px;
-      line-height: 38px;
-    }
-
-    h3 {
-      font-size: 24px;
-      line-height: 32px;
-    }
-
-    h4 {
-      font-size: 20px;
-      line-height: 28px;
-    }
-  }
-
-  /* Accessibility */
+  /* Apple-style focus — subtle ring, only for keyboard nav */
+  :focus { outline: none; }
   :focus-visible {
     outline: 2px solid var(--gix-blue);
-    outline-offset: 2px;
+    outline-offset: 3px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 4px rgba(0,128,240,0.10);
+    transition: outline-offset 0.15s ease;
+  }
+  nav a:focus-visible,
+  header a:focus-visible,
+  header button:focus-visible {
+    outline: 1.5px solid var(--gix-blue);
+    outline-offset: 4px;
+    border-radius: 6px;
+    box-shadow: 0 0 0 3px rgba(0,128,240,0.10);
   }
 
-  :focus:not(:focus-visible) {
-    outline: none;
-  }
+  img, svg { max-width: 100%; height: auto; }
+  button, [role="button"] { min-height: 44px; min-width: 44px; }
 
   .skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--gix-blue);
-    color: #fff;
-    padding: 8px 16px;
-    text-decoration: none;
-    z-index: 9999;
-    border-radius: 0 0 4px 0;
+    position: absolute; top: -40px; left: 0;
+    background: var(--gix-blue); color: #fff;
+    padding: 8px 16px; text-decoration: none;
+    z-index: 9999; border-radius: 0 0 6px 0;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* All interactive elements: smooth transitions */
+  a, button, [role="button"] {
+    transition:
+      color 0.18s ease,
+      background-color 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      opacity 0.18s ease,
+      transform 0.18s ease;
   }
 
-  .skip-link:focus {
-    top: 0;
-  }
-
-  /* Touch targets — D-08 */
-  button,
-  [role="button"] {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  img,
-  svg {
-    max-width: 100%;
-    height: auto;
-  }
-
-  /* Reduced motion — §51 */
   @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
+    *, *::before, *::after {
       animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
+    html { scroll-behavior: auto; }
   }
+}
+
+/* Section separator utility — elegant gradient line */
+@layer utilities {
+  .section-top-divide {
+    position: relative;
+  }
+  .section-top-divide::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 900px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--border) 25%,
+      var(--border) 75%,
+      transparent 100%
+    );
+  }
+
+  /* Alternating section backgrounds */
+  .bg-section-odd    { background-color: var(--section-odd); }
+  .bg-section-even   { background-color: var(--section-even); }
+  .bg-section-accent { background-color: var(--section-accent); }
+
+  /* Card styles — elevation system */
+  .gix-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    transition:
+      box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 0.25s ease,
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .gix-card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: rgba(0,128,240,0.25);
+    transform: translateY(-2px);
+  }
+  .gix-card-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Scroll-reveal animation — §51: subtle, guides attention */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  /* Stagger delays */
+  .delay-1 { transition-delay: 0.05s; }
+  .delay-2 { transition-delay: 0.12s; }
+  .delay-3 { transition-delay: 0.19s; }
+  .delay-4 { transition-delay: 0.26s; }
+  .delay-5 { transition-delay: 0.33s; }
+  .delay-6 { transition-delay: 0.40s; }
+
+  /* Pulse dot — subtle live indicator */
+  .pulse-dot {
+    animation: pulse-dot 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.45; transform: scale(0.8); }
+  }
+
+  /* Underline link — Apple style */
+  .link-line {
+    text-decoration: none;
+    background-image: linear-gradient(var(--gix-blue), var(--gix-blue));
+    background-size: 0 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-line:hover { background-size: 100% 1.5px; }
+}
+
+/* Scrollbar — clean, minimal */
+@supports selector(::-webkit-scrollbar) {
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--foreground-subtle); }
+}
+
+/* Selection */
+::selection {
+  background: rgba(0,128,240,0.15);
+  color: var(--foreground);
 }

@@ -39,7 +39,7 @@ function FutureGoalsPage({ locale }: { locale: string }) {
       </section>
 
       {/* Objectives — Source: Company Profile PDF, Page 10 */}
-      <section className="py-20" style={{ background: 'var(--background)' }}>
+      <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* CRITICAL disclaimer — these are PLANNED objectives, not current achievements */}

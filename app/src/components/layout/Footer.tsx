@@ -24,113 +24,140 @@ export function Footer({ locale }: FooterProps) {
   ]
 
   return (
-    <footer className="mt-auto" style={{ background: '#07111C', borderTop: '1px solid #0B1726' }}>
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <footer>
+      {/* ── Top boundary — gradient separator, highly visible ─── */}
+      <div style={{
+        height: '1px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(63,171,255,0.4) 30%, rgba(0,128,240,0.6) 50%, rgba(63,171,255,0.4) 70%, transparent 100%)',
+      }} />
 
-          {/* Brand column */}
-          <div className="lg:col-span-2">
-            {/* Company logo — placeholder: replace with actual GIX Nexus logo file */}
-            <Link href={`/${locale}`} className="inline-flex items-center gap-3 mb-4">
-              <div className="relative h-10 w-10 flex-shrink-0">
+      {/* ── Main footer body ─────────────────────────────────── */}
+      <div style={{ background: '#07111C' }}>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+          {/* Top section — logo + tagline + links */}
+          <div className="py-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-12">
+
+            {/* Brand — spans 4 columns on large screens */}
+            <div className="lg:col-span-4">
+              <Link href={`/${locale}`} className="inline-flex items-center mb-5">
                 <Image
                   src="/assets/company-logo.png"
-                  alt="GIX Nexus Telecom and Power logo"
-                  fill
-                  className="object-contain"
+                  alt="GIX Nexus Telecom and Power"
+                  width={140}
+                  height={40}
+                  className="h-8 w-auto object-contain"
                 />
-              </div>
-              <div>
-                <p className="text-base font-bold leading-tight" style={{ color: '#008CFF' }}>GIX Nexus</p>
-                <p className="text-xs font-medium" style={{ color: '#B9C6D3' }}>Telecom and Power</p>
-              </div>
-            </Link>
+              </Link>
 
-            {/* Tagline — from footer.tagline translation */}
-            <p className="mt-2 max-w-sm text-sm leading-relaxed" style={{ color: '#B9C6D3' }}>
-              {t('tagline')}
-            </p>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: '#94A3B8', maxWidth: '280px' }}>
+                {t('tagline')}
+              </p>
 
-            {/* Ethiopian-owned badge */}
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full border px-3 py-1.5"
-              style={{ borderColor: 'rgba(0,140,255,0.3)', background: 'rgba(0,140,255,0.08)' }}>
-              <span className="text-base" aria-hidden="true">🇪🇹</span>
-              <span className="text-xs font-semibold" style={{ color: '#008CFF' }}>Ethiopian-Owned Company</span>
+              {/* Ethiopian-owned badge */}
+              <div
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium"
+                style={{
+                  border: '1px solid rgba(63,171,255,0.25)',
+                  background: 'rgba(0,128,240,0.08)',
+                  color: '#60A5FA',
+                }}
+              >
+                <span aria-hidden="true">🇪🇹</span>
+                Ethiopian-Owned Company
+              </div>
             </div>
 
-            {/* Legal note */}
-            <p className="mt-4 text-xs" style={{ color: 'rgba(185,198,211,0.6)' }}>{t('legalNote')}</p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4" style={{ color: '#FFFFFF' }}>{t('linksTitle')}</h3>
-            <ul className="flex flex-col gap-2.5" role="list">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[#B9C6D3] hover:text-[#008CFF] transition-colors focus:outline-none focus:ring-1 focus:ring-[#008CFF] rounded"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact — Source: Company Profile PDF, Page 10 */}
-          <div>
-            <h3 className="text-sm font-semibold mb-4" style={{ color: '#FFFFFF' }}>{t('contactTitle')}</h3>
-            <address className="not-italic">
-              <ul className="flex flex-col gap-3" role="list">
-                {/* Name & title — Source: Company Profile PDF, Page 10 */}
-                <li>
-                  <p className="text-sm font-semibold" style={{ color: '#FFFFFF' }}>{CONTACT.name}</p>
-                  <p className="text-xs mt-0.5" style={{ color: '#B9C6D3' }}>{CONTACT.title}</p>
-                </li>
-
-                {/* Phone — Source: Company Profile PDF, Page 10 */}
-                <li>
-                  <a
-                    href="tel:+251911509555"
-                    className="text-sm transition-colors"
-                    style={{ color: '#B9C6D3' }}
-                  >
-                    +251 911 509 555
-                  </a>
-                </li>
-
-                {/* Email — Source: Company Profile PDF, Page 10 */}
-                <li>
-                  <a
-                    href="mailto:gixnexustelecom@gmail.com"
-                    className="text-sm transition-colors break-all"
-                    style={{ color: '#B9C6D3' }}
-                  >
-                    gixnexustelecom@gmail.com
-                  </a>
-                </li>
-
-                {/* Address — Source: Company Profile PDF, Page 10 */}
-                <li className="text-sm" style={{ color: '#B9C6D3' }}>
-                  Addis Ababa, Ethiopia
-                </li>
+            {/* Quick Links — 2 columns on large screens */}
+            <div className="lg:col-span-4">
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: '#64748B' }}>
+                {t('linksTitle')}
+              </h3>
+              {/* Responsive 2-column grid for links */}
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5" role="list">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-[#94A3B8] hover:text-white transition-colors duration-200"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
-            </address>
-          </div>
-        </div>
+            </div>
 
-        {/* Bottom bar */}
-        <div className="mt-10 pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-xs" style={{ color: 'rgba(185,198,211,0.6)' }}>
+            {/* Contact — 4 columns on large screens */}
+            {/* Source: Company Profile PDF, Page 10 */}
+            <div className="lg:col-span-4">
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: '#64748B' }}>
+                {t('contactTitle')}
+              </h3>
+              <address className="not-italic">
+                <ul className="flex flex-col gap-4" role="list">
+                  <li>
+                    <p className="text-sm font-semibold text-white">{CONTACT.name}</p>
+                    <p className="text-xs mt-0.5" style={{ color: '#64748B' }}>{CONTACT.title}</p>
+                  </li>
+                  <li>
+                    <a
+                      href="tel:+251911509555"
+                      className="group flex items-center gap-2.5 text-sm text-[#94A3B8] hover:text-white transition-colors duration-200"
+                    >
+                      <span
+                        className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
+                        style={{ background: 'rgba(0,128,240,0.12)', color: '#60A5FA' }}
+                      >
+                        📞
+                      </span>
+                      +251 911 509 555
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:gixnexustelecom@gmail.com"
+                      className="group flex items-center gap-2.5 text-sm text-[#94A3B8] hover:text-white transition-colors duration-200 break-all"
+                    >
+                      <span
+                        className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
+                        style={{ background: 'rgba(0,128,240,0.12)', color: '#60A5FA' }}
+                      >
+                        ✉️
+                      </span>
+                      gixnexustelecom@gmail.com
+                    </a>
+                  </li>
+                  <li
+                    className="flex items-center gap-2.5 text-sm"
+                    style={{ color: '#94A3B8' }}
+                  >
+                    <span
+                      className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
+                      style={{ background: 'rgba(101,213,26,0.10)', color: '#4ADE80' }}
+                    >
+                      📍
+                    </span>
+                    Addis Ababa, Ethiopia
+                  </li>
+                </ul>
+              </address>
+            </div>
+          </div>
+
+          {/* Bottom bar — copyright */}
+          <div
+            className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
+            style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+          >
+            <p className="text-xs" style={{ color: '#475569' }}>
               &copy; 2026 {t('company')}. {t('rights')}
             </p>
-            <p className="text-xs" style={{ color: 'rgba(185,198,211,0.4)' }}>
-              Addis Ababa, Ethiopia
+            <p className="text-xs" style={{ color: '#334155' }}>
+              {t('legalNote')}
             </p>
           </div>
+
         </div>
       </div>
     </footer>

@@ -72,7 +72,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={locale === 'am' ? 'font-ethiopic' : 'font-sans'}>
+      <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
@@ -80,7 +80,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             enableSystem
             disableTransitionOnChange
           >
-            <div className="flex min-h-screen flex-col" style={{ backgroundColor: 'var(--background)', color: 'var(--foreground)' }}>
+            <div className="flex min-h-screen flex-col" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
               <Navigation locale={locale} />
               <main id="main-content" className="flex-1">
                 {children}

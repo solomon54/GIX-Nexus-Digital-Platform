@@ -172,7 +172,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── Services ─────────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 5 — exactly 6 groupings */}
-      <section className="py-20" style={{ background: 'var(--background)' }} aria-labelledby="services-heading">
+      <section className="py-20 section-top-divide bg-section-odd" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">What We Do</p>
@@ -233,7 +233,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── Why Partner + MD quote ───────────────────────────────── */}
       {/* Source: Company Profile PDF, Pages 2, 9 */}
-      <section className="py-20" style={{ background: 'var(--surface)' }} aria-labelledby="features-heading">
+      <section className="py-20 section-top-divide bg-section-even" aria-labelledby="features-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -292,7 +292,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── HSEQ Banner ──────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Pages 1, 3, 8 — HSEQ policy and safety commitment */}
-      <section className="relative py-20 overflow-hidden" aria-label="HSEQ Safety commitment">
+      <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         {/* Background: safety/field work image */}
         {/* Image: Unsplash photo-1578328819058 — worker with safety equipment in field */}
         <div className="absolute inset-0">
@@ -336,7 +336,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── Sectors We Serve ─────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 9 — target sectors, NOT existing clients */}
-      <section className="py-20" style={{ background: 'var(--background)' }} aria-labelledby="sectors-heading">
+      <section className="py-20 section-top-divide bg-section-accent" aria-labelledby="sectors-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Target Sectors</p>
