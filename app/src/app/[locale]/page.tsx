@@ -172,7 +172,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── Services ─────────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 5 — exactly 6 groupings */}
-      <section className="py-20 section-top-divide bg-section-odd" aria-labelledby="services-heading">
+      <section className="py-28 section-top-divide bg-section-odd" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">What We Do</p>
@@ -184,7 +184,7 @@ function HomePage({ locale }: { locale: string }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES_DATA.map((service) => {
               const capabilities = tServices.raw(`groups.${service.nameKey}.capabilities`) as string[]
               return (
@@ -195,7 +195,7 @@ function HomePage({ locale }: { locale: string }) {
                   style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
                 >
                   {/* Service image — relevant to each specific service */}
-                  <div className="relative h-44 overflow-hidden">
+                  <div className="relative h-52 overflow-hidden">
                     <Image
                       src={service.image}
                       alt={service.imageAlt}
@@ -205,7 +205,7 @@ function HomePage({ locale }: { locale: string }) {
                     <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.7) 0%, transparent 60%)' }} />
                   </div>
 
-                  <div className="p-5">
+                  <div className="p-6">
                     <h3 className="font-semibold text-base" style={{ color: 'var(--foreground)' }}>
                       {tServices(`groups.${service.nameKey}.name`)}
                     </h3>
@@ -233,7 +233,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── Why Partner + MD quote ───────────────────────────────── */}
       {/* Source: Company Profile PDF, Pages 2, 9 */}
-      <section className="py-20 section-top-divide bg-section-even" aria-labelledby="features-heading">
+      <section className="py-28 section-top-divide bg-section-even" aria-labelledby="features-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -336,7 +336,7 @@ function HomePage({ locale }: { locale: string }) {
 
       {/* ── Sectors We Serve ─────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 9 — target sectors, NOT existing clients */}
-      <section className="py-20 section-top-divide bg-section-accent" aria-labelledby="sectors-heading">
+      <section className="py-24 section-top-divide bg-section-accent" aria-labelledby="sectors-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Target Sectors</p>

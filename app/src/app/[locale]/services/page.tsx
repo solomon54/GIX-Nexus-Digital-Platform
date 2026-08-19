@@ -95,16 +95,16 @@ function ServicesPage({ locale }: { locale: string }) {
       {/* ── Service Cards ─────────────────────────────────────────── */}
       <section className="py-20 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="space-y-0 divide-y divide-[var(--border)]">
+          <div className="divide-y divide-[var(--border)]">
             {SERVICES.map((service, index) => {
               const capabilities = t.raw(`groups.${service.nameKey}.capabilities`) as string[]
               const isEven = index % 2 === 0
               return (
-                <div key={service.slug} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+                <div key={service.slug} className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center py-20">
 
                   {/* Image — alternating left/right layout */}
                   <div className={`rounded-2xl overflow-hidden ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
-                    <div className="relative h-72 lg:h-80">
+                    <div className="relative h-80 lg:h-96">
                       <Image
                         src={service.image}
                         alt={service.imageAlt}

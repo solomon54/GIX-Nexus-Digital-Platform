@@ -53,15 +53,22 @@ export function Navigation({ locale }: NavigationProps) {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full transition-all duration-300"
+      className="sticky top-0 z-50 w-full"
       style={{
+        /* Elegant: always frosted glass — dark tint regardless of theme.
+           Inspired by Linear / Vercel / Apple developer — authoritative, never "fades away" */
         background: scrolled
-          ? 'rgba(var(--background-rgb, 255,255,255), 0.92)'
+          ? 'rgba(7, 17, 28, 0.88)'
           : 'var(--background)',
-        backdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
-        borderBottom: `1px solid ${scrolled ? 'var(--border)' : 'transparent'}`,
-        boxShadow: scrolled ? '0 1px 0 var(--border)' : 'none',
+        backdropFilter: scrolled ? 'blur(24px) saturate(1.6)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(1.6)' : 'none',
+        borderBottom: scrolled
+          ? '1px solid rgba(255,255,255,0.07)'
+          : '1px solid var(--border)',
+        boxShadow: scrolled
+          ? '0 1px 0 rgba(255,255,255,0.04), 0 4px 24px rgba(0,0,0,0.18)'
+          : 'none',
+        transition: 'background 0.35s cubic-bezier(0.16,1,0.3,1), backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease',
       }}
     >
       <nav
@@ -74,14 +81,17 @@ export function Navigation({ locale }: NavigationProps) {
           aria-label="GIX Nexus Telecom and Power — Home"
           className="flex min-h-[44px] items-center"
         >
-          {/* Source: company-logo.png — rendered as-is, no clipping or background */}
+          {/* Source: company-logo.png — transparent background, full visibility */}
           <Image
             src="/assets/company-logo.png"
             alt="GIX Nexus Telecom and Power"
-            width={140}
-            height={40}
-            className="h-8 w-auto object-contain"
-            style={{ imageRendering: 'crisp-edges' }}
+            width={180}
+            height={52}
+            className="h-11 w-auto object-contain"
+            style={{
+              filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.25))',
+              imageRendering: 'auto',
+            }}
             priority
           />
         </Link>
@@ -93,22 +103,26 @@ export function Navigation({ locale }: NavigationProps) {
               <Link
                 href={link.href}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className={[
-                  'relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200',
-                  isActive(link.href)
-                    ? 'text-[var(--gix-blue)]'
-                    : 'text-[var(--foreground-muted)] hover:text-[var(--foreground)]',
-                ].join(' ')}
+                className="relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 style={{
-                  background: isActive(link.href) ? 'rgba(0,128,240,0.06)' : 'transparent',
+                  color: isActive(link.href)
+                    ? 'var(--gix-blue)'
+                    : scrolled ? 'rgba(241,245,249,0.75)' : 'var(--foreground-muted)',
+                  background: isActive(link.href) ? 'rgba(0,128,240,0.10)' : 'transparent',
                 }}
                 onMouseEnter={(e) => {
-                  if (!isActive(link.href))
-                    (e.currentTarget as HTMLElement).style.background = 'var(--soft-surface)'
+                  const el = e.currentTarget as HTMLElement
+                  if (!isActive(link.href)) {
+                    el.style.background = scrolled ? 'rgba(255,255,255,0.07)' : 'var(--soft-surface)'
+                    el.style.color = scrolled ? '#F1F5F9' : 'var(--foreground)'
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  if (!isActive(link.href))
-                    (e.currentTarget as HTMLElement).style.background = 'transparent'
+                  const el = e.currentTarget as HTMLElement
+                  if (!isActive(link.href)) {
+                    el.style.background = 'transparent'
+                    el.style.color = scrolled ? 'rgba(241,245,249,0.75)' : 'var(--foreground-muted)'
+                  }
                 }}
               >
                 {link.label}

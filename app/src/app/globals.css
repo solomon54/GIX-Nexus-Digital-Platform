@@ -110,10 +110,26 @@
   *, *::before, *::after { box-sizing: border-box; }
 
   html {
+    /* Smooth scroll with native momentum deceleration */
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: 72px;
+    /* Momentum / inertia scrolling on iOS — feels native */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Override smooth scroll with a more controlled, slower feel.
+     This makes the page feel weighted and intentional — not snappy.
+     §51: "the interface is unfolding." */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+    * {
+      /* Deceleration easing on scroll-snap targets */
+      scroll-snap-type: none;
+    }
   }
 
   body {
