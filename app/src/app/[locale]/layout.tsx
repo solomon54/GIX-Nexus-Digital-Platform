@@ -7,7 +7,6 @@ import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { routing } from '@/i18n/routing'
 import '@/app/globals.css'
-import { SmoothScroll } from '@/components/ui/SmoothScroll'
 
 interface LocaleLayoutProps {
   children: React.ReactNode
@@ -82,7 +81,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             disableTransitionOnChange
           >
             <div className="flex min-h-screen flex-col" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
-              <SmoothScroll />
               <Navigation locale={locale} />
               <main id="main-content" className="flex-1">
                 {children}

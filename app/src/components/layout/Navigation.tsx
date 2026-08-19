@@ -55,20 +55,18 @@ export function Navigation({ locale }: NavigationProps) {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        /* Elegant: always frosted glass — dark tint regardless of theme.
-           Inspired by Linear / Vercel / Apple developer — authoritative, never "fades away" */
+        /* Theme-aware frosted glass:
+           - Light: white/94 with blur — clean, Apple.com style
+           - Dark: midnight/88 with blur — Linear/Vercel style
+           Both use the same blur + border — consistent, elegant */
         background: scrolled
-          ? 'rgba(7, 17, 28, 0.88)'
+          ? 'color-mix(in srgb, var(--background) 92%, transparent)'
           : 'var(--background)',
-        backdropFilter: scrolled ? 'blur(24px) saturate(1.6)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(1.6)' : 'none',
-        borderBottom: scrolled
-          ? '1px solid rgba(255,255,255,0.07)'
-          : '1px solid var(--border)',
-        boxShadow: scrolled
-          ? '0 1px 0 rgba(255,255,255,0.04), 0 4px 24px rgba(0,0,0,0.18)'
-          : 'none',
-        transition: 'background 0.35s cubic-bezier(0.16,1,0.3,1), backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease',
+        backdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
+        borderBottom: '1px solid var(--border)',
+        boxShadow: scrolled ? 'var(--shadow-sm)' : 'none',
+        transition: 'box-shadow 0.3s ease, background 0.3s ease',
       }}
     >
       <nav
@@ -105,23 +103,21 @@ export function Navigation({ locale }: NavigationProps) {
                 aria-current={isActive(link.href) ? 'page' : undefined}
                 className="relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 style={{
-                  color: isActive(link.href)
-                    ? 'var(--gix-blue)'
-                    : scrolled ? 'rgba(241,245,249,0.75)' : 'var(--foreground-muted)',
-                  background: isActive(link.href) ? 'rgba(0,128,240,0.10)' : 'transparent',
+                  color: isActive(link.href) ? 'var(--gix-blue)' : 'var(--foreground-muted)',
+                  background: isActive(link.href) ? 'rgba(0,128,240,0.08)' : 'transparent',
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (!isActive(link.href)) {
-                    el.style.background = scrolled ? 'rgba(255,255,255,0.07)' : 'var(--soft-surface)'
-                    el.style.color = scrolled ? '#F1F5F9' : 'var(--foreground)'
+                    el.style.background = 'var(--soft-surface)'
+                    el.style.color = 'var(--foreground)'
                   }
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (!isActive(link.href)) {
                     el.style.background = 'transparent'
-                    el.style.color = scrolled ? 'rgba(241,245,249,0.75)' : 'var(--foreground-muted)'
+                    el.style.color = 'var(--foreground-muted)'
                   }
                 }}
               >
