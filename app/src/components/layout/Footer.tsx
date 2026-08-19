@@ -70,10 +70,7 @@ export function Footer({ locale }: FooterProps) {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm transition-colors focus:outline-none focus:ring-1 rounded"
-                    style={{ color: '#B9C6D3' }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#008CFF')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = '#B9C6D3')}
+                    className="text-sm text-[#B9C6D3] hover:text-[#008CFF] transition-colors focus:outline-none focus:ring-1 focus:ring-[#008CFF] rounded"
                   >
                     {link.label}
                   </Link>
