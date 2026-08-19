@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
@@ -58,14 +59,15 @@ export function Navigation({ locale }: NavigationProps) {
           className="flex min-h-[44px] items-center gap-3 focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded"
           aria-label="GIX Nexus Telecom and Power — Home"
         >
-          <div className="flex flex-col">
-            <span className="text-lg font-bold leading-tight text-[var(--gix-blue)]">
-              GIX Nexus
-            </span>
-            <span className="text-xs text-[var(--foreground-subtle)] leading-tight">
-              Telecom and Power
-            </span>
-          </div>
+          {/* Source: Company Profile — company logo */}
+          <Image
+            src="/assets/company-logo.png"
+            alt="GIX Nexus Telecom and Power"
+            width={120}
+            height={44}
+            className="object-contain h-9 w-auto"
+            priority
+          />
         </Link>
 
         {/* Desktop nav links */}

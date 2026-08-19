@@ -1,163 +1,167 @@
 import type { Metadata } from 'next'
-import { useTranslations } from 'next-intl'
+import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
-// Source: Company Profile PDF, Page 10
-import { CONTACT } from '@/lib/constants'
+import { useTranslations } from 'next-intl'
 
-interface ContactPageProps {
-  params: Promise<{ locale: string }>
-}
+interface Props { params: Promise<{ locale: string }> }
 
-export async function generateMetadata({ params }: ContactPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'contact' })
-  return {
-    title: t('pageTitle'),
-    description: t('intro'),
-  }
+  return { title: t('pageTitle'), description: t('intro') }
 }
 
-// GOVERNANCE: No form, no client portal, no CRM.
-// Static display of MD contact information only.
-// Source: Company Profile PDF, Page 10
 function ContactPage() {
   const t = useTranslations('contact')
 
   return (
-    <div className="py-12 sm:py-16">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        {/* Page header */}
-        <div className="mb-12 text-center">
-          <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">
-            {t('pageTitle')}
-          </h1>
-          <p className="mt-4 text-lg text-[var(--foreground-subtle)]">{t('intro')}</p>
+    <>
+      {/* ── Hero ─────────────────────────────────────────────────── */}
+      <section className="relative py-24 overflow-hidden">
+        {/* Background: Addis Ababa cityscape / Ethiopia */}
+        {/* Image: Unsplash photo-1501854140801 — panoramic landscape, Ethiopia feel */}
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1920&q=80"
+            alt=""
+            fill
+            className="object-cover object-center"
+            priority
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,17,28,0.93), rgba(11,23,38,0.88))' }} />
         </div>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-3">Reach Us</p>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
+          <p className="mt-4 text-lg text-[#B9C6D3]">{t('pageSubtitle')}</p>
+        </div>
+      </section>
 
-        {/* Contact card */}
-        <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
-          {/* Header bar */}
-          <div className="bg-[var(--gix-blue)] px-8 py-6">
-            <p className="text-sm font-medium text-white/80">{t('mdLabel')}</p>
-            {/* Source: Company Profile PDF, Page 10 */}
-            <p className="mt-1 text-2xl font-bold text-white">{CONTACT.name}</p>
-            <p className="text-sm text-white/80">{CONTACT.title}</p>
-          </div>
+      {/* ── Contact Info ─────────────────────────────────────────── */}
+      {/* Source: Company Profile PDF, Page 10 — contact details */}
+      <section className="py-20" style={{ background: 'var(--background)' }}>
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
-          {/* Contact details */}
-          <div className="divide-y divide-[var(--border)] px-8">
-            {/* Phone */}
-            <div className="flex items-center gap-4 py-5">
-              <div
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10"
-                aria-hidden="true"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-[var(--gix-blue)]"
-                  aria-hidden="true"
-                >
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.5 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.41 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--foreground-subtle)]">
-                  {t('phoneLabel')}
-                </p>
-                <a
-                  href={`tel:${CONTACT.phone}`}
-                  className="text-lg font-medium text-[var(--foreground)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] rounded"
-                >
-                  {/* Source: Company Profile PDF, Page 10 */}
-                  {CONTACT.phone}
-                </a>
+            {/* Left: Contact card with MD photo */}
+            <div>
+              <div className="rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
+                {/* MD photo */}
+                <div className="relative h-64">
+                  <Image
+                    src="/assets/leader-prof-img.png"
+                    alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
+                    fill
+                    className="object-cover object-top"
+                  />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.9), transparent 60%)' }} />
+                  <div className="absolute bottom-4 left-5">
+                    {/* Source: Company Profile PDF, Page 10 */}
+                    <p className="font-semibold text-white">{t('mdName')}</p>
+                    <p className="text-sm text-[#B9C6D3]">{t('mdLabel')}</p>
+                  </div>
+                </div>
+
+                <div className="p-6 space-y-5" style={{ background: 'var(--surface)' }}>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{t('intro')}</p>
+
+                  {/* Phone — Source: Company Profile PDF, Page 10 */}
+                  <a href={`tel:${t('phone')}`}
+                    className="flex items-center gap-4 p-4 rounded-xl border group hover:border-[#008CFF]/50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2"
+                    style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'rgba(0,140,255,0.12)' }}>
+                      📞
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-subtle)' }}>{t('phoneLabel')}</p>
+                      <p className="text-base font-semibold text-[#008CFF] group-hover:text-[#12C8FF] transition-colors">
+                        {/* Source: Company Profile PDF, Page 10 */}
+                        +251 911509555
+                      </p>
+                    </div>
+                  </a>
+
+                  {/* Email — Source: Company Profile PDF, Page 10 */}
+                  <a href={`mailto:${t('email')}`}
+                    className="flex items-center gap-4 p-4 rounded-xl border group hover:border-[#008CFF]/50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2"
+                    style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'rgba(0,140,255,0.12)' }}>
+                      ✉️
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-subtle)' }}>{t('emailLabel')}</p>
+                      <p className="text-base font-semibold text-[#008CFF] group-hover:text-[#12C8FF] transition-colors break-all">
+                        {/* Source: Company Profile PDF, Page 10 */}
+                        gixnexustelecom@gmail.com
+                      </p>
+                    </div>
+                  </a>
+
+                  {/* Address — Source: Company Profile PDF, Page 10 */}
+                  <div className="flex items-center gap-4 p-4 rounded-xl border" style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'rgba(101,213,26,0.12)' }}>
+                      📍
+                    </div>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-subtle)' }}>{t('addressLabel')}</p>
+                      {/* Source: Company Profile PDF, Page 10 */}
+                      <p className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>Addis Ababa, Ethiopia</p>
+                      <p className="text-xs text-[#65D51A]">Operating Across Ethiopia</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Email */}
-            <div className="flex items-center gap-4 py-5">
-              <div
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10"
-                aria-hidden="true"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-[var(--gix-blue)]"
-                  aria-hidden="true"
-                >
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                  <polyline points="22,6 12,13 2,6" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--foreground-subtle)]">
-                  {t('emailLabel')}
+            {/* Right: Info panels */}
+            <div className="space-y-6">
+              <div className="rounded-2xl p-6 border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+                <h2 className="text-lg font-bold mb-4" style={{ color: 'var(--foreground)' }}>About GIX Nexus</h2>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--foreground-subtle)' }}>
+                  {/* Source: Company Profile PDF, Page 1 */}
+                  An Ethiopian-owned telecommunications and power engineering company delivering reliable, innovative, and cost-effective infrastructure solutions across Ethiopia — from site surveys and installation to commissioning, maintenance, and 24/7 technical support.
                 </p>
-                <a
-                  href={`mailto:${CONTACT.email}`}
-                  className="text-lg font-medium text-[var(--foreground)] hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] rounded break-all"
-                >
-                  {/* Source: Company Profile PDF, Page 10 */}
-                  {CONTACT.email}
-                </a>
+                <div className="pt-4 border-t space-y-2" style={{ borderColor: 'var(--border)' }}>
+                  <div className="flex items-center justify-between text-sm">
+                    <span style={{ color: 'var(--foreground-subtle)' }}>Ownership</span>
+                    <span className="font-medium" style={{ color: 'var(--foreground)' }}>Ethiopian-owned</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span style={{ color: 'var(--foreground-subtle)' }}>Operations</span>
+                    <span className="font-medium" style={{ color: 'var(--foreground)' }}>Across Ethiopia</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span style={{ color: 'var(--foreground-subtle)' }}>Support</span>
+                    <span className="font-medium text-[#008CFF]">24/7 Technical</span>
+                  </div>
+                  {/* Source: Company Profile PDF, Page 1 */}
+                  <div className="flex items-center justify-between text-sm">
+                    <span style={{ color: 'var(--foreground-subtle)' }}>Status</span>
+                    <span className="font-medium text-[#65D51A]">Vendor Registration Ready</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-xl p-4 border" style={{ background: 'var(--soft-surface)', borderColor: 'var(--border)' }}>
+                <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+                  <span className="font-semibold" style={{ color: 'var(--foreground)' }}>Response: </span>
+                  {t('responseNote')}
+                </p>
+                <p className="mt-2 text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+                  {t('operationsNote')}
+                </p>
               </div>
             </div>
 
-            {/* Address */}
-            <div className="flex items-center gap-4 py-5">
-              <div
-                className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10"
-                aria-hidden="true"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-5 w-5 text-[var(--gix-blue)]"
-                  aria-hidden="true"
-                >
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg>
-              </div>
-              <div>
-                <p className="text-xs font-medium uppercase tracking-wide text-[var(--foreground-subtle)]">
-                  {t('addressLabel')}
-                </p>
-                {/* Source: Company Profile PDF, Page 10 */}
-                <p className="text-lg font-medium text-[var(--foreground)]">{CONTACT.address}</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Footer note */}
-          <div className="border-t border-[var(--border)] bg-[var(--soft-surface)]/30 px-8 py-4">
-            <p className="text-sm text-[var(--foreground-subtle)]">{t('responseNote')}</p>
-            <p className="mt-1 text-sm text-[var(--foreground-subtle)]">{t('operationsNote')}</p>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   )
 }
 
-export default async function Page({ params }: ContactPageProps) {
-  await params
+export default async function Page({ params }: Props) {
+  const { locale } = await params
   return <ContactPage />
 }

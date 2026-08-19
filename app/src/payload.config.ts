@@ -15,8 +15,6 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  // ── Admin ────────────────────────────────────────────────────
-  // PUBLIC SITE HAS NO AUTH. This admin is for internal CMS use only.
   admin: {
     user: Users.slug,
     importMap: {
@@ -38,7 +36,7 @@ export default buildConfig({
   editor: lexicalEditor(),
 
   // ── Security ─────────────────────────────────────────────────
-  secret: process.env.PAYLOAD_SECRET ?? (() => { throw new Error('PAYLOAD_SECRET env var is required') })(),
+  secret: process.env.PAYLOAD_SECRET ?? 'dev-secret-not-for-production',
 
   // ── TypeScript output ─────────────────────────────────────────
   typescript: {
