@@ -3,70 +3,73 @@
 import { useEffect } from 'react'
 
 /**
- * SmoothScroll — §51: "The interface is unfolding, not attacking."
+ * SmoothScroll — velocity-based inertia scrolling
+ * §51: "The interface is unfolding." — consistent feel at any speed.
  *
- * Intercepts wheel events and applies a momentum-based easing that makes
- * the page feel weighted and intentional. Fast scroll = gentle deceleration.
- * The user still controls speed but the feel is premium — like macOS trackpad
- * inertia on a high-quality app.
+ * Architecture:
+ * - Each wheel event adds to a VELOCITY (not directly to a target position)
+ * - Every RAF frame: velocity decays by FRICTION, position moves by velocity
+ * - Fast or slow scrolling = same feel. No accumulation = no jerk, no jumps.
  *
- * Does NOT override scroll accessibility — respects prefers-reduced-motion.
+ * Respects prefers-reduced-motion.
  */
 export function SmoothScroll() {
   useEffect(() => {
-    // Respect accessibility
-    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (reducedMotion) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
+    // ── Tuning ────────────────────────────────────────────────
+    const WHEEL_MULTIPLIER = 0.55  // input sensitivity
+    const FRICTION = 0.88           // decay per frame — lower = slower/heavier
+    const STOP_THRESHOLD = 0.15     // px/frame below which we stop RAF
+    // ─────────────────────────────────────────────────────────
+
+    let velocity = 0
     let current = window.scrollY
-    let target = window.scrollY
     let rafId: number
-    let isScrolling = false
+    let running = false
 
-    // Easing factor — lower = slower, more cinematic deceleration
-    // 0.08 gives a luxurious, weighty feel without being frustrating
-    const EASE = 0.072
+    const maxScroll = () =>
+      document.documentElement.scrollHeight - window.innerHeight
 
-    const tick = () => {
-      const diff = target - current
-      if (Math.abs(diff) < 0.5) {
-        current = target
-        isScrolling = false
-        return
-      }
-      current += diff * EASE
+    const clamp = (v: number) => Math.max(0, Math.min(v, maxScroll()))
+
+    const step = () => {
+      velocity *= FRICTION
+      current = clamp(current + velocity)
       window.scrollTo(0, current)
-      rafId = requestAnimationFrame(tick)
+
+      if (Math.abs(velocity) > STOP_THRESHOLD) {
+        rafId = requestAnimationFrame(step)
+      } else {
+        velocity = 0
+        running = false
+      }
     }
 
     const onWheel = (e: WheelEvent) => {
-      // Only intercept trackpad/mouse wheel — not touch or keyboard
-      if (e.ctrlKey) return // let pinch-zoom work normally
-
+      // Let browser handle pinch-zoom and horizontal scroll naturally
+      if (e.ctrlKey || e.shiftKey) return
       e.preventDefault()
 
-      // Accumulate target — scale delta for natural feel
-      // deltaMode 1 = line, 0 = pixel
-      const delta = e.deltaMode === 1 ? e.deltaY * 24 : e.deltaY
+      // Normalise across deltaMode (pixel / line / page)
+      const raw =
+        e.deltaMode === 1 ? e.deltaY * 24
+        : e.deltaMode === 2 ? e.deltaY * window.innerHeight
+        : e.deltaY
 
-      // Clamp max jump per tick for the "suspense" effect
-      const scaledDelta = Math.sign(delta) * Math.min(Math.abs(delta) * 0.9, 280)
+      // Add to velocity — no hard cap, friction controls the feel
+      velocity += raw * WHEEL_MULTIPLIER
 
-      target = Math.max(0, Math.min(
-        target + scaledDelta,
-        document.documentElement.scrollHeight - window.innerHeight
-      ))
+      // Re-sync position to avoid drift if user reached boundary
+      current = window.scrollY
 
-      if (!isScrolling) {
-        isScrolling = true
-        current = window.scrollY
-        rafId = requestAnimationFrame(tick)
+      if (!running) {
+        running = true
+        rafId = requestAnimationFrame(step)
       }
     }
 
-    // passive: false required to preventDefault
     window.addEventListener('wheel', onWheel, { passive: false })
-
     return () => {
       window.removeEventListener('wheel', onWheel)
       cancelAnimationFrame(rafId)
