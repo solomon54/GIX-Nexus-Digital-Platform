@@ -11,6 +11,8 @@ import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Users } from './collections/Users'
 import { News } from './collections/News'
+import { TeamMembers } from './collections/TeamMembers'
+import { ServiceInquiries } from './collections/ServiceInquiries'
 import { Projects } from './collections/Projects'
 import { Testimonials } from './collections/Testimonials'
 
@@ -36,6 +38,8 @@ export default buildConfig({
     News,
     Projects,
     Testimonials,
+    TeamMembers,
+    ServiceInquiries,
   ],
 
   // ── Global rich-text editor ──────────────────────────────────
