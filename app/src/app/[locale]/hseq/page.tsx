@@ -32,9 +32,9 @@ function HseqPage() {
           <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,17,28,0.93), rgba(11,23,38,0.88))' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#65D51A] mb-3">Health · Safety · Environment · Quality</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#65D51A] mb-3">{t('pageSubtitle')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-4 text-lg text-[#B9C6D3]">{t('pageSubtitle')}</p>
+          <p className="mt-5 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('heroDescription')}</p>
         </div>
       </section>
 

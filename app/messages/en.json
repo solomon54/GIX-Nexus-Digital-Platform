@@ -24,7 +24,7 @@
       "supportValue": "24/7",
       "safetyLabel": "Safety-First Policy",
       "safetyValue": "100%",
-      "safetyNote": "Safety-first approach on every project — policy commitment"
+      "safetyNote": "Safety-first approach on every project \u2014 policy commitment"
     },
     "featureTitle": "Why Partner with Us",
     "featureSubtitle": "Bringing qualified expertise and dependable delivery to every project",
@@ -182,7 +182,7 @@
     "zeroAccidentDescription": "Our Zero Accident Objective represents our unwavering commitment to eliminate workplace incidents. This is a goal and safety commitment, not a reported metric.",
     "zeroAccidentBadge": "Objective / Commitment",
     "safetyFirstLabel": "100% Safety-First Approach",
-    "safetyFirstDescription": "100% Safety-first approach on every project is our operating policy — applied without exception to every job site and task.",
+    "safetyFirstDescription": "100% Safety-first approach on every project is our operating policy \u2014 applied without exception to every job site and task.",
     "safetyFirstBadge": "Policy Statement",
     "programTitle": "HSEQ Program Elements",
     "programElements": [
@@ -201,7 +201,8 @@
       "Fall Arrest Systems",
       "High-Visibility Vests",
       "Safety Harnesses"
-    ]
+    ],
+    "heroDescription": "At GIX Nexus Telecom and Power, we believe that protecting our employees, clients, contractors, the public, and the environment is a fundamental responsibility. Our HSEQ Policy governs every project \u2014 from site survey through commissioning and ongoing maintenance \u2014 across Ethiopia."
   },
   "industries": {
     "pageTitle": "Sectors We Serve",
@@ -222,7 +223,8 @@
       "Universities and Educational Institutions",
       "Commercial and Industrial Organizations",
       "Engineering, Procurement, and Construction (EPC) Contractors"
-    ]
+    ],
+    "heroDescription": "We provide telecommunications and power engineering services to a wide range of public and private sector organisations across Ethiopia, including telecom operators, government ministries, international agencies, NGOs, banks, data centres, and engineering contractors."
   },
   "capabilities": {
     "pageTitle": "Our Capabilities",
@@ -269,7 +271,9 @@
           "High-Visibility Vests"
         ]
       }
-    }
+    },
+    "heroEyebrow": "Our Team & Equipment",
+    "heroDescription": "GIX Nexus Telecom and Power is supported by a team of qualified professionals with experience in telecommunications infrastructure, satellite communications, network systems, and power engineering \u2014 equipped with the specialist tools and test instruments required for every phase of a project."
   },
   "futureGoals": {
     "pageTitle": "Future Goals",
@@ -317,7 +321,8 @@
         "title": "Support Digital Transformation",
         "description": "Play an active role in supporting Ethiopia's national digital transformation and communications infrastructure growth."
       }
-    ]
+    ],
+    "heroDescription": "Our company is committed to sustainable growth and continuous improvement. These objectives focus on strengthening our technical capabilities, expanding our services, and becoming a trusted telecommunications and power engineering partner in Ethiopia and the East African region."
   },
   "contact": {
     "pageTitle": "Contact Us",
@@ -332,7 +337,9 @@
     "addressLabel": "Address",
     "address": "Addis Ababa, Ethiopia",
     "responseNote": "We aim to respond to all inquiries within 2 business days.",
-    "operationsNote": "GIX Nexus Telecom and Power operates across Ethiopia."
+    "operationsNote": "GIX Nexus Telecom and Power operates across Ethiopia.",
+    "heroEyebrow": "Get in Touch",
+    "heroDescription": "Whether you are a telecommunications operator, government institution, NGO, or private organisation, we welcome the opportunity to discuss your requirements. GIX Nexus Telecom and Power operates across Ethiopia as a contractor and subcontractor \u2014 ready to support your project from survey through commissioning."
   },
   "footer": {
     "tagline": "Delivering reliable, innovative, and cost-effective telecommunications and power engineering infrastructure solutions across Ethiopia.",
@@ -348,7 +355,7 @@
     "backToHome": "Back to Home",
     "learnMore": "Learn More",
     "viewAll": "View All",
-    "languageToggle": "አማርኛ",
+    "languageToggle": "\u12a0\u121b\u122d\u129b",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode",
     "toggleTheme": "Toggle theme",
