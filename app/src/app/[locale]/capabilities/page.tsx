@@ -34,9 +34,9 @@ function CapabilitiesPage() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
-          {/* Background: engineer with technical equipment */}
+          {/* Background: our capabilities */}
           <Image
-            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&q=80"
+            src="/images/capability/our-capabilities.webp"
             alt=""
             fill
             className="object-cover"
@@ -72,9 +72,9 @@ function CapabilitiesPage() {
               </p>
             </div>
             <div className="relative rounded-2xl overflow-hidden">
-              {/* Team/engineer image */}
+              {/* Team/capabilities image */}
               <Image
-                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80"
+                src="/images/capability/our-capabilities.webp"
                 alt="GIX Nexus technical team at work"
                 width={600}
                 height={500}
@@ -94,7 +94,7 @@ function CapabilitiesPage() {
               {/* Test Instruments */}
               <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 <div className="relative h-40">
-                  <Image src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=600&q=80" alt="Test instruments and measurement equipment" fill className="object-cover" />
+                  <Image src="/images/hero/datacenter-solution.jpg" alt="Test instruments and measurement equipment" fill className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(11,23,38,0.6)' }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="font-bold text-white text-lg">Test Instruments</p>
@@ -114,7 +114,7 @@ function CapabilitiesPage() {
               {/* Installation Tools */}
               <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 <div className="relative h-40">
-                  <Image src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80" alt="Installation tools for telecom work" fill className="object-cover" />
+                  <Image src="/images/services/telecom-infrastructure.jpg" alt="Installation tools for telecom work" fill className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(11,23,38,0.6)' }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="font-bold text-white text-lg">Installation Tools</p>
@@ -134,7 +134,7 @@ function CapabilitiesPage() {
               {/* Safety Equipment */}
               <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 <div className="relative h-40">
-                  <Image src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=600&q=80" alt="Safety equipment and PPE" fill className="object-cover" />
+                  <Image src="/images/hseq/hseq-policy.jpeg" alt="Safety equipment and PPE" fill className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(11,23,38,0.6)' }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="font-bold text-white text-lg">Safety Equipment</p>

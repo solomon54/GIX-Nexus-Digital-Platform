@@ -72,7 +72,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`}>
+      <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"

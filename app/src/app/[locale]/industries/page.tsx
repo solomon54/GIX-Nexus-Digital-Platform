@@ -24,7 +24,7 @@ function IndustriesPage({ locale }: { locale: string }) {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1920&q=80"
+            src="/images/industries/companies-we-serve.webp"
             alt=""
             fill
             className="object-cover"

@@ -21,9 +21,9 @@ function FutureGoalsPage({ locale }: { locale: string }) {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
-          {/* Background: forward-looking image — East Africa horizon, infrastructure growth */}
+          {/* Background: future goals and growth */}
           <Image
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1920&q=80"
+            src="/images/future-goals/future-goals.jpeg"
             alt=""
             fill
             className="object-cover"

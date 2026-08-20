@@ -19,11 +19,10 @@ function HseqPage() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden">
-        {/* Background: worker with safety equipment on site */}
-        {/* Image: Unsplash photo-1578328819058 — field worker with PPE */}
+        {/* Background: HSEQ policy and safety */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=1920&q=80"
+            src="/images/hseq/hseq-policy.jpeg"
             alt=""
             fill
             className="object-cover"
@@ -48,9 +47,9 @@ function HseqPage() {
             {/* HSEQ Policy card */}
             <div className="col-span-1 lg:col-span-2 rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
               <div className="relative h-56">
-                {/* Engineers working safely — represents HSEQ in action */}
+                {/* HSEQ in action — safety protocols */}
                 <Image
-                  src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80"
+                  src="/images/hseq/hseq-policy.jpeg"
                   alt="Engineers working with safety protocols"
                   fill
                   className="object-cover"

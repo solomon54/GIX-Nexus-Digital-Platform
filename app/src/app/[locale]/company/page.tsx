@@ -29,11 +29,10 @@ function CompanyPage({ locale }: { locale: string }) {
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden" aria-labelledby="company-heading">
-        {/* Background: professional office/corporate environment */}
-        {/* Image: Unsplash photo-1497366216548 — professional corporate environment */}
+        {/* Background: professional telecom environment */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
+            src="/images/hero/telecom-towers-night.jpg"
             alt=""
             fill
             className="object-cover"
@@ -62,10 +61,10 @@ function CompanyPage({ locale }: { locale: string }) {
             {/* Vision */}
             <div className="rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
               <div className="relative h-48">
-                {/* Image: Unsplash — Ethiopia landscape/cityscape, forward-looking */}
+                {/* GIX Nexus company vision */}
                 <Image
-                  src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80"
-                  alt="Ethiopia — the landscape GIX Nexus serves"
+                  src="/images/company/vission-logo.jpeg"
+                  alt="GIX Nexus — company vision"
                   fill
                   className="object-cover"
                 />

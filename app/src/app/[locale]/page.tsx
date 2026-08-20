@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { HeroCarousel } from '@/components/ui/HeroCarousel'
 
 interface HomePageProps {
   params: Promise<{ locale: string }>
@@ -23,43 +24,37 @@ const SERVICES_DATA = [
   {
     slug: 'telecommunications-infrastructure',
     nameKey: 'telecomInfrastructure',
-    // Telecom tower installation work — relevant to outdoor/indoor facilities
-    image: 'https://images.unsplash.com/photo-1504707748692-419802cf939d?w=600&q=80',
+    image: '/images/services/telecom-infrastructure.jpg',
     imageAlt: 'Telecom tower installation and maintenance',
   },
   {
     slug: 'fiber-optic-solutions',
     nameKey: 'fiberOptic',
-    // Fiber optic cables with light — exactly what the service describes
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80',
+    image: '/images/services/fiber-optic-cables.jpg',
     imageAlt: 'Fiber optic cable installation and splicing',
   },
   {
     slug: 'satellite-wireless-communications',
     nameKey: 'satelliteWireless',
-    // Satellite dish — VSAT and satellite communication systems
-    image: 'https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?w=600&q=80',
+    image: '/images/services/satellite-dish.jpg',
     imageAlt: 'Satellite dish and wireless communication systems',
   },
   {
     slug: 'network-infrastructure',
     nameKey: 'networkInfrastructure',
-    // Server rack / network cables — structured cabling, LAN/WAN
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80',
+    image: '/images/services/network-infrastructure.jpg',
     imageAlt: 'Network infrastructure and structured cabling',
   },
   {
     slug: 'telecom-power-systems',
     nameKey: 'telecomPower',
-    // Power infrastructure — DC systems, rectifiers, battery banks
-    image: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80',
+    image: '/images/services/telecom-power-systems-dc-power-systems.png',
     imageAlt: 'Telecom power systems and electrical infrastructure',
   },
   {
     slug: 'maintenance-technical-support',
     nameKey: 'maintenance',
-    // Field engineer doing maintenance work
-    image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80',
+    image: '/images/services/maintenance-and-tehnical-suport.webp',
     imageAlt: 'Field maintenance and technical support operations',
   },
 ] as const
@@ -75,29 +70,18 @@ function HomePage({ locale }: { locale: string }) {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden" aria-labelledby="hero-heading">
 
-        {/* Background image — telecom tower at dusk */}
-        {/* Image: Unsplash photo-1562408590-e32931084e23 — telecom tower infrastructure */}
-        <div className="absolute inset-0">
-          <Image
-            src="https://images.unsplash.com/photo-1562408590-e32931084e23?w=1920&q=80"
-            alt=""
-            fill
-            className="object-cover"
-            priority
-            aria-hidden="true"
-          />
-          {/* Dark overlay — maintains readability, matches brand dark theme */}
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,17,28,0.95) 0%, rgba(11,23,38,0.88) 60%, rgba(7,17,28,0.75) 100%)' }} />
-        </div>
+      {/* Background carousel — auto-advances through 4 hero images with fade transitions */}
+        <HeroCarousel />
 
-        {/* Engineering grid overlay */}
+        {/* Engineering grid overlay — sits above carousel (z-3+) */}
         <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
           backgroundImage: 'linear-gradient(#008CFF 1px, transparent 1px), linear-gradient(90deg, #008CFF 1px, transparent 1px)',
           backgroundSize: '60px 60px',
+          zIndex: 4,
         }} aria-hidden="true" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 w-full" style={{ zIndex: 5 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
             {/* Left: Content */}
             <div>
@@ -116,7 +100,7 @@ function HomePage({ locale }: { locale: string }) {
               </p>
 
               {/* Key stats — Source: Company Profile PDF, Pages 1, 3 */}
-              <div className="mt-10 grid grid-cols-3 gap-6">
+              <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
                 <div className="text-center">
                   {/* Source: Company Profile PDF, Page 3 — "7+" is a verbatim company headline */}
                   <div className="text-4xl font-bold text-[#008CFF]">7+</div>
@@ -147,7 +131,7 @@ function HomePage({ locale }: { locale: string }) {
 
             {/* Right: Logo card */}
             <div className="hidden lg:flex justify-end">
-              <div className="rounded-2xl p-8 border border-white/10 w-72" style={{ background: 'rgba(11,23,38,0.85)', backdropFilter: 'blur(16px)' }}>
+              <div className="rounded-2xl p-8 border border-white/10 w-full max-w-xs" style={{ background: 'rgba(11,23,38,0.85)', backdropFilter: 'blur(16px)' }}>
                 {/* Source: company-logo.png — GIX Nexus brand mark */}
                 <Image
                   src="/assets/company-logo.png"
@@ -184,7 +168,7 @@ function HomePage({ locale }: { locale: string }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES_DATA.map((service) => {
               const capabilities = tServices.raw(`groups.${service.nameKey}.capabilities`) as string[]
               return (
@@ -235,7 +219,7 @@ function HomePage({ locale }: { locale: string }) {
       {/* Source: Company Profile PDF, Pages 2, 9 */}
       <section className="py-28 section-top-divide bg-section-even" aria-labelledby="features-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
             {/* Left: MD photo card */}
             <div>
@@ -294,10 +278,9 @@ function HomePage({ locale }: { locale: string }) {
       {/* Source: Company Profile PDF, Pages 1, 3, 8 — HSEQ policy and safety commitment */}
       <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         {/* Background: safety/field work image */}
-        {/* Image: Unsplash photo-1578328819058 — worker with safety equipment in field */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=1920&q=80"
+            src="/images/hseq/hseq-policy.jpeg"
             alt=""
             fill
             className="object-cover"
@@ -338,7 +321,7 @@ function HomePage({ locale }: { locale: string }) {
       {/* Source: Company Profile PDF, Page 9 — target sectors, NOT existing clients */}
       <section className="py-24 section-top-divide bg-section-accent" aria-labelledby="sectors-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
+          <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Target Sectors</p>
             <h2 id="sectors-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>
               {t('sectorsTitle')}
@@ -348,7 +331,7 @@ function HomePage({ locale }: { locale: string }) {
               {t('sectorsDisclaimer')}
             </p>
           </div>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-3 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
             {sectors.slice(0, 8).map((sector, i) => (
               <div key={i} className="flex items-center gap-2 rounded-lg border p-3 text-sm font-medium" style={{ background: 'var(--surface)', borderColor: 'var(--border)', color: 'var(--foreground)' }}>
                 <span className="h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#008CFF]" />

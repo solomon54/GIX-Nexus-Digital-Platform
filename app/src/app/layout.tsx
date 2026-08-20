@@ -1,10 +1,7 @@
-// Root layout — must render <html> and <body> for Next.js App Router.
-// The [locale] layout handles the actual page wrapper with providers.
-// The (payload) layout group handles the CMS admin area.
+// Root layout — passthrough only.
+// The [locale] layout owns the full <html>/<body> for the public site.
+// The (payload) layout group owns its own <html>/<body> for the admin area.
+// Having both render <html>/<body> causes hydration mismatches — this is the fix.
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html suppressHydrationWarning>
-      <body>{children}</body>
-    </html>
-  )
+  return children
 }

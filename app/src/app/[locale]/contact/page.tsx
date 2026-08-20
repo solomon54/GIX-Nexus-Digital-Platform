@@ -18,11 +18,10 @@ function ContactPage() {
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden">
-        {/* Background: Addis Ababa cityscape / Ethiopia */}
-        {/* Image: Unsplash photo-1501854140801 — panoramic landscape, Ethiopia feel */}
+        {/* Background: hero image for contact */}
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1920&q=80"
+            src="/images/hero/hero-1.jpeg"
             alt=""
             fill
             className="object-cover object-center"
