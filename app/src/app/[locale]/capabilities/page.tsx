@@ -114,7 +114,7 @@ function CapabilitiesPage() {
               {/* Installation Tools */}
               <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 <div className="relative h-40">
-                  <Image src="/images/services/telecom-infrastructure.jpg" alt="Installation tools for telecom work" fill className="object-cover" />
+                  <Image src="/images/industries/instalation-tools.jpg" alt="Installation tools for telecom field work" fill className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(11,23,38,0.6)' }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="font-bold text-white text-lg">Installation Tools</p>
@@ -134,7 +134,7 @@ function CapabilitiesPage() {
               {/* Safety Equipment */}
               <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 <div className="relative h-40">
-                  <Image src="/images/hseq/hseq-policy.jpeg" alt="Safety equipment and PPE" fill className="object-cover" />
+                  <Image src="/images/industries/safety-equipment.jpg" alt="Safety equipment and personal protective equipment" fill className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(11,23,38,0.6)' }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="font-bold text-white text-lg">Safety Equipment</p>
