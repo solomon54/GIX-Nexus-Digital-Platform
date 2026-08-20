@@ -72,10 +72,10 @@ function CapabilitiesPage() {
               </p>
             </div>
             <div className="relative rounded-2xl overflow-hidden">
-              {/* Team/capabilities image */}
+              {/* Test instruments image — from capability folder */}
               <Image
-                src="/images/capability/our-capabilities.webp"
-                alt="GIX Nexus technical team at work"
+                src="/images/capability/test-instruments.jpg"
+                alt="GIX Nexus technical instruments and measurement equipment"
                 width={600}
                 height={500}
                 className="w-full object-cover"
@@ -94,7 +94,7 @@ function CapabilitiesPage() {
               {/* Test Instruments */}
               <div className="rounded-xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 <div className="relative h-40">
-                  <Image src="/images/hero/datacenter-solution.jpg" alt="Test instruments and measurement equipment" fill className="object-cover" />
+                  <Image src="/images/capability/test-instruments.jpg" alt="Test instruments and measurement equipment" fill className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(11,23,38,0.6)' }} />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <p className="font-bold text-white text-lg">Test Instruments</p>
