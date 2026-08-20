@@ -10,6 +10,9 @@ import { FutureObjectives } from './collections/FutureObjectives'
 import { Media } from './collections/Media'
 import { Pages } from './collections/Pages'
 import { Users } from './collections/Users'
+import { News } from './collections/News'
+import { Projects } from './collections/Projects'
+import { Testimonials } from './collections/Testimonials'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -30,6 +33,9 @@ export default buildConfig({
     FutureObjectives,
     Media,
     Pages,
+    News,
+    Projects,
+    Testimonials,
   ],
 
   // ── Global rich-text editor ──────────────────────────────────

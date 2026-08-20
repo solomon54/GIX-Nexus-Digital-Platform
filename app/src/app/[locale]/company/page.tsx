@@ -136,41 +136,45 @@ function CompanyPage({ locale }: { locale: string }) {
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Leadership</p>
             <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('leadershipTitle')}</h2>
           </div>
-          <div className="max-w-3xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
-              {/* MD photo — Source: leader-prof-img.png */}
-              <div className="relative h-80 md:h-full min-h-[320px]">
+          <div className="max-w-2xl mx-auto">
+            {/* Photo card — elegant: image fills frame, name/role overlaid at bottom */}
+            <div className="rounded-2xl overflow-hidden shadow-lg" style={{ boxShadow: 'var(--shadow-lg)' }}>
+              <div className="relative" style={{ aspectRatio: '4/3' }}>
+                {/* Source: leader-prof-img.png — Getachew Teshome, Managing Director */}
                 <Image
                   src="/assets/leader-prof-img.png"
                   alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
                   fill
                   className="object-cover object-top"
                 />
-              </div>
-              <div className="p-8" style={{ background: 'var(--surface)' }}>
-                {/* Source: Company Profile PDF, Page 2 — MD title and name */}
-                <p className="text-xs font-semibold uppercase tracking-widest text-[#008CFF] mb-2">{t('mdTitle')}</p>
-                <h3 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{t('mdName')}</h3>
-                <div className="my-4 h-px" style={{ background: 'var(--border)' }} />
-                {/* Source: Company Profile PDF, Page 2 — verbatim MD message */}
-                <blockquote className="text-sm italic leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>
-                  &ldquo;{t('mdMessage')}&rdquo;
-                </blockquote>
-                <div className="mt-6 space-y-2 text-sm" style={{ color: 'var(--foreground-subtle)' }}>
-                  {/* Source: Company Profile PDF, Page 10 */}
-                  <div className="flex items-center gap-2">
-                    <span>📍</span>
-                    <span>{t('hqValue')}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>🌍</span>
-                    <span>{t('operationsValue')}</span>
+                {/* Gradient overlay — name/role readable at bottom */}
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(7,17,28,0.92) 0%, rgba(11,23,38,0.4) 40%, transparent 70%)' }} />
+                {/* Name + role at bottom — always visible */}
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  {/* Source: Company Profile PDF, Page 2 — name and title */}
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#008CFF] mb-1">{t('mdTitle')}</p>
+                  <h3 className="text-xl font-bold text-white">{t('mdName')}</h3>
+                  <div className="flex items-center gap-3 mt-2 text-xs text-[#B9C6D3]">
+                    <span>📍 {t('hqValue')}</span>
+                    <span className="opacity-40">·</span>
+                    <span>🌍 {t('operationsValue')}</span>
                   </div>
                 </div>
-                <Link href={`/${locale}/contact`}
-                  className="mt-6 inline-flex min-h-[44px] items-center rounded-lg bg-[#008CFF] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors">
-                  Get in Touch
-                </Link>
+              </div>
+
+              {/* Quote — below photo, clean white card */}
+              <div className="p-6" style={{ background: 'var(--surface)' }}>
+                {/* Source: Company Profile PDF, Page 2 — verbatim MD statement */}
+                <blockquote className="text-sm italic leading-relaxed border-l-2 border-[#008CFF] pl-4" style={{ color: 'var(--foreground-muted)' }}>
+                  &ldquo;{t('mdMessage')}&rdquo;
+                </blockquote>
+                <div className="mt-5 pt-4 flex items-center justify-between" style={{ borderTop: '1px solid var(--border)' }}>
+                  <span className="text-xs text-[#008CFF] font-medium">Managing Director · GIX Nexus Telecom and Power</span>
+                  <Link href={`/${locale}/contact`}
+                    className="inline-flex min-h-[36px] items-center rounded-lg bg-[#008CFF] px-5 py-2 text-xs font-semibold text-white hover:bg-[#3FABFF] transition-colors">
+                    Get in Touch
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
