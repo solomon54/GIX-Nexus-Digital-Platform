@@ -58,6 +58,8 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
+    // Auto-accept migration decisions — avoids interactive prompts on startup
+    push: process.env.NODE_ENV === 'development',
   }),
 
   // ── Localization (D-01, D-02) ─────────────────────────────────
