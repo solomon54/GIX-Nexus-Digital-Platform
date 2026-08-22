@@ -26,17 +26,19 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
-    // ── Custom branding ──────────────────────────────────────────
     components: {
       graphics: {
         Logo: '/components/admin/Logo',
         Icon: '/components/admin/Icon',
       },
+      // Inject avatar into the bottom of the nav
+      afterNavLinks: ['/components/admin/NavUserCard'],
     },
     meta: {
       titleSuffix: '— GIX Nexus',
       icons: [{ url: '/icon.svg' }],
     },
+    theme: 'dark',
   },
 
   collections: [

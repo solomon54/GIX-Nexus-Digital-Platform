@@ -1,257 +1,581 @@
 /* ================================================================
-   GIX Nexus — Payload Admin Custom Theme
-   Elegant dark theme with teal/blue accent palette
+   GIX Nexus — Payload Admin Elite Theme
+   Deep space dark with electric teal accents
    ================================================================ */
 
-/* ── Color overrides ──────────────────────────────────────────── */
+/* ── Payload CSS variable overrides ──────────────────────────── */
+[data-theme="dark"],
+[data-theme="light"],
 :root {
-  /* Brand accent: teal-blue */
-  --color-accent:        #0ea5e9;
-  --color-accent-hover:  #38bdf8;
-  --color-accent-dim:    rgba(14, 165, 233, 0.15);
+  /* Core backgrounds */
+  --theme-bg:              #07111C;
+  --theme-input-bg:        #0d1f2d;
 
-  /* Backgrounds */
-  --theme-bg:            #0d1117;
-  --theme-input-bg:      #161b22;
-
-  /* Elevation layers */
-  --theme-elevation-0:   #0d1117;
-  --theme-elevation-50:  #111820;
-  --theme-elevation-100: #161d27;
-  --theme-elevation-150: #1a2231;
-  --theme-elevation-200: #1e2838;
-  --theme-elevation-250: #22303f;
-  --theme-elevation-300: #263647;
-  --theme-elevation-400: #2e4057;
-  --theme-elevation-500: #3a5068;
-  --theme-elevation-600: #4a6480;
-  --theme-elevation-700: #6b8aaa;
-  --theme-elevation-800: #94b3cc;
-  --theme-elevation-900: #c0d4e8;
-  --theme-elevation-1000:#e8f0f7;
+  /* Elevation scale — deep navy to light steel */
+  --theme-elevation-0:     #07111C;
+  --theme-elevation-50:    #0a1929;
+  --theme-elevation-100:   #0d1f2d;
+  --theme-elevation-150:   #112433;
+  --theme-elevation-200:   #152a3a;
+  --theme-elevation-250:   #1a3244;
+  --theme-elevation-300:   #1f3a50;
+  --theme-elevation-400:   #2a4d6a;
+  --theme-elevation-500:   #3a6480;
+  --theme-elevation-600:   #4e7d9a;
+  --theme-elevation-700:   #6e9db8;
+  --theme-elevation-800:   #9abfd4;
+  --theme-elevation-900:   #c4dce8;
+  --theme-elevation-1000:  #e8f3f8;
 
   /* Text */
-  --theme-text:          #e2eaf3;
+  --theme-text:            #ddeeff;
+
+  /* Brand accent — electric teal */
+  --gix-accent:            #00C2FF;
+  --gix-accent-hover:      #33CFFF;
+  --gix-accent-dim:        rgba(0, 194, 255, 0.12);
+  --gix-accent-glow:       rgba(0, 194, 255, 0.25);
 
   /* Success / warning / error */
-  --theme-success-500:   #22c55e;
-  --theme-warning-500:   #f59e0b;
-  --theme-error-500:     #ef4444;
+  --theme-success-500:     #10b981;
+  --theme-success-100:     rgba(16, 185, 129, 0.12);
+  --theme-warning-500:     #f59e0b;
+  --theme-warning-100:     rgba(245, 158, 11, 0.12);
+  --theme-error-500:       #ef4444;
+  --theme-error-100:       rgba(239, 68, 68, 0.12);
+
+  /* Border radius */
+  --style-radius-s:        6px;
+  --style-radius-m:        8px;
+  --style-radius-l:        12px;
 }
 
-/* ── Nav sidebar ──────────────────────────────────────────────── */
+/* ── Body / root background ───────────────────────────────────── */
+body,
+html,
+#app {
+  background: var(--theme-bg) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif !important;
+}
+
+/* ── Sidebar navigation ───────────────────────────────────────── */
 .nav {
-  background: linear-gradient(180deg, #0d1117 0%, #111820 100%) !important;
-  border-right: 1px solid rgba(14, 165, 233, 0.12) !important;
+  background: linear-gradient(180deg, #07111C 0%, #0a1929 100%) !important;
+  border-right: 1px solid rgba(0, 194, 255, 0.1) !important;
+  box-shadow: 2px 0 20px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Logo area */
-.nav .nav__header,
 .nav__header {
-  border-bottom: 1px solid rgba(14, 165, 233, 0.1) !important;
-  padding: 16px 20px !important;
+  padding: 18px 16px 14px !important;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.08) !important;
 }
 
-/* Nav links */
-.nav .nav__link,
-.nav a {
-  border-radius: 6px !important;
-  margin: 1px 8px !important;
-  transition: background 0.15s, color 0.15s !important;
+/* Nav group labels */
+.nav-group__label {
+  color: rgba(0, 194, 255, 0.5) !important;
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
 }
 
-.nav .nav__link:hover,
-.nav a:hover {
-  background: var(--color-accent-dim) !important;
-  color: var(--color-accent) !important;
+/* Nav items */
+.nav__link {
+  border-radius: var(--style-radius-m) !important;
+  margin: 2px 8px !important;
+  padding: 8px 12px !important;
+  color: rgba(180, 210, 230, 0.75) !important;
+  font-size: 13px !important;
+  font-weight: 450 !important;
+  transition: all 0.15s ease !important;
+  text-decoration: none !important;
 }
 
-.nav .nav__link--active,
-.nav a.active {
-  background: var(--color-accent-dim) !important;
-  color: var(--color-accent) !important;
-  border-left: 2px solid var(--color-accent) !important;
+.nav__link:hover {
+  background: var(--gix-accent-dim) !important;
+  color: var(--gix-accent) !important;
 }
 
-/* ── Top header bar ───────────────────────────────────────────── */
+.nav__link--active {
+  background: var(--gix-accent-dim) !important;
+  color: var(--gix-accent) !important;
+  border-left: 2px solid var(--gix-accent) !important;
+  font-weight: 500 !important;
+}
+
+/* Hamburger / toggle */
+.nav-toggler {
+  color: var(--gix-accent) !important;
+}
+
+/* ── Top app header ───────────────────────────────────────────── */
 .app-header {
-  background: #0d1117 !important;
-  border-bottom: 1px solid rgba(14, 165, 233, 0.1) !important;
-  backdrop-filter: blur(8px) !important;
+  background: rgba(7, 17, 28, 0.95) !important;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
 }
 
-/* ── Main content area ────────────────────────────────────────── */
-.render-fields,
-.collection-list,
-.document-fields {
-  background: transparent !important;
+/* Breadcrumb / step nav */
+.step-nav__label,
+.step-nav a {
+  color: rgba(0, 194, 255, 0.7) !important;
+  font-size: 13px !important;
 }
 
-/* ── Cards / elevated panels ──────────────────────────────────── */
-.render-fields .field-type,
-.render-fields > .field-type,
-.document-fields .render-fields {
-  border-radius: 10px !important;
+.step-nav__label--last {
+  color: var(--theme-text) !important;
 }
 
-/* Input fields */
-.field-type input,
-.field-type select,
-.field-type textarea,
+/* ── Login page ───────────────────────────────────────────────── */
+.template-minimal {
+  background: radial-gradient(ellipse at 50% 0%, rgba(0, 194, 255, 0.08) 0%, transparent 70%),
+              linear-gradient(180deg, #07111C 0%, #04090f 100%) !important;
+  min-height: 100vh !important;
+}
+
+.template-minimal__wrap {
+  background: rgba(10, 25, 41, 0.9) !important;
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.5), 0 0 30px var(--gix-accent-dim) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  padding: 40px !important;
+}
+
+/* Login form heading */
+.login__form h1,
+.template-minimal h1 {
+  color: var(--theme-text) !important;
+  font-size: 22px !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+}
+
+/* ── Form inputs ──────────────────────────────────────────────── */
+.field-type__wrap input,
+.field-type__wrap select,
+.field-type__wrap textarea,
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
 select,
 textarea {
-  background: var(--theme-elevation-100) !important;
-  border: 1px solid rgba(14, 165, 233, 0.15) !important;
-  border-radius: 8px !important;
+  background: rgba(10, 25, 41, 0.8) !important;
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  border-radius: var(--style-radius-m) !important;
   color: var(--theme-text) !important;
   transition: border-color 0.2s, box-shadow 0.2s !important;
+  font-size: 14px !important;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: var(--color-accent) !important;
-  box-shadow: 0 0 0 3px var(--color-accent-dim) !important;
+  border-color: var(--gix-accent) !important;
+  box-shadow: 0 0 0 3px var(--gix-accent-dim) !important;
   outline: none !important;
 }
 
-/* ── Buttons ──────────────────────────────────────────────────── */
-.btn.btn--style-primary,
-button[type="submit"].btn--style-primary {
-  background: var(--color-accent) !important;
-  border-color: var(--color-accent) !important;
-  border-radius: 8px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.01em !important;
-  transition: background 0.15s, transform 0.1s !important;
-}
-
-.btn.btn--style-primary:hover {
-  background: var(--color-accent-hover) !important;
-  transform: translateY(-1px) !important;
-}
-
-.btn.btn--style-secondary,
-.btn--style-secondary {
-  border-radius: 8px !important;
-  border-color: rgba(14, 165, 233, 0.3) !important;
-  color: var(--color-accent) !important;
-  transition: background 0.15s !important;
-}
-
-.btn.btn--style-secondary:hover {
-  background: var(--color-accent-dim) !important;
-}
-
-/* ── Table ────────────────────────────────────────────────────── */
-.table {
-  border-radius: 10px !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(14, 165, 233, 0.1) !important;
-}
-
-.table thead th {
-  background: var(--theme-elevation-100) !important;
-  border-bottom: 1px solid rgba(14, 165, 233, 0.12) !important;
-  color: var(--color-accent) !important;
-  font-size: 11px !important;
-  letter-spacing: 0.08em !important;
+/* Field labels */
+.field-label,
+label {
+  color: rgba(180, 210, 230, 0.8) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.03em !important;
   text-transform: uppercase !important;
 }
 
-.table tbody tr:hover {
-  background: var(--color-accent-dim) !important;
-  cursor: pointer !important;
+/* Field description text */
+.field-description {
+  color: rgba(0, 194, 255, 0.5) !important;
+  font-size: 12px !important;
+  font-style: italic !important;
 }
 
-.table tbody tr {
-  border-bottom: 1px solid rgba(14, 165, 233, 0.06) !important;
-  transition: background 0.1s !important;
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  border-radius: var(--style-radius-m) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.02em !important;
+  transition: all 0.15s ease !important;
 }
 
-/* ── Dashboard cards ──────────────────────────────────────────── */
-.dashboard .card {
-  background: var(--theme-elevation-100) !important;
-  border: 1px solid rgba(14, 165, 233, 0.1) !important;
-  border-radius: 12px !important;
-  transition: border-color 0.2s, transform 0.2s !important;
+.btn--style-primary {
+  background: linear-gradient(135deg, #0099CC, #00C2FF) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px var(--gix-accent-dim) !important;
 }
 
-.dashboard .card:hover {
-  border-color: var(--color-accent) !important;
-  transform: translateY(-2px) !important;
+.btn--style-primary:hover {
+  background: linear-gradient(135deg, #00AADD, #33CFFF) !important;
+  box-shadow: 0 4px 20px var(--gix-accent-glow) !important;
+  transform: translateY(-1px) !important;
 }
 
-/* ── Breadcrumb ───────────────────────────────────────────────── */
-.step-nav {
-  color: var(--color-accent) !important;
-  opacity: 0.8 !important;
+.btn--style-secondary {
+  background: transparent !important;
+  border: 1px solid rgba(0, 194, 255, 0.25) !important;
+  color: var(--gix-accent) !important;
 }
 
-/* ── Pill / badge ─────────────────────────────────────────────── */
-.pill {
+.btn--style-secondary:hover {
+  background: var(--gix-accent-dim) !important;
+  border-color: var(--gix-accent) !important;
+}
+
+.btn--style-pill {
   border-radius: 20px !important;
-  font-size: 11px !important;
+}
+
+/* Save button specifically */
+.doc-controls__controls .btn--style-primary,
+.form-submit .btn--style-primary {
+  padding: 8px 24px !important;
   font-weight: 600 !important;
 }
 
-/* ── Scrollbar ────────────────────────────────────────────────── */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: var(--theme-elevation-50);
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(14, 165, 233, 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
+/* ── Document header / controls bar ──────────────────────────── */
+.doc-controls {
+  background: rgba(10, 25, 41, 0.6) !important;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.08) !important;
+  backdrop-filter: blur(12px) !important;
 }
 
-/* ── Collapsible field groups ─────────────────────────────────── */
-.collapsible__content {
-  border-radius: 0 0 10px 10px !important;
+.doc-controls__meta {
+  color: rgba(0, 194, 255, 0.5) !important;
+  font-size: 12px !important;
 }
+
+/* ── Collection list / table ──────────────────────────────────── */
+.list-controls {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.08) !important;
+}
+
+.table {
+  border-radius: var(--style-radius-l) !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(0, 194, 255, 0.1) !important;
+  display: block !important;
+  width: 100% !important;
+}
+
+.table thead tr {
+  background: rgba(0, 194, 255, 0.06) !important;
+}
+
+.table th {
+  color: rgba(0, 194, 255, 0.7) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  border-bottom: 1px solid rgba(0, 194, 255, 0.1) !important;
+  padding: 12px 16px !important;
+}
+
+.table td {
+  border-bottom: 1px solid rgba(0, 194, 255, 0.05) !important;
+  padding: 12px 16px !important;
+  font-size: 13px !important;
+  color: rgba(180, 210, 230, 0.9) !important;
+}
+
+.table tr:hover td {
+  background: var(--gix-accent-dim) !important;
+}
+
+.table tr:last-child td {
+  border-bottom: none !important;
+}
+
+/* Sort icons */
+.sort-column__buttons button svg {
+  color: rgba(0, 194, 255, 0.4) !important;
+}
+
+/* ── Dashboard ────────────────────────────────────────────────── */
+.dashboard__wrap {
+  padding: 24px !important;
+}
+
+.card {
+  background: rgba(13, 31, 45, 0.8) !important;
+  border: 1px solid rgba(0, 194, 255, 0.1) !important;
+  border-radius: var(--style-radius-l) !important;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s !important;
+  overflow: hidden !important;
+}
+
+.card:hover {
+  border-color: rgba(0, 194, 255, 0.35) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 20px var(--gix-accent-dim) !important;
+}
+
+.card__title {
+  color: var(--theme-text) !important;
+  font-weight: 500 !important;
+  font-size: 14px !important;
+}
+
+/* ── Document edit view ───────────────────────────────────────── */
+.render-fields {
+  padding: 0 !important;
+}
+
+/* Field group wrapper */
+.field-type {
+  margin-bottom: 20px !important;
+}
+
+/* Sidebar in document edit */
+.document-sidebar {
+  background: rgba(10, 25, 41, 0.5) !important;
+  border-left: 1px solid rgba(0, 194, 255, 0.08) !important;
+}
+
+/* Group/collapsible fields */
 .collapsible__toggle {
-  border-radius: 10px !important;
+  background: rgba(13, 31, 45, 0.6) !important;
+  border: 1px solid rgba(0, 194, 255, 0.1) !important;
+  border-radius: var(--style-radius-m) !important;
+  color: var(--theme-text) !important;
 }
 
-/* ── Upload / media field ─────────────────────────────────────── */
-.file-details,
+.collapsible__toggle:hover {
+  border-color: rgba(0, 194, 255, 0.3) !important;
+}
+
+.collapsible__content {
+  border: 1px solid rgba(0, 194, 255, 0.08) !important;
+  border-top: none !important;
+  border-radius: 0 0 var(--style-radius-m) var(--style-radius-m) !important;
+}
+
+/* ── Upload / dropzone ────────────────────────────────────────── */
 .dropzone {
-  border-radius: 10px !important;
-  border: 1.5px dashed rgba(14, 165, 233, 0.25) !important;
+  background: rgba(0, 194, 255, 0.03) !important;
+  border: 2px dashed rgba(0, 194, 255, 0.2) !important;
+  border-radius: var(--style-radius-l) !important;
+  transition: all 0.2s !important;
 }
 
-.dropzone:hover {
-  border-color: var(--color-accent) !important;
-  background: var(--color-accent-dim) !important;
+.dropzone:hover,
+.dropzone--has-drag-over {
+  border-color: var(--gix-accent) !important;
+  background: var(--gix-accent-dim) !important;
 }
 
-/* ── Modal ────────────────────────────────────────────────────── */
+.file-details {
+  background: rgba(13, 31, 45, 0.6) !important;
+  border: 1px solid rgba(0, 194, 255, 0.12) !important;
+  border-radius: var(--style-radius-m) !important;
+}
+
+/* ── Rich text / lexical editor ───────────────────────────────── */
+.rich-text {
+  background: rgba(10, 25, 41, 0.8) !important;
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  border-radius: var(--style-radius-m) !important;
+}
+
+.rich-text:focus-within {
+  border-color: var(--gix-accent) !important;
+  box-shadow: 0 0 0 3px var(--gix-accent-dim) !important;
+}
+
+/* Lexical toolbar */
+.toolbar-popup__toolbar,
+.inline-toolbar {
+  background: rgba(10, 25, 41, 0.95) !important;
+  border: 1px solid rgba(0, 194, 255, 0.2) !important;
+  border-radius: var(--style-radius-m) !important;
+  backdrop-filter: blur(12px) !important;
+}
+
+/* ── Popups / dropdowns ───────────────────────────────────────── */
+.popup__content {
+  background: rgba(10, 25, 41, 0.97) !important;
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  border-radius: var(--style-radius-l) !important;
+  backdrop-filter: blur(20px) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.popup-button-list__button,
+.popup-list__button {
+  color: rgba(180, 210, 230, 0.85) !important;
+  border-radius: var(--style-radius-s) !important;
+  font-size: 13px !important;
+}
+
+.popup-button-list__button:hover,
+.popup-list__button:hover {
+  background: var(--gix-accent-dim) !important;
+  color: var(--gix-accent) !important;
+}
+
+/* ── Select / react-select ────────────────────────────────────── */
+.rs__control {
+  background: rgba(10, 25, 41, 0.8) !important;
+  border-color: rgba(0, 194, 255, 0.15) !important;
+  border-radius: var(--style-radius-m) !important;
+}
+
+.rs__control--is-focused {
+  border-color: var(--gix-accent) !important;
+  box-shadow: 0 0 0 3px var(--gix-accent-dim) !important;
+}
+
+.rs__menu {
+  background: rgba(10, 25, 41, 0.97) !important;
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  border-radius: var(--style-radius-m) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+}
+
+.rs__option {
+  color: rgba(180, 210, 230, 0.85) !important;
+  font-size: 13px !important;
+}
+
+.rs__option--is-focused {
+  background: var(--gix-accent-dim) !important;
+  color: var(--gix-accent) !important;
+}
+
+.rs__option--is-selected {
+  background: rgba(0, 194, 255, 0.2) !important;
+  color: var(--gix-accent) !important;
+}
+
+.rs__single-value {
+  color: var(--theme-text) !important;
+}
+
+.rs__placeholder {
+  color: rgba(180, 210, 230, 0.35) !important;
+}
+
+/* ── Modals ───────────────────────────────────────────────────── */
 .modal-item {
-  background: var(--theme-elevation-150) !important;
-  border-radius: 14px !important;
-  border: 1px solid rgba(14, 165, 233, 0.15) !important;
+  background: rgba(7, 17, 28, 0.97) !important;
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(24px) !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px var(--gix-accent-dim) !important;
 }
 
 /* ── Toast notifications ──────────────────────────────────────── */
 .payload-toast-item {
-  border-radius: 10px !important;
-  border: 1px solid rgba(14, 165, 233, 0.2) !important;
-  backdrop-filter: blur(8px) !important;
+  background: rgba(10, 25, 41, 0.95) !important;
+  border: 1px solid rgba(0, 194, 255, 0.2) !important;
+  border-radius: var(--style-radius-m) !important;
+  backdrop-filter: blur(12px) !important;
+  color: var(--theme-text) !important;
+  font-size: 13px !important;
 }
 
-/* ── Fix .table display override ─────────────────────────────── */
-@layer utilities {
-  .table {
-    display: block;
-    width: 100%;
-  }
+.toast-title {
+  font-weight: 600 !important;
+}
+
+/* ── Pagination ───────────────────────────────────────────────── */
+.pagination {
+  color: rgba(0, 194, 255, 0.6) !important;
+  font-size: 13px !important;
+}
+
+.pagination__page-button--is-active {
+  background: var(--gix-accent-dim) !important;
+  color: var(--gix-accent) !important;
+  border-radius: 6px !important;
+}
+
+/* ── Chips / pills ────────────────────────────────────────────── */
+.pill {
+  border-radius: 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.04em !important;
+  padding: 3px 10px !important;
+}
+
+/* ── Checkbox ─────────────────────────────────────────────────── */
+.checkbox-input__input:checked ~ .checkbox-input__icon {
+  background: var(--gix-accent) !important;
+  border-color: var(--gix-accent) !important;
+}
+
+/* ── Search bar ───────────────────────────────────────────────── */
+.search-filter {
+  border: 1px solid rgba(0, 194, 255, 0.15) !important;
+  background: rgba(10, 25, 41, 0.8) !important;
+  border-radius: var(--style-radius-m) !important;
+  color: var(--theme-text) !important;
+}
+
+.search-filter:focus {
+  border-color: var(--gix-accent) !important;
+  box-shadow: 0 0 0 3px var(--gix-accent-dim) !important;
+}
+
+/* ── Account / profile nav item ───────────────────────────────── */
+.account-nav-item {
+  border-radius: var(--style-radius-m) !important;
+}
+
+/* ── Scrollbars ───────────────────────────────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 194, 255, 0.25) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 194, 255, 0.2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 194, 255, 0.4);
+}
+
+/* ── Loading shimmer ──────────────────────────────────────────── */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 194, 255, 0.03) 25%,
+    rgba(0, 194, 255, 0.08) 50%,
+    rgba(0, 194, 255, 0.03) 75%
+  ) !important;
+}
+
+/* ── Gutter / page padding ────────────────────────────────────── */
+.gutter {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+
+/* ── Progress bar (route transitions) ────────────────────────── */
+.progress-bar {
+  background: linear-gradient(90deg, var(--gix-accent), var(--gix-accent-hover)) !important;
+  box-shadow: 0 0 10px var(--gix-accent-glow) !important;
 }
