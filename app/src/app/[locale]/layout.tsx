@@ -24,7 +24,6 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params
 
-  // Source: Company Profile PDF, Page 1
   const titles: Record<string, string> = {
     en: 'GIX Nexus Telecom and Power — Telecommunications & Power Engineering',
     am: 'GIX Nexus Telecom and Power — የቴሌኮሙኒኬሽን እና የኃይል ምህንድስና',
@@ -37,7 +36,7 @@ export async function generateMetadata({
   return {
     title: {
       default: titles[locale] ?? titles.en,
-      template: `%s | GIX Nexus Telecom and Power`,
+      template: '%s | GIX Nexus Telecom and Power',
     },
     description: descriptions[locale] ?? descriptions.en,
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
@@ -47,13 +46,20 @@ export async function generateMetadata({
         am: '/am',
       },
     },
+    icons: {
+      // SVG icon with dark background stays visible on both light and dark browser tabs
+      icon: [
+        { url: '/icon.svg', type: 'image/svg+xml' },
+        { url: '/favicon.ico', sizes: '32x32' },
+      ],
+      apple: '/icon.svg',
+    },
   }
 }
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params
 
-  // Validate locale
   if (!routing.locales.includes(locale as 'en' | 'am')) {
     notFound()
   }
@@ -63,12 +69,10 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <html
       lang={locale}
-      // Amharic uses LTR (Ethiopic script is LTR)
       dir="ltr"
       suppressHydrationWarning
     >
       <head>
-        {/* Noto Sans + Noto Sans Ethiopic — preconnect for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>

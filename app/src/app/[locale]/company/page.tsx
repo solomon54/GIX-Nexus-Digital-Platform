@@ -112,7 +112,7 @@ function CompanyPage({ locale }: { locale: string }) {
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CORE_VALUES.map(({ key, icon }) => (
-              <div key={key} className="flex gap-4 p-5 rounded-xl border" style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
+              <div key={key} className="flex gap-4 p-5 sm:p-6 rounded-xl border" style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
                 <div className="text-2xl flex-shrink-0">{icon}</div>
                 <div>
                   <h3 className="font-semibold text-sm" style={{ color: 'var(--foreground)' }}>

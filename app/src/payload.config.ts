@@ -1,5 +1,6 @@
 import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
+import { resendAdapter } from '@payloadcms/email-resend'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { fileURLToPath } from 'url'
@@ -45,6 +46,15 @@ export default buildConfig({
   // ── Global rich-text editor ──────────────────────────────────
   editor: lexicalEditor(),
 
+  // ── Email (Resend — free tier: 3,000 emails/month) ────────────
+  // Set RESEND_API_KEY in .env.local / production env.
+  // Get your key at: https://resend.com/api-keys
+  email: resendAdapter({
+    defaultFromAddress: process.env.RESEND_FROM_ADDRESS ?? 'noreply@gixnexus.com',
+    defaultFromName: process.env.RESEND_FROM_NAME ?? 'GIX Nexus',
+    apiKey: process.env.RESEND_API_KEY ?? '',
+  }),
+
   // ── Security ─────────────────────────────────────────────────
   secret: process.env.PAYLOAD_SECRET ?? 'dev-secret-not-for-production',
 
@@ -58,16 +68,13 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URL,
     },
-    // Auto-accept migration decisions — avoids interactive prompts on startup
     push: process.env.NODE_ENV === 'development',
   }),
 
   // ── Localization (D-01, D-02) ─────────────────────────────────
-  // Source: governance decisions D-01 (bilingual EN/AM) and D-02 (western digits)
   localization: {
     locales: [
       { label: 'English', code: 'en' },
-      // [AM TRANSLATION PENDING] — requires review by Amharic speaker before production
       { label: 'አማርኛ (Amharic)', code: 'am' },
     ],
     defaultLocale: 'en',

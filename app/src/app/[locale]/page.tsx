@@ -59,10 +59,10 @@ function HomePage({ locale }: { locale: string }) {
                 <span className="h-2 w-2 rounded-full bg-[#65D51A] pulse-dot" />
                 <span className="text-sm font-medium text-[#B9C6D3]">{t('heroTagline')}</span>
               </div>
-              <h1 id="hero-heading" className="font-bold text-white" style={{ fontSize: 'clamp(2.2rem, 5vw, 52px)', lineHeight: '1.15' }}>
+              <h1 id="hero-heading" className="font-bold text-white" style={{ fontSize: 'clamp(28px, 4.5vw, 52px)', lineHeight: '1.15' }}>
                 {t('heroTitle')}
               </h1>
-              <p className="mt-6 text-lg text-[#B9C6D3] max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
+              <p className="mt-6 text-[clamp(15px,1.8vw,18px)] text-[#B9C6D3] max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
               <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
                 <div className="text-center">
                   {/* Source: Company Profile PDF, Page 3 — verbatim headline */}
@@ -242,7 +242,7 @@ function HomePage({ locale }: { locale: string }) {
                     <span className="text-xs font-medium text-[#008CFF] bg-[#07111C]/70 rounded-full px-2.5 py-0.5">{project.category}</span>
                   </div>
                 </div>
-                <div className="p-5">
+                <div className="p-5 sm:p-6">
                   <h3 className="font-semibold text-sm mb-1" style={{ color: 'var(--foreground)' }}>{project.title}</h3>
                   <p className="text-xs mb-2 flex items-center gap-1" style={{ color: '#008CFF' }}>
                     <span>📍</span>{project.location}

@@ -215,7 +215,7 @@ export default async function Page({ params }: Props) {
           ))}
 
           {/* Team grid — other professionals */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {TEAM.filter(m => !m.featured).map((member) => (
               <div key={member.role} className="rounded-xl border overflow-hidden group transition-all hover:border-[#008CFF]/30" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
                 {/* Avatar */}
@@ -231,7 +231,7 @@ export default async function Page({ params }: Props) {
                   <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#008CFF 1px, transparent 1px), linear-gradient(90deg, #008CFF 1px, transparent 1px)', backgroundSize: '20px 20px' }} aria-hidden="true" />
                 </div>
 
-                <div className="p-5">
+                <div className="p-5 sm:p-6">
                   <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-3" style={{ background: 'rgba(0,140,255,0.08)', color: '#008CFF' }}>
                     {member.qualification}
                   </span>
@@ -288,7 +288,7 @@ export default async function Page({ params }: Props) {
                   <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: cat.color }} />
                 </div>
                 {/* Items list */}
-                <div className="p-5" style={{ background: 'var(--surface)' }}>
+                <div className="p-5 sm:p-6" style={{ background: 'var(--surface)' }}>
                   <ul className="space-y-2.5">
                     {cat.items.map((item) => (
                       <li key={item} className="flex items-center gap-2.5 text-sm" style={{ color: 'var(--foreground)' }}>

@@ -46,7 +46,7 @@ function IndustriesPage({ locale }: { locale: string }) {
             {sectors.map((sector, i) => (
               <div
                 key={i}
-                className="flex items-center gap-4 rounded-xl border p-5 transition-colors hover:border-[#008CFF]/40"
+                className="flex items-center gap-4 rounded-xl border p-5 sm:p-6 transition-colors hover:border-[#008CFF]/40"
                 style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-2xl" style={{ background: 'rgba(0,140,255,0.1)' }}>

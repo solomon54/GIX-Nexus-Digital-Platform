@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next dev",
+    "build": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next build",
+    "start": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next start",
     "generate:types": "payload generate:types",
     "generate:importmap": "payload generate:importMap"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.33.0",
+    "@payloadcms/email-resend": "^3.33.0",
     "@payloadcms/next": "3.33.0",
     "@payloadcms/richtext-lexical": "3.33.0",
     "clsx": "2.1.1",
+    "graphql": "16.8.1",
     "lucide-react": "0.468.0",
     "next": "15.4.11",
     "next-intl": "3.26.3",
@@ -29,6 +31,8 @@
     "@types/node": "22.15.29",
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.5",
+    "null-loader": "^4.0.1",
+    "sass": "^1.103.1",
     "tailwindcss": "4.3.3",
     "typescript": "5.8.3"
   }

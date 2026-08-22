@@ -1,13 +1,31 @@
-import React from 'react'
-import '@/styles/payloadStyles.css'
+/* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
+/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
+import type { ServerFunctionClient } from 'payload'
 
-// Payload CMS admin layout — isolated from the public site layout.
-// Does NOT include locale providers, navigation, or footer.
-// Tailwind is imported via payloadStyles.css (no preflight, safe for Payload admin).
-export default function PayloadLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html>
-      <body>{children}</body>
-    </html>
-  )
+import '@payloadcms/next/css'
+import config from '@payload-config'
+import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
+import React from 'react'
+
+import { importMap } from './admin/importMap.js'
+
+type Args = {
+  children: React.ReactNode
 }
+
+const serverFunction: ServerFunctionClient = async function (args) {
+  'use server'
+  return handleServerFunctions({
+    ...args,
+    config,
+    importMap,
+  })
+}
+
+const Layout = ({ children }: Args) => (
+  <RootLayout config={config} importMap={importMap} serverFunction={serverFunction}>
+    {children}
+  </RootLayout>
+)
+
+export default Layout

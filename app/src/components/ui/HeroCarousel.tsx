@@ -10,66 +10,50 @@ const SLIDES = [
   { src: '/images/hero/ups-for-telecom-base-station-power-backup.webp', alt: 'Telecom power backup systems' },
 ]
 
-// How long each slide stays visible (ms)
-const INTERVAL = 6000
-// How long the crossfade lasts (ms) — slower = more cinematic
-const FADE_DURATION = 1800
+const INTERVAL = 6000   // ms per slide
+const FADE_MS   = 1600  // crossfade duration
 
 export function HeroCarousel({ className = '' }: { className?: string }) {
-  const [current, setCurrent] = useState(0)
-  const [target, setTarget] = useState(0)
+  const [active, setActive] = useState(0)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const goTo = useCallback((index: number) => {
-    if (index === current) return
-    setTarget(index)
-    // After fade completes, commit current so next transition is clean
-    setTimeout(() => setCurrent(index), FADE_DURATION)
-  }, [current])
+    setActive(index)
+  }, [])
 
   const advance = useCallback(() => {
-    setTarget(prev => {
-      const next = (prev + 1) % SLIDES.length
-      setTimeout(() => setCurrent(next), FADE_DURATION)
-      return next
-    })
+    setActive(prev => (prev + 1) % SLIDES.length)
   }, [])
+
+  const resetTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current)
+    timerRef.current = setInterval(advance, INTERVAL)
+  }, [advance])
 
   useEffect(() => {
     timerRef.current = setInterval(advance, INTERVAL)
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [advance])
 
-  const resetTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current)
-    timerRef.current = setInterval(advance, INTERVAL)
-  }
-
   return (
     <div className={`absolute inset-0 overflow-hidden ${className}`} aria-hidden="true">
-      {/* All slides rendered simultaneously — opacity crossfade between them */}
-      {SLIDES.map((slide, i) => {
-        // Active = the target we're fading TO
-        const isTarget = i === target
-        // Previous = the one we just came from (still fading out)
-        const isCurrent = i === current && i !== target
 
+      {/* All slides — always mounted, opacity drives visibility */}
+      {SLIDES.map((slide, i) => {
+        const isActive = i === active
         return (
           <div
             key={slide.src}
             className="absolute inset-0"
             style={{
-              opacity: isTarget ? 1 : 0,
-              // Both directions transition — ensures overlap and no black frame
-              transition: (isTarget || isCurrent)
-                ? `opacity ${FADE_DURATION}ms cubic-bezier(0.4, 0, 0.2, 1)`
-                : 'none',
-              zIndex: isTarget ? 1 : 0,
-              // Subtle slow scale — creates a gentle Ken Burns effect, never distracting
-              transform: isTarget ? 'scale(1.03)' : 'scale(1)',
-              transitionProperty: isTarget || isCurrent ? 'opacity, transform' : 'none',
-              transitionDuration: `${FADE_DURATION}ms, ${FADE_DURATION * 4}ms`,
-              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              /* Use ONLY longhand transition properties — no shorthand mixing */
+              opacity: isActive ? 1 : 0,
+              transitionProperty: 'opacity, transform',
+              transitionDuration: `${FADE_MS}ms, ${FADE_MS * 5}ms`,
+              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1), cubic-bezier(0.4, 0, 0.2, 1)',
+              /* Subtle Ken Burns — active slide very slowly grows */
+              transform: isActive ? 'scale(1.04)' : 'scale(1)',
+              zIndex: isActive ? 1 : 0,
             }}
           >
             <Image
@@ -83,18 +67,16 @@ export function HeroCarousel({ className = '' }: { className?: string }) {
         )
       })}
 
-      {/* Dark overlay — always on top of images, always the same */}
+      {/* Overlay — constant, above all slides */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(135deg, rgba(7,17,28,0.92) 0%, rgba(11,23,38,0.80) 60%, rgba(7,17,28,0.70) 100%)',
+          background: 'linear-gradient(160deg, rgba(7,17,28,0.93) 0%, rgba(11,23,38,0.82) 55%, rgba(7,17,28,0.72) 100%)',
           zIndex: 2,
         }}
       />
 
-      {/* Indicators — very subtle, bottom center.
-          Kept visible: they tell the user the hero is interactive and show progress.
-          Minimal: thin lines (not dots) — more editorial, less playful */}
+      {/* Indicators — thin lines, very subtle, editorial */}
       <div
         className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-1.5"
         style={{ zIndex: 3 }}
@@ -106,19 +88,19 @@ export function HeroCarousel({ className = '' }: { className?: string }) {
             onClick={() => { goTo(i); resetTimer() }}
             aria-label={`View slide ${i + 1} of ${SLIDES.length}`}
             style={{
-              // Active: wider pill; inactive: short line
-              width: i === target ? '28px' : '8px',
+              width: i === active ? '28px' : '8px',
               height: '2px',
               borderRadius: '99px',
-              background: i === target
-                ? 'rgba(255,255,255,0.85)'
-                : 'rgba(255,255,255,0.22)',
+              background: i === active ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.22)',
               border: 'none',
               cursor: 'pointer',
               padding: 0,
               minHeight: 0,
               minWidth: 0,
-              transition: 'width 0.5s cubic-bezier(0.16,1,0.3,1), background 0.4s ease',
+              /* Longhand only — no shorthand */
+              transitionProperty: 'width, background',
+              transitionDuration: '500ms, 400ms',
+              transitionTimingFunction: 'cubic-bezier(0.16,1,0.3,1), ease',
             }}
           />
         ))}
