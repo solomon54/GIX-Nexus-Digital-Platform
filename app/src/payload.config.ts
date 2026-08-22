@@ -37,8 +37,6 @@ export default buildConfig({
       titleSuffix: '— GIX Nexus',
       icons: [{ url: '/icon.svg' }],
     },
-    // ── Custom CSS — elegant dark theme ──────────────────────────
-    css: path.resolve(dirname, 'styles/admin.css'),
   },
 
   collections: [

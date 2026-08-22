@@ -55,18 +55,18 @@ export function Navigation({ locale }: NavigationProps) {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        /* Glassmorphism nav — works in both light and dark:
-           Light scrolled: semi-transparent off-white + strong blur + shadow
-           Dark scrolled:  semi-transparent midnight + strong blur + shadow
-           Not scrolled:   solid background, clean edge */
+        /* Nav is ALWAYS dark — matches the brand, ensures logo visibility in both themes.
+           Same as Apple.com / Linear: nav stays dark, content below adapts to theme.
+           Not scrolled: solid brand dark
+           Scrolled: dark frosted glass for depth */
         background: scrolled
-          ? 'var(--nav-glass-bg, rgba(244,247,250,0.88))'
-          : 'var(--background)',
-        backdropFilter: scrolled ? 'blur(24px) saturate(2)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(2)' : 'none',
-        borderBottom: `1px solid ${scrolled ? 'var(--nav-glass-border, rgba(203,213,225,0.6))' : 'var(--border)'}`,
-        boxShadow: scrolled ? '0 1px 0 var(--border), 0 4px 20px rgba(11,21,35,0.06)' : 'none',
-        transitionProperty: 'box-shadow, background, border-color',
+          ? 'rgba(7,17,28,0.92)'
+          : '#07111C',
+        backdropFilter: scrolled ? 'blur(24px) saturate(1.8)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(1.8)' : 'none',
+        borderBottom: '1px solid rgba(255,255,255,0.07)',
+        boxShadow: scrolled ? '0 1px 0 rgba(255,255,255,0.05), 0 4px 24px rgba(0,0,0,0.25)' : 'none',
+        transitionProperty: 'box-shadow, backdrop-filter',
         transitionDuration: '300ms',
         transitionTimingFunction: 'ease',
       }}
@@ -106,22 +106,22 @@ export function Navigation({ locale }: NavigationProps) {
                 aria-current={isActive(link.href) ? 'page' : undefined}
                 className="relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 style={{
-                  color: isActive(link.href) ? 'var(--gix-blue)' : 'var(--foreground-muted)',
-                  background: isActive(link.href) ? 'rgba(0,102,204,0.08)' : 'transparent',
+                  color: isActive(link.href) ? '#3FABFF' : 'rgba(185,198,211,0.85)',
+                  background: isActive(link.href) ? 'rgba(63,171,255,0.10)' : 'transparent',
                   fontWeight: isActive(link.href) ? 500 : 400,
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (!isActive(link.href)) {
-                    el.style.background = 'var(--soft-surface)'
-                    el.style.color = 'var(--foreground)'
+                    el.style.background = 'rgba(255,255,255,0.07)'
+                    el.style.color = '#F1F5F9'
                   }
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLElement
                   if (!isActive(link.href)) {
                     el.style.background = 'transparent'
-                    el.style.color = 'var(--foreground-muted)'
+                    el.style.color = 'rgba(185,198,211,0.85)'
                   }
                 }}
               >
@@ -130,7 +130,7 @@ export function Navigation({ locale }: NavigationProps) {
                 {isActive(link.href) && (
                   <span
                     className="absolute bottom-1 left-1/2 h-0.5 w-4 rounded-full -translate-x-1/2"
-                    style={{ background: 'var(--gix-blue)' }}
+                    style={{ background: '#3FABFF' }}
                   />
                 )}
               </Link>
@@ -147,18 +147,18 @@ export function Navigation({ locale }: NavigationProps) {
             aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
             className="hidden sm:inline-flex min-h-[36px] items-center justify-center rounded-lg px-3 text-sm font-medium border transition-all duration-200"
             style={{
-              borderColor: 'var(--border)',
-              color: 'var(--foreground-muted)',
+              borderColor: 'rgba(255,255,255,0.15)',
+              color: 'rgba(185,198,211,0.85)',
             }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--soft-surface)'
-              el.style.color = 'var(--foreground)'
+              el.style.background = 'rgba(255,255,255,0.08)'
+              el.style.color = '#F1F5F9'
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement
               el.style.background = 'transparent'
-              el.style.color = 'var(--foreground-muted)'
+              el.style.color = 'rgba(185,198,211,0.85)'
             }}
           >
             {locale === 'en' ? tCommon('languageToggle') : 'EN'}
@@ -171,16 +171,16 @@ export function Navigation({ locale }: NavigationProps) {
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
               aria-label={tCommon('toggleTheme')}
               className="inline-flex min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border transition-all duration-200"
-              style={{ borderColor: 'var(--border)', color: 'var(--foreground-muted)' }}
+              style={{ borderColor: 'rgba(255,255,255,0.15)', color: 'rgba(185,198,211,0.85)' }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement
-                el.style.background = 'var(--soft-surface)'
-                el.style.color = 'var(--foreground)'
+                el.style.background = 'rgba(255,255,255,0.08)'
+                el.style.color = '#F1F5F9'
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement
                 el.style.background = 'transparent'
-                el.style.color = 'var(--foreground-muted)'
+                el.style.color = 'rgba(185,198,211,0.85)'
               }}
             >
               {theme === 'dark' ? (
@@ -215,10 +215,10 @@ export function Navigation({ locale }: NavigationProps) {
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             className="inline-flex lg:hidden min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border transition-all duration-200"
-            style={{ borderColor: 'var(--border)', color: 'var(--foreground-muted)' }}
+            style={{ borderColor: 'rgba(255,255,255,0.15)', color: 'rgba(185,198,211,0.85)' }}
             onMouseEnter={(e) => {
               const el = e.currentTarget as HTMLElement
-              el.style.background = 'var(--soft-surface)'
+              el.style.background = 'rgba(255,255,255,0.08)'
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement
@@ -252,8 +252,8 @@ export function Navigation({ locale }: NavigationProps) {
         style={{
           maxHeight: mobileOpen ? '600px' : '0',
           opacity: mobileOpen ? 1 : 0,
-          borderTop: mobileOpen ? '1px solid var(--border)' : 'none',
-          background: 'var(--background)',
+          borderTop: mobileOpen ? '1px solid rgba(255,255,255,0.07)' : 'none',
+          background: '#07111C',
         }}
       >
         <div className="px-4 pb-5 pt-3">
@@ -266,8 +266,8 @@ export function Navigation({ locale }: NavigationProps) {
                   aria-current={isActive(link.href) ? 'page' : undefined}
                   className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150"
                   style={{
-                    color: isActive(link.href) ? 'var(--gix-blue)' : 'var(--foreground)',
-                    background: isActive(link.href) ? 'rgba(0,128,240,0.06)' : 'transparent',
+                    color: isActive(link.href) ? '#3FABFF' : 'rgba(241,245,249,0.85)',
+                    background: isActive(link.href) ? 'rgba(63,171,255,0.10)' : 'transparent',
                   }}
                 >
                   {link.label}
@@ -275,12 +275,12 @@ export function Navigation({ locale }: NavigationProps) {
               </li>
             ))}
           </ul>
-          <div className="mt-3 pt-3" style={{ borderTop: '1px solid var(--border)' }}>
+          <div className="mt-3 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
             <Link
               href={getLocaleSwitchHref()}
               onClick={() => setMobileOpen(false)}
               className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150"
-              style={{ color: 'var(--foreground-muted)' }}
+              style={{ color: 'rgba(185,198,211,0.75)' }}
               hrefLang={otherLocale}
             >
               {locale === 'en' ? tCommon('languageToggle') : 'English'}

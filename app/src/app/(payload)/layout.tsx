@@ -1,8 +1,10 @@
 /* THIS FILE WAS GENERATED AUTOMATICALLY BY PAYLOAD. */
-/* DO NOT MODIFY IT BECAUSE IT COULD BE REWRITTEN AT ANY TIME. */
 import type { ServerFunctionClient } from 'payload'
 
 import '@payloadcms/next/css'
+// GIX Nexus custom admin theme — loaded after Payload's base CSS so our
+// overrides take effect without needing !important on everything
+import '@/styles/admin.css'
 import config from '@payload-config'
 import { handleServerFunctions, RootLayout } from '@payloadcms/next/layouts'
 import React from 'react'

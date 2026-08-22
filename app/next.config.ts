@@ -13,30 +13,33 @@ const nextConfig: NextConfig = {
     ],
   },
   webpack: (config) => {
-    // Silence Sass @import deprecation warnings from @payloadcms/ui@3.33.0.
-    const sassRule = config.module.rules.find(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (rule: any) => Array.isArray(rule?.oneOf)
-    )
-    if (sassRule?.oneOf) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      for (const rule of sassRule.oneOf as any[]) {
+    // Silence Sass legacy JS API deprecation warnings from @payloadcms/ui@3.33.0.
+    // Next.js uses its own bundled sass-loader at compiled/sass-loader/cjs.js.
+    // We walk every rule that has a use array and patch any loader whose path
+    // contains "sass-loader" (handles both external and Next's internal copy).
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function patchSassLoaders(rules: any[]) {
+      for (const rule of rules) {
+        if (Array.isArray(rule?.oneOf)) {
+          patchSassLoaders(rule.oneOf)
+          continue
+        }
         if (!Array.isArray(rule?.use)) continue
-        const sassLoader = rule.use.find(
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (u: any) => typeof u?.loader === 'string' && u.loader.includes('sass-loader')
-        )
-        if (sassLoader) {
-          sassLoader.options = {
-            ...sassLoader.options,
-            sassOptions: {
-              ...(sassLoader.options?.sassOptions ?? {}),
-              silenceDeprecations: ['import'],
-            },
+        for (const use of rule.use) {
+          if (typeof use?.loader === 'string' && use.loader.includes('sass-loader')) {
+            use.options = {
+              ...(use.options ?? {}),
+              sassOptions: {
+                ...(use.options?.sassOptions ?? {}),
+                silenceDeprecations: ['legacy-js-api', 'import'],
+                quietDeps: true,
+              },
+            }
           }
         }
       }
     }
+    patchSassLoaders(config.module.rules)
     return config
   },
 };
