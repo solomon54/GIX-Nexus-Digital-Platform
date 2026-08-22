@@ -26,9 +26,21 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+    // ── Custom branding ──────────────────────────────────────────
+    components: {
+      graphics: {
+        Logo: '/components/admin/Logo',
+        Icon: '/components/admin/Icon',
+      },
+    },
+    meta: {
+      titleSuffix: '— GIX Nexus',
+      icons: [{ url: '/icon.svg' }],
+    },
+    // ── Custom CSS — elegant dark theme ──────────────────────────
+    css: path.resolve(dirname, 'styles/admin.css'),
   },
 
-  // ── Collections ──────────────────────────────────────────────
   collections: [
     Users,
     Services,
@@ -43,27 +55,20 @@ export default buildConfig({
     ServiceInquiries,
   ],
 
-  // ── Global rich-text editor ──────────────────────────────────
   editor: lexicalEditor(),
 
-  // ── Email (Resend — free tier: 3,000 emails/month) ────────────
-  // Set RESEND_API_KEY in .env.local / production env.
-  // Get your key at: https://resend.com/api-keys
   email: resendAdapter({
     defaultFromAddress: process.env.RESEND_FROM_ADDRESS ?? 'noreply@gixnexus.com',
     defaultFromName: process.env.RESEND_FROM_NAME ?? 'GIX Nexus',
     apiKey: process.env.RESEND_API_KEY ?? '',
   }),
 
-  // ── Security ─────────────────────────────────────────────────
   secret: process.env.PAYLOAD_SECRET ?? 'dev-secret-not-for-production',
 
-  // ── TypeScript output ─────────────────────────────────────────
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
 
-  // ── Database — PostgreSQL (DEC-001) ───────────────────────────
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL,
@@ -71,7 +76,6 @@ export default buildConfig({
     push: process.env.NODE_ENV === 'development',
   }),
 
-  // ── Localization (D-01, D-02) ─────────────────────────────────
   localization: {
     locales: [
       { label: 'English', code: 'en' },
@@ -81,10 +85,9 @@ export default buildConfig({
     fallback: true,
   },
 
-  // ── Upload ────────────────────────────────────────────────────
   upload: {
     limits: {
-      fileSize: 10_000_000, // 10MB
+      fileSize: 10_000_000,
     },
   },
 })

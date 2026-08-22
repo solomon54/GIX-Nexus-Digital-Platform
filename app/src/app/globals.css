@@ -53,33 +53,57 @@
   --breakpoint-xl: 1280px;
 }
 
-/* Light theme — elegant, clean, professional */
+/* ── Light theme — premium, precise, engineered ──────────────────
+   Inspired by: Linear, Stripe, Vercel, Apple
+   Base: cool off-white (not pure white — reduces harshness)
+   Sections: clear alternation with visible contrast
+   Cards: defined surfaces with depth via shadow not just border
+   Brand: saturated GIX Blue for strong presence on light bg
+─────────────────────────────────────────────────────────────── */
 :root {
-  --background:        #FFFFFF;
-  --background-alt:    #F8FAFC;
-  --surface:           #FFFFFF;
-  --surface-elevated:  #FFFFFF;
-  --soft-surface:      #F1F5F9;
-  --border:            #E2E8F0;
-  --border-subtle:     #F1F5F9;
-  --foreground:        #0F172A;
-  --foreground-muted:  #475569;
-  --foreground-subtle: #94A3B8;
-  --gix-blue:  #0080F0;
-  --gix-cyan:  #0EA5E9;
-  --gix-green: #16A34A;
-  /* Section alternation for visual rhythm */
-  --section-odd:  #FFFFFF;
-  --section-even: #F8FAFC;
-  --section-accent: #F0F7FF;
-  /* Shadows — depth without noise */
-  --shadow-sm:  0 1px 3px rgba(15,23,42,0.06), 0 1px 2px rgba(15,23,42,0.04);
-  --shadow-md:  0 4px 12px rgba(15,23,42,0.08), 0 2px 4px rgba(15,23,42,0.04);
-  --shadow-lg:  0 12px 32px rgba(15,23,42,0.10), 0 4px 8px rgba(15,23,42,0.04);
-  --shadow-glow: 0 0 0 1px rgba(0,128,240,0.10), 0 4px 20px rgba(0,128,240,0.14);
-  --gradient-connectivity:  linear-gradient(135deg, #0080F0, #0EA5E9);
-  --gradient-telecom-power: linear-gradient(135deg, #0080F0, #16A34A);
-  --gradient-metallic:      linear-gradient(135deg, #CBD5E1, #64748B);
+  /* Base surfaces — layered, never flat white-on-white */
+  --background:        #F4F7FA;   /* Cool off-white base — not harsh pure white */
+  --background-alt:    #EDF1F7;   /* Slightly deeper alt — used on alternating sections */
+  --surface:           #FFFFFF;   /* Cards, modals, elevated elements — true white pops */
+  --surface-elevated:  #FFFFFF;   /* Cards that need to stand out from base */
+  --soft-surface:      #E8EDF4;   /* Hover states, subtle fills */
+
+  /* Borders — visible and defined, not ghostly */
+  --border:            #CBD5E1;   /* Slate-300 — strong enough to define boundaries */
+  --border-subtle:     #E2E8F0;   /* Lighter: internal dividers only */
+
+  /* Text — high contrast hierarchy */
+  --foreground:        #0B1523;   /* Near-black with slight blue undertone — premium feel */
+  --foreground-muted:  #374151;   /* Secondary text — clearly readable */
+  --foreground-subtle: #6B7280;   /* Tertiary — hints, labels */
+
+  /* Brand — strong, saturated for light backgrounds */
+  --gix-blue:  #0066CC;           /* Deeper blue — high contrast on light */
+  --gix-cyan:  #0284C7;
+  --gix-green: #15803D;           /* Deeper green — high contrast */
+
+  /* Section alternation — clear visual rhythm, never same-as-same */
+  --section-odd:    #F4F7FA;      /* Page base */
+  --section-even:   #FFFFFF;      /* White sections feel elevated vs. base */
+  --section-accent: #EBF4FF;      /* Subtle blue tint for key sections */
+
+  /* Shadows — defined depth, premium feel */
+  --shadow-sm:  0 1px 2px rgba(11,21,35,0.06), 0 1px 4px rgba(11,21,35,0.04);
+  --shadow-md:  0 4px 16px rgba(11,21,35,0.10), 0 2px 6px rgba(11,21,35,0.06);
+  --shadow-lg:  0 12px 40px rgba(11,21,35,0.14), 0 4px 12px rgba(11,21,35,0.06);
+  --shadow-glow: 0 0 0 2px rgba(0,102,204,0.15), 0 4px 20px rgba(0,102,204,0.18);
+
+  --gradient-connectivity:  linear-gradient(135deg, #0066CC, #0284C7);
+  --gradient-telecom-power: linear-gradient(135deg, #0066CC, #15803D);
+  --gradient-metallic:      linear-gradient(135deg, #94A3B8, #475569);
+
+  /* Nav glassmorphism — light mode */
+  --nav-glass-bg:     rgba(244,247,250,0.88);
+  --nav-glass-border: rgba(203,213,225,0.7);
+
+  /* MD card and dark-featured cards */
+  --card-featured-bg: linear-gradient(135deg, #EDF1F7, #E2E8F0);
+  --card-featured-text: #0B1523;
 }
 
 /* Dark theme */
@@ -87,7 +111,7 @@
   --background:        #07111C;
   --background-alt:    #0B1726;
   --surface:           #0B1726;
-  --surface-elevated:  #111C27;
+  --surface-elevated:  #111C27;   /* Elevated panels in dark mode */
   --soft-surface:      #172331;
   --border:            #1E2D40;
   --border-subtle:     #172331;
@@ -104,6 +128,14 @@
   --shadow-md:  0 4px 12px rgba(0,0,0,0.4);
   --shadow-lg:  0 12px 32px rgba(0,0,0,0.5);
   --shadow-glow: 0 0 0 1px rgba(63,171,255,0.15), 0 4px 16px rgba(63,171,255,0.12);
+
+  /* Nav glassmorphism — dark mode */
+  --nav-glass-bg:     rgba(7,17,28,0.88);
+  --nav-glass-border: rgba(30,45,64,0.8);
+
+  /* MD card and dark-featured cards */
+  --card-featured-bg: linear-gradient(135deg, #0B1726, #172331);
+  --card-featured-text: #F1F5F9;
 }
 
 @layer base {
@@ -242,16 +274,18 @@
     position: absolute;
     top: 0; left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    max-width: 900px;
+    width: 90%;
+    max-width: 1100px;
     height: 1px;
+    /* Border-subtle for dark (low contrast), border for light (visible) */
     background: linear-gradient(
       90deg,
       transparent 0%,
-      var(--border) 25%,
-      var(--border) 75%,
+      var(--border) 20%,
+      var(--border) 80%,
       transparent 100%
     );
+    opacity: 0.7;
   }
 
   /* Alternating section backgrounds */
@@ -265,7 +299,6 @@
     border: 1px solid var(--border);
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
-    /* Breathing room — generous padding on all sizes */
     padding: clamp(20px, 3vw, 32px);
     transitionProperty: box-shadow, border-color, transform;
     transitionDuration: 250ms;
@@ -273,7 +306,8 @@
   }
   .gix-card:hover {
     box-shadow: var(--shadow-md);
-    border-color: rgba(0,128,240,0.25);
+    border-color: var(--gix-blue);
+    border-color: rgba(0,102,204,0.3);
     transform: translateY(-2px);
   }
   .gix-card-glow:hover {

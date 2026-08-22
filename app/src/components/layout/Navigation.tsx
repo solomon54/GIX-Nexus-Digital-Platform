@@ -55,18 +55,20 @@ export function Navigation({ locale }: NavigationProps) {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        /* Theme-aware frosted glass:
-           - Light: white/94 with blur — clean, Apple.com style
-           - Dark: midnight/88 with blur — Linear/Vercel style
-           Both use the same blur + border — consistent, elegant */
+        /* Glassmorphism nav — works in both light and dark:
+           Light scrolled: semi-transparent off-white + strong blur + shadow
+           Dark scrolled:  semi-transparent midnight + strong blur + shadow
+           Not scrolled:   solid background, clean edge */
         background: scrolled
-          ? 'color-mix(in srgb, var(--background) 92%, transparent)'
+          ? 'var(--nav-glass-bg, rgba(244,247,250,0.88))'
           : 'var(--background)',
-        backdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
-        borderBottom: '1px solid var(--border)',
-        boxShadow: scrolled ? 'var(--shadow-sm)' : 'none',
-        transition: 'box-shadow 0.3s ease, background 0.3s ease',
+        backdropFilter: scrolled ? 'blur(24px) saturate(2)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(2)' : 'none',
+        borderBottom: `1px solid ${scrolled ? 'var(--nav-glass-border, rgba(203,213,225,0.6))' : 'var(--border)'}`,
+        boxShadow: scrolled ? '0 1px 0 var(--border), 0 4px 20px rgba(11,21,35,0.06)' : 'none',
+        transitionProperty: 'box-shadow, background, border-color',
+        transitionDuration: '300ms',
+        transitionTimingFunction: 'ease',
       }}
     >
       <nav
@@ -87,7 +89,8 @@ export function Navigation({ locale }: NavigationProps) {
             height={52}
             className="h-11 w-auto object-contain"
             style={{
-              filter: 'drop-shadow(0 1px 3px rgba(0,0,0,0.25))',
+              /* Dark shadow on dark bg, subtle shadow on light bg */
+              filter: 'drop-shadow(0 1px 4px rgba(11,21,35,0.18))',
               imageRendering: 'auto',
             }}
             priority
@@ -104,7 +107,8 @@ export function Navigation({ locale }: NavigationProps) {
                 className="relative inline-flex items-center px-3.5 py-2 text-sm font-medium rounded-lg transition-all duration-200"
                 style={{
                   color: isActive(link.href) ? 'var(--gix-blue)' : 'var(--foreground-muted)',
-                  background: isActive(link.href) ? 'rgba(0,128,240,0.08)' : 'transparent',
+                  background: isActive(link.href) ? 'rgba(0,102,204,0.08)' : 'transparent',
+                  fontWeight: isActive(link.href) ? 500 : 400,
                 }}
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLElement

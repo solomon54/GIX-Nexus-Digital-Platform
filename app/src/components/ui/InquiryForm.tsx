@@ -158,7 +158,7 @@ export function InquiryForm() {
   // ── Form ─────────────────────────────────────────────────────
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <div className="rounded-2xl border overflow-hidden" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+      <div className="rounded-2xl border overflow-hidden" style={{ background: 'var(--surface)', borderColor: 'var(--border)', boxShadow: 'var(--shadow-sm)' }}>
 
         {/* Form header */}
         <div className="px-7 py-6 border-b" style={{ borderColor: 'var(--border)', background: 'var(--soft-surface)' }}>

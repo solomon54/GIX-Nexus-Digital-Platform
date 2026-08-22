@@ -1,0 +1,257 @@
+/* ================================================================
+   GIX Nexus — Payload Admin Custom Theme
+   Elegant dark theme with teal/blue accent palette
+   ================================================================ */
+
+/* ── Color overrides ──────────────────────────────────────────── */
+:root {
+  /* Brand accent: teal-blue */
+  --color-accent:        #0ea5e9;
+  --color-accent-hover:  #38bdf8;
+  --color-accent-dim:    rgba(14, 165, 233, 0.15);
+
+  /* Backgrounds */
+  --theme-bg:            #0d1117;
+  --theme-input-bg:      #161b22;
+
+  /* Elevation layers */
+  --theme-elevation-0:   #0d1117;
+  --theme-elevation-50:  #111820;
+  --theme-elevation-100: #161d27;
+  --theme-elevation-150: #1a2231;
+  --theme-elevation-200: #1e2838;
+  --theme-elevation-250: #22303f;
+  --theme-elevation-300: #263647;
+  --theme-elevation-400: #2e4057;
+  --theme-elevation-500: #3a5068;
+  --theme-elevation-600: #4a6480;
+  --theme-elevation-700: #6b8aaa;
+  --theme-elevation-800: #94b3cc;
+  --theme-elevation-900: #c0d4e8;
+  --theme-elevation-1000:#e8f0f7;
+
+  /* Text */
+  --theme-text:          #e2eaf3;
+
+  /* Success / warning / error */
+  --theme-success-500:   #22c55e;
+  --theme-warning-500:   #f59e0b;
+  --theme-error-500:     #ef4444;
+}
+
+/* ── Nav sidebar ──────────────────────────────────────────────── */
+.nav {
+  background: linear-gradient(180deg, #0d1117 0%, #111820 100%) !important;
+  border-right: 1px solid rgba(14, 165, 233, 0.12) !important;
+}
+
+/* Logo area */
+.nav .nav__header,
+.nav__header {
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1) !important;
+  padding: 16px 20px !important;
+}
+
+/* Nav links */
+.nav .nav__link,
+.nav a {
+  border-radius: 6px !important;
+  margin: 1px 8px !important;
+  transition: background 0.15s, color 0.15s !important;
+}
+
+.nav .nav__link:hover,
+.nav a:hover {
+  background: var(--color-accent-dim) !important;
+  color: var(--color-accent) !important;
+}
+
+.nav .nav__link--active,
+.nav a.active {
+  background: var(--color-accent-dim) !important;
+  color: var(--color-accent) !important;
+  border-left: 2px solid var(--color-accent) !important;
+}
+
+/* ── Top header bar ───────────────────────────────────────────── */
+.app-header {
+  background: #0d1117 !important;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* ── Main content area ────────────────────────────────────────── */
+.render-fields,
+.collection-list,
+.document-fields {
+  background: transparent !important;
+}
+
+/* ── Cards / elevated panels ──────────────────────────────────── */
+.render-fields .field-type,
+.render-fields > .field-type,
+.document-fields .render-fields {
+  border-radius: 10px !important;
+}
+
+/* Input fields */
+.field-type input,
+.field-type select,
+.field-type textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  background: var(--theme-elevation-100) !important;
+  border: 1px solid rgba(14, 165, 233, 0.15) !important;
+  border-radius: 8px !important;
+  color: var(--theme-text) !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px var(--color-accent-dim) !important;
+  outline: none !important;
+}
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn.btn--style-primary,
+button[type="submit"].btn--style-primary {
+  background: var(--color-accent) !important;
+  border-color: var(--color-accent) !important;
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  transition: background 0.15s, transform 0.1s !important;
+}
+
+.btn.btn--style-primary:hover {
+  background: var(--color-accent-hover) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn.btn--style-secondary,
+.btn--style-secondary {
+  border-radius: 8px !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+  color: var(--color-accent) !important;
+  transition: background 0.15s !important;
+}
+
+.btn.btn--style-secondary:hover {
+  background: var(--color-accent-dim) !important;
+}
+
+/* ── Table ────────────────────────────────────────────────────── */
+.table {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  border: 1px solid rgba(14, 165, 233, 0.1) !important;
+}
+
+.table thead th {
+  background: var(--theme-elevation-100) !important;
+  border-bottom: 1px solid rgba(14, 165, 233, 0.12) !important;
+  color: var(--color-accent) !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+.table tbody tr:hover {
+  background: var(--color-accent-dim) !important;
+  cursor: pointer !important;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid rgba(14, 165, 233, 0.06) !important;
+  transition: background 0.1s !important;
+}
+
+/* ── Dashboard cards ──────────────────────────────────────────── */
+.dashboard .card {
+  background: var(--theme-elevation-100) !important;
+  border: 1px solid rgba(14, 165, 233, 0.1) !important;
+  border-radius: 12px !important;
+  transition: border-color 0.2s, transform 0.2s !important;
+}
+
+.dashboard .card:hover {
+  border-color: var(--color-accent) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Breadcrumb ───────────────────────────────────────────────── */
+.step-nav {
+  color: var(--color-accent) !important;
+  opacity: 0.8 !important;
+}
+
+/* ── Pill / badge ─────────────────────────────────────────────── */
+.pill {
+  border-radius: 20px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--theme-elevation-50);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(14, 165, 233, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* ── Collapsible field groups ─────────────────────────────────── */
+.collapsible__content {
+  border-radius: 0 0 10px 10px !important;
+}
+.collapsible__toggle {
+  border-radius: 10px !important;
+}
+
+/* ── Upload / media field ─────────────────────────────────────── */
+.file-details,
+.dropzone {
+  border-radius: 10px !important;
+  border: 1.5px dashed rgba(14, 165, 233, 0.25) !important;
+}
+
+.dropzone:hover {
+  border-color: var(--color-accent) !important;
+  background: var(--color-accent-dim) !important;
+}
+
+/* ── Modal ────────────────────────────────────────────────────── */
+.modal-item {
+  background: var(--theme-elevation-150) !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(14, 165, 233, 0.15) !important;
+}
+
+/* ── Toast notifications ──────────────────────────────────────── */
+.payload-toast-item {
+  border-radius: 10px !important;
+  border: 1px solid rgba(14, 165, 233, 0.2) !important;
+  backdrop-filter: blur(8px) !important;
+}
+
+/* ── Fix .table display override ─────────────────────────────── */
+@layer utilities {
+  .table {
+    display: block;
+    width: 100%;
+  }
+}

@@ -27,11 +27,14 @@
     "tailwind-merge": "2.6.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "22.15.29",
     "@types/react": "19.1.6",
     "@types/react-dom": "19.1.5",
+    "gif-encoder-2": "^1.0.5",
     "null-loader": "^4.0.1",
+    "pngjs": "^7.0.0",
     "sass": "^1.103.1",
     "tailwindcss": "4.3.3",
     "typescript": "5.8.3"
