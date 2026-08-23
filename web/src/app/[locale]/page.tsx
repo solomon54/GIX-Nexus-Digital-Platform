@@ -224,11 +224,7 @@ function HomePage({
               <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Latest</p>
               <h2 id="news-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>News & Announcements</h2>
             </div>
-            {news.length > 0 && (
-              <Link href={`/${locale}/news`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF] hover:text-[#12C8FF] transition-colors flex-shrink-0">
-                All News →
-              </Link>
-            )}
+
           </div>
 
           {news.length > 0 ? (
