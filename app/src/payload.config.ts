@@ -26,18 +26,29 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+
+    // ── Custom avatar (top-right header button) ───────────────
+    // Shows user's uploaded profile photo instead of the default "G"
+    avatar: {
+      Component: '/components/admin/UserAvatar',
+    },
+
     components: {
       graphics: {
         Logo: '/components/admin/Logo',
         Icon: '/components/admin/Icon',
       },
-      // Inject avatar into the bottom of the nav
+      // Nav user card at bottom of sidebar
       afterNavLinks: ['/components/admin/NavUserCard'],
+      // Inject sidebar icons + account avatar styles
+      beforeNavLinks: ['/components/admin/NavIcons'],
     },
+
     meta: {
       titleSuffix: '— GIX Nexus',
       icons: [{ url: '/icon.svg' }],
     },
+
     theme: 'dark',
   },
 
