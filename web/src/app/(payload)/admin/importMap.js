@@ -21,11 +21,11 @@ import { StrikethroughFeatureClient as StrikethroughFeatureClient_e70f5e05f09f93
 import { UnderlineFeatureClient as UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { default as default_47861655001cbf48e6259b36cb95a68a } from '../../../components/admin/UserAvatar'
 import { default as default_dfe4008080d895d460898c3a6155e9ba } from '../../../components/admin/Icon'
 import { default as default_91a09b539d3c86b0aebf520e7564ce08 } from '../../../components/admin/Logo'
 import { default as default_6f2cf19bcf0a730f313babe1af3ff294 } from '../../../components/admin/NavUserCard'
-import { default as default_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6 } from '../../../components/admin/UserAvatar'
-import { default as default_b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7 } from '../../../components/admin/NavIcons'
+import { default as default_6305395dee2348b00d6e0f198125917b } from '../../../components/admin/NavIcons'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -53,10 +53,10 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#UnderlineFeatureClient": UnderlineFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BoldFeatureClient": BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "/components/admin/UserAvatar#default": default_47861655001cbf48e6259b36cb95a68a,
   "/components/admin/Icon#default": default_dfe4008080d895d460898c3a6155e9ba,
   "/components/admin/Logo#default": default_91a09b539d3c86b0aebf520e7564ce08,
   "/components/admin/NavUserCard#default": default_6f2cf19bcf0a730f313babe1af3ff294,
-  "/components/admin/UserAvatar#default": default_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6,
-  "/components/admin/NavIcons#default": default_b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7,
+  "/components/admin/NavIcons#default": default_6305395dee2348b00d6e0f198125917b,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

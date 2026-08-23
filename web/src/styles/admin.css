@@ -1,3 +1,15 @@
+/* ── CRITICAL: Force nav visible ─────────────────────────────── */
+/* Payload sets .nav { opacity: 0 } and only restores it with    */
+/* .nav--nav-open { opacity: 1 }. If nav preference is "closed", */
+/* the sidebar never appears. We force it always visible.         */
+.nav,
+.nav--nav-open,
+.nav--nav-animate,
+.nav--nav-hydrated {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* ================================================================
    GIX Nexus — Payload Admin Theme
    Balanced dark theme — visible but not harsh
@@ -88,7 +100,7 @@ body {
   color: var(--gix-accent) !important;
 }
 
-.nav__link--active {
+.nav__link.active {
   background: rgba(34,211,238,0.12) !important;
   color: var(--gix-accent) !important;
   border-left: 2px solid var(--gix-accent) !important;
