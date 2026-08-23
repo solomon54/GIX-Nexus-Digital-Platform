@@ -2,6 +2,7 @@ import { buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { resendAdapter } from '@payloadcms/email-resend'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -61,6 +62,23 @@ export default buildConfig({
   ],
 
   editor: lexicalEditor(),
+
+  plugins: [
+    // Vercel Blob storage — replaces local disk storage for uploaded media.
+    // Required on Vercel because the filesystem is ephemeral (wiped on redeploy).
+    // In development (no BLOB_READ_WRITE_TOKEN) files fall back to local storage.
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            enabled: true,
+            collections: {
+              media: true,
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
+  ],
 
   email: resendAdapter({
     defaultFromAddress: process.env.RESEND_FROM_ADDRESS ?? 'noreply@gixnexus.com',

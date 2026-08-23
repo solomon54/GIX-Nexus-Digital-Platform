@@ -61,7 +61,7 @@ The workaround used in this project is a custom CSS noop loader (`css-noop-loade
 The repo has a `.nvmrc` file in `web/` pinned to `20`.
 
 ```bash
-cd app
+cd web
 nvm use 20    # always run this before npm run dev
 npm run dev
 ```
@@ -71,7 +71,7 @@ npm run dev
 ## How to run
 
 ```bash
-cd app
+cd web
 nvm use 20
 npm install
 # ensure .env.local is set up (see README.md)
@@ -217,9 +217,60 @@ The navigation bar is always rendered dark (using the dark theme color variables
 | `DATABASE_URL` | Yes | PostgreSQL connection string (`postgresql://...`) |
 | `PAYLOAD_SECRET` | Yes | Long random string for Payload encryption. Generate: `openssl rand -hex 32` |
 | `NEXT_PUBLIC_APP_URL` | Yes | Base URL of the app (e.g., `http://localhost:3000` or `https://www.gixnexus.com`) |
+| `BLOB_READ_WRITE_TOKEN` | Prod only | Vercel Blob token — enables cloud media storage. Not needed locally. |
 | `RESEND_API_KEY` | For email | Resend API key for outbound email |
 | `RESEND_FROM_ADDRESS` | For email | Sender address (e.g., `noreply@gixnexus.com`) |
 | `RESEND_FROM_NAME` | For email | Sender display name (e.g., `GIX Nexus`) |
 | `NODE_ENV` | Yes | `development` or `production` |
 
 Copy `.env.local` — it already has working dev values. Never commit `.env.local` to version control.
+
+---
+
+## Deploying to Vercel
+
+### Why Vercel needs special setup
+
+Vercel's filesystem is ephemeral — it resets on every deploy. Any file uploaded through the Payload admin (images, documents) would be lost. The project uses **Vercel Blob** to store all uploaded media in persistent cloud storage.
+
+### Step-by-step deployment
+
+**1. Push the repo to GitHub** (if not already done)
+
+**2. Import the project in Vercel**
+- Go to [vercel.com](https://vercel.com) → New Project → Import from GitHub
+- Set the **Root Directory** to `web` (not the repo root)
+- Framework preset: **Next.js** (auto-detected)
+- Node.js version: set to **20.x** in Project Settings → General
+
+**3. Create a Vercel Blob store**
+- In your Vercel project → Storage tab → Create Database → Blob
+- Name it anything (e.g. `gix-nexus-media`)
+- Click **Connect to Project** — this automatically adds `BLOB_READ_WRITE_TOKEN` to your environment variables
+
+**4. Add all environment variables** in Vercel Project Settings → Environment Variables:
+
+| Variable | Value |
+|---|---|
+| `DATABASE_URL` | Your Supabase PostgreSQL connection string |
+| `PAYLOAD_SECRET` | Run `openssl rand -hex 32` and paste the result |
+| `NEXT_PUBLIC_APP_URL` | `https://your-domain.vercel.app` (or your custom domain) |
+| `BLOB_READ_WRITE_TOKEN` | Auto-added when you connect the Blob store in step 3 |
+| `RESEND_API_KEY` | Your Resend API key |
+| `RESEND_FROM_ADDRESS` | e.g. `noreply@gixnexus.com` |
+| `RESEND_FROM_NAME` | `GIX Nexus` |
+| `NODE_ENV` | `production` |
+
+**5. Deploy** — Vercel builds automatically on every push to `main`.
+
+### After first deploy
+
+- Visit `https://your-domain.vercel.app/admin` and create the first admin user
+- All media uploaded via the admin panel will be stored in Vercel Blob automatically
+- Schema migrations: if you change a collection definition, run `npx payload migrate` locally against the production database URL before deploying
+
+### Important notes
+
+- **Do not change `PAYLOAD_SECRET` after the first deploy** — it's used to encrypt sessions. Changing it logs out all admin users.
+- **Node 20 only** — set this explicitly in Vercel Project Settings. Vercel defaults to Node 22 which may cause the CSS ESM issue described above.
+- **`db: push` is disabled in production** — schema changes require running migrations manually.

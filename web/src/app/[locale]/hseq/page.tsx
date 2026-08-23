@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
-import { useTranslations } from 'next-intl'
 
 interface Props { params: Promise<{ locale: string }> }
 
@@ -11,15 +10,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t('pageTitle'), description: t('policyText') }
 }
 
-function HseqPage() {
-  const t = useTranslations('hseq')
+export default async function Page({ params }: Props) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'hseq' })
   const programElements = t.raw('programElements') as string[]
 
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden">
-        {/* Background: HSEQ policy and safety */}
         <div className="absolute inset-0">
           <Image
             src="/images/hseq/hseq-policy.jpeg"
@@ -47,7 +46,6 @@ function HseqPage() {
             {/* HSEQ Policy card */}
             <div className="col-span-1 lg:col-span-2 rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
               <div className="relative h-56">
-                {/* HSEQ in action — safety protocols */}
                 <Image
                   src="/images/hseq/hseq-policy.jpeg"
                   alt="Engineers working with safety protocols"
@@ -97,8 +95,7 @@ function HseqPage() {
             </div>
           </div>
 
-          {/* Program Elements */}
-          {/* Source: Company Profile PDF, Page 8 */}
+          {/* Program Elements — Source: Company Profile PDF, Page 8 */}
           <div className="mb-8 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Program Elements</p>
             <h2 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{t('programTitle')}</h2>
@@ -117,9 +114,4 @@ function HseqPage() {
       </section>
     </>
   )
-}
-
-export default async function Page({ params }: Props) {
-  const { locale } = await params
-  return <HseqPage />
 }
