@@ -97,10 +97,10 @@ function HomePage({
                 </div>
               </div>
               <div className="mt-8 flex items-center gap-3">
-                <Link href={`/${locale}/services`} className="inline-flex min-h-[40px] items-center rounded-lg bg-[#008CFF] px-6 py-2 text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2 focus:ring-offset-[#07111C]">
+                <Link href={`/${locale}/services`} className="inline-flex min-h-[36px] items-center rounded-lg bg-[#008CFF] px-4 py-1.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2 focus:ring-offset-[#07111C] sm:px-6 sm:py-2 sm:min-h-[40px]">
                   {t('ctaServices')}
                 </Link>
-                <Link href={`/${locale}/company`} className="inline-flex min-h-[40px] items-center rounded-lg border border-white/25 px-6 py-2 text-sm font-medium text-white/90 hover:bg-white/8 hover:border-white/40 transition-colors">
+                <Link href={`/${locale}/company`} className="inline-flex min-h-[36px] items-center rounded-lg border border-white/25 px-4 py-1.5 text-xs sm:text-sm font-medium text-white/90 hover:bg-white/8 hover:border-white/40 transition-colors sm:px-6 sm:py-2 sm:min-h-[40px]">
                   {t('ctaProfile')}
                 </Link>
               </div>

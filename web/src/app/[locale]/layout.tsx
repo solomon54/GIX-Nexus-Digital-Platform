@@ -47,13 +47,13 @@ export async function generateMetadata({
       },
     },
     icons: {
-      // SVG icon with dark background stays visible on both light and dark browser tabs
       icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
         { url: '/favicon.ico', sizes: '32x32' },
       ],
       apple: '/icon.svg',
     },
+    manifest: '/manifest.json',
   }
 }
 
@@ -75,6 +75,16 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="theme-color" content="#07111C" />
+        {/* Register service worker — only in production to avoid dev caching issues */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
+            window.addEventListener('load', function() {
+              navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .catch(function(err) { console.warn('SW registration failed:', err); });
+            });
+          }
+        ` }} />
       </head>
       <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`} suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>

@@ -157,20 +157,45 @@ export function Footer({ locale }: FooterProps) {
               <p className="text-xs" style={{ color: '#334155' }}>
                 {t('legalNote')}
               </p>
-              {/* Secret admin gateway — intentionally invisible, known only to admins */}
+              {/* Secret admin gateway — small decorative dot, visible but subtle.
+                  Auth is required so there's no security risk making it findable. */}
               <a
                 href="/admin"
-                aria-hidden="true"
-                tabIndex={-1}
+                aria-label="Admin panel"
+                title="Admin panel"
                 style={{
-                  display: 'inline-block',
-                  width: 6,
-                  height: 6,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: 18,
+                  height: 18,
                   borderRadius: '50%',
-                  background: 'rgba(255,255,255,0.04)',
+                  border: '1.5px solid rgba(0,140,255,0.25)',
+                  background: 'rgba(0,140,255,0.06)',
                   flexShrink: 0,
+                  transition: 'border-color 0.2s, background 0.2s, box-shadow 0.2s',
                 }}
-              />
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = 'rgba(0,140,255,0.6)'
+                  el.style.background = 'rgba(0,140,255,0.15)'
+                  el.style.boxShadow = '0 0 8px rgba(0,140,255,0.3)'
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.borderColor = 'rgba(0,140,255,0.25)'
+                  el.style.background = 'rgba(0,140,255,0.06)'
+                  el.style.boxShadow = 'none'
+                }}
+              >
+                <span style={{
+                  width: 5,
+                  height: 5,
+                  borderRadius: '50%',
+                  background: 'rgba(0,140,255,0.4)',
+                  display: 'block',
+                }} />
+              </a>
             </div>
           </div>
 

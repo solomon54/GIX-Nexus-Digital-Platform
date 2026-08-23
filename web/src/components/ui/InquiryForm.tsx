@@ -56,7 +56,9 @@ const TIMELINE_OPTIONS = [
 const inputBase: React.CSSProperties = {
   width: '100%',
   borderRadius: '10px',
-  border: '1px solid var(--border)',
+  borderWidth: '1px',
+  borderStyle: 'solid',
+  borderColor: 'var(--border)',
   background: 'var(--background)',
   color: 'var(--foreground)',
   padding: '11px 14px',

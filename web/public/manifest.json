@@ -1,0 +1,28 @@
+{
+  "name": "GIX Nexus Telecom and Power",
+  "short_name": "GIX Nexus",
+  "description": "Ethiopian-owned telecommunications and power engineering company",
+  "start_url": "/en",
+  "display": "standalone",
+  "background_color": "#07111C",
+  "theme_color": "#07111C",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/company-logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/company-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
