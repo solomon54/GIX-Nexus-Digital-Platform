@@ -6,7 +6,7 @@ import { getTranslations } from 'next-intl/server'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { HeroCarousel } from '@/components/ui/HeroCarousel'
-import type { Testimonial } from '@/payload-types'
+import type { Testimonial, News, Project, Media } from '@/payload-types'
 
 interface HomePageProps {
   params: Promise<{ locale: string }>
@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
 }
 
 // Source: Company Profile PDF, Page 5 — exactly 6 service groupings
+// Images and slugs are fixed assets — service text comes from i18n
 const SERVICES_DATA = [
   { slug: 'telecommunications-infrastructure', nameKey: 'telecomInfrastructure', image: '/images/services/telecom-infrastructure.jpg', imageAlt: 'Telecommunications infrastructure installation' },
   { slug: 'fiber-optic-solutions', nameKey: 'fiberOptic', image: '/images/services/fiber-optic-cables.jpg', imageAlt: 'Fiber optic cable installation' },
@@ -31,21 +32,34 @@ const SERVICES_DATA = [
   { slug: 'maintenance-technical-support', nameKey: 'maintenance', image: '/images/services/maintenance-and-tehnical-suport.webp', imageAlt: 'Field maintenance and technical support' },
 ] as const
 
-// Placeholder news — shown when no CMS content exists yet
-const NEWS_PLACEHOLDER = [
-  { id: 1, category: 'Company News', title: 'GIX Nexus Expands Technical Team Across Ethiopia', date: 'August 2026', excerpt: 'GIX Nexus Telecom and Power continues to grow its qualified technical workforce to meet increasing demand for telecommunications and power engineering services.' },
-  { id: 2, category: 'Announcement', title: 'Vendor Registration Ready Status Confirmed', date: 'July 2026', excerpt: 'GIX Nexus Telecom and Power maintains its Vendor Registration Ready status, supporting procurement partnerships with major telecom operators and government institutions.' },
-  { id: 3, category: 'Project Update', title: 'Fiber Optic Deployment — Addis Ababa Region', date: 'June 2026', excerpt: 'Successful completion of last-mile fiber deployment supporting critical communications infrastructure in the Addis Ababa region.' },
-]
+// Category label maps for display
+const PROJECT_CATEGORY_LABELS: Record<string, string> = {
+  'telecom-infrastructure': 'Telecommunications Infrastructure',
+  'fiber-optic': 'Fiber Optic Solutions',
+  'satellite-wireless': 'Satellite & Wireless',
+  'network-infrastructure': 'Network Infrastructure',
+  'telecom-power': 'Telecom Power Systems',
+  'maintenance': 'Maintenance & Support',
+}
 
-// Placeholder projects — replace with CMS data when available
-const PROJECTS_PLACEHOLDER = [
-  { id: 1, category: 'Fiber Optic Solutions', title: 'Last-Mile Fiber Deployment', location: 'Addis Ababa, Ethiopia', image: '/images/services/fiber-optic-cables.jpg', description: 'Underground and aerial fiber installation including splicing, OTDR testing, and commissioning.' },
-  { id: 2, category: 'Satellite & Wireless', title: 'VSAT Installation & Commissioning', location: 'Across Ethiopia', image: '/images/services/satellite-dish.jpg', description: 'Multi-site VSAT antenna installation, alignment, commissioning, and ongoing maintenance support.' },
-  { id: 3, category: 'Telecom Power Systems', title: 'DC Power & Battery Bank Installation', location: 'Ethiopia', image: '/images/services/telecom-power-systems-dc-power-systems.png', description: 'DC power system, rectifier and battery bank installation for telecom base station sites.' },
-]
+const NEWS_CATEGORY_LABELS: Record<string, string> = {
+  'announcement': 'Announcement',
+  'project-update': 'Project Update',
+  'company-news': 'Company News',
+  'partnership': 'Partnership',
+}
 
-function HomePage({ locale, testimonials }: { locale: string; testimonials: Testimonial[] }) {
+function HomePage({
+  locale,
+  news,
+  projects,
+  testimonials,
+}: {
+  locale: string
+  news: News[]
+  projects: Project[]
+  testimonials: Testimonial[]
+}) {
   const t = useTranslations('home')
   const tServices = useTranslations('services')
 
@@ -181,7 +195,7 @@ function HomePage({ locale, testimonials }: { locale: string; testimonials: Test
       </section>
 
       {/* ── News & Announcements ─────────────────────────────────── */}
-      {/* Dynamic — populated from Payload CMS. Placeholders shown until admin adds content. */}
+      {/* Dynamic — fetched from Payload CMS news collection */}
       <section className="py-24 section-top-divide bg-section-odd" aria-labelledby="news-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4">
@@ -189,37 +203,63 @@ function HomePage({ locale, testimonials }: { locale: string; testimonials: Test
               <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Latest</p>
               <h2 id="news-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>News & Announcements</h2>
             </div>
-            <Link href={`/${locale}/news`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF] hover:text-[#12C8FF] transition-colors flex-shrink-0">
-              All News →
-            </Link>
+            {news.length > 0 && (
+              <Link href={`/${locale}/news`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF] hover:text-[#12C8FF] transition-colors flex-shrink-0">
+                All News →
+              </Link>
+            )}
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {NEWS_PLACEHOLDER.map((item) => (
-              <article key={item.id} className="rounded-xl border overflow-hidden group cursor-pointer transition-all hover:border-[#008CFF]/40 hover:shadow-md" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-                <div className="p-6">
-                  <div className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-4" style={{ background: 'rgba(0,140,255,0.08)', color: '#008CFF' }}>
-                    {item.category}
-                  </div>
-                  <h3 className="font-semibold text-base leading-snug mb-3 group-hover:text-[#008CFF] transition-colors" style={{ color: 'var(--foreground)' }}>
-                    {item.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-subtle)' }}>{item.excerpt}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="text-xs" style={{ color: 'var(--foreground-subtle)' }}>{item.date}</span>
-                    <span className="text-xs font-medium text-[#008CFF]">Read more →</span>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-          <div className="mt-8 text-center sm:hidden">
-            <Link href={`/${locale}/news`} className="inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF]">All News →</Link>
-          </div>
+
+          {news.length > 0 ? (
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {news.map((item) => {
+                const coverUrl = item.coverImage && typeof item.coverImage === 'object'
+                  ? (item.coverImage as Media).url ?? null
+                  : null
+                const dateLabel = item.publishedAt
+                  ? new Date(item.publishedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long' })
+                  : ''
+                const categoryLabel = NEWS_CATEGORY_LABELS[item.category ?? ''] ?? 'News'
+                return (
+                  <article key={item.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[#008CFF]/40 hover:shadow-md" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+                    {coverUrl && (
+                      <div className="relative h-44 overflow-hidden">
+                        <Image src={coverUrl} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.6) 0%, transparent 60%)' }} />
+                      </div>
+                    )}
+                    <div className="p-6">
+                      <div className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-4" style={{ background: 'rgba(0,140,255,0.08)', color: '#008CFF' }}>
+                        {categoryLabel}
+                      </div>
+                      <h3 className="font-semibold text-base leading-snug mb-3 group-hover:text-[#008CFF] transition-colors" style={{ color: 'var(--foreground)' }}>
+                        {item.title}
+                      </h3>
+                      {item.excerpt && (
+                        <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-subtle)' }}>{item.excerpt}</p>
+                      )}
+                      <div className="mt-4 flex items-center justify-between">
+                        <span className="text-xs" style={{ color: 'var(--foreground-subtle)' }}>{dateLabel}</span>
+                      </div>
+                    </div>
+                  </article>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
+              <div className="text-4xl mb-4" aria-hidden="true">📰</div>
+              <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>News & announcements coming soon</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+                Published news will appear here. Add articles via the admin panel.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* ── Projects & Experience ─────────────────────────────────── */}
-      {/* Dynamic — populated from Payload CMS Projects collection */}
+      {/* Dynamic — fetched from Payload CMS projects collection */}
       <section className="py-24 section-top-divide bg-section-even" aria-labelledby="projects-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4">
@@ -231,30 +271,59 @@ function HomePage({ locale, testimonials }: { locale: string; testimonials: Test
                 Delivering telecommunications and power engineering projects across Ethiopia with careful planning, efficient execution, and quality standards.
               </p>
             </div>
-            <Link href={`/${locale}/projects`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF] hover:text-[#12C8FF] transition-colors flex-shrink-0">
-              All Projects →
-            </Link>
+            {projects.length > 0 && (
+              <Link href={`/${locale}/projects`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF] hover:text-[#12C8FF] transition-colors flex-shrink-0">
+                All Projects →
+              </Link>
+            )}
           </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {PROJECTS_PLACEHOLDER.map((project) => (
-              <div key={project.id} className="rounded-xl border overflow-hidden group" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-                <div className="relative h-48 overflow-hidden">
-                  <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.75) 0%, transparent 55%)' }} />
-                  <div className="absolute bottom-3 left-4">
-                    <span className="text-xs font-medium text-[#008CFF] bg-[#07111C]/70 rounded-full px-2.5 py-0.5">{project.category}</span>
+
+          {projects.length > 0 ? (
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {projects.map((project) => {
+                const coverUrl = project.coverImage && typeof project.coverImage === 'object'
+                  ? (project.coverImage as Media).url ?? null
+                  : null
+                const categoryLabel = PROJECT_CATEGORY_LABELS[project.serviceCategory] ?? project.serviceCategory
+                return (
+                  <div key={project.id} className="rounded-xl border overflow-hidden group" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+                    <div className="relative h-48 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0B1726, #172331)' }}>
+                      {coverUrl ? (
+                        <Image src={coverUrl} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-4xl opacity-20">🏗</span>
+                        </div>
+                      )}
+                      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.75) 0%, transparent 55%)' }} />
+                      <div className="absolute bottom-3 left-4">
+                        <span className="text-xs font-medium text-[#008CFF] bg-[#07111C]/70 rounded-full px-2.5 py-0.5">{categoryLabel}</span>
+                      </div>
+                    </div>
+                    <div className="p-5 sm:p-6">
+                      <h3 className="font-semibold text-sm mb-1" style={{ color: 'var(--foreground)' }}>{project.title}</h3>
+                      {project.location && (
+                        <p className="text-xs mb-2 flex items-center gap-1" style={{ color: '#008CFF' }}>
+                          <span>📍</span>{project.location}
+                        </p>
+                      )}
+                      {project.excerpt && (
+                        <p className="text-xs leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-subtle)' }}>{project.excerpt}</p>
+                      )}
+                    </div>
                   </div>
-                </div>
-                <div className="p-5 sm:p-6">
-                  <h3 className="font-semibold text-sm mb-1" style={{ color: 'var(--foreground)' }}>{project.title}</h3>
-                  <p className="text-xs mb-2 flex items-center gap-1" style={{ color: '#008CFF' }}>
-                    <span>📍</span>{project.location}
-                  </p>
-                  <p className="text-xs leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{project.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+                )
+              })}
+            </div>
+          ) : (
+            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
+              <div className="text-4xl mb-4" aria-hidden="true">🏗</div>
+              <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Projects coming soon</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+                Completed and ongoing project showcases will appear here. Add projects via the admin panel.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -388,17 +457,43 @@ function HomePage({ locale, testimonials }: { locale: string; testimonials: Test
 
 export default async function Page({ params }: HomePageProps) {
   const { locale } = await params
+  const loc = locale as 'en' | 'am'
 
-  // Fetch published testimonials for this locale
   const payload = await getPayload({ config: configPromise })
-  const result = await payload.find({
-    collection: 'testimonials',
-    where: { _status: { equals: 'published' } },
-    locale: locale as 'en' | 'am',
-    fallbackLocale: 'en',
-    limit: 6,
-    sort: '-createdAt',
-  })
 
-  return <HomePage locale={locale} testimonials={result.docs as Testimonial[]} />
+  const [testimonialsResult, newsResult, projectsResult] = await Promise.all([
+    payload.find({
+      collection: 'testimonials',
+      where: { _status: { equals: 'published' } },
+      locale: loc,
+      fallbackLocale: 'en',
+      limit: 6,
+      sort: '-createdAt',
+    }),
+    payload.find({
+      collection: 'news',
+      where: { _status: { equals: 'published' } },
+      locale: loc,
+      fallbackLocale: 'en',
+      limit: 3,
+      sort: '-publishedAt',
+    }),
+    payload.find({
+      collection: 'projects',
+      where: { _status: { equals: 'published' } },
+      locale: loc,
+      fallbackLocale: 'en',
+      limit: 3,
+      sort: '-createdAt',
+    }),
+  ])
+
+  return (
+    <HomePage
+      locale={locale}
+      testimonials={testimonialsResult.docs as Testimonial[]}
+      news={newsResult.docs as News[]}
+      projects={projectsResult.docs as Project[]}
+    />
+  )
 }

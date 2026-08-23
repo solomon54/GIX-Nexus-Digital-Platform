@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
 import { InquiryForm } from '@/components/ui/InquiryForm'
+import type { TeamMember, Media } from '@/payload-types'
 
 interface Props { params: Promise<{ locale: string }> }
 
@@ -12,87 +15,90 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t('pageTitle'), description: t('heroDescription') }
 }
 
-// ── Team data ─────────────────────────────────────────────────
-// Source: Company Profile PDF, Page 8 — documented role types and functions
-// Photos: placeholder SVG avatars until real photos are provided
-// Replace photo field with /assets/ path when photos are available
-
-const TEAM = [
+// ── Static fallback team data ────────────────────────────────
+// Source: Company Profile PDF, Page 8 — used when CMS team-members collection is empty
+const TEAM_FALLBACK = [
   {
+    id: 'gt',
     name: 'Getachew Teshome',
     role: 'Managing Director',
     qualification: 'SATCOM Specialist — RF Systems & VSAT Technology',
     bio: 'Brings practical experience in satellite communications including installation, operation, and preventive/corrective maintenance of SATCOM systems. Deep understanding of telecommunications engineering, RF systems, and VSAT technology.',
-    // Source: Company Profile PDF, Page 2
     skills: ['Satellite Communications (SATCOM)', 'RF Engineering', 'VSAT Technology', 'Project Coordination', 'Telecommunications Infrastructure'],
-    photo: '/assets/leader-prof-img.png',
+    photoUrl: '/assets/leader-prof-img.png',
     initials: 'GT',
     featured: true,
   },
   {
+    id: 'te',
     name: 'Telecommunications Engineer',
     role: 'Telecommunications Engineer',
     qualification: 'Professional Engineering Qualification',
     bio: 'Responsible for planning, supervising, installing, testing, commissioning, and maintaining telecommunications infrastructure and network systems across project sites.',
     skills: ['Network Planning', 'Infrastructure Installation', 'System Commissioning', 'Testing & Certification', 'Maintenance'],
-    photo: null,
+    photoUrl: null,
     initials: 'TE',
     featured: false,
   },
   {
+    id: 'np',
     name: 'Network Professional',
     role: 'Cisco Certified Network Professional',
     qualification: 'Cisco Certified Network Professional (CCNP)',
     bio: 'Provides expertise in network installation, configuration, troubleshooting, routing, switching, and network security to ensure reliable communication systems.',
     skills: ['Cisco Networking', 'LAN/WAN Configuration', 'Network Security', 'Routing & Switching', 'Troubleshooting'],
-    photo: null,
+    photoUrl: null,
     initials: 'NP',
     featured: false,
   },
   {
+    id: 'ft',
     name: 'Fiber Optic Technician',
     role: 'Fiber Optic Technician',
     qualification: 'Fiber Optic Specialist',
     bio: 'Specialises in fiber optic cable installation, splicing, termination, testing, fault diagnosis, and maintenance across indoor and outdoor deployments.',
     skills: ['Fiber Splicing', 'OTDR Testing', 'Cable Installation', 'Fault Diagnosis', 'Fluke Certification'],
-    photo: null,
+    photoUrl: null,
     initials: 'FT',
     featured: false,
   },
   {
+    id: 'os',
     name: 'OSP Technician',
     role: 'OSP (Outside Plant) Technician',
     qualification: 'Outside Plant Specialist',
     bio: 'Performs installation and maintenance of outdoor telecommunications infrastructure including cable routing, equipment installation, tower work, and preventive maintenance.',
     skills: ['Outdoor Cable Routing', 'Tower & Antenna Work', 'Equipment Installation', 'Preventive Maintenance', 'Safety Compliance'],
-    photo: null,
+    photoUrl: null,
     initials: 'OS',
     featured: false,
   },
   {
+    id: 'tt',
     name: 'Telecommunications Technician',
     role: 'Telecommunications Technician',
     qualification: 'Telecom Field Technician',
     bio: 'Supports the installation, testing, commissioning, and maintenance of indoor and outdoor telecommunications equipment and communication networks.',
     skills: ['Equipment Installation', 'System Testing', 'Network Commissioning', 'Indoor Deployments', 'Technical Support'],
-    photo: null,
+    photoUrl: null,
     initials: 'TT',
     featured: false,
   },
   {
+    id: 'hr',
     name: 'HSEQ Representative',
     role: 'HSEQ Representative',
     qualification: 'Health, Safety, Environment & Quality Specialist',
     bio: 'Promotes compliance with health, safety, environmental, and quality requirements by implementing safe work practices and supporting continuous improvement across all projects.',
     skills: ['HSEQ Compliance', 'Safe Work Procedures', 'PPE Compliance', 'Safety Training', 'Environmental Protection'],
-    photo: null,
+    photoUrl: null,
     initials: 'HR',
     featured: false,
   },
 ]
 
 // ── Equipment data ────────────────────────────────────────────
-// Source: Company Profile PDF, Page 9
+// Source: Company Profile PDF, Page 9 — no CMS collection, stays static
 const EQUIPMENT = [
   {
     category: 'Test Instruments',
@@ -117,9 +123,47 @@ const EQUIPMENT = [
   },
 ]
 
+// Normalise a TeamMember from Payload into the same shape as TEAM_FALLBACK entries
+function normaliseMember(m: TeamMember) {
+  const photoUrl = m.photo && typeof m.photo === 'object'
+    ? (m.photo as Media).url ?? null
+    : null
+  const skills = (m.specializations ?? []).map(s => s.item).filter(Boolean) as string[]
+  const initials = m.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+  return {
+    id: String(m.id),
+    name: m.name,
+    role: m.role,
+    qualification: m.qualification ?? '',
+    bio: m.bio ?? '',
+    skills,
+    photoUrl,
+    initials,
+    featured: (m.order ?? 99) === 1,
+  }
+}
+
 export default async function Page({ params }: Props) {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'capabilities' })
+
+  // Fetch published team members — fall back to static data if none published yet
+  const payload = await getPayload({ config: configPromise })
+  const teamResult = await payload.find({
+    collection: 'team-members',
+    where: { _status: { equals: 'published' } },
+    locale: locale as 'en' | 'am',
+    fallbackLocale: 'en',
+    sort: 'order',
+    limit: 20,
+  })
+
+  const team = teamResult.docs.length > 0
+    ? teamResult.docs.map(normaliseMember)
+    : TEAM_FALLBACK
+
+  const featured = team.filter(m => m.featured)
+  const others = team.filter(m => !m.featured)
 
   return (
     <>
@@ -161,22 +205,30 @@ export default async function Page({ params }: Props) {
             </p>
           </div>
 
-          {/* Featured: Managing Director */}
-          {TEAM.filter(m => m.featured).map((member) => (
-            <div key={member.name} className="mb-12 rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
+          {/* Featured: Managing Director (or first member with order=1) */}
+          {featured.map((member) => (
+            <div key={member.id} className="mb-12 rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
               <div className="grid grid-cols-1 lg:grid-cols-3">
                 {/* Photo */}
                 <div className="relative lg:col-span-1" style={{ minHeight: '320px' }}>
-                  <Image
-                    src={member.photo!}
-                    alt={`${member.name} — ${member.role}`}
-                    fill
-                    className="object-cover object-top"
-                  />
+                  {member.photoUrl ? (
+                    <Image
+                      src={member.photoUrl}
+                      alt={`${member.name} — ${member.role}`}
+                      fill
+                      className="object-cover object-top"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0B1726, #172331)' }}>
+                      <div className="flex h-24 w-24 items-center justify-center rounded-full text-3xl font-bold text-white" style={{ background: 'rgba(0,140,255,0.15)', border: '2px solid rgba(0,140,255,0.3)' }}>
+                        {member.initials}
+                      </div>
+                    </div>
+                  )}
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(7,17,28,0.85) 0%, transparent 60%)' }} />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold mb-2" style={{ background: 'rgba(0,140,255,0.2)', color: '#60A5FA' }}>
-                      Managing Director
+                      {member.role}
                     </div>
                     <p className="text-xl font-bold text-white">{member.name}</p>
                   </div>
@@ -189,16 +241,18 @@ export default async function Page({ params }: Props) {
                   </div>
                   <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{member.bio}</p>
 
-                  <div className="mt-6">
-                    <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--foreground-subtle)' }}>Areas of Expertise</p>
-                    <div className="flex flex-wrap gap-2">
-                      {member.skills.map(skill => (
-                        <span key={skill} className="rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'rgba(0,140,255,0.3)', color: 'var(--foreground)', background: 'rgba(0,140,255,0.05)' }}>
-                          {skill}
-                        </span>
-                      ))}
+                  {member.skills.length > 0 && (
+                    <div className="mt-6">
+                      <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--foreground-subtle)' }}>Areas of Expertise</p>
+                      <div className="flex flex-wrap gap-2">
+                        {member.skills.map(skill => (
+                          <span key={skill} className="rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'rgba(0,140,255,0.3)', color: 'var(--foreground)', background: 'rgba(0,140,255,0.05)' }}>
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
                   <div className="mt-6 pt-5 flex items-center gap-4" style={{ borderTop: '1px solid var(--border)' }}>
                     {/* Source: Company Profile PDF, Page 10 */}
@@ -216,18 +270,20 @@ export default async function Page({ params }: Props) {
 
           {/* Team grid — other professionals */}
           <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {TEAM.filter(m => !m.featured).map((member) => (
-              <div key={member.role} className="rounded-xl border overflow-hidden group transition-all hover:border-[#008CFF]/30" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+            {others.map((member) => (
+              <div key={member.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[#008CFF]/30" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
                 {/* Avatar */}
                 <div className="relative h-48" style={{ background: 'linear-gradient(135deg, #0B1726, #172331)' }}>
-                  {/* Placeholder avatar — replace when photo available */}
-                  <div className="absolute inset-0 flex flex-col items-center justify-center">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold text-white" style={{ background: 'rgba(0,140,255,0.15)', border: '2px solid rgba(0,140,255,0.3)' }}>
-                      {member.initials}
+                  {member.photoUrl ? (
+                    <Image src={member.photoUrl} alt={member.name} fill className="object-cover" />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold text-white" style={{ background: 'rgba(0,140,255,0.15)', border: '2px solid rgba(0,140,255,0.3)' }}>
+                        {member.initials}
+                      </div>
+                      <p className="mt-3 text-xs text-[#708090]">Photo coming soon</p>
                     </div>
-                    <p className="mt-3 text-xs text-[#708090]">Photo coming soon</p>
-                  </div>
-                  {/* Subtle grid pattern */}
+                  )}
                   <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#008CFF 1px, transparent 1px), linear-gradient(90deg, #008CFF 1px, transparent 1px)', backgroundSize: '20px 20px' }} aria-hidden="true" />
                 </div>
 

@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
-import { useTranslations } from 'next-intl'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
+import type { FutureObjective } from '@/payload-types'
 
 interface Props { params: Promise<{ locale: string }> }
 
@@ -12,16 +14,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t('pageTitle'), description: t('disclaimerBanner') }
 }
 
-function FutureGoalsPage({ locale }: { locale: string }) {
-  const t = useTranslations('futureGoals')
-  const objectives = t.raw('objectives') as Array<{ number: string; title: string; description: string }>
+export default async function Page({ params }: Props) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'futureGoals' })
+
+  // Fetch objectives from Payload — fall back to i18n if none in CMS yet
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({
+    collection: 'future-objectives',
+    locale: locale as 'en' | 'am',
+    fallbackLocale: 'en',
+    sort: 'number',
+    limit: 8,
+  })
+
+  const cmsHasObjectives = result.docs.length > 0
+  const objectives: Array<{ number: string; title: string; description: string }> = cmsHasObjectives
+    ? (result.docs as FutureObjective[]).map(o => ({
+        number: String(o.number),
+        title: o.title,
+        description: o.description ?? '',
+      }))
+    : (t.raw('objectives') as Array<{ number: string; title: string; description: string }>)
 
   return (
     <>
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
-          {/* Background: future goals and growth */}
           <Image
             src="/images/future-goals/future-goals.jpeg"
             alt=""
@@ -76,9 +96,4 @@ function FutureGoalsPage({ locale }: { locale: string }) {
       </section>
     </>
   )
-}
-
-export default async function Page({ params }: Props) {
-  const { locale } = await params
-  return <FutureGoalsPage locale={locale} />
 }

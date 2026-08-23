@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
-import { useTranslations } from 'next-intl'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
+import type { Sector } from '@/payload-types'
 
 interface Props { params: Promise<{ locale: string }> }
 
@@ -12,12 +14,28 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return { title: t('pageTitle'), description: t('disclaimer') }
 }
 
-// Source: Company Profile PDF, Page 9 — 14 target sectors with representative icons
+// Source: Company Profile PDF, Page 9 — representative icons for 14 sectors
 const SECTOR_ICONS = ['📡', '🔧', '🌐', '🏛', '⚡', '🌍', '🏛', '🤝', '🏦', '🖥', '🛡', '🎓', '🏭', '🏗'] as const
 
-function IndustriesPage({ locale }: { locale: string }) {
-  const t = useTranslations('industries')
-  const sectors = t.raw('sectors') as string[]
+export default async function Page({ params }: Props) {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'industries' })
+
+  // Fetch sectors from Payload — fall back to i18n list if none in CMS yet
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({
+    collection: 'sectors',
+    locale: locale as 'en' | 'am',
+    fallbackLocale: 'en',
+    sort: 'order',
+    limit: 20,
+  })
+
+  // If CMS has sectors use them; otherwise fall back to i18n strings
+  const cmsHasSectors = result.docs.length > 0
+  const sectors: Array<{ name: string; description?: string | null }> = cmsHasSectors
+    ? result.docs as Sector[]
+    : (t.raw('sectors') as string[]).map(name => ({ name }))
 
   return (
     <>
@@ -50,11 +68,15 @@ function IndustriesPage({ locale }: { locale: string }) {
                 style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-2xl" style={{ background: 'rgba(0,140,255,0.1)' }}>
-                  {SECTOR_ICONS[i]}
+                  {SECTOR_ICONS[i % SECTOR_ICONS.length]}
                 </div>
                 <div>
-                  <p className="font-medium text-sm leading-snug" style={{ color: 'var(--foreground)' }}>{sector}</p>
-                  <p className="text-xs mt-0.5 text-[#008CFF]">Target Sector</p>
+                  <p className="font-medium text-sm leading-snug" style={{ color: 'var(--foreground)' }}>{sector.name}</p>
+                  {sector.description ? (
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--foreground-subtle)' }}>{sector.description}</p>
+                  ) : (
+                    <p className="text-xs mt-0.5 text-[#008CFF]">Target Sector</p>
+                  )}
                 </div>
               </div>
             ))}
@@ -72,9 +94,4 @@ function IndustriesPage({ locale }: { locale: string }) {
       </section>
     </>
   )
-}
-
-export default async function Page({ params }: Props) {
-  const { locale } = await params
-  return <IndustriesPage locale={locale} />
 }
