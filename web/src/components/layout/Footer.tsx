@@ -159,10 +159,18 @@ export function Footer({ locale }: FooterProps) {
               </p>
               {/* Secret admin gateway — small decorative dot, visible but subtle.
                   Auth is required so there's no security risk making it findable. */}
+              <style>{`
+                .admin-dot:hover {
+                  border-color: rgba(0,140,255,0.6) !important;
+                  background: rgba(0,140,255,0.15) !important;
+                  box-shadow: 0 0 8px rgba(0,140,255,0.3) !important;
+                }
+              `}</style>
               <a
                 href="/admin"
                 aria-label="Admin panel"
                 title="Admin panel"
+                className="admin-dot"
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -174,18 +182,6 @@ export function Footer({ locale }: FooterProps) {
                   background: 'rgba(0,140,255,0.06)',
                   flexShrink: 0,
                   transition: 'border-color 0.2s, background 0.2s, box-shadow 0.2s',
-                }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.borderColor = 'rgba(0,140,255,0.6)'
-                  el.style.background = 'rgba(0,140,255,0.15)'
-                  el.style.boxShadow = '0 0 8px rgba(0,140,255,0.3)'
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement
-                  el.style.borderColor = 'rgba(0,140,255,0.25)'
-                  el.style.background = 'rgba(0,140,255,0.06)'
-                  el.style.boxShadow = 'none'
                 }}
               >
                 <span style={{
