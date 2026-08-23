@@ -40,3 +40,9 @@ next-env.d.ts
 
 # ── Testing ───────────────────────────────────────────────────
 coverage/
+
+# ── Payload CMS uploaded media ────────────────────────────────
+# Uploaded files are stored in the DB and served from cloud storage.
+# Local copies in web/media/ should not be tracked.
+web/media/
+web/public/assets/news/

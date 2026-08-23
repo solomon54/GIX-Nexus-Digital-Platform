@@ -27,10 +27,6 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
 
-    // Custom avatar for top-right header button
-    avatar: {
-      Component: '/components/admin/UserAvatar',
-    },
 
     components: {
       graphics: {
