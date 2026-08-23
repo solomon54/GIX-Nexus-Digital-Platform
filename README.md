@@ -10,7 +10,7 @@ The platform gives GIX Nexus a professional public presence — showcasing servi
 
 ```
 GIX-Nexus-Digital-Platform/
-├── app/                          # Next.js + Payload CMS application
+├── web/                          # Next.js + Payload CMS application
 │   ├── src/
 │   │   ├── app/
 │   │   │   ├── [locale]/         # Public-facing pages (en + am)
@@ -64,7 +64,7 @@ If you don't have nvm, install it or manually ensure `node --version` returns `v
 ### Setup
 
 ```bash
-cd app
+cd web
 nvm use 20
 npm install
 ```

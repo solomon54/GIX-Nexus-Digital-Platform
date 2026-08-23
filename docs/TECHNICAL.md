@@ -58,7 +58,7 @@ Payload 3.x imports CSS files using ESM `import` statements. Node 24 throws `ERR
 
 The workaround used in this project is a custom CSS noop loader (`css-noop-loader.mjs`, `css-noop-hooks.mjs`) injected via `NODE_OPTIONS="--import ./css-noop-loader.mjs"` in the `dev`, `build`, and `start` scripts. This works reliably on Node 20. The behavior may differ on Node 24 even with the loader.
 
-The repo has a `.nvmrc` file in `app/` pinned to `20`.
+The repo has a `.nvmrc` file in `web/` pinned to `20`.
 
 ```bash
 cd app
@@ -86,7 +86,7 @@ Admin panel: `http://localhost:3000/admin`
 ## App folder structure
 
 ```
-app/src/
+web/src/
 ├── app/
 │   ├── [locale]/               # Public site — all pages served under /en/* and /am/*
 │   │   ├── layout.tsx          # Locale layout: nav, footer, ThemeProvider, next-intl
@@ -128,7 +128,7 @@ app/src/
 
 ## CMS collections
 
-All collections are defined in `app/src/collections/`. Payload generates TypeScript types from these definitions (`payload-types.ts`).
+All collections are defined in `web/src/collections/`. Payload generates TypeScript types from these definitions (`payload-types.ts`).
 
 | Collection | Slug | Purpose |
 |---|---|---|
@@ -152,7 +152,7 @@ All collections are defined in `app/src/collections/`. Payload generates TypeScr
 
 **URL structure:** `/en/[page]` and `/am/[page]`. The default locale is `en`. Locale is passed as a URL segment, not via headers or cookies.
 
-**Static strings:** Stored in `app/messages/en.json` and `app/messages/am.json`. These cover navigation labels, button text, section headings, and any hardcoded UI strings. Managed via next-intl's `useTranslations()` hook.
+**Static strings:** Stored in `web/messages/en.json` and `web/messages/am.json`. These cover navigation labels, button text, section headings, and any hardcoded UI strings. Managed via next-intl's `useTranslations()` hook.
 
 **CMS content:** Collection fields marked `localized: true` store separate values per locale. When editing in Payload admin, you switch between locales using the locale selector at the top of the edit form.
 
