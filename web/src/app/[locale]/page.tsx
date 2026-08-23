@@ -174,11 +174,32 @@ function HomePage({
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>{t('featureSubtitle')}</p>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {(['qualifiedTeam', 'reliableDelivery', 'safetyCommitment', 'ethiopianOwned'] as const).map((key) => (
+            {([
+              {
+                key: 'qualifiedTeam',
+                // Qualified team — people/users icon
+                icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>,
+              },
+              {
+                key: 'reliableDelivery',
+                // Reliable delivery — shield with checkmark
+                icon: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></>,
+              },
+              {
+                key: 'safetyCommitment',
+                // Safety commitment — hard hat / safety gear
+                icon: <><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a2 2 0 0 1 4 0v5"/><path d="M4 15v-3a8 8 0 0 1 16 0v3"/></>,
+              },
+              {
+                key: 'ethiopianOwned',
+                // Ethiopian-owned — flag/map pin
+                icon: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
+              },
+            ] as const).map(({ key, icon }) => (
               <div key={key} className="rounded-xl border p-6" style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg mb-4" style={{ background: 'rgba(0,140,255,0.10)', color: '#008CFF' }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12" />
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
+                    {icon}
                   </svg>
                 </div>
                 <h3 className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>{t(`features.${key}.title`)}</h3>
