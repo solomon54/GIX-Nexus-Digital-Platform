@@ -5,9 +5,12 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  // @payloadcms/richtext-lexical imports bundled.css at the ESM level.
-  // Node's ESM loader can't handle .css — css-noop-loader.mjs intercepts it.
-  serverExternalPackages: ['@payloadcms/richtext-lexical'],
+  // Do NOT add @payloadcms/richtext-lexical to serverExternalPackages.
+  // When marked external, Node loads it natively on the server but webpack
+  // bundles it for the client — these two instances don't share React module
+  // references, causing "Invalid hook call" on create/edit pages.
+  // The css-noop-loader.mjs (NODE_OPTIONS=--import) already handles the
+  // bundled.css ESM issue at the Node loader level without needing externals.
   images: {
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
