@@ -439,3 +439,41 @@ button[class*="account-nav"]:hover {
 .nav__link[id="nav-service-inquiries"]::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='none' stroke='%2394a3b8' stroke-width='1.5' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E");
 }
+
+/* ── Force nav-group content always visible ───────────────────── */
+/* NavGroup collapses with CSS height:0. Force it open always.    */
+.nav-group .animate-height > div,
+.nav-group__content,
+[class*="nav-group"] [class*="content"] {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* ── Active nav link — elegant teal highlight ─────────────────── */
+/* Payload marks active link with .nav__link-indicator inside it  */
+.nav__link:has(.nav__link-indicator) {
+  background: linear-gradient(90deg, rgba(34,211,238,0.15), rgba(34,211,238,0.05)) !important;
+  color: #22d3ee !important;
+  border-radius: 8px !important;
+  border-left: 2px solid #22d3ee !important;
+  font-weight: 600 !important;
+}
+
+.nav__link:has(.nav__link-indicator)::before {
+  opacity: 1 !important;
+  filter: brightness(0) saturate(100%) invert(77%) sepia(48%) saturate(400%) hue-rotate(152deg) !important;
+}
+
+/* The active indicator dot itself */
+.nav__link-indicator {
+  display: none !important; /* Hide the dot — the highlight is enough */
+}
+
+/* ── Hover state ──────────────────────────────────────────────── */
+.nav a.nav__link:hover,
+.nav a.nav__link:focus-visible {
+  text-decoration: none !important;
+  background: rgba(34,211,238,0.08) !important;
+  color: #67e8f9 !important;
+  border-radius: 8px !important;
+}
