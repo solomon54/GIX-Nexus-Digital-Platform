@@ -145,7 +145,7 @@ export function Footer({ locale }: FooterProps) {
             </div>
           </div>
 
-          {/* Bottom bar — copyright */}
+          {/* Bottom bar — copyright + secret admin gateway */}
           <div
             className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
             style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
@@ -153,9 +153,25 @@ export function Footer({ locale }: FooterProps) {
             <p className="text-xs" style={{ color: '#475569' }}>
               &copy; 2026 {t('company')}. {t('rights')}
             </p>
-            <p className="text-xs" style={{ color: '#334155' }}>
-              {t('legalNote')}
-            </p>
+            <div className="flex items-center gap-3">
+              <p className="text-xs" style={{ color: '#334155' }}>
+                {t('legalNote')}
+              </p>
+              {/* Secret admin gateway — intentionally invisible, known only to admins */}
+              <a
+                href="/admin"
+                aria-hidden="true"
+                tabIndex={-1}
+                style={{
+                  display: 'inline-block',
+                  width: 6,
+                  height: 6,
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.04)',
+                  flexShrink: 0,
+                }}
+              />
+            </div>
           </div>
 
         </div>
