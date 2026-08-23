@@ -27,8 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
 
-    // ── Custom avatar (top-right header button) ───────────────
-    // Shows user's uploaded profile photo instead of the default "G"
+    // Custom avatar for top-right header button
     avatar: {
       Component: '/components/admin/UserAvatar',
     },
@@ -38,10 +37,9 @@ export default buildConfig({
         Logo: '/components/admin/Logo',
         Icon: '/components/admin/Icon',
       },
-      // Nav user card at bottom of sidebar
-      afterNavLinks: ['/components/admin/NavUserCard'],
-      // Inject sidebar icons + account avatar styles
-      beforeNavLinks: ['/components/admin/NavIcons'],
+      // NOTE: afterNavLinks / beforeNavLinks components that use React hooks
+      // (useAuth, usePathname) crash the nav RSC render in Payload 3.88.
+      // Icons are handled via admin.css instead. NavUserCard was removed.
     },
 
     meta: {
