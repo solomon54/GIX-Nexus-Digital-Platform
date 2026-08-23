@@ -53,10 +53,10 @@ GIX-Nexus-Digital-Platform/
 
 ### Node version
 
-**Node 20 is required.** Payload 3.x + Node 24 produces an `ERR_UNKNOWN_FILE_EXTENSION` error on `.css` files during the dev server startup. The repo includes a `.nvmrc` pinned to `20`.
+**Node 24 is required** (Node 20 deprecated by Vercel from 2026-10-01). A CSS noop loader handles Payload's ESM `.css` issue on Node 24. The repo `.nvmrc` is pinned to `24`.
 
 ```bash
-nvm use 20
+nvm use 24
 ```
 
 If you don't have nvm, install it or manually ensure `node --version` returns `v20.x.x`.
@@ -65,7 +65,7 @@ If you don't have nvm, install it or manually ensure `node --version` returns `v
 
 ```bash
 cd web
-nvm use 20
+nvm use 24
 npm install
 ```
 

@@ -2,6 +2,9 @@
   "name": "gix-nexus-digital-platform",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=24.0.0"
+  },
   "scripts": {
     "dev": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next dev",
     "build": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next build",

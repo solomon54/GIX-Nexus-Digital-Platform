@@ -46,23 +46,23 @@ Next.js serves both the public-facing site and the Payload admin panel. Payload 
 | Resend | — | Transactional email for inquiry notifications |
 | Lexical (richText) | (via Payload) | Rich text editor in the CMS admin |
 | Lucide React | 0.468.0 | Icon library for UI components |
-| Node.js | **20 (required)** | See Node version section below |
+| Node.js | **24 (required)** | See Node version section below |
 
 ---
 
-## Node version — important
+## Node version
 
-**Node 20 is required. Do not use Node 24.**
+**Node 24 is required (Node 20 deprecated by Vercel from 2026-10-01).**
 
-Payload 3.x imports CSS files using ESM `import` statements. Node 24 throws `ERR_UNKNOWN_FILE_EXTENSION` when it encounters a `.css` import in an ESM context — the dev server fails to start.
+Payload 3.x imports CSS files using ESM `import` statements. Node's ESM runtime normally throws `ERR_UNKNOWN_FILE_EXTENSION` when it encounters a `.css` import. The workaround is a custom CSS noop loader (`css-noop-loader.mjs`, `css-noop-hooks.mjs`) that intercepts and silently drops all `.css`/`.scss` imports before Node processes them.
 
-The workaround used in this project is a custom CSS noop loader (`css-noop-loader.mjs`, `css-noop-hooks.mjs`) injected via `NODE_OPTIONS="--import ./css-noop-loader.mjs"` in the `dev`, `build`, and `start` scripts. This works reliably on Node 20. The behavior may differ on Node 24 even with the loader.
+This loader is injected via `NODE_OPTIONS="--import ./css-noop-loader.mjs"` in the `dev`, `build`, and `start` scripts — it has been verified to work correctly on Node 24.
 
-The repo has a `.nvmrc` file in `web/` pinned to `20`.
+The repo `.nvmrc` is pinned to `24`.
 
 ```bash
 cd web
-nvm use 20    # always run this before npm run dev
+nvm use 24    # or: nvm use (reads .nvmrc automatically)
 npm run dev
 ```
 
@@ -241,7 +241,7 @@ Vercel's filesystem is ephemeral — it resets on every deploy. Any file uploade
 - Go to [vercel.com](https://vercel.com) → New Project → Import from GitHub
 - Set the **Root Directory** to `web` (not the repo root)
 - Framework preset: **Next.js** (auto-detected)
-- Node.js version: set to **20.x** in Project Settings → General
+- Node.js version: set to **24.x** in Project Settings → General
 
 **3. Create a Vercel Blob store**
 - In your Vercel project → Storage tab → Create Database → Blob
@@ -272,5 +272,5 @@ Vercel's filesystem is ephemeral — it resets on every deploy. Any file uploade
 ### Important notes
 
 - **Do not change `PAYLOAD_SECRET` after the first deploy** — it's used to encrypt sessions. Changing it logs out all admin users.
-- **Node 20 only** — set this explicitly in Vercel Project Settings. Vercel defaults to Node 22 which may cause the CSS ESM issue described above.
+- **Node 24 only** — set this explicitly in Vercel Project Settings. The CSS noop loader handles Payload's CSS ESM issue on Node 24.
 - **`db: push` is disabled in production** — schema changes require running migrations manually.
