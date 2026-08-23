@@ -3,7 +3,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
 import { HeroCarousel } from '@/components/ui/HeroCarousel'
+import type { Testimonial } from '@/payload-types'
 
 interface HomePageProps {
   params: Promise<{ locale: string }>
@@ -42,7 +45,7 @@ const PROJECTS_PLACEHOLDER = [
   { id: 3, category: 'Telecom Power Systems', title: 'DC Power & Battery Bank Installation', location: 'Ethiopia', image: '/images/services/telecom-power-systems-dc-power-systems.png', description: 'DC power system, rectifier and battery bank installation for telecom base station sites.' },
 ]
 
-function HomePage({ locale }: { locale: string }) {
+function HomePage({ locale, testimonials }: { locale: string; testimonials: Testimonial[] }) {
   const t = useTranslations('home')
   const tServices = useTranslations('services')
 
@@ -302,14 +305,65 @@ function HomePage({ locale }: { locale: string }) {
               Feedback from the organisations and partners we have worked with across Ethiopia.
             </p>
           </div>
-          {/* Empty state — shown until admin adds real testimonials */}
-          <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
-            <div className="text-4xl mb-4" aria-hidden="true">💬</div>
-            <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Testimonials coming soon</p>
-            <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
-              Client and partner testimonials will appear here once published via the admin panel.
-            </p>
-          </div>
+
+          {testimonials.length > 0 ? (
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {testimonials.map((t) => {
+                const avatarUrl = t.avatar && typeof t.avatar === 'object' && 'url' in t.avatar
+                  ? (t.avatar as { url?: string }).url
+                  : null
+                return (
+                  <figure
+                    key={t.id}
+                    className="rounded-xl border p-6 flex flex-col gap-4"
+                    style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
+                  >
+                    {/* Quote mark */}
+                    <span className="text-3xl leading-none text-[#008CFF] select-none" aria-hidden="true">&ldquo;</span>
+                    <blockquote className="flex-1 text-sm leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>
+                      {t.quote}
+                    </blockquote>
+                    <figcaption className="flex items-center gap-3 pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
+                      {avatarUrl ? (
+                        <Image
+                          src={avatarUrl}
+                          alt={t.authorName}
+                          width={40}
+                          height={40}
+                          className="rounded-full object-cover flex-shrink-0"
+                        />
+                      ) : (
+                        <div
+                          className="h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold text-white"
+                          style={{ background: 'rgba(0,140,255,0.2)', color: '#008CFF' }}
+                          aria-hidden="true"
+                        >
+                          {t.authorName.charAt(0).toUpperCase()}
+                        </div>
+                      )}
+                      <div className="min-w-0">
+                        <p className="text-sm font-semibold truncate" style={{ color: 'var(--foreground)' }}>{t.authorName}</p>
+                        {(t.authorRole || t.organisation || t.sector) && (
+                          <p className="text-xs truncate" style={{ color: 'var(--foreground-subtle)' }}>
+                            {[t.authorRole, t.organisation ?? t.sector].filter(Boolean).join(' · ')}
+                          </p>
+                        )}
+                      </div>
+                    </figcaption>
+                  </figure>
+                )
+              })}
+            </div>
+          ) : (
+            /* Empty state — shown until admin adds real testimonials */
+            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
+              <div className="text-4xl mb-4" aria-hidden="true">💬</div>
+              <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Testimonials coming soon</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+                Client and partner testimonials will appear here once published via the admin panel.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
@@ -334,5 +388,17 @@ function HomePage({ locale }: { locale: string }) {
 
 export default async function Page({ params }: HomePageProps) {
   const { locale } = await params
-  return <HomePage locale={locale} />
+
+  // Fetch published testimonials for this locale
+  const payload = await getPayload({ config: configPromise })
+  const result = await payload.find({
+    collection: 'testimonials',
+    where: { _status: { equals: 'published' } },
+    locale: locale as 'en' | 'am',
+    fallbackLocale: 'en',
+    limit: 6,
+    sort: '-createdAt',
+  })
+
+  return <HomePage locale={locale} testimonials={result.docs as Testimonial[]} />
 }
