@@ -24,6 +24,8 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { default as default_dfe4008080d895d460898c3a6155e9ba } from '../../../components/admin/Icon'
 import { default as default_91a09b539d3c86b0aebf520e7564ce08 } from '../../../components/admin/Logo'
 import { default as default_6f2cf19bcf0a730f313babe1af3ff294 } from '../../../components/admin/NavUserCard'
+import { default as default_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6 } from '../../../components/admin/UserAvatar'
+import { default as default_b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7 } from '../../../components/admin/NavIcons'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
 /** @type import('payload').ImportMap */
@@ -54,5 +56,7 @@ export const importMap = {
   "/components/admin/Icon#default": default_dfe4008080d895d460898c3a6155e9ba,
   "/components/admin/Logo#default": default_91a09b539d3c86b0aebf520e7564ce08,
   "/components/admin/NavUserCard#default": default_6f2cf19bcf0a730f313babe1af3ff294,
+  "/components/admin/UserAvatar#default": default_a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6,
+  "/components/admin/NavIcons#default": default_b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }
