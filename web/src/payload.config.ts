@@ -22,11 +22,11 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  // serverURL is required for the admin panel to work correctly in production.
-  // Without it, Payload cannot construct API request URLs in the admin JS,
-  // resulting in a completely blank admin page with no error message.
-  serverURL: process.env.NEXT_PUBLIC_APP_URL
-    ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
+  // serverURL tells Payload where the app is hosted.
+  // Hardcoded to production URL so admin always works regardless of env var state.
+  serverURL: process.env.NODE_ENV === 'development'
+    ? (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000')
+    : 'https://gix-nexus-digitalplatform.vercel.app',
 
   admin: {
     user: Users.slug,
@@ -71,22 +71,22 @@ export default buildConfig({
 
   plugins: [
     // Vercel Blob storage — replaces local disk storage for uploaded media.
-    // Required on Vercel because the filesystem is ephemeral (wiped on redeploy).
-    // Conditionally registered — Vercel Blob SDK crashes if initialized with an
-    // empty token string, causing 500 errors on all /api/media endpoints.
-    // The importMap.js is manually kept up-to-date with the VercelBlobClientUploadHandler
-    // entry so the admin UI works regardless of whether the plugin is active.
-    ...(process.env.BLOB_READ_WRITE_TOKEN
-      ? [
-          vercelBlobStorage({
-            enabled: true,
-            collections: {
-              media: true,
-            },
-            token: process.env.BLOB_READ_WRITE_TOKEN,
-          }),
-        ]
-      : []),
+    // IMPORTANT: Always registered (never conditional) so Payload's Next.js webpack
+    // plugin always includes VercelBlobClientUploadHandler in the auto-generated
+    // importMap.js during `next build`. If conditional, the importMap is generated
+    // without the handler at build time, causing a blank/broken admin at runtime.
+    //
+    // A placeholder token is used as fallback so the Vercel Blob SDK doesn't crash
+    // during initialization when BLOB_READ_WRITE_TOKEN is not set. The placeholder
+    // is never used for real storage — when enabled:false, the SDK is never called.
+    vercelBlobStorage({
+      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
+      collections: {
+        media: true,
+      },
+      token: process.env.BLOB_READ_WRITE_TOKEN
+        ?? 'vercel_blob_rw_placeholder00000000_fakefakefakefakefakefakefakefake',
+    }),
   ],
 
   email: resendAdapter({
