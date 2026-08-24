@@ -1,5 +1,9 @@
 # GIX Nexus Digital Platform
 
+**Live Application:** [https://gix-nexus-digitalplatform.vercel.app](https://gix-nexus-digitalplatform.vercel.app)
+
+![GIX Nexus Home Page](web/public/assets/gix-home-page.png)
+
 Bilingual informational website and content management system for **GIX Nexus Telecom and Power**, an Ethiopian-owned telecommunications and power engineering company headquartered in Addis Ababa.
 
 The platform gives GIX Nexus a professional public presence — showcasing services, team, HSEQ commitment, and target sectors in both English and Amharic — with a full CMS for staff to manage content without touching code.
