@@ -66,17 +66,21 @@ export default buildConfig({
   plugins: [
     // Vercel Blob storage — replaces local disk storage for uploaded media.
     // Required on Vercel because the filesystem is ephemeral (wiped on redeploy).
-    // IMPORTANT: Always registered (not conditional) so its client component
-    // (@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler)
-    // is always included in the importMap at build time.
-    // The `enabled` flag controls whether it actually stores files.
-    vercelBlobStorage({
-      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
-      collections: {
-        media: true,
-      },
-      token: process.env.BLOB_READ_WRITE_TOKEN ?? '',
-    }),
+    // Conditionally registered — Vercel Blob SDK crashes if initialized with an
+    // empty token string, causing 500 errors on all /api/media endpoints.
+    // The importMap.js is manually kept up-to-date with the VercelBlobClientUploadHandler
+    // entry so the admin UI works regardless of whether the plugin is active.
+    ...(process.env.BLOB_READ_WRITE_TOKEN
+      ? [
+          vercelBlobStorage({
+            enabled: true,
+            collections: {
+              media: true,
+            },
+            token: process.env.BLOB_READ_WRITE_TOKEN,
+          }),
+        ]
+      : []),
   ],
 
   email: resendAdapter({
