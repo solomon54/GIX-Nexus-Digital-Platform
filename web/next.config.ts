@@ -17,6 +17,8 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'plus.unsplash.com' },
       // Vercel Blob storage — uploaded media served from here in production
       { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
+      // Payload CMS absolute URLs (generated via hardcoded serverURL)
+      { protocol: 'https', hostname: 'gix-nexus-digitalplatform.vercel.app' },
     ],
   },
 };
