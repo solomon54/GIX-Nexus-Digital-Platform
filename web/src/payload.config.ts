@@ -22,6 +22,12 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
+  // serverURL is required for the admin panel to work correctly in production.
+  // Without it, Payload cannot construct API request URLs in the admin JS,
+  // resulting in a completely blank admin page with no error message.
+  serverURL: process.env.NEXT_PUBLIC_APP_URL
+    ?? (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000'),
+
   admin: {
     user: Users.slug,
     importMap: {
