@@ -5,6 +5,7 @@ import { getMessages } from 'next-intl/server'
 import { ThemeProvider } from 'next-themes'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
+import { PwaInstallPrompt } from '@/components/ui/PwaInstallPrompt'
 import { routing } from '@/i18n/routing'
 import '@/app/globals.css'
 
@@ -100,6 +101,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
                 {children}
               </main>
               <Footer locale={locale} />
+              <PwaInstallPrompt />
             </div>
           </ThemeProvider>
         </NextIntlClientProvider>
