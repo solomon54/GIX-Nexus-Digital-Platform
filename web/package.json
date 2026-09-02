@@ -6,11 +6,11 @@
     "node": ">=24.0.0"
   },
   "scripts": {
-    "dev": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next dev",
-    "build": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next build",
-    "start": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" next start",
-    "generate:types": "payload generate:types",
-    "generate:importmap": "payload generate:importMap"
+    "dev": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" ./node_modules/.bin/next dev",
+    "build": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" ./node_modules/.bin/next build",
+    "start": "NODE_OPTIONS=\"--import ./css-noop-loader.mjs\" ./node_modules/.bin/next start",
+    "generate:types": "./node_modules/.bin/payload generate:types",
+    "generate:importmap": "./node_modules/.bin/payload generate:importMap"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.88.0",
@@ -42,5 +42,14 @@
     "sass": "^1.76.0",
     "tailwindcss": "4.3.3",
     "typescript": "5.8.3"
+  },
+  "allowScripts": {
+    "sharp@0.34.5": true,
+    "sharp@0.33.5": true,
+    "esbuild@0.18.20": true,
+    "esbuild@0.25.12": true,
+    "esbuild@0.28.2": true,
+    "fsevents@2.3.2": true,
+    "fsevents@2.3.3": true
   }
 }

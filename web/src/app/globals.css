@@ -10,35 +10,35 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans:     "Noto Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
   --font-ethiopic: "Noto Sans Ethiopic", Ethiopic, serif;
-  --color-gix-blue:  #008CFF;
-  --color-gix-cyan:  #12C8FF;
+  --color-gix-blue: #008CFF;
+  --color-gix-cyan: #12C8FF;
   --color-gix-green: #65D51A;
-  --color-midnight:  #07111C;
+  --color-midnight: #07111C;
   --color-deep-navy: #0B1726;
-  --color-graphite:  #111C27;
-  --color-elevated:  #172331;
-  --color-canvas:       #FAFBFC;
-  --color-surface:      #FFFFFF;
+  --color-graphite: #111C27;
+  --color-elevated: #172331;
+  --color-canvas: #FAFBFC;
+  --color-surface: #FFFFFF;
   --color-soft-surface: #F1F5F9;
   --color-border-light: #E2E8F0;
   --color-success: #16A34A;
   --color-warning: #D99A00;
-  --color-danger:  #D83A3A;
-  --color-info:    #1687D9;
-  --radius-sm:         4px;
-  --radius-DEFAULT:    8px;
-  --radius-lg:         12px;
-  --radius-xl:         16px;
+  --color-danger: #D83A3A;
+  --color-info: #1687D9;
+  --radius-sm: 4px;
+  --radius-DEFAULT: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
   --radius-expressive: 24px;
-  --spacing-1:  4px;
-  --spacing-2:  8px;
-  --spacing-3:  12px;
-  --spacing-4:  16px;
-  --spacing-5:  20px;
-  --spacing-6:  24px;
-  --spacing-8:  32px;
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
   --spacing-10: 40px;
   --spacing-12: 48px;
   --spacing-16: 64px;
@@ -53,103 +53,199 @@
   --breakpoint-xl: 1280px;
 }
 
-/* ── Light theme — premium, precise, engineered ──────────────────
-   Inspired by: Linear, Stripe, Vercel, Apple
-   Base: cool off-white (not pure white — reduces harshness)
-   Sections: clear alternation with visible contrast
-   Cards: defined surfaces with depth via shadow not just border
-   Brand: saturated GIX Blue for strong presence on light bg
+/* ── Light theme — precision depth system ────────────────────────
+   Philosophy: engineered clarity, not decorative brightness.
+   Inspired by: Linear, Stripe, Apple, Vercel in light mode.
+
+   The problem with generic light themes:
+   — Pure #FFFFFF backgrounds wash out — no depth hierarchy
+   — Borders that are too light become invisible
+   — Text that isn't dark enough loses authority
+   — Cards that don't shadow look like flat rectangles
+
+   This system fixes all four:
+   — Base: #F8F9FB (cool blue-tinged near-white, Apple-style)
+   — Cards: pure #FFFFFF with real multi-layer shadows — they float
+   — Borders: #C8D5E8 — visible in all conditions
+   — Text: #0D1117 near-black (GitHub precision) for maximum authority
+   — Sections: 3-tier alternation with clear luminance steps
+   — Brand: saturated #0057B8 — navy-leaning blue reads strong on light
 ─────────────────────────────────────────────────────────────── */
 :root {
-  /* Base surfaces — layered, never flat white-on-white */
-  --background:        #F4F7FA;   /* Cool off-white base — not harsh pure white */
-  --background-alt:    #EDF1F7;   /* Slightly deeper alt — used on alternating sections */
-  --surface:           #FFFFFF;   /* Cards, modals, elevated elements — true white pops */
-  --surface-elevated:  #FFFFFF;   /* Cards that need to stand out from base */
-  --soft-surface:      #E8EDF4;   /* Hover states, subtle fills */
+  /* ── Base surfaces ── */
+  --background: #F8F9FB;
+  /* Cool blue-tinted near-white — Apple/Linear base */
+  --background-alt: #F0F4F9;
+  /* Slightly deeper — clear step below base */
+  --surface: #FFFFFF;
+  /* Cards, modals — true white floats above base */
+  --surface-elevated: #FFFFFF;
+  /* Same — shadows create the elevation */
+  --soft-surface: #E6EDF6;
+  /* Active states, code blocks, hover fills */
 
-  /* Borders — visible and defined, not ghostly */
-  --border:            #CBD5E1;   /* Slate-300 — strong enough to define boundaries */
-  --border-subtle:     #E2E8F0;   /* Lighter: internal dividers only */
+  /* ── Borders — defined, never ghostly ── */
+  --border: #C8D5E8;
+  /* Perceptible in all lighting, not heavy */
+  --border-subtle: #DCE5F0;
+  /* Internal dividers only */
+  --border-strong: #A8BCCF;
+  /* Focus rings, active outlines */
 
-  /* Text — high contrast hierarchy */
-  --foreground:        #0B1523;   /* Near-black with slight blue undertone — premium feel */
-  --foreground-muted:  #374151;   /* Secondary text — clearly readable */
-  --foreground-subtle: #6B7280;   /* Tertiary — hints, labels */
+  /* ── Text — maximum authority hierarchy ── */
+  --foreground: #0D1117;
+  /* Near-black, GitHub-grade — zero ambiguity */
+  --foreground-muted: #2D3A4A;
+  /* Secondary — clearly legible, not gray soup */
+  --foreground-subtle: #566676;
+  /* Tertiary — captions, hints, labels */
+  --foreground-faint: #8899AA;
+  /* Disabled, placeholder */
 
-  /* Brand — strong, saturated for light backgrounds */
-  --gix-blue:  #0066CC;           /* Deeper blue — high contrast on light */
-  --gix-cyan:  #0284C7;
-  --gix-green: #15803D;           /* Deeper green — high contrast */
+  /* ── Brand — saturated for light backgrounds ── */
+  --gix-blue: #0057B8;
+  /* Navy-leaning — high contrast ratio on light */
+  --gix-blue-hover: #004A9E;
+  /* Darker on hover — purposeful feedback */
+  --gix-blue-light: #E8F1FC;
+  /* Blue tint fills — backgrounds, badge bg */
+  --gix-cyan: #0277BD;
+  --gix-green: #1A6B34;
+  /* Deep green — HSEQ, safety indicators */
+  --gix-green-light: #E6F4EC;
+  /* Green tint fills */
 
-  /* Section alternation — clear visual rhythm, never same-as-same */
-  --section-odd:    #F4F7FA;      /* Page base */
-  --section-even:   #FFFFFF;      /* White sections feel elevated vs. base */
-  --section-accent: #EBF4FF;      /* Subtle blue tint for key sections */
+  /* ── Section alternation — clear 3-tier rhythm ── */
+  --section-1: #F8F9FB;
+  /* Page base — lightest */
+  --section-2: #FFFFFF;
+  /* Card sections — white pops above base */
+  --section-3: #EDF3FC;
+  /* Accent — subtle blue wash for key sections */
+  --section-odd: #F8F9FB;
+  /* Utility aliases */
+  --section-even: #FFFFFF;
+  --section-accent: #EDF3FC;
 
-  /* Shadows — defined depth, premium feel */
-  --shadow-sm:  0 1px 2px rgba(11,21,35,0.06), 0 1px 4px rgba(11,21,35,0.04);
-  --shadow-md:  0 4px 16px rgba(11,21,35,0.10), 0 2px 6px rgba(11,21,35,0.06);
-  --shadow-lg:  0 12px 40px rgba(11,21,35,0.14), 0 4px 12px rgba(11,21,35,0.06);
-  --shadow-glow: 0 0 0 2px rgba(0,102,204,0.15), 0 4px 20px rgba(0,102,204,0.18);
+  /* ── Shadows — multi-layer for real depth ──
+     Rule: shadows should be barely perceptible individually,
+     powerful collectively. Never single flat box-shadow. */
+  --shadow-xs: 0 1px 2px rgba(13, 17, 23, 0.05);
+  --shadow-sm: 0 1px 2px rgba(13, 17, 23, 0.04),
+    0 2px 6px rgba(13, 17, 23, 0.06);
+  --shadow-md: 0 2px 4px rgba(13, 17, 23, 0.04),
+    0 6px 20px rgba(13, 17, 23, 0.08),
+    0 1px 0px rgba(13, 17, 23, 0.04);
+  --shadow-lg: 0 4px 8px rgba(13, 17, 23, 0.05),
+    0 16px 48px rgba(13, 17, 23, 0.12),
+    0 2px 0px rgba(13, 17, 23, 0.04);
+  --shadow-xl: 0 8px 16px rgba(13, 17, 23, 0.06),
+    0 24px 64px rgba(13, 17, 23, 0.16);
+  --shadow-glow: 0 0 0 3px rgba(0, 87, 184, 0.12),
+    0 4px 20px rgba(0, 87, 184, 0.16);
+  --shadow-card: 0 1px 3px rgba(13, 17, 23, 0.06),
+    0 4px 16px rgba(13, 17, 23, 0.08);
+  --shadow-card-hover: 0 2px 4px rgba(13, 17, 23, 0.06),
+    0 8px 32px rgba(13, 17, 23, 0.12),
+    0 0 0 1px rgba(0, 87, 184, 0.08);
 
-  --gradient-connectivity:  linear-gradient(135deg, #0066CC, #0284C7);
-  --gradient-telecom-power: linear-gradient(135deg, #0066CC, #15803D);
-  --gradient-metallic:      linear-gradient(135deg, #94A3B8, #475569);
+  /* ── Gradients ── */
+  --gradient-connectivity: linear-gradient(135deg, #0057B8, #0277BD);
+  --gradient-telecom-power: linear-gradient(135deg, #0057B8, #1A6B34);
+  --gradient-metallic: linear-gradient(135deg, #7A8FA6, #4A5C6A);
+  --gradient-hero-overlay: linear-gradient(to bottom, rgba(13, 17, 23, 0.72), rgba(13, 17, 23, 0.52));
+  --gradient-section-fade: linear-gradient(to bottom, #F8F9FB, #FFFFFF);
 
-  /* Nav glassmorphism — light mode */
-  --nav-glass-bg:     rgba(244,247,250,0.88);
-  --nav-glass-border: rgba(203,213,225,0.7);
+  /* ── Nav glassmorphism — light mode (unused by always-dark nav) ── */
+  --nav-glass-bg: rgba(248, 249, 251, 0.92);
+  --nav-glass-border: rgba(200, 213, 232, 0.8);
 
-  /* MD card and dark-featured cards */
-  --card-featured-bg: linear-gradient(135deg, #EDF1F7, #E2E8F0);
-  --card-featured-text: #0B1523;
+  /* ── Featured card — MD/leadership card ── */
+  --card-featured-bg: linear-gradient(145deg, #F0F4F9, #E6EDF6);
+  --card-featured-text: #0D1117;
+
+  /* ── Interactive states ── */
+  --focus-ring: 0 0 0 3px rgba(0, 87, 184, 0.18);
+  --hover-overlay: rgba(0, 87, 184, 0.05);
+  --active-overlay: rgba(0, 87, 184, 0.09);
+
+  /* ── Tag / badge chips ── */
+  --chip-bg: #E8F1FC;
+  --chip-text: #0057B8;
+  --chip-border: #C0D4F0;
 }
 
-/* Dark theme */
+/* Dark theme — kept as optional toggle */
 .dark {
-  --background:        #07111C;
-  --background-alt:    #0B1726;
-  --surface:           #0B1726;
-  --surface-elevated:  #111C27;   /* Elevated panels in dark mode */
-  --soft-surface:      #172331;
-  --border:            #1E2D40;
-  --border-subtle:     #172331;
-  --foreground:        #F1F5F9;
-  --foreground-muted:  #94A3B8;
+  --background: #07111C;
+  --background-alt: #0B1726;
+  --surface: #0B1726;
+  --surface-elevated: #111C27;
+  --soft-surface: #172331;
+  --border: #1E2D40;
+  --border-subtle: #172331;
+  --border-strong: #2A3F55;
+  --foreground: #F1F5F9;
+  --foreground-muted: #94A3B8;
   --foreground-subtle: #64748B;
-  --gix-blue:  #3FABFF;
-  --gix-cyan:  #38BDF8;
+  --foreground-faint: #475569;
+  --gix-blue: #3FABFF;
+  --gix-blue-hover: #5CB8FF;
+  --gix-blue-light: #0B1F2E;
+  --gix-cyan: #38BDF8;
   --gix-green: #4ADE80;
-  --section-odd:  #07111C;
+  --gix-green-light: #0B1F14;
+  --section-1: #07111C;
+  --section-2: #0B1726;
+  --section-3: #0B1F2E;
+  --section-odd: #07111C;
   --section-even: #0B1726;
   --section-accent: #0B1F2E;
-  --shadow-sm:  0 1px 3px rgba(0,0,0,0.3);
-  --shadow-md:  0 4px 12px rgba(0,0,0,0.4);
-  --shadow-lg:  0 12px 32px rgba(0,0,0,0.5);
-  --shadow-glow: 0 0 0 1px rgba(63,171,255,0.15), 0 4px 16px rgba(63,171,255,0.12);
-
-  /* Nav glassmorphism — dark mode */
-  --nav-glass-bg:     rgba(7,17,28,0.88);
-  --nav-glass-border: rgba(30,45,64,0.8);
-
-  /* MD card and dark-featured cards */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.6);
+  --shadow-glow: 0 0 0 1px rgba(63, 171, 255, 0.15), 0 4px 16px rgba(63, 171, 255, 0.12);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(63, 171, 255, 0.10);
+  --gradient-connectivity: linear-gradient(135deg, #3FABFF, #38BDF8);
+  --gradient-telecom-power: linear-gradient(135deg, #3FABFF, #4ADE80);
+  --gradient-metallic: linear-gradient(135deg, #475569, #334155);
+  --gradient-hero-overlay: linear-gradient(to bottom, rgba(7, 17, 28, 0.85), rgba(7, 17, 28, 0.6));
+  --gradient-section-fade: linear-gradient(to bottom, #07111C, #0B1726);
+  --nav-glass-bg: rgba(7, 17, 28, 0.88);
+  --nav-glass-border: rgba(30, 45, 64, 0.8);
   --card-featured-bg: linear-gradient(135deg, #0B1726, #172331);
   --card-featured-text: #F1F5F9;
+  --focus-ring: 0 0 0 3px rgba(63, 171, 255, 0.2);
+  --hover-overlay: rgba(63, 171, 255, 0.06);
+  --active-overlay: rgba(63, 171, 255, 0.10);
+  --chip-bg: #0B1F2E;
+  --chip-text: #3FABFF;
+  --chip-border: #1E2D40;
 }
 
 @layer base {
-  *, *::before, *::after { box-sizing: border-box; }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
 
   html {
     /* Native scroll — never override browser scroll behavior.
        Apple, Linear, Vercel all use native scroll. The browser's
        own momentum/inertia is the gold standard. §51 */
-    scroll-behavior: smooth;          /* only for anchor clicks */
+    scroll-behavior: smooth;
+    /* only for anchor clicks */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    scroll-padding-top: 72px;         /* offset for sticky nav */
-    -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+    scroll-padding-top: 72px;
+    /* offset for sticky nav */
+    -webkit-overflow-scrolling: touch;
+    /* iOS momentum scrolling */
   }
 
   body {
@@ -169,20 +265,31 @@
 
   /* Reflow at 400% zoom — ensure all containers collapse properly */
   @media (max-width: 360px) {
-    .max-w-7xl, .max-w-5xl, .max-w-3xl, .max-w-xl, .max-w-lg {
+
+    .max-w-7xl,
+    .max-w-5xl,
+    .max-w-3xl,
+    .max-w-xl,
+    .max-w-lg {
       max-width: 100%;
       padding-left: 16px;
       padding-right: 16px;
     }
+
     /* Prevent any fixed-width element from causing horizontal scroll */
     * {
       max-width: 100vw;
     }
+
     /* Tables reflow */
-    table { display: block; overflow-x: auto; }
+    table {
+      display: block;
+      overflow-x: auto;
+    }
   }
 
-  :lang(am), .font-ethiopic {
+  :lang(am),
+  .font-ethiopic {
     font-family: "Noto Sans Ethiopic", Ethiopic, serif;
     line-height: 1.8;
   }
@@ -195,18 +302,21 @@
     font-weight: 700;
     letter-spacing: -0.02em;
   }
+
   h2 {
     font-size: clamp(22px, 3.5vw, 36px);
     line-height: 1.22;
     font-weight: 700;
     letter-spacing: -0.015em;
   }
+
   h3 {
     font-size: clamp(18px, 2.8vw, 26px);
     line-height: 1.3;
     font-weight: 600;
     letter-spacing: -0.01em;
   }
+
   h4 {
     font-size: clamp(16px, 2.2vw, 20px);
     line-height: 1.4;
@@ -214,37 +324,60 @@
   }
 
   /* Apple-style focus — subtle ring, only for keyboard nav */
-  :focus { outline: none; }
+  :focus {
+    outline: none;
+  }
+
   :focus-visible {
     outline: 2px solid var(--gix-blue);
     outline-offset: 3px;
     border-radius: 6px;
-    box-shadow: 0 0 0 4px rgba(0,128,240,0.10);
+    box-shadow: 0 0 0 4px rgba(0, 128, 240, 0.10);
     transition: outline-offset 0.15s ease;
   }
+
   nav a:focus-visible,
   header a:focus-visible,
   header button:focus-visible {
     outline: 1.5px solid var(--gix-blue);
     outline-offset: 4px;
     border-radius: 6px;
-    box-shadow: 0 0 0 3px rgba(0,128,240,0.10);
+    box-shadow: 0 0 0 3px rgba(0, 128, 240, 0.10);
   }
 
-  img, svg { max-width: 100%; height: auto; }
-  button, [role="button"] { min-height: 44px; min-width: 44px; }
+  img,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  button,
+  [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 
   .skip-link {
-    position: absolute; top: -40px; left: 0;
-    background: var(--gix-blue); color: #fff;
-    padding: 8px 16px; text-decoration: none;
-    z-index: 9999; border-radius: 0 0 6px 0;
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--gix-blue);
+    color: #fff;
+    padding: 8px 16px;
+    text-decoration: none;
+    z-index: 9999;
+    border-radius: 0 0 6px 0;
     transition: top 0.2s ease;
   }
-  .skip-link:focus { top: 0; }
+
+  .skip-link:focus {
+    top: 0;
+  }
 
   /* All interactive elements: smooth transitions */
-  a, button, [role="button"] {
+  a,
+  button,
+  [role="button"] {
     transition:
       color 0.18s ease,
       background-color 0.18s ease,
@@ -255,12 +388,18 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-    html { scroll-behavior: auto; }
+
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
@@ -269,49 +408,79 @@
   .section-top-divide {
     position: relative;
   }
+
   .section-top-divide::before {
     content: '';
     position: absolute;
-    top: 0; left: 50%;
+    top: 0;
+    left: 50%;
     transform: translateX(-50%);
     width: 90%;
     max-width: 1100px;
     height: 1px;
     /* Border-subtle for dark (low contrast), border for light (visible) */
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--border) 20%,
-      var(--border) 80%,
-      transparent 100%
-    );
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--border) 20%,
+        var(--border) 80%,
+        transparent 100%);
     opacity: 0.7;
   }
 
-  /* Alternating section backgrounds */
-  .bg-section-odd    { background-color: var(--section-odd); }
-  .bg-section-even   { background-color: var(--section-even); }
-  .bg-section-accent { background-color: var(--section-accent); }
+  /* Alternating section backgrounds — 3-tier system */
+  .bg-section-odd {
+    background-color: var(--section-odd);
+  }
 
-  /* Card styles — elevation system */
+  .bg-section-even {
+    background-color: var(--section-even);
+  }
+
+  .bg-section-accent {
+    background-color: var(--section-accent);
+  }
+
+  .bg-section-1 {
+    background-color: var(--section-1);
+  }
+
+  .bg-section-2 {
+    background-color: var(--section-2);
+  }
+
+  .bg-section-3 {
+    background-color: var(--section-3);
+  }
+
+  /* Card styles — multi-layer shadow elevation system */
   .gix-card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 12px;
-    box-shadow: var(--shadow-sm);
+    box-shadow: var(--shadow-card);
     padding: clamp(20px, 3vw, 32px);
-    transitionProperty: box-shadow, border-color, transform;
-    transitionDuration: 250ms;
-    transitionTimingFunction: cubic-bezier(0.16, 1, 0.3, 1);
+    transition:
+      box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 250ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .gix-card:hover {
-    box-shadow: var(--shadow-md);
-    border-color: var(--gix-blue);
-    border-color: rgba(0,102,204,0.3);
+    box-shadow: var(--shadow-card-hover);
     transform: translateY(-2px);
   }
+
   .gix-card-glow:hover {
     box-shadow: var(--shadow-glow);
+  }
+
+  /* Stat card — hero, features sections */
+  .gix-stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    padding: 24px;
   }
 
   /* Responsive section padding — more space on larger screens */
@@ -319,6 +488,7 @@
     padding-top: clamp(64px, 8vw, 128px);
     padding-bottom: clamp(64px, 8vw, 128px);
   }
+
   .section-pad-sm {
     padding-top: clamp(48px, 6vw, 96px);
     padding-bottom: clamp(48px, 6vw, 96px);
@@ -342,25 +512,54 @@
       opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   }
+
   .reveal.visible {
     opacity: 1;
     transform: translateY(0);
   }
+
   /* Stagger delays */
-  .delay-1 { transition-delay: 0.05s; }
-  .delay-2 { transition-delay: 0.12s; }
-  .delay-3 { transition-delay: 0.19s; }
-  .delay-4 { transition-delay: 0.26s; }
-  .delay-5 { transition-delay: 0.33s; }
-  .delay-6 { transition-delay: 0.40s; }
+  .delay-1 {
+    transition-delay: 0.05s;
+  }
+
+  .delay-2 {
+    transition-delay: 0.12s;
+  }
+
+  .delay-3 {
+    transition-delay: 0.19s;
+  }
+
+  .delay-4 {
+    transition-delay: 0.26s;
+  }
+
+  .delay-5 {
+    transition-delay: 0.33s;
+  }
+
+  .delay-6 {
+    transition-delay: 0.40s;
+  }
 
   /* Pulse dot — subtle live indicator */
   .pulse-dot {
     animation: pulse-dot 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
+
   @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.45; transform: scale(0.8); }
+
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.45;
+      transform: scale(0.8);
+    }
   }
 
   /* Underline link — Apple style */
@@ -372,19 +571,35 @@
     background-repeat: no-repeat;
     transition: background-size 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .link-line:hover { background-size: 100% 1.5px; }
+
+  .link-line:hover {
+    background-size: 100% 1.5px;
+  }
 }
 
 /* Scrollbar — clean, minimal */
 @supports selector(::-webkit-scrollbar) {
-  ::-webkit-scrollbar { width: 5px; height: 5px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--foreground-subtle); }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground-subtle);
+  }
 }
 
 /* Selection */
 ::selection {
-  background: rgba(0,128,240,0.15);
+  background: rgba(0, 128, 240, 0.15);
   color: var(--foreground);
 }

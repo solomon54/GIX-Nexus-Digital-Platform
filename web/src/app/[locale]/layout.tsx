@@ -76,7 +76,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="theme-color" content="#07111C" />
+        <meta name="theme-color" content="#F8F9FB" />
         {/* Register service worker — only in production to avoid dev caching issues */}
         <script dangerouslySetInnerHTML={{ __html: `
           if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
@@ -91,8 +91,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem
+            defaultTheme="light"
             disableTransitionOnChange
           >
             <div className="flex min-h-screen flex-col" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>

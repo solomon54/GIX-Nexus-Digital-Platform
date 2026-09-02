@@ -124,20 +124,38 @@ function HomePage({
       <section className="py-28 section-top-divide bg-section-odd" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">What We Do</p>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>What We Do</p>
             <h2 id="services-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('servicesTitle')}</h2>
             <p className="mt-3 max-w-2xl mx-auto" style={{ color: 'var(--foreground-subtle)' }}>{t('servicesSubtitle')}</p>
           </div>
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES_DATA.map((service) => {
               const capabilities = tServices.raw(`groups.${service.nameKey}.capabilities`) as string[]
               return (
                 <Link key={service.slug} href={`/${locale}/services/${service.slug}`}
-                  className="group rounded-xl overflow-hidden border transition-all hover:border-[#008CFF]/40 hover:shadow-lg hover:shadow-[#008CFF]/8 focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2"
-                  style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+                  className="group rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2"
+                  style={{
+                    background: 'var(--surface)',
+                    border: '1px solid var(--border)',
+                    boxShadow: 'var(--shadow-card)',
+                    transition: 'box-shadow 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1), border-color 250ms',
+                  }}
+                  onMouseEnter={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.boxShadow = 'var(--shadow-card-hover)'
+                    el.style.transform = 'translateY(-3px)'
+                    el.style.borderColor = 'var(--gix-blue)'
+                  }}
+                  onMouseLeave={(e) => {
+                    const el = e.currentTarget as HTMLElement
+                    el.style.boxShadow = 'var(--shadow-card)'
+                    el.style.transform = 'translateY(0)'
+                    el.style.borderColor = 'var(--border)'
+                  }}
+                >
                   <div className="relative h-52 overflow-hidden">
                     <Image src={service.image} alt={service.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.7) 0%, transparent 60%)' }} />
+                    <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.65) 0%, transparent 55%)' }} />
                   </div>
                   <div className="p-6">
                     <h3 className="font-semibold text-base" style={{ color: 'var(--foreground)' }}>{tServices(`groups.${service.nameKey}.name`)}</h3>
@@ -145,18 +163,35 @@ function HomePage({
                     <ul className="mt-3 space-y-1">
                       {capabilities.slice(0, 2).map((cap, i) => (
                         <li key={i} className="flex items-start gap-2 text-xs" style={{ color: 'var(--foreground-subtle)' }}>
-                          <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full bg-[#008CFF]" />{cap}
+                          <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full" style={{ background: 'var(--gix-blue)' }} />{cap}
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-4 text-xs font-semibold text-[#008CFF] group-hover:text-[#12C8FF] transition-colors">Learn more →</div>
+                    <div className="mt-4 text-xs font-semibold transition-colors" style={{ color: 'var(--gix-blue)' }}>Learn more →</div>
                   </div>
                 </Link>
               )
             })}
           </div>
           <div className="mt-10 text-center">
-            <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg border border-[#008CFF] px-8 py-2.5 text-sm font-semibold text-[#008CFF] hover:bg-[#008CFF] hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2">
+            <Link
+              href={`/${locale}/services`}
+              className="inline-flex min-h-[44px] items-center rounded-lg px-8 py-2.5 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2"
+              style={{
+                border: '1.5px solid var(--gix-blue)',
+                color: 'var(--gix-blue)',
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.background = 'var(--gix-blue)'
+                el.style.color = '#FFFFFF'
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.background = 'transparent'
+                el.style.color = 'var(--gix-blue)'
+              }}
+            >
               View All Services →
             </Link>
           </div>
@@ -164,12 +199,11 @@ function HomePage({
       </section>
 
       {/* ── Why Partner with Us ──────────────────────────────────── */}
-      {/* Compact — no MD photo (that lives on Company page) */}
       {/* Source: Company Profile PDF, Page 9 */}
       <section className="py-24 section-top-divide bg-section-even" aria-labelledby="features-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Why Partner with Us</p>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>Why Partner with Us</p>
             <h2 id="features-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('featureTitle')}</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>{t('featureSubtitle')}</p>
           </div>
@@ -177,27 +211,34 @@ function HomePage({
             {([
               {
                 key: 'qualifiedTeam',
-                // Qualified team — people/users icon
                 icon: <><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></>,
               },
               {
                 key: 'reliableDelivery',
-                // Reliable delivery — shield with checkmark
                 icon: <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></>,
               },
               {
                 key: 'safetyCommitment',
-                // Safety commitment — hard hat / safety gear
                 icon: <><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a2 2 0 0 1 4 0v5"/><path d="M4 15v-3a8 8 0 0 1 16 0v3"/></>,
               },
               {
                 key: 'ethiopianOwned',
-                // Ethiopian-owned — flag/map pin
                 icon: <><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></>,
               },
             ] as const).map(({ key, icon }) => (
-              <div key={key} className="rounded-xl border p-6" style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-lg mb-4" style={{ background: 'rgba(0,140,255,0.10)', color: '#008CFF' }}>
+              <div
+                key={key}
+                className="rounded-xl p-6 transition-all duration-250"
+                style={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  boxShadow: 'var(--shadow-card)',
+                }}
+              >
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-lg mb-4"
+                  style={{ background: 'var(--gix-blue-light)', color: 'var(--gix-blue)' }}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
                     {icon}
                   </svg>
@@ -208,7 +249,21 @@ function HomePage({
             ))}
           </div>
           <div className="mt-10 text-center">
-            <Link href={`/${locale}/company`} className="inline-flex min-h-[44px] items-center rounded-lg border px-6 py-2.5 text-sm font-medium transition-colors hover:bg-[#008CFF]/8" style={{ borderColor: 'var(--border)', color: 'var(--foreground)' }}>
+            <Link
+              href={`/${locale}/company`}
+              className="inline-flex min-h-[44px] items-center rounded-lg border px-6 py-2.5 text-sm font-medium transition-all"
+              style={{ borderColor: 'var(--border)', color: 'var(--foreground-muted)' }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'var(--gix-blue)'
+                el.style.color = 'var(--gix-blue)'
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = 'var(--border)'
+                el.style.color = 'var(--foreground-muted)'
+              }}
+            >
               About GIX Nexus →
             </Link>
           </div>
@@ -216,19 +271,17 @@ function HomePage({
       </section>
 
       {/* ── News & Announcements ─────────────────────────────────── */}
-      {/* Dynamic — fetched from Payload CMS news collection */}
       <section className="py-24 section-top-divide bg-section-odd" aria-labelledby="news-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Latest</p>
+              <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>Latest</p>
               <h2 id="news-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>News & Announcements</h2>
             </div>
-
           </div>
 
           {news.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {news.map((item) => {
                 const coverUrl = item.coverImage && typeof item.coverImage === 'object'
                   ? (item.coverImage as Media).url ?? null
@@ -238,25 +291,46 @@ function HomePage({
                   : ''
                 const categoryLabel = NEWS_CATEGORY_LABELS[item.category ?? ''] ?? 'News'
                 return (
-                  <article key={item.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[#008CFF]/40 hover:shadow-md" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+                  <article
+                    key={item.id}
+                    className="rounded-xl overflow-hidden group"
+                    style={{
+                      background: 'var(--surface)',
+                      border: '1px solid var(--border)',
+                      boxShadow: 'var(--shadow-card)',
+                      transition: 'box-shadow 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms',
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.boxShadow = 'var(--shadow-card-hover)'
+                      el.style.transform = 'translateY(-2px)'
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLElement
+                      el.style.boxShadow = 'var(--shadow-card)'
+                      el.style.transform = 'translateY(0)'
+                    }}
+                  >
                     {coverUrl && (
                       <div className="relative h-44 overflow-hidden">
                         <Image src={coverUrl} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
-                        <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.6) 0%, transparent 60%)' }} />
                       </div>
                     )}
                     <div className="p-6">
-                      <div className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-4" style={{ background: 'rgba(0,140,255,0.08)', color: '#008CFF' }}>
+                      <div
+                        className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-3"
+                        style={{ background: 'var(--chip-bg)', color: 'var(--chip-text)', border: '1px solid var(--chip-border)' }}
+                      >
                         {categoryLabel}
                       </div>
-                      <h3 className="font-semibold text-base leading-snug mb-3 group-hover:text-[#008CFF] transition-colors" style={{ color: 'var(--foreground)' }}>
+                      <h3 className="font-semibold text-base leading-snug mb-3 transition-colors" style={{ color: 'var(--foreground)' }}>
                         {item.title}
                       </h3>
                       {item.excerpt && (
                         <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-subtle)' }}>{item.excerpt}</p>
                       )}
-                      <div className="mt-4 flex items-center justify-between">
-                        <span className="text-xs" style={{ color: 'var(--foreground-subtle)' }}>{dateLabel}</span>
+                      <div className="mt-4">
+                        <span className="text-xs" style={{ color: 'var(--foreground-faint)' }}>{dateLabel}</span>
                       </div>
                     </div>
                   </article>
@@ -264,47 +338,51 @@ function HomePage({
               })}
             </div>
           ) : (
-            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
+            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">📰</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>News & announcements coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
-                Published news will appear here. Add articles via the admin panel.
-              </p>
+              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>Published news will appear here. Add articles via the admin panel.</p>
             </div>
           )}
         </div>
       </section>
 
       {/* ── Projects & Experience ─────────────────────────────────── */}
-      {/* Dynamic — fetched from Payload CMS projects collection */}
       <section className="py-24 section-top-divide bg-section-even" aria-labelledby="projects-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Our Work</p>
+              <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>Our Work</p>
               <h2 id="projects-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Projects & Experience</h2>
               <p className="mt-2 text-sm" style={{ color: 'var(--foreground-subtle)' }}>
-                {/* Source: Company Profile PDF, Page 9 — "Reliable Project Delivery" */}
                 Delivering telecommunications and power engineering projects across Ethiopia with careful planning, efficient execution, and quality standards.
               </p>
             </div>
             {projects.length > 0 && (
-              <Link href={`/${locale}/projects`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium text-[#008CFF] hover:text-[#12C8FF] transition-colors flex-shrink-0">
+              <Link href={`/${locale}/projects`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium flex-shrink-0 transition-colors" style={{ color: 'var(--gix-blue)' }}>
                 All Projects →
               </Link>
             )}
           </div>
 
           {projects.length > 0 ? (
-            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => {
                 const coverUrl = project.coverImage && typeof project.coverImage === 'object'
                   ? (project.coverImage as Media).url ?? null
                   : null
                 const categoryLabel = PROJECT_CATEGORY_LABELS[project.serviceCategory] ?? project.serviceCategory
                 return (
-                  <div key={project.id} className="rounded-xl border overflow-hidden group" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-                    <div className="relative h-48 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0B1726, #172331)' }}>
+                  <div
+                    key={project.id}
+                    className="rounded-xl overflow-hidden group"
+                    style={{
+                      background: 'var(--surface)',
+                      border: '1px solid var(--border)',
+                      boxShadow: 'var(--shadow-card)',
+                    }}
+                  >
+                    <div className="relative h-48 overflow-hidden" style={{ background: 'var(--soft-surface)' }}>
                       {coverUrl ? (
                         <Image src={coverUrl} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                       ) : (
@@ -312,15 +390,17 @@ function HomePage({
                           <span className="text-4xl opacity-20">🏗</span>
                         </div>
                       )}
-                      <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.75) 0%, transparent 55%)' }} />
                       <div className="absolute bottom-3 left-4">
-                        <span className="text-xs font-medium text-[#008CFF] bg-[#07111C]/70 rounded-full px-2.5 py-0.5">{categoryLabel}</span>
+                        <span
+                          className="text-xs font-medium rounded-full px-2.5 py-0.5"
+                          style={{ background: 'var(--chip-bg)', color: 'var(--chip-text)' }}
+                        >{categoryLabel}</span>
                       </div>
                     </div>
                     <div className="p-5 sm:p-6">
                       <h3 className="font-semibold text-sm mb-1" style={{ color: 'var(--foreground)' }}>{project.title}</h3>
                       {project.location && (
-                        <p className="text-xs mb-2 flex items-center gap-1" style={{ color: '#008CFF' }}>
+                        <p className="text-xs mb-2 flex items-center gap-1" style={{ color: 'var(--gix-blue)' }}>
                           <span>📍</span>{project.location}
                         </p>
                       )}
@@ -333,12 +413,10 @@ function HomePage({
               })}
             </div>
           ) : (
-            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
+            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">🏗</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Projects coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
-                Completed and ongoing project showcases will appear here. Add projects via the admin panel.
-              </p>
+              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>Completed and ongoing project showcases will appear here. Add projects via the admin panel.</p>
             </div>
           )}
         </div>
@@ -385,7 +463,7 @@ function HomePage({
       <section className="py-24 section-top-divide bg-section-odd" aria-labelledby="testimonials-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">What They Say</p>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>What They Say</p>
             <h2 id="testimonials-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Testimonials</h2>
             <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>
               Feedback from the organisations and partners we have worked with across Ethiopia.
@@ -401,27 +479,24 @@ function HomePage({
                 return (
                   <figure
                     key={t.id}
-                    className="rounded-xl border p-6 flex flex-col gap-4"
-                    style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
+                    className="rounded-xl p-6 flex flex-col gap-4"
+                    style={{
+                      background: 'var(--surface)',
+                      border: '1px solid var(--border)',
+                      boxShadow: 'var(--shadow-card)',
+                    }}
                   >
-                    {/* Quote mark */}
-                    <span className="text-3xl leading-none text-[#008CFF] select-none" aria-hidden="true">&ldquo;</span>
+                    <span className="text-3xl leading-none select-none" style={{ color: 'var(--gix-blue)' }} aria-hidden="true">&ldquo;</span>
                     <blockquote className="flex-1 text-sm leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>
                       {t.quote}
                     </blockquote>
-                    <figcaption className="flex items-center gap-3 pt-2 border-t" style={{ borderColor: 'var(--border)' }}>
+                    <figcaption className="flex items-center gap-3 pt-3" style={{ borderTop: '1px solid var(--border-subtle)' }}>
                       {avatarUrl ? (
-                        <Image
-                          src={avatarUrl}
-                          alt={t.authorName}
-                          width={40}
-                          height={40}
-                          className="rounded-full object-cover flex-shrink-0"
-                        />
+                        <Image src={avatarUrl} alt={t.authorName} width={40} height={40} className="rounded-full object-cover flex-shrink-0" />
                       ) : (
                         <div
-                          className="h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold text-white"
-                          style={{ background: 'rgba(0,140,255,0.2)', color: '#008CFF' }}
+                          className="h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
+                          style={{ background: 'var(--gix-blue-light)', color: 'var(--gix-blue)' }}
                           aria-hidden="true"
                         >
                           {t.authorName.charAt(0).toUpperCase()}
@@ -441,8 +516,7 @@ function HomePage({
               })}
             </div>
           ) : (
-            /* Empty state — shown until admin adds real testimonials */
-            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border)' }}>
+            <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">💬</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Testimonials coming soon</p>
               <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
