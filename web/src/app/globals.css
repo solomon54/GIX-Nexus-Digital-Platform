@@ -151,6 +151,10 @@
   --border-subtle: #E8EEF5;
   --gix-blue: #0052CC;
   --gix-blue-light: #E8F0FF;
+  --gix-green: #0D7A3E;
+  --gix-green-light: #E6F4ED;
+  /* Soft surface — slightly tinted bg for inner card regions */
+  --soft-surface: #F5F8FC;
 
   /* ── Gradients ── */
   --gradient-brand: linear-gradient(135deg, #0A2540 0%, #0D3260 100%);
