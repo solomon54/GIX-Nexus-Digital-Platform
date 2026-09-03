@@ -23,10 +23,7 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   // serverURL tells Payload where the app is hosted.
-  // Hardcoded to production URL so admin always works regardless of env var state.
-  serverURL: process.env.NODE_ENV === 'development'
-    ? (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000')
-    : 'https://gix-nexus-digitalplatform.vercel.app',
+  serverURL: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
 
   admin: {
     user: Users.slug,
@@ -70,20 +67,13 @@ export default buildConfig({
   editor: lexicalEditor(),
 
   plugins: [
-    // Vercel Blob storage — replaces local disk storage for uploaded media.
-    // IMPORTANT: Always registered (never conditional) so Payload's Next.js webpack
-    // plugin always includes VercelBlobClientUploadHandler in the auto-generated
-    // importMap.js during `next build`. If conditional, the importMap is generated
-    // without the handler at build time, causing a blank/broken admin at runtime.
-    //
-    // A placeholder token is used as fallback so the Vercel Blob SDK doesn't crash
-    // during initialization when BLOB_READ_WRITE_TOKEN is not set. The placeholder
-    // is never used for real storage — when enabled:false, the SDK is never called.
+    // Media storage: uses Vercel Blob when BLOB_READ_WRITE_TOKEN is set (Vercel/cloud),
+    // falls back to local disk (web/media/) when not set (Dokploy / self-hosted).
+    // For Dokploy: do NOT set BLOB_READ_WRITE_TOKEN — mount a persistent volume to
+    // the media directory so uploads survive container redeploys.
     vercelBlobStorage({
       enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
-      collections: {
-        media: true,
-      },
+      collections: { media: true },
       token: process.env.BLOB_READ_WRITE_TOKEN
         ?? 'vercel_blob_rw_placeholder00000000_fakefakefakefakefakefakefakefake',
     }),

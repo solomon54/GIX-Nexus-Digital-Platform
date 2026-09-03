@@ -1,22 +1,34 @@
 # Deploying GIX Nexus Digital Platform on Dokploy
 
+## Summary: What needs to change for Dokploy
+
+| Service | Action |
+|---|---|
+| **Supabase (PostgreSQL)** | **Keep as-is** — just use the same DATABASE_URL. Dokploy hosts the app, not the DB. |
+| **Vercel Blob (media storage)** | **Drop it** — don't set BLOB_READ_WRITE_TOKEN. Payload falls back to local disk automatically. Mount a persistent volume so uploads survive redeploys. |
+| **Vercel (app hosting)** | **Replace with Dokploy** — this is what you're deploying. |
+
+---
+
 ## Required Environment Variables
 
-Set these in Dokploy → your app → **Environment Variables** before first deploy.
+Set in Dokploy → your app → **Environment Variables**.
 
-| Variable | Example | Notes |
+| Variable | Example value | Required |
 |---|---|---|
-| `DATABASE_URL` | `postgresql://user:pass@host:6543/postgres?sslmode=require` | Supabase pooler URL (port 6543) — **required** |
-| `PAYLOAD_SECRET` | `a-long-random-string-min-32-chars` | Used to sign JWTs. Generate with: `openssl rand -base64 32` |
-| `NEXT_PUBLIC_APP_URL` | `https://gixnexus.yourdomain.com` | Your public domain — **no trailing slash** |
-| `NODE_OPTIONS` | `--import ./css-noop-loader.mjs` | Required for Payload + Next.js 15 CSS loading fix |
+| `DATABASE_URL` | `postgresql://user:pass@aws-0-eu-central-1.pooler.supabase.com:6543/postgres?sslmode=require` | ✅ |
+| `PAYLOAD_SECRET` | `generate with: openssl rand -base64 32` | ✅ |
+| `NEXT_PUBLIC_APP_URL` | `https://gixnexus.yourdomain.com` | ✅ |
+| `NODE_OPTIONS` | `--import ./css-noop-loader.mjs` | ✅ |
 
-### Optional (leave blank if not using)
+**Do NOT set** `BLOB_READ_WRITE_TOKEN` — leaving it unset tells Payload to use local disk for media uploads.
+
+### Optional
 
 | Variable | Notes |
 |---|---|
-| `VERCEL_BLOB_READ_WRITE_TOKEN` | Only needed if using Vercel Blob for media storage |
-| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Google Analytics 4 measurement ID (e.g. `G-XXXXXXXXXX`) |
+| `RESEND_API_KEY` | Email notifications for service inquiries (optional) |
+| `RESEND_FROM_ADDRESS` | e.g. `noreply@yourdomain.com` |
 
 ---
 
@@ -26,38 +38,64 @@ Set these in Dokploy → your app → **Environment Variables** before first dep
 |---|---|
 | **Root Directory** | `web` |
 | **Build Command** | `npm run build` |
-| **Start Command** | `npm run start` |
-| **Node Version** | 18+ (set in `.nvmrc`) |
+| **Start Command** | `npm start` |
+| **Node Version** | 18 or 20 |
+
+---
+
+## Persistent Volume (critical for media uploads)
+
+Without a persistent volume, every redeploy wipes uploaded images.
+
+In Dokploy, add a volume mount:
+
+| Host path | Container path |
+|---|---|
+| `/dokploy-data/gix-nexus/media` | `/app/media` |
+
+> The exact container path depends on your working directory. If Dokploy sets it to `/app/web`, then use `/app/web/media`.
+> Check by running `pwd` in the container after first deploy.
 
 ---
 
 ## First Deploy Checklist
 
-1. Set all required env vars above
-2. Make sure `DATABASE_URL` points to your production Supabase project (not a paused one)
-3. After first deploy, Payload will auto-migrate the DB schema on startup
-4. Go to `https://yourdomain.com/admin` and create your first admin user
-5. Publish your domain in Dokploy and set the same value as `NEXT_PUBLIC_APP_URL`
+1. Set the 4 required env vars above
+2. Add the persistent volume mount
+3. Deploy — Payload auto-migrates the DB schema on first startup
+4. Visit `https://yourdomain.com/admin` and create your admin user
+5. Upload the company logo and test an image upload — confirm it saves correctly
 
 ---
 
-## SEO — After Deploy
+## Migrating existing media from Vercel Blob (if needed)
 
-Once live, submit to search engines:
+If you already uploaded files to Vercel Blob and want them on Dokploy:
 
-1. **Google Search Console** — verify site, submit `https://yourdomain.com/sitemap.xml`
-2. **Bing Webmaster Tools** — same sitemap URL
-3. **Google Business Profile** — add `gixnexustelecom@gmail.com` as the business contact and link to the website
+1. Go to Supabase → Table Editor → `media` table
+2. Note the `filename` and `url` columns for each uploaded file
+3. Download each file from its Vercel Blob URL
+4. Copy the files into the persistent volume at the same `filename`
 
-### Verify structured data is working
-
-Go to: https://search.google.com/test/rich-results  
-Enter your live URL — should show Organization and ProfessionalService schemas with no errors.
+This is only needed if you have real content uploaded. For a fresh launch, skip this.
 
 ---
 
-## Notes
+## After Deploy — SEO
 
-- `web/media/` is gitignored (Payload upload storage). In production, uploaded files are stored locally on the Dokploy server. If you want persistent media across deploys, configure Payload to use an S3-compatible storage (e.g. Supabase Storage, Cloudflare R2, or AWS S3) — see `payload.config.ts`.
-- The `.env.local` file is for local dev only. Never commit it.
-- `PAYLOAD_SECRET` must be the same across restarts — if you change it, all admin sessions are invalidated.
+1. Submit `https://yourdomain.com/sitemap.xml` to Google Search Console
+2. Test structured data: https://search.google.com/test/rich-results
+3. Add your domain to Google Business Profile and link it to the website
+
+---
+
+## Why keep Supabase?
+
+Supabase free tier gives you:
+- Managed PostgreSQL with automatic backups
+- Pooled connections via pgBouncer (port 6543)
+- No maintenance overhead
+
+Self-hosting Postgres on Dokploy means you're responsible for backups, uptime, and disk space. There's no practical benefit for a site at this scale.
+
+If you later want everything on one server, you can add a Postgres service in Dokploy and migrate with `pg_dump` / `pg_restore` — but that's optional and can be done months after launch.
