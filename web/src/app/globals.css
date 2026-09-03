@@ -1,9 +1,13 @@
 /**
  * GIX Nexus Digital Platform — Global Styles
  * Tailwind CSS v4 (CSS-first configuration)
- * Design direction: GIX NEXUS — MASTER PRODUCT & DESIGN DIRECTION
- * Rule §50: "Engineered, not decorated."
- * Rule §51: "Motion shall guide attention, not demand attention."
+ * Design direction: Professional Telecom & Engineering — Ethiopia
+ *
+ * Color philosophy:
+ *   Primary: Deep Navy #0A2540 — trust, authority, precision (Stripe, Cisco)
+ *   Accent:  Signal Blue #0066FF — connectivity, technology
+ *   Warm:    Steel White #F9FAFB base — clean, not harsh
+ *   No dark mode — single focused light theme
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
@@ -12,40 +16,35 @@
 @theme {
   --font-sans: "Noto Sans", ui-sans-serif, system-ui, sans-serif;
   --font-ethiopic: "Noto Sans Ethiopic", Ethiopic, serif;
-  --color-gix-blue: #008CFF;
-  --color-gix-cyan: #12C8FF;
-  --color-gix-green: #65D51A;
-  --color-midnight: #07111C;
-  --color-deep-navy: #0B1726;
-  --color-graphite: #111C27;
-  --color-elevated: #172331;
-  --color-canvas: #FAFBFC;
-  --color-surface: #FFFFFF;
-  --color-soft-surface: #F1F5F9;
-  --color-border-light: #E2E8F0;
-  --color-success: #16A34A;
-  --color-warning: #D99A00;
-  --color-danger: #D83A3A;
-  --color-info: #1687D9;
+
+  /* Brand palette */
+  --color-navy: #0A2540;
+  --color-navy-mid: #0D3260;
+  --color-navy-deep: #071A2E;
+  --color-signal: #0066FF;
+  --color-signal-lt: #E8F0FF;
+  --color-steel: #4A6080;
+  --color-green: #0D7A3E;
+  --color-green-lt: #E6F4ED;
+  --color-amber: #B45309;
+  --color-amber-lt: #FEF3C7;
+
+  /* Neutral palette */
+  --color-white: #FFFFFF;
+  --color-base: #F9FAFB;
+  --color-mist: #F1F5F9;
+  --color-slate-100: #E2E8F0;
+  --color-slate-300: #CBD5E1;
+  --color-slate-500: #64748B;
+  --color-slate-700: #334155;
+  --color-ink: #0D1B2A;
+
   --radius-sm: 4px;
-  --radius-DEFAULT: 8px;
+  --radius: 8px;
   --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-expressive: 24px;
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 12px;
-  --spacing-4: 16px;
-  --spacing-5: 20px;
-  --spacing-6: 24px;
-  --spacing-8: 32px;
-  --spacing-10: 40px;
-  --spacing-12: 48px;
-  --spacing-16: 64px;
-  --spacing-20: 80px;
-  --spacing-24: 96px;
-  --spacing-30: 120px;
-  --spacing-40: 160px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
   --container-max: 1280px;
   --breakpoint-sm: 640px;
   --breakpoint-md: 768px;
@@ -53,178 +52,120 @@
   --breakpoint-xl: 1280px;
 }
 
-/* ── Light theme — precision depth system ────────────────────────
-   Philosophy: engineered clarity, not decorative brightness.
-   Inspired by: Linear, Stripe, Apple, Vercel in light mode.
-
-   The problem with generic light themes:
-   — Pure #FFFFFF backgrounds wash out — no depth hierarchy
-   — Borders that are too light become invisible
-   — Text that isn't dark enough loses authority
-   — Cards that don't shadow look like flat rectangles
-
-   This system fixes all four:
-   — Base: #F8F9FB (cool blue-tinged near-white, Apple-style)
-   — Cards: pure #FFFFFF with real multi-layer shadows — they float
-   — Borders: #C8D5E8 — visible in all conditions
-   — Text: #0D1117 near-black (GitHub precision) for maximum authority
-   — Sections: 3-tier alternation with clear luminance steps
-   — Brand: saturated #0057B8 — navy-leaning blue reads strong on light
-─────────────────────────────────────────────────────────────── */
+/* ════════════════════════════════════════════════════════════════
+   SINGLE LIGHT THEME — no dark mode
+   Professional telecom service company: authority + clarity
+   ════════════════════════════════════════════════════════════════ */
 :root {
-  /* ── Base surfaces ── */
-  --background: #F8F9FB;
-  /* Cool blue-tinted near-white — Apple/Linear base */
-  --background-alt: #F0F4F9;
-  /* Slightly deeper — clear step below base */
+  /* ── Surfaces ── */
+  --background: #F9FAFB;
+  /* Warm near-white — base layer */
   --surface: #FFFFFF;
-  /* Cards, modals — true white floats above base */
-  --surface-elevated: #FFFFFF;
-  /* Same — shadows create the elevation */
-  --soft-surface: #E6EDF6;
-  /* Active states, code blocks, hover fills */
+  /* Cards, panels — white elevation */
+  --surface-raised: #FFFFFF;
+  /* Same — differentiated by shadow */
+  --surface-sunken: #F1F5F9;
+  /* Input bg, code blocks */
+  --surface-navy: #0A2540;
+  /* Dark feature panels — hero overlay bg */
 
-  /* ── Borders — defined, never ghostly ── */
-  --border: #C8D5E8;
-  /* Perceptible in all lighting, not heavy */
-  --border-subtle: #DCE5F0;
-  /* Internal dividers only */
-  --border-strong: #A8BCCF;
-  /* Focus rings, active outlines */
+  /* ── Borders ── */
+  --border: #D1DCE8;
+  /* Standard — clear in daylight */
+  --border-subtle: #E8EEF5;
+  /* Dividers inside cards */
+  --border-strong: #9FB3C8;
+  /* Emphasis borders */
 
-  /* ── Text — maximum authority hierarchy ── */
-  --foreground: #0D1117;
-  /* Near-black, GitHub-grade — zero ambiguity */
-  --foreground-muted: #2D3A4A;
-  /* Secondary — clearly legible, not gray soup */
-  --foreground-subtle: #566676;
-  /* Tertiary — captions, hints, labels */
-  --foreground-faint: #8899AA;
-  /* Disabled, placeholder */
+  /* ── Typography ── */
+  --foreground: #0D1B2A;
+  /* Ink — maximum legibility */
+  --foreground-muted: #2E4A6A;
+  /* Secondary — dark blue-gray */
+  --foreground-sub: #4A6480;
+  /* Tertiary — labels, captions */
+  --foreground-faint: #8099B0;
+  /* Placeholder, disabled */
+  --on-navy: #FFFFFF;
+  /* Text on navy backgrounds */
+  --on-navy-sub: rgba(255, 255, 255, 0.72);
 
-  /* ── Brand — saturated for light backgrounds ── */
-  --gix-blue: #0057B8;
-  /* Navy-leaning — high contrast ratio on light */
-  --gix-blue-hover: #004A9E;
-  /* Darker on hover — purposeful feedback */
-  --gix-blue-light: #E8F1FC;
-  /* Blue tint fills — backgrounds, badge bg */
-  --gix-cyan: #0277BD;
-  --gix-green: #1A6B34;
-  /* Deep green — HSEQ, safety indicators */
-  --gix-green-light: #E6F4EC;
-  /* Green tint fills */
+  /* ── Brand ── */
+  --brand: #0A2540;
+  /* Primary navy — headings, logo area */
+  --accent: #0052CC;
+  /* Signal blue — CTAs, links, highlights */
+  --accent-hover: #003E99;
+  /* Darker on hover */
+  --accent-light: #E8F0FF;
+  /* Blue tint backgrounds */
+  --accent-mid: #4A90E2;
+  /* Mid blue for icons, tags */
+  --green: #0D7A3E;
+  /* Success, HSEQ, safety */
+  --green-light: #E6F4ED;
+  --amber: #B45309;
+  /* Warning accent — secondary brand */
+  --amber-light: #FEF3C7;
 
-  /* ── Section alternation — clear 3-tier rhythm ── */
-  --section-1: #F8F9FB;
-  /* Page base — lightest */
+  /* ── Section rhythm ── */
+  --section-1: #F9FAFB;
+  /* Base — page default */
   --section-2: #FFFFFF;
-  /* Card sections — white pops above base */
-  --section-3: #EDF3FC;
-  /* Accent — subtle blue wash for key sections */
-  --section-odd: #F8F9FB;
-  /* Utility aliases */
+  /* Elevated white — card-dense sections */
+  --section-3: #EEF4FB;
+  /* Blue tint — key feature sections */
+  --section-4: #0A2540;
+  /* Navy — HSEQ, CTA panels */
+  --section-odd: #F9FAFB;
   --section-even: #FFFFFF;
-  --section-accent: #EDF3FC;
+  --section-accent: #EEF4FB;
 
-  /* ── Shadows — multi-layer for real depth ──
-     Rule: shadows should be barely perceptible individually,
-     powerful collectively. Never single flat box-shadow. */
-  --shadow-xs: 0 1px 2px rgba(13, 17, 23, 0.05);
-  --shadow-sm: 0 1px 2px rgba(13, 17, 23, 0.04),
-    0 2px 6px rgba(13, 17, 23, 0.06);
-  --shadow-md: 0 2px 4px rgba(13, 17, 23, 0.04),
-    0 6px 20px rgba(13, 17, 23, 0.08),
-    0 1px 0px rgba(13, 17, 23, 0.04);
-  --shadow-lg: 0 4px 8px rgba(13, 17, 23, 0.05),
-    0 16px 48px rgba(13, 17, 23, 0.12),
-    0 2px 0px rgba(13, 17, 23, 0.04);
-  --shadow-xl: 0 8px 16px rgba(13, 17, 23, 0.06),
-    0 24px 64px rgba(13, 17, 23, 0.16);
-  --shadow-glow: 0 0 0 3px rgba(0, 87, 184, 0.12),
-    0 4px 20px rgba(0, 87, 184, 0.16);
-  --shadow-card: 0 1px 3px rgba(13, 17, 23, 0.06),
-    0 4px 16px rgba(13, 17, 23, 0.08);
-  --shadow-card-hover: 0 2px 4px rgba(13, 17, 23, 0.06),
-    0 8px 32px rgba(13, 17, 23, 0.12),
-    0 0 0 1px rgba(0, 87, 184, 0.08);
+  /* ── Shadows — multi-layer, realistic depth ── */
+  --shadow-xs: 0 1px 2px rgba(10, 37, 64, 0.04);
+  --shadow-sm: 0 1px 3px rgba(10, 37, 64, 0.05),
+    0 1px 8px rgba(10, 37, 64, 0.06);
+  --shadow-md: 0 2px 6px rgba(10, 37, 64, 0.06),
+    0 8px 24px rgba(10, 37, 64, 0.09);
+  --shadow-lg: 0 4px 12px rgba(10, 37, 64, 0.07),
+    0 20px 56px rgba(10, 37, 64, 0.13);
+  --shadow-xl: 0 8px 20px rgba(10, 37, 64, 0.08),
+    0 32px 72px rgba(10, 37, 64, 0.16);
+  --shadow-card: 0 1px 2px rgba(10, 37, 64, 0.05),
+    0 3px 12px rgba(10, 37, 64, 0.07);
+  --shadow-card-hover: 0 2px 6px rgba(10, 37, 64, 0.07),
+    0 10px 32px rgba(10, 37, 64, 0.11),
+    0 0 0 1px rgba(0, 82, 204, 0.07);
+  --shadow-glow: 0 0 0 3px rgba(0, 82, 204, 0.15),
+    0 4px 24px rgba(0, 82, 204, 0.18);
+  --shadow-navy: 0 4px 16px rgba(7, 26, 46, 0.30);
+
+  /* ── Chip / badge ── */
+  --chip-bg: #E8F0FF;
+  --chip-text: #0052CC;
+  --chip-border: #C0D4F8;
+
+  /* ── Aliases for backward compat ── */
+  --foreground-muted: #2E4A6A;
+  --foreground-subtle: #4A6480;
+  --border-subtle: #E8EEF5;
+  --gix-blue: #0052CC;
+  --gix-blue-light: #E8F0FF;
 
   /* ── Gradients ── */
-  --gradient-connectivity: linear-gradient(135deg, #0057B8, #0277BD);
-  --gradient-telecom-power: linear-gradient(135deg, #0057B8, #1A6B34);
-  --gradient-metallic: linear-gradient(135deg, #7A8FA6, #4A5C6A);
-  --gradient-hero-overlay: linear-gradient(to bottom, rgba(13, 17, 23, 0.72), rgba(13, 17, 23, 0.52));
-  --gradient-section-fade: linear-gradient(to bottom, #F8F9FB, #FFFFFF);
+  --gradient-brand: linear-gradient(135deg, #0A2540 0%, #0D3260 100%);
+  --gradient-accent: linear-gradient(135deg, #0052CC 0%, #0066FF 100%);
+  --gradient-hero: linear-gradient(to bottom,
+      rgba(7, 26, 46, 0.55) 0%,
+      rgba(7, 26, 46, 0.30) 60%,
+      rgba(7, 26, 46, 0.15) 100%);
+  --gradient-divider: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
 
-  /* ── Nav glassmorphism — light mode (unused by always-dark nav) ── */
-  --nav-glass-bg: rgba(248, 249, 251, 0.92);
-  --nav-glass-border: rgba(200, 213, 232, 0.8);
-
-  /* ── Featured card — MD/leadership card ── */
-  --card-featured-bg: linear-gradient(145deg, #F0F4F9, #E6EDF6);
-  --card-featured-text: #0D1117;
-
-  /* ── Interactive states ── */
-  --focus-ring: 0 0 0 3px rgba(0, 87, 184, 0.18);
-  --hover-overlay: rgba(0, 87, 184, 0.05);
-  --active-overlay: rgba(0, 87, 184, 0.09);
-
-  /* ── Tag / badge chips ── */
-  --chip-bg: #E8F1FC;
-  --chip-text: #0057B8;
-  --chip-border: #C0D4F0;
+  /* ── Focus ring ── */
+  --focus-ring: 0 0 0 3px rgba(0, 82, 204, 0.20);
 }
 
-/* Dark theme — kept as optional toggle */
-.dark {
-  --background: #07111C;
-  --background-alt: #0B1726;
-  --surface: #0B1726;
-  --surface-elevated: #111C27;
-  --soft-surface: #172331;
-  --border: #1E2D40;
-  --border-subtle: #172331;
-  --border-strong: #2A3F55;
-  --foreground: #F1F5F9;
-  --foreground-muted: #94A3B8;
-  --foreground-subtle: #64748B;
-  --foreground-faint: #475569;
-  --gix-blue: #3FABFF;
-  --gix-blue-hover: #5CB8FF;
-  --gix-blue-light: #0B1F2E;
-  --gix-cyan: #38BDF8;
-  --gix-green: #4ADE80;
-  --gix-green-light: #0B1F14;
-  --section-1: #07111C;
-  --section-2: #0B1726;
-  --section-3: #0B1F2E;
-  --section-odd: #07111C;
-  --section-even: #0B1726;
-  --section-accent: #0B1F2E;
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 2px 6px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
-  --shadow-xl: 0 20px 48px rgba(0, 0, 0, 0.6);
-  --shadow-glow: 0 0 0 1px rgba(63, 171, 255, 0.15), 0 4px 16px rgba(63, 171, 255, 0.12);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 0, 0, 0.2);
-  --shadow-card-hover: 0 2px 4px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(63, 171, 255, 0.10);
-  --gradient-connectivity: linear-gradient(135deg, #3FABFF, #38BDF8);
-  --gradient-telecom-power: linear-gradient(135deg, #3FABFF, #4ADE80);
-  --gradient-metallic: linear-gradient(135deg, #475569, #334155);
-  --gradient-hero-overlay: linear-gradient(to bottom, rgba(7, 17, 28, 0.85), rgba(7, 17, 28, 0.6));
-  --gradient-section-fade: linear-gradient(to bottom, #07111C, #0B1726);
-  --nav-glass-bg: rgba(7, 17, 28, 0.88);
-  --nav-glass-border: rgba(30, 45, 64, 0.8);
-  --card-featured-bg: linear-gradient(135deg, #0B1726, #172331);
-  --card-featured-text: #F1F5F9;
-  --focus-ring: 0 0 0 3px rgba(63, 171, 255, 0.2);
-  --hover-overlay: rgba(63, 171, 255, 0.06);
-  --active-overlay: rgba(63, 171, 255, 0.10);
-  --chip-bg: #0B1F2E;
-  --chip-text: #3FABFF;
-  --chip-border: #1E2D40;
-}
+/* ── Remove all dark mode styles — single focused theme ── */
 
 @layer base {
 
@@ -235,17 +176,11 @@
   }
 
   html {
-    /* Native scroll — never override browser scroll behavior.
-       Apple, Linear, Vercel all use native scroll. The browser's
-       own momentum/inertia is the gold standard. §51 */
     scroll-behavior: smooth;
-    /* only for anchor clicks */
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: 72px;
-    /* offset for sticky nav */
     -webkit-overflow-scrolling: touch;
-    /* iOS momentum scrolling */
   }
 
   body {
@@ -258,12 +193,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
-    /* WCAG 1.4.10 Reflow — content must work at 320px wide (400% zoom at 1280px) */
     word-break: break-word;
     overflow-wrap: break-word;
   }
 
-  /* Reflow at 400% zoom — ensure all containers collapse properly */
   @media (max-width: 360px) {
 
     .max-w-7xl,
@@ -276,12 +209,10 @@
       padding-right: 16px;
     }
 
-    /* Prevent any fixed-width element from causing horizontal scroll */
     * {
       max-width: 100vw;
     }
 
-    /* Tables reflow */
     table {
       display: block;
       overflow-x: auto;
@@ -294,20 +225,20 @@
     line-height: 1.8;
   }
 
-  /* Typography — §19: clamp(min-mobile, fluid-vw, max-desktop)
-     Small screen = min, large screen = max. Content scales proportionally. */
   h1 {
-    font-size: clamp(28px, 4.5vw, 44px);
-    line-height: 1.15;
+    font-size: clamp(28px, 4.5vw, 48px);
+    line-height: 1.12;
     font-weight: 700;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    color: var(--foreground);
   }
 
   h2 {
-    font-size: clamp(22px, 3.5vw, 36px);
-    line-height: 1.22;
+    font-size: clamp(22px, 3.5vw, 38px);
+    line-height: 1.2;
     font-weight: 700;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.018em;
+    color: var(--foreground);
   }
 
   h3 {
@@ -315,34 +246,25 @@
     line-height: 1.3;
     font-weight: 600;
     letter-spacing: -0.01em;
+    color: var(--foreground);
   }
 
   h4 {
     font-size: clamp(16px, 2.2vw, 20px);
     line-height: 1.4;
     font-weight: 600;
+    color: var(--foreground);
   }
 
-  /* Apple-style focus — subtle ring, only for keyboard nav */
   :focus {
     outline: none;
   }
 
   :focus-visible {
-    outline: 2px solid var(--gix-blue);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 6px;
-    box-shadow: 0 0 0 4px rgba(0, 128, 240, 0.10);
-    transition: outline-offset 0.15s ease;
-  }
-
-  nav a:focus-visible,
-  header a:focus-visible,
-  header button:focus-visible {
-    outline: 1.5px solid var(--gix-blue);
-    outline-offset: 4px;
-    border-radius: 6px;
-    box-shadow: 0 0 0 3px rgba(0, 128, 240, 0.10);
+    box-shadow: var(--focus-ring);
   }
 
   img,
@@ -361,7 +283,7 @@
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--gix-blue);
+    background: var(--accent);
     color: #fff;
     padding: 8px 16px;
     text-decoration: none;
@@ -374,7 +296,6 @@
     top: 0;
   }
 
-  /* All interactive elements: smooth transitions */
   a,
   button,
   [role="button"] {
@@ -403,41 +324,23 @@
   }
 }
 
-/* Section separator utility — elegant gradient line */
 @layer utilities {
-  .section-top-divide {
-    position: relative;
-  }
 
-  .section-top-divide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    max-width: 1100px;
-    height: 1px;
-    /* Border-subtle for dark (low contrast), border for light (visible) */
-    background: linear-gradient(90deg,
-        transparent 0%,
-        var(--border) 20%,
-        var(--border) 80%,
-        transparent 100%);
-    opacity: 0.7;
-  }
-
-  /* Alternating section backgrounds — 3-tier system */
+  /* Section backgrounds */
   .bg-section-odd {
-    background-color: var(--section-odd);
+    background-color: var(--section-1);
   }
 
   .bg-section-even {
-    background-color: var(--section-even);
+    background-color: var(--section-2);
   }
 
   .bg-section-accent {
-    background-color: var(--section-accent);
+    background-color: var(--section-3);
+  }
+
+  .bg-section-navy {
+    background-color: var(--section-4);
   }
 
   .bg-section-1 {
@@ -452,7 +355,25 @@
     background-color: var(--section-3);
   }
 
-  /* Card styles — multi-layer shadow elevation system */
+  /* Section divider */
+  .section-top-divide {
+    position: relative;
+  }
+
+  .section-top-divide::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1100px;
+    height: 1px;
+    background: var(--gradient-divider);
+    opacity: 0.6;
+  }
+
+  /* Card — standard floating card */
   .gix-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -461,7 +382,7 @@
     padding: clamp(20px, 3vw, 32px);
     transition:
       box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 250ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 250ms,
       transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
@@ -470,31 +391,18 @@
     transform: translateY(-2px);
   }
 
-  .gix-card-glow:hover {
-    box-shadow: var(--shadow-glow);
-  }
-
-  /* Stat card — hero, features sections */
-  .gix-stat-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    box-shadow: var(--shadow-sm);
-    padding: 24px;
-  }
-
-  /* Responsive section padding — more space on larger screens */
+  /* Section padding */
   .section-pad {
-    padding-top: clamp(64px, 8vw, 128px);
-    padding-bottom: clamp(64px, 8vw, 128px);
+    padding-top: clamp(64px, 8vw, 120px);
+    padding-bottom: clamp(64px, 8vw, 120px);
   }
 
   .section-pad-sm {
-    padding-top: clamp(48px, 6vw, 96px);
-    padding-bottom: clamp(48px, 6vw, 96px);
+    padding-top: clamp(48px, 6vw, 88px);
+    padding-bottom: clamp(48px, 6vw, 88px);
   }
 
-  /* Container — max-width with fluid horizontal padding */
+  /* Container */
   .container-fluid {
     width: 100%;
     max-width: 1280px;
@@ -504,13 +412,13 @@
     padding-right: clamp(16px, 4vw, 48px);
   }
 
-  /* Scroll-reveal animation — §51: subtle, guides attention */
+  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(20px);
     transition:
-      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .reveal.visible {
@@ -518,7 +426,6 @@
     transform: translateY(0);
   }
 
-  /* Stagger delays */
   .delay-1 {
     transition-delay: 0.05s;
   }
@@ -539,11 +446,7 @@
     transition-delay: 0.33s;
   }
 
-  .delay-6 {
-    transition-delay: 0.40s;
-  }
-
-  /* Pulse dot — subtle live indicator */
+  /* Pulse dot */
   .pulse-dot {
     animation: pulse-dot 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
@@ -557,15 +460,15 @@
     }
 
     50% {
-      opacity: 0.45;
+      opacity: 0.4;
       transform: scale(0.8);
     }
   }
 
-  /* Underline link — Apple style */
+  /* Animated underline link */
   .link-line {
     text-decoration: none;
-    background-image: linear-gradient(var(--gix-blue), var(--gix-blue));
+    background-image: linear-gradient(var(--accent), var(--accent));
     background-size: 0 1.5px;
     background-position: 0 100%;
     background-repeat: no-repeat;
@@ -577,7 +480,7 @@
   }
 }
 
-/* Scrollbar — clean, minimal */
+/* Scrollbar */
 @supports selector(::-webkit-scrollbar) {
   ::-webkit-scrollbar {
     width: 5px;
@@ -594,12 +497,12 @@
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--foreground-subtle);
+    background: var(--border-strong);
   }
 }
 
 /* Selection */
 ::selection {
-  background: rgba(0, 128, 240, 0.15);
+  background: rgba(0, 82, 204, 0.12);
   color: var(--foreground);
 }

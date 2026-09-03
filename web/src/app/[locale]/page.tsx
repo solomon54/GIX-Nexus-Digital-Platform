@@ -65,7 +65,7 @@ function HomePage({
 
   return (
     <>
-      {/* ── Scoped CSS hover rules — no JS handlers needed ─────── */}
+      {/* ── Scoped CSS hover rules ─────────────────────────────── */}
       <style>{`
         .svc-card {
           background: var(--surface);
@@ -78,27 +78,26 @@ function HomePage({
         .svc-card:hover {
           box-shadow: var(--shadow-card-hover);
           transform: translateY(-3px);
-          border-color: var(--gix-blue);
+          border-color: var(--accent);
         }
         .news-card {
           background: var(--surface);
           border: 1px solid var(--border);
           box-shadow: var(--shadow-card);
-          transition: box-shadow 250ms cubic-bezier(0.16,1,0.3,1),
-                      transform 250ms;
+          transition: box-shadow 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms;
         }
         .news-card:hover {
           box-shadow: var(--shadow-card-hover);
           transform: translateY(-2px);
         }
         .btn-outline-blue {
-          border: 1.5px solid var(--gix-blue);
-          color: var(--gix-blue);
+          border: 1.5px solid var(--accent);
+          color: var(--accent);
           background: transparent;
           transition: background 200ms, color 200ms;
         }
         .btn-outline-blue:hover {
-          background: var(--gix-blue);
+          background: var(--accent);
           color: #FFFFFF;
         }
         .btn-outline-muted {
@@ -107,57 +106,58 @@ function HomePage({
           transition: border-color 200ms, color 200ms;
         }
         .btn-outline-muted:hover {
-          border-color: var(--gix-blue);
-          color: var(--gix-blue);
+          border-color: var(--accent);
+          color: var(--accent);
         }
       `}</style>
       {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative min-h-[90vh] flex items-center overflow-hidden" aria-labelledby="hero-heading">
+      <section className="relative min-h-[92vh] flex items-center overflow-hidden" aria-labelledby="hero-heading">
         <HeroCarousel />
-        <div className="absolute inset-0 opacity-5 pointer-events-none" style={{ backgroundImage: 'linear-gradient(#008CFF 1px, transparent 1px), linear-gradient(90deg, #008CFF 1px, transparent 1px)', backgroundSize: '60px 60px', zIndex: 4 }} aria-hidden="true" />
+        {/* Lighter overlay — image must be visible, not buried */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-hero)', zIndex: 3 }} aria-hidden="true" />
+        {/* Subtle grid texture */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '80px 80px', zIndex: 4 }} aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 w-full" style={{ zIndex: 5 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#008CFF]/30 bg-[#008CFF]/10 px-4 py-1.5 mb-6">
-                <span className="h-2 w-2 rounded-full bg-[#65D51A] pulse-dot" />
-                <span className="text-sm font-medium text-[#B9C6D3]">{t('heroTagline')}</span>
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 mb-6 backdrop-blur-sm">
+                <span className="h-2 w-2 rounded-full bg-green-400 pulse-dot" />
+                <span className="text-sm font-medium text-white/80">{t('heroTagline')}</span>
               </div>
-              <h1 id="hero-heading" className="font-bold text-white" style={{ fontSize: 'clamp(28px, 4.5vw, 52px)', lineHeight: '1.15' }}>
+              <h1 id="hero-heading" className="font-bold text-white drop-shadow-sm" style={{ fontSize: 'clamp(30px, 4.5vw, 54px)', lineHeight: '1.12', letterSpacing: '-0.025em' }}>
                 {t('heroTitle')}
               </h1>
-              <p className="mt-6 text-[clamp(15px,1.8vw,18px)] text-[#B9C6D3] max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
-              <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6">
+              <p className="mt-5 text-[clamp(15px,1.8vw,18px)] text-white/75 max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
+              <div className="mt-8 grid grid-cols-3 gap-4 max-w-sm">
                 <div className="text-center">
-                  {/* Source: Company Profile PDF, Page 3 — verbatim headline */}
-                  <div className="text-4xl font-bold text-[#008CFF]">7+</div>
-                  <div className="text-xs text-[#708090] mt-1 uppercase tracking-wide">{t('stats.serviceDomainsLabel')}</div>
+                  <div className="text-3xl font-bold text-white">8+</div>
+                  <div className="text-[11px] text-white/55 mt-1 uppercase tracking-wider">{t('stats.serviceDomainsLabel')}</div>
                 </div>
-                <div className="text-center border-x border-white/10">
-                  <div className="text-4xl font-bold text-[#008CFF]">24/7</div>
-                  <div className="text-xs text-[#708090] mt-1 uppercase tracking-wide">{t('stats.supportLabel')}</div>
+                <div className="text-center border-x border-white/15">
+                  <div className="text-3xl font-bold text-white">24/7</div>
+                  <div className="text-[11px] text-white/55 mt-1 uppercase tracking-wider">{t('stats.supportLabel')}</div>
                 </div>
                 <div className="text-center">
-                  {/* Source: Company Profile PDF, Page 3 — policy statement */}
-                  <div className="text-4xl font-bold text-[#65D51A]">100%</div>
-                  <div className="text-xs text-[#708090] mt-1 uppercase tracking-wide">{t('stats.safetyLabel')}</div>
+                  <div className="text-3xl font-bold text-white">100%</div>
+                  <div className="text-[11px] text-white/55 mt-1 uppercase tracking-wider">{t('stats.safetyLabel')}</div>
                 </div>
               </div>
               <div className="mt-8 flex items-center gap-3">
-                <Link href={`/${locale}/services`} className="inline-flex min-h-[36px] items-center rounded-lg bg-[#008CFF] px-4 py-1.5 text-xs sm:text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2 focus:ring-offset-[#07111C] sm:px-6 sm:py-2 sm:min-h-[40px]">
+                <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-all" style={{ background: '#0052CC' }}>
                   {t('ctaServices')}
                 </Link>
-                <Link href={`/${locale}/company`} className="inline-flex min-h-[36px] items-center rounded-lg border border-white/25 px-4 py-1.5 text-xs sm:text-sm font-medium text-white/90 hover:bg-white/8 hover:border-white/40 transition-colors sm:px-6 sm:py-2 sm:min-h-[40px]">
+                <Link href={`/${locale}/company`} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/25 px-6 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/40 transition-colors backdrop-blur-sm">
                   {t('ctaProfile')}
                 </Link>
               </div>
             </div>
             <div className="hidden lg:flex justify-end">
-              <div className="rounded-2xl p-8 border border-white/10 w-full max-w-xs" style={{ background: 'rgba(11,23,38,0.85)', backdropFilter: 'blur(16px)' }}>
-                <Image src="/assets/company-logo.png" alt="GIX Nexus Telecom and Power" width={240} height={120} className="object-contain w-full" priority style={{ filter: 'drop-shadow(0 2px 8px rgba(0,140,255,0.2))' }} />
-                <div className="mt-5 pt-4 border-t border-white/10 space-y-1 text-center">
-                  <p className="text-xs text-[#708090] uppercase tracking-widest">Ethiopian-owned</p>
+              <div className="rounded-2xl p-7 border border-white/12 w-full max-w-xs backdrop-blur-md" style={{ background: 'rgba(10,37,64,0.72)' }}>
+                <Image src="/assets/company-logo.png" alt="GIX Nexus Telecom and Power" width={240} height={120} className="object-contain w-full" priority />
+                <div className="mt-5 pt-4 border-t border-white/10 space-y-1.5 text-center">
+                  <p className="text-xs text-white/45 uppercase tracking-widest">Ethiopian-owned</p>
                   <p className="text-sm font-semibold text-white">Telecom & Power Engineering</p>
-                  <p className="text-sm font-medium text-[#65D51A]">Across Ethiopia</p>
+                  <p className="text-xs text-white/60">SATCOM · Fiber · RF · Network · Power</p>
                 </div>
               </div>
             </div>
@@ -170,9 +170,9 @@ function HomePage({
       <section className="py-28 section-top-divide bg-section-odd" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>What We Do</p>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>What We Do</p>
             <h2 id="services-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('servicesTitle')}</h2>
-            <p className="mt-3 max-w-2xl mx-auto" style={{ color: 'var(--foreground-subtle)' }}>{t('servicesSubtitle')}</p>
+            <p className="mt-3 max-w-2xl mx-auto" style={{ color: 'var(--foreground-sub)' }}>{t('servicesSubtitle')}</p>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES_DATA.map((service) => {
@@ -187,15 +187,15 @@ function HomePage({
                   </div>
                   <div className="p-6">
                     <h3 className="font-semibold text-base" style={{ color: 'var(--foreground)' }}>{tServices(`groups.${service.nameKey}.name`)}</h3>
-                    <p className="mt-2 text-sm line-clamp-2 leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{tServices(`groups.${service.nameKey}.description`)}</p>
+                    <p className="mt-2 text-sm line-clamp-2 leading-relaxed" style={{ color: 'var(--foreground-sub)' }}>{tServices(`groups.${service.nameKey}.description`)}</p>
                     <ul className="mt-3 space-y-1">
                       {capabilities.slice(0, 2).map((cap, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs" style={{ color: 'var(--foreground-subtle)' }}>
-                          <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full" style={{ background: 'var(--gix-blue)' }} />{cap}
+                        <li key={i} className="flex items-start gap-2 text-xs" style={{ color: 'var(--foreground-sub)' }}>
+                          <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full" style={{ background: 'var(--accent)' }} />{cap}
                         </li>
                       ))}
                     </ul>
-                    <div className="mt-4 text-xs font-semibold transition-colors" style={{ color: 'var(--gix-blue)' }}>Learn more →</div>
+                    <div className="mt-4 text-xs font-semibold transition-colors" style={{ color: 'var(--accent)' }}>Learn more →</div>
                   </div>
                 </Link>
               )
@@ -217,9 +217,9 @@ function HomePage({
       <section className="py-24 section-top-divide bg-section-even" aria-labelledby="features-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>Why Partner with Us</p>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>Why Partner with Us</p>
             <h2 id="features-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('featureTitle')}</h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>{t('featureSubtitle')}</p>
+            <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-sub)' }}>{t('featureSubtitle')}</p>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {([
@@ -251,14 +251,14 @@ function HomePage({
               >
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-lg mb-4"
-                  style={{ background: 'var(--gix-blue-light)', color: 'var(--gix-blue)' }}
+                  style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true">
                     {icon}
                   </svg>
                 </div>
                 <h3 className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>{t(`features.${key}.title`)}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{t(`features.${key}.description`)}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-sub)' }}>{t(`features.${key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -278,7 +278,7 @@ function HomePage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>Latest</p>
+              <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>Latest</p>
               <h2 id="news-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>News & Announcements</h2>
             </div>
           </div>
@@ -314,7 +314,7 @@ function HomePage({
                         {item.title}
                       </h3>
                       {item.excerpt && (
-                        <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-subtle)' }}>{item.excerpt}</p>
+                        <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-sub)' }}>{item.excerpt}</p>
                       )}
                       <div className="mt-4">
                         <span className="text-xs" style={{ color: 'var(--foreground-faint)' }}>{dateLabel}</span>
@@ -328,7 +328,7 @@ function HomePage({
             <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">📰</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>News & announcements coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>Published news will appear here. Add articles via the admin panel.</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>Published news will appear here. Add articles via the admin panel.</p>
             </div>
           )}
         </div>
@@ -339,14 +339,14 @@ function HomePage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>Our Work</p>
+              <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>Our Work</p>
               <h2 id="projects-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Projects & Experience</h2>
-              <p className="mt-2 text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+              <p className="mt-2 text-sm" style={{ color: 'var(--foreground-sub)' }}>
                 Delivering telecommunications and power engineering projects across Ethiopia with careful planning, efficient execution, and quality standards.
               </p>
             </div>
             {projects.length > 0 && (
-              <Link href={`/${locale}/projects`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium flex-shrink-0 transition-colors" style={{ color: 'var(--gix-blue)' }}>
+              <Link href={`/${locale}/projects`} className="hidden sm:inline-flex min-h-[44px] items-center text-sm font-medium flex-shrink-0 transition-colors" style={{ color: 'var(--accent)' }}>
                 All Projects →
               </Link>
             )}
@@ -387,12 +387,12 @@ function HomePage({
                     <div className="p-5 sm:p-6">
                       <h3 className="font-semibold text-sm mb-1" style={{ color: 'var(--foreground)' }}>{project.title}</h3>
                       {project.location && (
-                        <p className="text-xs mb-2 flex items-center gap-1" style={{ color: 'var(--gix-blue)' }}>
+                        <p className="text-xs mb-2 flex items-center gap-1" style={{ color: 'var(--accent)' }}>
                           <span>📍</span>{project.location}
                         </p>
                       )}
                       {project.excerpt && (
-                        <p className="text-xs leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-subtle)' }}>{project.excerpt}</p>
+                        <p className="text-xs leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-sub)' }}>{project.excerpt}</p>
                       )}
                     </div>
                   </div>
@@ -403,7 +403,7 @@ function HomePage({
             <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">🏗</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Projects coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>Completed and ongoing project showcases will appear here. Add projects via the admin panel.</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>Completed and ongoing project showcases will appear here. Add projects via the admin panel.</p>
             </div>
           )}
         </div>
@@ -450,9 +450,9 @@ function HomePage({
       <section className="py-24 section-top-divide bg-section-odd" aria-labelledby="testimonials-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--gix-blue)' }}>What They Say</p>
+            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>What They Say</p>
             <h2 id="testimonials-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Testimonials</h2>
-            <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+            <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: 'var(--foreground-sub)' }}>
               Feedback from the organisations and partners we have worked with across Ethiopia.
             </p>
           </div>
@@ -473,7 +473,7 @@ function HomePage({
                       boxShadow: 'var(--shadow-card)',
                     }}
                   >
-                    <span className="text-3xl leading-none select-none" style={{ color: 'var(--gix-blue)' }} aria-hidden="true">&ldquo;</span>
+                    <span className="text-3xl leading-none select-none" style={{ color: 'var(--accent)' }} aria-hidden="true">&ldquo;</span>
                     <blockquote className="flex-1 text-sm leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>
                       {t.quote}
                     </blockquote>
@@ -483,7 +483,7 @@ function HomePage({
                       ) : (
                         <div
                           className="h-10 w-10 rounded-full flex items-center justify-center flex-shrink-0 text-sm font-bold"
-                          style={{ background: 'var(--gix-blue-light)', color: 'var(--gix-blue)' }}
+                          style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
                           aria-hidden="true"
                         >
                           {t.authorName.charAt(0).toUpperCase()}
@@ -492,7 +492,7 @@ function HomePage({
                       <div className="min-w-0">
                         <p className="text-sm font-semibold truncate" style={{ color: 'var(--foreground)' }}>{t.authorName}</p>
                         {(t.authorRole || t.organisation || t.sector) && (
-                          <p className="text-xs truncate" style={{ color: 'var(--foreground-subtle)' }}>
+                          <p className="text-xs truncate" style={{ color: 'var(--foreground-sub)' }}>
                             {[t.authorRole, t.organisation ?? t.sector].filter(Boolean).join(' · ')}
                           </p>
                         )}
@@ -506,7 +506,7 @@ function HomePage({
             <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">💬</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Testimonials coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
+              <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>
                 Client and partner testimonials will appear here once published via the admin panel.
               </p>
             </div>

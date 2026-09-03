@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { NextIntlClientProvider } from 'next-intl'
 import { getMessages } from 'next-intl/server'
-import { ThemeProvider } from 'next-themes'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { PwaInstallPrompt } from '@/components/ui/PwaInstallPrompt'
@@ -26,12 +25,12 @@ export async function generateMetadata({
   const { locale } = await params
 
   const titles: Record<string, string> = {
-    en: 'GIX Nexus Telecom and Power — Telecommunications & Power Engineering',
-    am: 'GIX Nexus Telecom and Power — የቴሌኮሙኒኬሽን እና የኃይል ምህንድስና',
+    en: 'GIX Nexus Telecom and Power — Telecommunications & Engineering Solutions',
+    am: 'GIX Nexus Telecom and Power — የቴሌኮሙኒኬሽን እና የምህንድስና መፍትሄዎች',
   }
   const descriptions: Record<string, string> = {
-    en: 'Ethiopian-owned telecommunications and power engineering company. Delivering reliable, innovative, and cost-effective infrastructure solutions across Ethiopia.',
-    am: 'ኢትዮጵያዊ ባለቤትነት ያለው የቴሌኮሙኒኬሽን እና የኃይል ምህንድስና ኩባንያ። በመላው ኢትዮጵያ አስተማማኝ፣ ፈጠራ-ተኮር እና ወጪ-ቆጣቢ የመሠረተ ልማት መፍትሄዎችን ያቀርባል።',
+    en: 'Ethiopian-owned telecommunications and power engineering company. Professional SATCOM, fiber optic, RF, network infrastructure, and telecom power solutions across Ethiopia.',
+    am: 'ኢትዮጵያዊ ባለቤትነት ያለው የቴሌኮሙኒኬሽን እና የኃይል ምህንድስና ኩባንያ። ሳትኮም፣ ፋይበር ኦፕቲክ፣ አር ኤፍ፣ የኔትወርክ መሠረተ ልማት እና የቴሌኮሙኒኬሽን ኃይል መፍትሄዎችን ያቀርባል።',
   }
 
   return {
@@ -41,12 +40,7 @@ export async function generateMetadata({
     },
     description: descriptions[locale] ?? descriptions.en,
     metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
-    alternates: {
-      languages: {
-        en: '/en',
-        am: '/am',
-      },
-    },
+    alternates: { languages: { en: '/en', am: '/am' } },
     icons: {
       icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
@@ -68,16 +62,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const messages = await getMessages()
 
   return (
-    <html
-      lang={locale}
-      dir="ltr"
-      suppressHydrationWarning
-    >
+    <html lang={locale} dir="ltr">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="theme-color" content="#F8F9FB" />
-        {/* Register service worker — only in production to avoid dev caching issues */}
+        <meta name="theme-color" content="#F9FAFB" />
         <script dangerouslySetInnerHTML={{ __html: `
           if ('serviceWorker' in navigator && location.hostname !== 'localhost') {
             window.addEventListener('load', function() {
@@ -87,22 +76,16 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           }
         ` }} />
       </head>
-      <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`} suppressHydrationWarning>
+      <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`}>
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            disableTransitionOnChange
-          >
-            <div className="flex min-h-screen flex-col" style={{ background: 'var(--background)', color: 'var(--foreground)' }}>
-              <Navigation locale={locale} />
-              <main id="main-content" className="flex-1">
-                {children}
-              </main>
-              <Footer locale={locale} />
-              <PwaInstallPrompt />
-            </div>
-          </ThemeProvider>
+          <div className="flex min-h-screen flex-col">
+            <Navigation locale={locale} />
+            <main id="main-content" className="flex-1">
+              {children}
+            </main>
+            <Footer locale={locale} />
+            <PwaInstallPrompt />
+          </div>
         </NextIntlClientProvider>
       </body>
     </html>
