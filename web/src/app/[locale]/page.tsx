@@ -65,6 +65,52 @@ function HomePage({
 
   return (
     <>
+      {/* ── Scoped CSS hover rules — no JS handlers needed ─────── */}
+      <style>{`
+        .svc-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow-card);
+          transition: box-shadow 250ms cubic-bezier(0.16,1,0.3,1),
+                      transform 250ms cubic-bezier(0.16,1,0.3,1),
+                      border-color 250ms;
+        }
+        .svc-card:hover {
+          box-shadow: var(--shadow-card-hover);
+          transform: translateY(-3px);
+          border-color: var(--gix-blue);
+        }
+        .news-card {
+          background: var(--surface);
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow-card);
+          transition: box-shadow 250ms cubic-bezier(0.16,1,0.3,1),
+                      transform 250ms;
+        }
+        .news-card:hover {
+          box-shadow: var(--shadow-card-hover);
+          transform: translateY(-2px);
+        }
+        .btn-outline-blue {
+          border: 1.5px solid var(--gix-blue);
+          color: var(--gix-blue);
+          background: transparent;
+          transition: background 200ms, color 200ms;
+        }
+        .btn-outline-blue:hover {
+          background: var(--gix-blue);
+          color: #FFFFFF;
+        }
+        .btn-outline-muted {
+          border: 1px solid var(--border);
+          color: var(--foreground-muted);
+          transition: border-color 200ms, color 200ms;
+        }
+        .btn-outline-muted:hover {
+          border-color: var(--gix-blue);
+          color: var(--gix-blue);
+        }
+      `}</style>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden" aria-labelledby="hero-heading">
         <HeroCarousel />
@@ -133,25 +179,7 @@ function HomePage({
               const capabilities = tServices.raw(`groups.${service.nameKey}.capabilities`) as string[]
               return (
                 <Link key={service.slug} href={`/${locale}/services/${service.slug}`}
-                  className="group rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2"
-                  style={{
-                    background: 'var(--surface)',
-                    border: '1px solid var(--border)',
-                    boxShadow: 'var(--shadow-card)',
-                    transition: 'box-shadow 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms cubic-bezier(0.16,1,0.3,1), border-color 250ms',
-                  }}
-                  onMouseEnter={(e) => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.boxShadow = 'var(--shadow-card-hover)'
-                    el.style.transform = 'translateY(-3px)'
-                    el.style.borderColor = 'var(--gix-blue)'
-                  }}
-                  onMouseLeave={(e) => {
-                    const el = e.currentTarget as HTMLElement
-                    el.style.boxShadow = 'var(--shadow-card)'
-                    el.style.transform = 'translateY(0)'
-                    el.style.borderColor = 'var(--border)'
-                  }}
+                  className="svc-card group rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2"
                 >
                   <div className="relative h-52 overflow-hidden">
                     <Image src={service.image} alt={service.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -176,21 +204,7 @@ function HomePage({
           <div className="mt-10 text-center">
             <Link
               href={`/${locale}/services`}
-              className="inline-flex min-h-[44px] items-center rounded-lg px-8 py-2.5 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2"
-              style={{
-                border: '1.5px solid var(--gix-blue)',
-                color: 'var(--gix-blue)',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.background = 'var(--gix-blue)'
-                el.style.color = '#FFFFFF'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.background = 'transparent'
-                el.style.color = 'var(--gix-blue)'
-              }}
+              className="btn-outline-blue inline-flex min-h-[44px] items-center rounded-lg px-8 py-2.5 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-offset-2"
             >
               View All Services →
             </Link>
@@ -251,18 +265,7 @@ function HomePage({
           <div className="mt-10 text-center">
             <Link
               href={`/${locale}/company`}
-              className="inline-flex min-h-[44px] items-center rounded-lg border px-6 py-2.5 text-sm font-medium transition-all"
-              style={{ borderColor: 'var(--border)', color: 'var(--foreground-muted)' }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'var(--gix-blue)'
-                el.style.color = 'var(--gix-blue)'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget as HTMLElement
-                el.style.borderColor = 'var(--border)'
-                el.style.color = 'var(--foreground-muted)'
-              }}
+              className="btn-outline-muted inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-medium"
             >
               About GIX Nexus →
             </Link>
@@ -293,23 +296,7 @@ function HomePage({
                 return (
                   <article
                     key={item.id}
-                    className="rounded-xl overflow-hidden group"
-                    style={{
-                      background: 'var(--surface)',
-                      border: '1px solid var(--border)',
-                      boxShadow: 'var(--shadow-card)',
-                      transition: 'box-shadow 250ms cubic-bezier(0.16,1,0.3,1), transform 250ms',
-                    }}
-                    onMouseEnter={(e) => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.boxShadow = 'var(--shadow-card-hover)'
-                      el.style.transform = 'translateY(-2px)'
-                    }}
-                    onMouseLeave={(e) => {
-                      const el = e.currentTarget as HTMLElement
-                      el.style.boxShadow = 'var(--shadow-card)'
-                      el.style.transform = 'translateY(0)'
-                    }}
+                    className="news-card rounded-xl overflow-hidden group"
                   >
                     {coverUrl && (
                       <div className="relative h-44 overflow-hidden">
