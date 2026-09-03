@@ -2,12 +2,28 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'hseq' })
-  return { title: t('pageTitle'), description: t('policyText') }
+  const title = t('pageTitle')
+  const description = 'GIX Nexus HSEQ Policy — Health, Safety, Environment & Quality. Zero Accident Objective and 100% safety-first approach on every telecom and power engineering project across Ethiopia.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/hseq`,
+      languages: { en: `${BASE_URL}/en/hseq`, am: `${BASE_URL}/am/hseq` },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/hseq`,
+    },
+  }
 }
 
 export default async function Page({ params }: Props) {

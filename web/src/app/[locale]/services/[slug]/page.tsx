@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { SERVICE_SLUGS } from '@/lib/constants'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 type ServiceSlug = (typeof SERVICE_SLUGS)[number]
 
 interface ServiceDetailPageProps {
@@ -45,9 +47,23 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
   const nameKey = SLUG_TO_KEY[slug as ServiceSlug]
   if (!nameKey) return { title: 'Service Not Found' }
   const t = await getTranslations({ locale, namespace: 'services' })
+  const name = t(`groups.${nameKey}.name`)
+  const description = `${t(`groups.${nameKey}.description`)} GIX Nexus Telecom and Power — GVF-certified telecommunications and engineering company operating across Ethiopia.`
   return {
-    title: t(`groups.${nameKey}.name`),
-    description: t(`groups.${nameKey}.description`),
+    title: name,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/services/${slug}`,
+      languages: {
+        en: `${BASE_URL}/en/services/${slug}`,
+        am: `${BASE_URL}/am/services/${slug}`,
+      },
+    },
+    openGraph: {
+      title: `${name} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/services/${slug}`,
+    },
   }
 }
 

@@ -4,12 +4,28 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'services' })
-  return { title: t('pageTitle'), description: t('pageDescription') }
+  const title = t('pageTitle')
+  const description = 'GIX Nexus services: Telecommunications Infrastructure, Fiber Optic, Satellite & Wireless Communications, RF Engineering, Network Infrastructure, Telecom Power Systems, SMATV/MATV, and Maintenance & Technical Support across Ethiopia.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/services`,
+      languages: { en: `${BASE_URL}/en/services`, am: `${BASE_URL}/am/services` },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/services`,
+    },
+  }
 }
 
 const SERVICES = [

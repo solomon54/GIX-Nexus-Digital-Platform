@@ -17,6 +17,8 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 export async function generateMetadata({
   params,
 }: {
@@ -25,12 +27,12 @@ export async function generateMetadata({
   const { locale } = await params
 
   const titles: Record<string, string> = {
-    en: 'GIX Nexus Telecom and Power — Telecommunications & Engineering Solutions',
-    am: 'GIX Nexus Telecom and Power — የቴሌኮሙኒኬሽን እና የምህንድስና መፍትሄዎች',
+    en: 'GIX Nexus Telecom and Power — Reliable Telecommunications & Engineering Solutions',
+    am: 'GIX Nexus Telecom and Power — አስተማማኝ የቴሌኮሙኒኬሽን እና የምህንድስና መፍትሄዎች',
   }
   const descriptions: Record<string, string> = {
-    en: 'Ethiopian-owned telecommunications and power engineering company. Professional SATCOM, fiber optic, RF, network infrastructure, and telecom power solutions across Ethiopia.',
-    am: 'ኢትዮጵያዊ ባለቤትነት ያለው የቴሌኮሙኒኬሽን እና የኃይል ምህንድስና ኩባንያ። ሳትኮም፣ ፋይበር ኦፕቲክ፣ አር ኤፍ፣ የኔትወርክ መሠረተ ልማት እና የቴሌኮሙኒኬሽን ኃይል መፍትሄዎችን ያቀርባል።',
+    en: 'GIX Nexus Telecom and Power — Ethiopian-owned SATCOM, VSAT, RF, fiber optic, network infrastructure, SMATV/MATV, and telecom power engineering company. GVF-certified. 20+ years experience. Serving operators, government, NGOs, and enterprise clients across Ethiopia.',
+    am: 'GIX Nexus Telecom and Power — ኢትዮጵያዊ ባለቤትነት ያለው SATCOM፣ VSAT፣ RF፣ ፋይበር ኦፕቲክ፣ SMATV/MATV እና የቴሌኮሙኒኬሽን የኃይል ምህንድስና ኩባንያ። GVF-ተረጋግጧል። 20+ ዓመት ልምድ።',
   }
 
   return {
@@ -39,8 +41,57 @@ export async function generateMetadata({
       template: '%s | GIX Nexus Telecom and Power',
     },
     description: descriptions[locale] ?? descriptions.en,
-    metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000'),
-    alternates: { languages: { en: '/en', am: '/am' } },
+    metadataBase: new URL(BASE_URL),
+    keywords: [
+      'SATCOM Ethiopia', 'VSAT installation Ethiopia', 'telecom engineering Ethiopia',
+      'fiber optic Ethiopia', 'RF engineering Ethiopia', 'SMATV MATV Ethiopia',
+      'network infrastructure Ethiopia', 'telecom power systems Ethiopia',
+      'GIX Nexus', 'GVF certified', 'Addis Ababa telecom',
+    ],
+    authors: [{ name: 'GIX Nexus Telecom and Power' }],
+    creator: 'GIX Nexus Telecom and Power',
+    publisher: 'GIX Nexus Telecom and Power',
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        'en': `${BASE_URL}/en`,
+        'am': `${BASE_URL}/am`,
+        'x-default': `${BASE_URL}/en`,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: locale === 'am' ? 'am_ET' : 'en_US',
+      alternateLocale: locale === 'am' ? 'en_US' : 'am_ET',
+      url: `${BASE_URL}/${locale}`,
+      siteName: 'GIX Nexus Telecom and Power',
+      title: titles[locale] ?? titles.en,
+      description: descriptions[locale] ?? descriptions.en,
+      images: [
+        {
+          url: `${BASE_URL}/assets/gix-home-page.png`,
+          width: 1200,
+          height: 630,
+          alt: 'GIX Nexus Telecom and Power — Telecommunications & Engineering Solutions',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titles[locale] ?? titles.en,
+      description: descriptions[locale] ?? descriptions.en,
+      images: [`${BASE_URL}/assets/gix-home-page.png`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     icons: {
       icon: [
         { url: '/icon.svg', type: 'image/svg+xml' },
@@ -77,6 +128,43 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         ` }} />
       </head>
       <body className={`${locale === 'am' ? 'font-ethiopic' : 'font-sans'} antialiased`}>
+        {/* ── JSON-LD Structured Data ── */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([
+              {
+                '@context': 'https://schema.org',
+                '@type': 'Organization',
+                '@id': `${BASE_URL}/#organization`,
+                name: 'GIX Nexus Telecom and Power',
+                url: BASE_URL,
+                logo: `${BASE_URL}/assets/company-logo.png`,
+                image: `${BASE_URL}/assets/gix-home-page.png`,
+                description: 'Ethiopian-owned telecommunications and power engineering company. Specializing in SATCOM, VSAT, RF, fiber optic, network infrastructure, SMATV/MATV, and telecom power solutions across Ethiopia.',
+                foundingLocation: { '@type': 'Place', name: 'Addis Ababa, Ethiopia' },
+                areaServed: { '@type': 'Country', name: 'Ethiopia' },
+                contactPoint: {
+                  '@type': 'ContactPoint',
+                  telephone: '+251911509555',
+                  email: 'gixnexustelecom@gmail.com',
+                  contactType: 'customer service',
+                  availableLanguage: ['English', 'Amharic'],
+                },
+                sameAs: [],
+              },
+              {
+                '@context': 'https://schema.org',
+                '@type': 'WebSite',
+                '@id': `${BASE_URL}/#website`,
+                url: BASE_URL,
+                name: 'GIX Nexus Telecom and Power',
+                publisher: { '@id': `${BASE_URL}/#organization` },
+                inLanguage: ['en', 'am'],
+              },
+            ]),
+          }}
+        />
         <NextIntlClientProvider messages={messages}>
           <div className="flex min-h-screen flex-col">
             <Navigation locale={locale} />

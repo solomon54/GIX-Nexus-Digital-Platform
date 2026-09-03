@@ -6,12 +6,28 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import type { FutureObjective } from '@/payload-types'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'futureGoals' })
-  return { title: t('pageTitle'), description: t('disclaimerBanner') }
+  const title = t('pageTitle')
+  const description = 'GIX Nexus strategic objectives: expand operations across Ethiopia, build telecom partnerships, enhance technical capacity, achieve industry certifications, and support Ethiopia\'s digital transformation.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/future-goals`,
+      languages: { en: `${BASE_URL}/en/future-goals`, am: `${BASE_URL}/am/future-goals` },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/future-goals`,
+    },
+  }
 }
 
 export default async function Page({ params }: Props) {

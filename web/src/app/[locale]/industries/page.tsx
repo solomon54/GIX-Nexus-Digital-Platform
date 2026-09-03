@@ -6,12 +6,28 @@ import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import type { Sector } from '@/payload-types'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'industries' })
-  return { title: t('pageTitle'), description: t('disclaimer') }
+  const title = t('pageTitle')
+  const description = 'GIX Nexus Telecom and Power serves 14 sectors: telecom operators, government ministries, ISPs, NGOs, UN agencies, banks, data centers, embassies, universities, and engineering contractors across Ethiopia.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/industries`,
+      languages: { en: `${BASE_URL}/en/industries`, am: `${BASE_URL}/am/industries` },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/industries`,
+    },
+  }
 }
 
 // Source: Company Profile PDF, Page 9 — representative icons for 14 sectors

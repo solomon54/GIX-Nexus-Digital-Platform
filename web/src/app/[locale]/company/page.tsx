@@ -4,12 +4,28 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'company' })
-  return { title: t('pageTitle'), description: t('overviewText') }
+  const title = t('pageTitle')
+  const description = 'GIX Nexus Telecom and Power — Ethiopian-owned telecommunications and power engineering company. GVF-certified with 20+ years of SATCOM and RF experience. Headquartered in Addis Ababa, operating across Ethiopia.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/company`,
+      languages: { en: `${BASE_URL}/en/company`, am: `${BASE_URL}/am/company` },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/company`,
+    },
+  }
 }
 
 // Core values with icons — Source: Company Profile PDF, Page 4

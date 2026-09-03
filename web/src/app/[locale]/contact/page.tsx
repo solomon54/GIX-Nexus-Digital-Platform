@@ -3,12 +3,31 @@ import Image from 'next/image'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'contact' })
-  return { title: t('pageTitle'), description: t('intro') }
+  const title = t('pageTitle')
+  const description = 'Contact GIX Nexus Telecom and Power — Addis Ababa, Ethiopia. Phone: +251 911 509 555. Email: gixnexustelecom@gmail.com. Professional SATCOM, VSAT, RF, fiber optic, and telecom engineering services across Ethiopia.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/contact`,
+      languages: {
+        en: `${BASE_URL}/en/contact`,
+        am: `${BASE_URL}/am/contact`,
+      },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/contact`,
+    },
+  }
 }
 
 function ContactPage() {
@@ -16,6 +35,53 @@ function ContactPage() {
 
   return (
     <>
+      {/* LocalBusiness structured data — helps Google show contact info in search */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'ProfessionalService',
+            '@id': `${BASE_URL}/#organization`,
+            name: 'GIX Nexus Telecom and Power',
+            url: BASE_URL,
+            logo: `${BASE_URL}/assets/company-logo.png`,
+            image: `${BASE_URL}/assets/leader-prof-img.png`,
+            description: 'Ethiopian-owned telecommunications and power engineering company. Specializing in SATCOM, VSAT, RF engineering, fiber optic, network infrastructure, SMATV/MATV, and telecom power solutions. GVF-certified. 20+ years SATCOM experience.',
+            telephone: '+251911509555',
+            email: 'gixnexustelecom@gmail.com',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Addis Ababa',
+              addressCountry: 'ET',
+            },
+            geo: {
+              '@type': 'GeoCoordinates',
+              latitude: 9.0222,
+              longitude: 38.7469,
+            },
+            openingHoursSpecification: {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+              opens: '00:00',
+              closes: '23:59',
+            },
+            areaServed: { '@type': 'Country', name: 'Ethiopia' },
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Telecommunications & Engineering Services',
+              itemListElement: [
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SATCOM & VSAT Installation' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'RF Engineering' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Fiber Optic Solutions' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Network Infrastructure' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'SMATV/MATV Solutions' } },
+                { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Telecom Power Systems' } },
+              ],
+            },
+          }),
+        }}
+      />
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden">
         {/* Background: hero image for contact */}

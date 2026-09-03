@@ -7,12 +7,28 @@ import configPromise from '@payload-config'
 import { InquiryForm } from '@/components/ui/InquiryForm'
 import type { TeamMember, Media } from '@/payload-types'
 
+const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+
 interface Props { params: Promise<{ locale: string }> }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
   const t = await getTranslations({ locale, namespace: 'capabilities' })
-  return { title: t('pageTitle'), description: t('heroDescription') }
+  const title = t('pageTitle')
+  const description = 'GIX Nexus technical capabilities: Cisco-certified professionals, fiber optic technicians, OSP technicians, HSEQ representatives. Equipment includes OTDR, RF analyzers, fusion splicers, and full safety gear for telecom projects across Ethiopia.'
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/capabilities`,
+      languages: { en: `${BASE_URL}/en/capabilities`, am: `${BASE_URL}/am/capabilities` },
+    },
+    openGraph: {
+      title: `${title} | GIX Nexus Telecom and Power`,
+      description,
+      url: `${BASE_URL}/${locale}/capabilities`,
+    },
+  }
 }
 
 // ── Static fallback team data ────────────────────────────────
