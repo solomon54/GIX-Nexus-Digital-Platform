@@ -10,16 +10,16 @@
     "contact": "Contact"
   },
   "home": {
-    "heroTitle": "Telecommunications & Power Engineering",
-    "heroSubtitle": "GIX Nexus Telecom and Power delivers reliable, innovative, and cost-effective telecommunications and power engineering infrastructure solutions across Ethiopia.",
-    "heroTagline": "Across Ethiopia",
+    "heroTitle": "Reliable Telecommunications & Engineering Solutions",
+    "heroSubtitle": "Delivering professional SATCOM, VSAT, RF, fiber optic, networking, and power solutions through experienced technical teams and reliable field execution.",
+    "heroTagline": "GVF-Certified · 20+ Years SATCOM Experience",
     "ctaProfile": "Company Profile",
     "ctaServices": "Our Services",
     "stats": {
       "title": "Our Scale",
       "serviceDomainsLabel": "Service Domains",
-      "serviceDomainsValue": "7+",
-      "serviceDomainsNote": "\"7+ Service Domains\"",
+      "serviceDomainsValue": "8+",
+      "serviceDomainsNote": "\"8 Service Domains\"",
       "supportLabel": "Technical Support",
       "supportValue": "24/7",
       "safetyLabel": "Safety-First Policy",
@@ -47,7 +47,7 @@
       }
     },
     "servicesTitle": "Our Services",
-    "servicesSubtitle": "Six core service groupings covering the full lifecycle of telecom and power infrastructure",
+    "servicesSubtitle": "Eight core service domains covering the full lifecycle of telecom and power infrastructure",
     "sectorsTitle": "Sectors We Serve",
     "sectorsSubtitle": "We provide services to a broad range of target sectors across Ethiopia",
     "sectorsDisclaimer": "These are target sectors. GIX Nexus serves these industries as a contractor and subcontractor.",
@@ -58,7 +58,7 @@
   },
   "services": {
     "pageTitle": "Our Services",
-    "pageDescription": "GIX Nexus Telecom and Power offers six core service groupings covering the full lifecycle of telecommunications and power infrastructure, from site survey through installation, commissioning, and ongoing maintenance.",
+    "pageDescription": "GIX Nexus Telecom and Power offers eight core service domains covering the full lifecycle of telecommunications and power infrastructure — from site survey through installation, commissioning, and ongoing maintenance.",
     "capabilitiesLabel": "Capabilities",
     "groups": {
       "telecomInfrastructure": {
@@ -119,14 +119,48 @@
           "Equipment Replacement and Upgrades",
           "Technical Inspection and Performance Testing"
         ]
+      },
+      "rfEngineering": {
+        "name": "RF Engineering",
+        "description": "Professional RF installation, testing, measurement, troubleshooting, commissioning, and maintenance for satellite and telecommunications systems.",
+        "capabilities": [
+          "RF Equipment Installation & Replacement",
+          "Antenna & Feed-System Support",
+          "RF Signal Testing & Measurement",
+          "Spectrum Analysis & Signal-Level Testing",
+          "RF Fault Isolation & Troubleshooting",
+          "BUC, LNB & RF Chain Support",
+          "RF Link Testing & Commissioning",
+          "Interference Troubleshooting",
+          "Preventive & Corrective Maintenance",
+          "System Performance Verification",
+          "Technical Reporting & Documentation"
+        ]
+      },
+      "smatvMatv": {
+        "name": "SMATV / MATV Solutions",
+        "description": "Professional satellite and TV distribution systems for hotels, residential buildings, commercial properties, institutions, and hospitality facilities — from installation and commissioning to maintenance and support.",
+        "capabilities": [
+          "SMATV System Installation",
+          "MATV System Installation",
+          "Satellite Dish and Antenna Installation",
+          "Headend Equipment Installation and Configuration",
+          "Satellite Signal Distribution",
+          "TV Distribution Networks",
+          "RF Signal Testing and Optimization",
+          "Multiswitch and Distribution Equipment Installation",
+          "Coaxial Cabling and Termination",
+          "System Troubleshooting and Fault Isolation",
+          "Preventive and Corrective Maintenance",
+          "System Upgrades and Expansion"
+        ]
       }
     }
   },
   "company": {
     "pageTitle": "About GIX Nexus",
     "overviewTitle": "Company Overview",
-    "overviewText": "GIX Nexus Telecom and Power is an Ethiopian-owned telecommunications and power engineering company headquartered in Addis Ababa, Ethiopia. We deliver reliable, innovative, and cost-effective infrastructure solutions, operating across Ethiopia with a commitment to quality, safety, and professionalism.",
-    "vendorStatus": "Vendor Registration Ready",
+    "overviewText": "GIX Nexus Telecom and Power is an Ethiopia-based telecommunications and engineering services company specializing in Satellite Communications, VSAT, RF, Telecom Infrastructure, Fiber Optics, Networking, SMATV/MATV, and Telecom Power Solutions. With 20+ years of SATCOM and RF experience within our technical leadership and GVF-certified engineering expertise, we support telecom operators, OEMs, system integrators, satellite providers, government organizations, UN/NGOs, international contractors, and enterprise clients.",
     "visionTitle": "Our Vision",
     "vision": "To become one of Ethiopia's leading telecommunications and power engineering companies, recognized for quality, innovation, reliability, and customer satisfaction.",
     "missionTitle": "Our Mission",
@@ -327,7 +361,7 @@
   "contact": {
     "pageTitle": "Contact Us",
     "pageSubtitle": "Get in Touch",
-    "intro": "For inquiries about our services, vendor registration, or to discuss a project, please contact our Managing Director directly.",
+    "intro": "For inquiries about our services or to discuss a project, please contact our Managing Director directly.",
     "mdLabel": "Managing Director",
     "mdName": "Getachew Teshome",
     "phoneLabel": "Phone",

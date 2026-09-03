@@ -134,10 +134,10 @@ function ContactPage() {
                     <span style={{ color: 'var(--foreground-subtle)' }}>Support</span>
                     <span className="font-medium text-[#008CFF]">24/7 Technical</span>
                   </div>
-                  {/* Source: Company Profile PDF, Page 1 */}
+                  {/* Across Ethiopia — Source: Company Profile PDF, Page 1 */}
                   <div className="flex items-center justify-between text-sm">
-                    <span style={{ color: 'var(--foreground-subtle)' }}>Status</span>
-                    <span className="font-medium text-[#65D51A]">Vendor Registration Ready</span>
+                    <span style={{ color: 'var(--foreground-subtle)' }}>Operations</span>
+                    <span className="font-medium" style={{ color: 'var(--foreground)' }}>Across Ethiopia</span>
                   </div>
                 </div>
               </div>

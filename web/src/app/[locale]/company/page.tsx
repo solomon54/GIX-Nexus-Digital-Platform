@@ -45,9 +45,9 @@ function CompanyPage({ locale }: { locale: string }) {
           <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-3">About Us</p>
           <h1 id="company-heading" className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('overviewText')}</p>
-          {/* Source: Company Profile PDF, Page 1 */}
-          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#65D51A]/30 bg-[#65D51A]/10 px-4 py-1.5">
-            <span className="text-sm font-medium text-[#65D51A]">{t('vendorStatus')}</span>
+          {/* GVF-certified credential badge — Source: Company Profile PDF, Page 1 */}
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#008CFF]/30 bg-[#008CFF]/10 px-4 py-1.5">
+            <span className="text-sm font-medium text-[#008CFF]">GVF-Certified · 20+ Years SATCOM Experience</span>
           </div>
         </div>
       </section>

@@ -18,42 +18,56 @@ const SERVICES = [
     nameKey: 'telecomInfrastructure',
     image: '/images/services/telecom-infrastructure.jpg',
     imageAlt: 'Telecommunications infrastructure installation',
-    outdoor: ['BTS/NodeB/eNodeB/5G site installation', 'Antenna installation and alignment', 'Feeder cable installation', 'Site integration and commissioning'],
+    highlights: ['BTS/NodeB/eNodeB/5G site installation', 'Antenna installation and alignment', 'Feeder cable installation', 'Site integration and commissioning'],
   },
   {
     slug: 'fiber-optic-solutions',
     nameKey: 'fiberOptic',
     image: '/images/services/fiber-optic-cables.jpg',
     imageAlt: 'Fiber optic cable installation and splicing',
-    outdoor: ['Underground and aerial fiber installation', 'OTDR testing', 'Fiber splicing and joint closure', 'Last-mile fiber deployment'],
+    highlights: ['Underground and aerial fiber installation', 'OTDR testing', 'Fiber splicing and joint closure', 'Last-mile fiber deployment'],
   },
   {
     slug: 'satellite-wireless-communications',
     nameKey: 'satelliteWireless',
     image: '/images/services/satellite-dish.jpg',
     imageAlt: 'VSAT satellite dish installation',
-    outdoor: ['VSAT antenna installation and commissioning', 'BUC/LNB replacement', 'Microwave radio link installation', 'RF troubleshooting'],
+    highlights: ['VSAT antenna installation and commissioning', 'BUC/LNB replacement', 'Microwave radio link installation', 'RF troubleshooting'],
+  },
+  {
+    slug: 'rf-engineering',
+    nameKey: 'rfEngineering',
+    image: '/images/services/rf-engineering.jpg',
+    imageAlt: 'RF engineering and antenna feed systems',
+    highlights: ['RF signal testing and measurement', 'Spectrum analysis', 'BUC, LNB & RF chain support', 'Interference troubleshooting'],
   },
   {
     slug: 'network-infrastructure',
     nameKey: 'networkInfrastructure',
     image: '/images/services/network-infrastructure.jpg',
     imageAlt: 'Network infrastructure and cabling',
-    outdoor: ['Cat6/Cat6A/Cat7 structured cabling', 'Fluke testing and certification', 'LAN/WAN infrastructure', 'Network rack installation'],
+    highlights: ['Cat6/Cat6A/Cat7 structured cabling', 'Fluke testing and certification', 'LAN/WAN infrastructure', 'Network rack installation'],
   },
   {
     slug: 'telecom-power-systems',
     nameKey: 'telecomPower',
     image: '/images/services/telecom-power-systems-dc-power-systems.png',
     imageAlt: 'Telecom power system installation',
-    outdoor: ['DC power system installation', 'Rectifier and UPS installation', 'Battery bank installation', 'Solar-powered telecom sites'],
+    highlights: ['DC power system installation', 'Rectifier and UPS installation', 'Battery bank installation', 'Solar-powered telecom sites'],
+  },
+  {
+    slug: 'smatv-matv-solutions',
+    nameKey: 'smatvMatv',
+    image: '/images/services/smatv-matv.jpg',
+    imageAlt: 'SMATV/MATV satellite TV distribution system',
+    highlights: ['SMATV and MATV system installation', 'Headend equipment configuration', 'RF signal testing and optimization', 'Multiswitch and distribution equipment'],
   },
   {
     slug: 'maintenance-technical-support',
     nameKey: 'maintenance',
     image: '/images/services/maintenance-and-tehnical-suport.webp',
     imageAlt: 'Field maintenance and technical support',
-    outdoor: ['Preventive and corrective maintenance', 'Emergency fault response', '24/7 technical support', 'Equipment replacement and upgrades'],
+    highlights: ['Preventive and corrective maintenance', 'Emergency fault response', '24/7 technical support', 'Equipment replacement and upgrades'],
   },
 ] as const
 
@@ -109,7 +123,7 @@ function ServicesPage({ locale }: { locale: string }) {
                   {/* Content */}
                   <div className={isEven ? 'lg:order-2' : 'lg:order-1'}>
                     <p className="text-xs font-semibold uppercase tracking-widest text-[#008CFF] mb-2">
-                      Service {String(index + 1).padStart(2, '0')} of 06
+                      Service {String(index + 1).padStart(2, '0')} of 08
                     </p>
                     <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>
                       {t(`groups.${service.nameKey}.name`)}
@@ -135,7 +149,7 @@ function ServicesPage({ locale }: { locale: string }) {
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--foreground-subtle)' }}>Includes</p>
                       <div className="flex flex-wrap gap-2">
-                        {service.outdoor.map((item, i) => (
+                        {service.highlights.map((item, i) => (
                           <span key={i} className="rounded-full border px-3 py-1 text-xs font-medium" style={{ borderColor: 'var(--border)', color: 'var(--foreground-subtle)' }}>
                             {item}
                           </span>

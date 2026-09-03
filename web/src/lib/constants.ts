@@ -1,11 +1,12 @@
-// Source: Company Profile PDF, Page 5
-// EXACTLY 6 service groupings — never add a 7th
+// Source: Company Profile PDF — 8 service domains
 export const SERVICE_SLUGS = [
   'telecommunications-infrastructure',
   'fiber-optic-solutions',
   'satellite-wireless-communications',
+  'rf-engineering',
   'network-infrastructure',
   'telecom-power-systems',
+  'smatv-matv-solutions',
   'maintenance-technical-support',
 ] as const
 
@@ -28,13 +29,14 @@ export const CONTACT = {
 export const LOCALES = ['en', 'am'] as const
 export type Locale = (typeof LOCALES)[number]
 
-// Source: Company Profile PDF, Page 5
-// These 6 services with their icon names (Lucide React)
+// Source: Company Profile PDF — 8 service domains with icon names (Lucide React)
 export const SERVICE_ICONS: Record<(typeof SERVICE_SLUGS)[number], string> = {
   'telecommunications-infrastructure': 'Tower',
   'fiber-optic-solutions': 'Cable',
   'satellite-wireless-communications': 'Radio',
+  'rf-engineering': 'Antenna',
   'network-infrastructure': 'Network',
   'telecom-power-systems': 'Zap',
+  'smatv-matv-solutions': 'Tv',
   'maintenance-technical-support': 'Wrench',
 }

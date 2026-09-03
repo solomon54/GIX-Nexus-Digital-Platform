@@ -11,13 +11,15 @@ interface ServiceDetailPageProps {
   params: Promise<{ locale: string; slug: string }>
 }
 
-// Source: Company Profile PDF, Page 5 — exactly 6 service groupings
+// Source: Company Profile PDF — 8 service domains
 const SLUG_TO_KEY: Record<ServiceSlug, string> = {
   'telecommunications-infrastructure': 'telecomInfrastructure',
   'fiber-optic-solutions': 'fiberOptic',
   'satellite-wireless-communications': 'satelliteWireless',
+  'rf-engineering': 'rfEngineering',
   'network-infrastructure': 'networkInfrastructure',
   'telecom-power-systems': 'telecomPower',
+  'smatv-matv-solutions': 'smatvMatv',
   'maintenance-technical-support': 'maintenance',
 }
 
@@ -25,8 +27,10 @@ const SLUG_TO_ICON: Record<ServiceSlug, string> = {
   'telecommunications-infrastructure': 'Tower',
   'fiber-optic-solutions': 'Cable',
   'satellite-wireless-communications': 'Radio',
+  'rf-engineering': 'Antenna',
   'network-infrastructure': 'Network',
   'telecom-power-systems': 'Zap',
+  'smatv-matv-solutions': 'Tv',
   'maintenance-technical-support': 'Wrench',
 }
 

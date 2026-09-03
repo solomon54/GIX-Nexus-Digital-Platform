@@ -21,14 +21,16 @@ export async function generateMetadata({ params }: HomePageProps): Promise<Metad
   }
 }
 
-// Source: Company Profile PDF, Page 5 — exactly 6 service groupings
+// Source: Company Profile PDF — 8 service domains
 // Images and slugs are fixed assets — service text comes from i18n
 const SERVICES_DATA = [
   { slug: 'telecommunications-infrastructure', nameKey: 'telecomInfrastructure', image: '/images/services/telecom-infrastructure.jpg', imageAlt: 'Telecommunications infrastructure installation' },
   { slug: 'fiber-optic-solutions', nameKey: 'fiberOptic', image: '/images/services/fiber-optic-cables.jpg', imageAlt: 'Fiber optic cable installation' },
   { slug: 'satellite-wireless-communications', nameKey: 'satelliteWireless', image: '/images/services/satellite-dish.jpg', imageAlt: 'Satellite dish and wireless systems' },
+  { slug: 'rf-engineering', nameKey: 'rfEngineering', image: '/images/services/rf-engineering.jpg', imageAlt: 'RF engineering and antenna systems' },
   { slug: 'network-infrastructure', nameKey: 'networkInfrastructure', image: '/images/services/network-infrastructure.jpg', imageAlt: 'Network infrastructure and cabling' },
   { slug: 'telecom-power-systems', nameKey: 'telecomPower', image: '/images/services/telecom-power-systems-dc-power-systems.png', imageAlt: 'Telecom power systems' },
+  { slug: 'smatv-matv-solutions', nameKey: 'smatvMatv', image: '/images/services/smatv-matv.jpg', imageAlt: 'SMATV/MATV satellite TV distribution systems' },
   { slug: 'maintenance-technical-support', nameKey: 'maintenance', image: '/images/services/maintenance-and-tehnical-suport.webp', imageAlt: 'Field maintenance and technical support' },
 ] as const
 
