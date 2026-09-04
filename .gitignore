@@ -46,3 +46,6 @@ coverage/
 # Local copies in web/media/ should not be tracked.
 web/media/
 web/public/assets/news/
+
+# ── Source PDFs at repo root (stored in docs/source-files/ instead) ───────────
+/Website-profile.pdf
