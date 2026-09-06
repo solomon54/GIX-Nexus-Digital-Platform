@@ -521,15 +521,27 @@ function HomePage({
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="py-20" style={{ background: 'linear-gradient(135deg, #030810 0%, #050D1A 50%, #030810 100%)' }} aria-labelledby="cta-heading">
+      {/* ── Ready to Work Together CTA ───────────────────────────── */}
+      <section
+        className="py-20 section-top-divide"
+        style={{
+          background: `
+            radial-gradient(ellipse 80% 90% at 20% 50%, rgba(0,102,255,0.30) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 80% at 80% 40%, rgba(102,0,255,0.22) 0%, transparent 55%),
+            radial-gradient(ellipse 50% 60% at 50% 100%, rgba(0,212,255,0.12) 0%, transparent 50%),
+            linear-gradient(160deg, #04102E 0%, #060C22 60%, #04102E 100%)
+          `,
+        }}
+        aria-labelledby="cta-heading"
+      >
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 id="cta-heading" className="text-3xl font-bold text-white sm:text-4xl">{t('ctaTitle')}</h2>
-          <p className="mt-4 text-lg text-[#8AADCC]">{t('ctaSubtitle')}</p>
+          <h2 id="cta-heading" className="text-2xl font-bold text-white sm:text-3xl">{t('ctaTitle')}</h2>
+          <p className="mt-4 text-base text-[#B8D4F0]">{t('ctaSubtitle')}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link href={`/${locale}/contact`} className="btn-cta">
               {t('ctaContact')}
             </Link>
-            <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/20 px-10 py-3 text-sm font-semibold text-white hover:bg-white/5 transition-colors">
+            <Link href={`/${locale}/services`} className="inline-flex items-center rounded-lg border border-white/25 px-8 py-2.5 text-sm font-semibold text-white hover:bg-white/8 transition-colors">
               {t('ctaServices')}
             </Link>
           </div>
