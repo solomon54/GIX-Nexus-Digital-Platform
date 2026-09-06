@@ -1,6 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTranslations } from 'next-intl'
+import { useContactModal } from '@/context/ContactModalContext'
 // Source: Company Profile PDF, Page 10
 import { CONTACT } from '@/lib/constants'
 
@@ -11,6 +14,7 @@ interface FooterProps {
 export function Footer({ locale }: FooterProps) {
   const t = useTranslations('footer')
   const tNav = useTranslations('nav')
+  const { open: openModal } = useContactModal()
 
   const navLinks = [
     { href: `/${locale}`, label: tNav('home') },
@@ -115,9 +119,10 @@ export function Footer({ locale }: FooterProps) {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="mailto:gixnexustelecom@gmail.com"
-                      className="group flex items-center gap-2.5 text-sm text-[#94A3B8] hover:text-white transition-colors duration-200 break-all"
+                    <button
+                      type="button"
+                      onClick={openModal}
+                      className="group flex items-center gap-2.5 text-sm text-[#94A3B8] hover:text-white transition-colors duration-200 w-full text-left"
                     >
                       <span
                         className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
@@ -125,8 +130,8 @@ export function Footer({ locale }: FooterProps) {
                       >
                         ✉️
                       </span>
-                      gixnexustelecom@gmail.com
-                    </a>
+                      <span className="break-all">{CONTACT.email}</span>
+                    </button>
                   </li>
                   <li
                     className="flex items-center gap-2.5 text-sm"

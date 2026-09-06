@@ -5,6 +5,8 @@ import { getMessages } from 'next-intl/server'
 import { Navigation } from '@/components/layout/Navigation'
 import { Footer } from '@/components/layout/Footer'
 import { PwaInstallPrompt } from '@/components/ui/PwaInstallPrompt'
+import { QuickContactModal } from '@/components/ui/QuickContactModal'
+import { ContactModalProvider } from '@/context/ContactModalContext'
 import { routing } from '@/i18n/routing'
 import '@/app/globals.css'
 
@@ -166,14 +168,18 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           }}
         />
         <NextIntlClientProvider messages={messages}>
-          <div className="flex min-h-screen flex-col">
-            <Navigation locale={locale} />
-            <main id="main-content" className="flex-1">
-              {children}
-            </main>
-            <Footer locale={locale} />
-            <PwaInstallPrompt />
-          </div>
+          <ContactModalProvider>
+            <div className="flex min-h-screen flex-col">
+              <Navigation locale={locale} />
+              <main id="main-content" className="flex-1">
+                {children}
+              </main>
+              <Footer locale={locale} />
+              <PwaInstallPrompt />
+            </div>
+            {/* Quick contact modal — available everywhere via useContactModal() */}
+            <QuickContactModal />
+          </ContactModalProvider>
         </NextIntlClientProvider>
       </body>
     </html>
