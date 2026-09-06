@@ -49,3 +49,6 @@ web/media/*.tmp
 
 # ── Source PDFs at repo root (stored in docs/source-files/ instead) ───────────
 /Website-profile.pdf
+
+# ── Temporary design reference images — delete folder when done ───────────────
+web/public/temp-bg-color-chooice-imgs/
