@@ -42,10 +42,10 @@ next-env.d.ts
 coverage/
 
 # ── Payload CMS uploaded media ────────────────────────────────
-# Uploaded files are stored in the DB and served from cloud storage.
-# Local copies in web/media/ should not be tracked.
-web/media/
-web/public/assets/news/
+# Static media files that were pre-seeded are tracked.
+# Only ignore temp/large uploads that shouldn't be in git.
+# web/media/ is intentionally NOT ignored — seeded images must deploy with the app.
+web/media/*.tmp
 
 # ── Source PDFs at repo root (stored in docs/source-files/ instead) ───────────
 /Website-profile.pdf
