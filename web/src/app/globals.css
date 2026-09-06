@@ -154,6 +154,14 @@
 
   /* ── Focus ring ── */
   --focus-ring: 0 0 0 3px rgba(0, 212, 255, 0.28);
+
+  /* ── Button gradients — from telecom palette ── */
+  /* Primary: cyan→blue — signal/connectivity, on-brand */
+  --btn-primary-bg: linear-gradient(135deg, #00D4FF 0%, #0066FF 100%);
+  /* Hover: slightly shifted */
+  --btn-primary-hover: linear-gradient(135deg, #00B8E0 0%, #0052CC 100%);
+  /* CTA alternate: blue→purple — premium, for main CTA sections */
+  --btn-cta-bg: linear-gradient(135deg, #0066FF 0%, #6600FF 100%);
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -547,6 +555,43 @@
 
   .link-line:hover {
     background-size: 100% 1.5px;
+  }
+
+  /* ── Gradient buttons ── */
+  .btn-primary {
+    background: var(--btn-primary-bg);
+    color: #FFFFFF;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 14px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 200ms, transform 200ms;
+  }
+  .btn-primary:hover {
+    background: var(--btn-primary-hover);
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+  .btn-cta {
+    background: var(--btn-cta-bg);
+    color: #FFFFFF;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 28px;
+    font-size: 14px;
+    min-height: 40px;
+    display: inline-flex;
+    align-items: center;
+    transition: opacity 200ms, transform 200ms;
+  }
+  .btn-cta:hover {
+    transform: translateY(-1px);
+    opacity: 0.90;
   }
 
   /* ── Cyan glow text ── */

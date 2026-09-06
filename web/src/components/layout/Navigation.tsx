@@ -39,7 +39,6 @@ export function Navigation({ locale }: NavigationProps) {
     { href: `/${locale}/industries`,   label: t('industries') },
     { href: `/${locale}/capabilities`, label: t('capabilities') },
     { href: `/${locale}/future-goals`, label: t('futureGoals') },
-    { href: `/${locale}/contact`,      label: t('contact') },
   ]
 
   const isActive = (href: string) => {
@@ -122,11 +121,11 @@ export function Navigation({ locale }: NavigationProps) {
             {locale === 'en' ? tCommon('languageToggle') : 'EN'}
           </Link>
 
-          {/* Contact CTA — compact */}
+          {/* Contact CTA — gradient button, desktop only */}
           <Link
             href={`/${locale}/contact`}
-            className="hidden sm:inline-flex min-h-[36px] items-center rounded-lg px-4 text-sm font-semibold"
-            style={{ background: 'var(--accent)', color: '#050D1A' }}
+            className="hidden sm:inline-flex btn-primary text-xs px-4 py-1.5 min-h-[34px]"
+            style={{ fontSize: '13px', padding: '6px 16px', minHeight: '34px' }}
           >
             {t('contact')}
           </Link>
@@ -218,8 +217,7 @@ export function Navigation({ locale }: NavigationProps) {
             <Link
               href={`/${locale}/contact`}
               onClick={() => setMobileOpen(false)}
-              className="flex min-h-[44px] items-center justify-center rounded-lg px-3 py-2.5 text-sm font-semibold"
-              style={{ background: 'var(--accent)', color: '#050D1A' }}
+              className="btn-primary flex justify-center text-sm"
             >
               {t('contact')}
             </Link>

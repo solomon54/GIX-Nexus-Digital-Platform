@@ -119,36 +119,40 @@ function HomePage({
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-hero)', zIndex: 3 }} aria-hidden="true" />
         {/* Subtle grid texture */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '80px 80px', zIndex: 4 }} aria-hidden="true" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-24 w-full" style={{ zIndex: 5 }}>
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 w-full" style={{ zIndex: 5 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
               <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 mb-6 backdrop-blur-sm">
                 <span className="h-2 w-2 rounded-full bg-green-400 pulse-dot" />
                 <span className="text-sm font-medium text-white/80">{t('heroTagline')}</span>
               </div>
-              <h1 id="hero-heading" className="font-bold text-white drop-shadow-sm" style={{ fontSize: 'clamp(30px, 4.5vw, 54px)', lineHeight: '1.12', letterSpacing: '-0.025em' }}>
+              <h1 id="hero-heading" className="font-bold text-white drop-shadow-sm" style={{ fontSize: 'clamp(20px, 3.5vw, 40px)', lineHeight: '1.15', letterSpacing: '-0.022em' }}>
                 {t('heroTitle')}
               </h1>
-              <p className="mt-5 text-[clamp(15px,1.8vw,18px)] text-white/90 max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
-              <div className="mt-8 grid grid-cols-3 gap-4 max-w-sm">
+              <p className="mt-4 text-[clamp(13px,1.5vw,16px)] text-white/90 max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
+              <div className="mt-5 grid grid-cols-3 gap-2 max-w-xs">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white">8+</div>
+                  <div className="text-xl sm:text-2xl font-bold text-white">8+</div>
                   <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.serviceDomainsLabel')}</div>
                 </div>
                 <div className="text-center border-x border-white/15">
-                  <div className="text-3xl font-bold text-white">24/7</div>
+                  <div className="text-xl sm:text-2xl font-bold text-white">24/7</div>
                   <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.supportLabel')}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white">100%</div>
+                  <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
                   <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.safetyLabel')}</div>
                 </div>
               </div>
-              <div className="mt-8 flex items-center gap-3">
-                <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-all" style={{ background: 'var(--accent)' }}>
-                  {t('ctaServices')}
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <Link href={`/${locale}/services`}
+                  className="btn-primary text-sm"
+                >
+                  {t('ctaServices')} →
                 </Link>
-                <Link href={`/${locale}/company`} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/25 px-6 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/40 transition-colors backdrop-blur-sm">
+                <Link href={`/${locale}/company`}
+                  className="inline-flex items-center rounded-lg border border-white/25 px-5 py-2 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/40 transition-colors"
+                >
                   {t('ctaProfile')}
                 </Link>
               </div>
@@ -173,7 +177,7 @@ function HomePage({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>What We Do</p>
-            <h2 id="services-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('servicesTitle')}</h2>
+            <h2 id="services-heading" className="text-2xl font-bold sm:text-3xl" style={{ color: 'var(--foreground)' }}>{t('servicesTitle')}</h2>
             <p className="mt-3 max-w-2xl mx-auto" style={{ color: 'var(--foreground-muted)' }}>{t('servicesSubtitle')}</p>
           </div>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
@@ -223,7 +227,7 @@ function HomePage({
             <h2 id="features-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('featureTitle')}</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-muted)' }}>{t('featureSubtitle')}</p>
           </div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {([
               {
                 key: 'qualifiedTeam',
@@ -522,7 +526,7 @@ function HomePage({
           <h2 id="cta-heading" className="text-3xl font-bold text-white sm:text-4xl">{t('ctaTitle')}</h2>
           <p className="mt-4 text-lg text-[#8AADCC]">{t('ctaSubtitle')}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href={`/${locale}/contact`} className="inline-flex min-h-[44px] items-center rounded-lg px-10 py-3 text-sm font-semibold text-[#050D1A] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2" style={{ background: 'var(--accent)' }}>
+            <Link href={`/${locale}/contact`} className="btn-cta">
               {t('ctaContact')}
             </Link>
             <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/20 px-10 py-3 text-sm font-semibold text-white hover:bg-white/5 transition-colors">
