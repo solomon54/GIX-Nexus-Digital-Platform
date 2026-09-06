@@ -44,7 +44,7 @@ export default async function Page({ params }: Props) {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.78) 0%, rgba(6,18,54,0.52) 55%, rgba(6,18,54,0.30) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.55) 0%, rgba(6,18,54,0.32) 55%, rgba(6,18,54,0.12) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#00C97A] mb-3">{t('pageSubtitle')}</p>
@@ -68,7 +68,7 @@ export default async function Page({ params }: Props) {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.9), rgba(5,13,26,0.25))' }} />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.60), rgba(6,18,54,0.08))' }} />
                 <div className="absolute bottom-4 left-6">
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#00C97A]">HSEQ Policy</p>
                 </div>

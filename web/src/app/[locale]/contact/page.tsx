@@ -94,7 +94,7 @@ function ContactPage() {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.78) 0%, rgba(6,18,54,0.52) 55%, rgba(6,18,54,0.30) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.55) 0%, rgba(6,18,54,0.32) 55%, rgba(6,18,54,0.12) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>
@@ -120,7 +120,7 @@ function ContactPage() {
                     fill
                     className="object-cover object-top"
                   />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.9), transparent 60%)' }} />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.65), transparent 60%)' }} />
                   <div className="absolute bottom-4 left-5">
                     {/* Source: Company Profile PDF, Page 10 */}
                     <p className="font-semibold text-white">{t('mdName')}</p>

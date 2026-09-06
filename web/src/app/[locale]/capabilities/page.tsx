@@ -187,7 +187,7 @@ export default async function Page({ params }: Props) {
       <section className="relative py-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/capability/our-capabilities.webp" alt="" fill className="object-cover" priority aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.78) 0%, rgba(6,18,54,0.52) 55%, rgba(6,18,54,0.30) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.55) 0%, rgba(6,18,54,0.32) 55%, rgba(6,18,54,0.12) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>
@@ -241,7 +241,7 @@ export default async function Page({ params }: Props) {
                       </div>
                     </div>
                   )}
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(7,17,28,0.85) 0%, transparent 60%)' }} />
+                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.62) 0%, transparent 60%)' }} />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <div className="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold mb-2" style={{ background: 'rgba(0,140,255,0.2)', color: '#60A5FA' }}>
                       {member.role}
@@ -351,7 +351,7 @@ export default async function Page({ params }: Props) {
                 {/* Category image */}
                 <div className="relative h-48">
                   <Image src={cat.image} alt={cat.category} fill className="object-cover" />
-                  <div className="absolute inset-0" style={{ background: 'rgba(7,17,28,0.65)' }} />
+                  <div className="absolute inset-0" style={{ background: 'rgba(6,18,54,0.50)' }} />
                   <div className="absolute inset-0 flex items-center justify-center flex-col">
                     <span className="text-4xl mb-2" aria-hidden="true">{cat.icon}</span>
                     <p className="text-lg font-bold text-white">{cat.category}</p>

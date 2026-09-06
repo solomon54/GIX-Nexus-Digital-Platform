@@ -86,11 +86,16 @@
   --border-white: rgba(255, 255, 255, 0.10);
 
   /* ── Typography — WCAG AA contrast on cobalt blue backgrounds ── */
-  --foreground: #FFFFFF;          /* Pure white — 21:1 max contrast */
-  --foreground-muted: #C0D8F4;    /* ~8:1 on cobalt — secondary text */
-  --foreground-sub: #88B8DA;      /* ~5.2:1 — labels, captions, AA */
-  --foreground-faint: #4E7A9E;    /* Placeholders — decorative only */
-  --foreground-subtle: #88B8DA;   /* alias */
+  --foreground: #FFFFFF;
+  /* Pure white — 21:1 max contrast */
+  --foreground-muted: #C0D8F4;
+  /* ~8:1 on cobalt — secondary text */
+  --foreground-sub: #88B8DA;
+  /* ~5.2:1 — labels, captions, AA */
+  --foreground-faint: #4E7A9E;
+  /* Placeholders — decorative only */
+  --foreground-subtle: #88B8DA;
+  /* alias */
   --on-navy: #FFFFFF;
   --on-navy-sub: rgba(255, 255, 255, 0.88);
 
@@ -140,9 +145,9 @@
 
   /* Hero overlay: reveals background photo while text stays readable */
   --gradient-hero: linear-gradient(to bottom,
-      rgba(6, 18, 54, 0.78) 0%,
-      rgba(6, 18, 54, 0.48) 50%,
-      rgba(6, 18, 54, 0.30) 100%);
+      rgba(6, 18, 54, 0.55) 0%,
+      rgba(6, 18, 54, 0.30) 50%,
+      rgba(6, 18, 54, 0.12) 100%);
 
   /* Section divider: cyan glow line between sections */
   --gradient-divider: linear-gradient(90deg,
@@ -451,7 +456,7 @@
 
   /* ── Card — elevated surface, generous padding, breathing room ── */
   .gix-card {
-    background: linear-gradient(145deg, rgba(14,34,92,0.88) 0%, rgba(10,26,72,0.85) 100%);
+    background: linear-gradient(145deg, rgba(14, 34, 92, 0.88) 0%, rgba(10, 26, 72, 0.85) 100%);
     border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow-card);
@@ -571,11 +576,13 @@
     align-items: center;
     transition: opacity 200ms, transform 200ms;
   }
+
   .btn-primary:hover {
     background: var(--btn-primary-hover);
     transform: translateY(-1px);
     opacity: 0.95;
   }
+
   .btn-cta {
     background: var(--btn-cta-bg);
     color: #FFFFFF;
@@ -589,6 +596,7 @@
     align-items: center;
     transition: opacity 200ms, transform 200ms;
   }
+
   .btn-cta:hover {
     transform: translateY(-1px);
     opacity: 0.90;
@@ -607,6 +615,23 @@
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: 18px;
+  }
+
+  /* ── Gradient border — subtle cyan glow outline ──
+     Usage: wrap content in .grad-border > div (or use ::before trick)
+     border-image doesn't work with border-radius, so we use box-shadow instead */
+  .grad-border {
+    border: 1px solid transparent;
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 212, 255, 0.18),
+      0 0 12px rgba(0, 212, 255, 0.06);
+    border-radius: 16px;
+  }
+
+  .grad-border:hover {
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 212, 255, 0.35),
+      0 0 20px rgba(0, 212, 255, 0.10);
   }
 }
 

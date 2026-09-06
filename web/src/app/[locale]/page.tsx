@@ -420,22 +420,22 @@ function HomePage({
       <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         <div className="absolute inset-0">
           <Image src="/images/hseq/hseq-policy.jpeg" alt="" fill className="object-cover" aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.82) 0%, rgba(5,13,26,0.65) 60%, rgba(5,13,26,0.50) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.58) 0%, rgba(5,13,26,0.38) 60%, rgba(5,13,26,0.22) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.72)', backdropFilter: 'blur(12px)' }}>
+            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.55)', backdropFilter: 'blur(12px)' }}>
               <div className="text-4xl font-bold text-[#00C97A] mb-2">HSEQ</div>
               <div className="text-sm font-semibold text-white mb-1">Policy</div>
               <p className="text-xs text-[#8AADCC]">Health, Safety, Environment & Quality — applied to every project</p>
             </div>
-            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.72)', backdropFilter: 'blur(12px)' }}>
+            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.55)', backdropFilter: 'blur(12px)' }}>
               {/* Source: PDF Page 8 — Zero Accident Objective is a GOAL, never a result */}
               <div className="text-4xl font-bold text-[#00D4FF] mb-2">Zero</div>
               <div className="text-sm font-semibold text-white mb-1">Accident Objective</div>
               <p className="text-xs text-[#8AADCC]">Our stated safety commitment and goal on every project site</p>
             </div>
-            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.72)', backdropFilter: 'blur(12px)' }}>
+            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.55)', backdropFilter: 'blur(12px)' }}>
               {/* Source: PDF Page 3 — policy statement, not a metric */}
               <div className="text-4xl font-bold text-[#00C97A] mb-2">100%</div>
               <div className="text-sm font-semibold text-white mb-1">Safety-First Approach</div>
