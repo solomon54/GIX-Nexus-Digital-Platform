@@ -28,7 +28,8 @@ Set in Dokploy → your app → **Environment Variables**.
 | Variable | Notes |
 |---|---|
 | `RESEND_API_KEY` | Email notifications for service inquiries (optional) |
-| `RESEND_FROM_ADDRESS` | e.g. `noreply@yourdomain.com` |
+| `RESEND_FROM_ADDRESS` | e.g. `onboarding@resend.dev` (test) or `noreply@yourdomain.com` (production with verified domain) |
+| `INQUIRY_NOTIFY_EMAIL` | Who receives inquiry + quick-message emails. Use your own Gmail initially |
 
 ---
 
