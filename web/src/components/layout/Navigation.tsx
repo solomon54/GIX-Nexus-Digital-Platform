@@ -168,7 +168,7 @@ export function Navigation({ locale }: NavigationProps) {
           border-radius: 99px;
           background: linear-gradient(90deg, #00D4FF 0%, #6600FF 100%);
           box-shadow: 0 0 6px rgba(0,212,255,0.55);
-          transition: width 420ms cubic-bezier(0.16, 1, 0.3, 1);
+          transition: width 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         /* Hover — grows left → right smoothly */
         .nav-link:hover::after {
