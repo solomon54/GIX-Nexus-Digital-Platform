@@ -47,7 +47,7 @@ async function sendInquiryNotification(data: {
   submittedAt: string
 }): Promise<void> {
   const apiKey = process.env.RESEND_API_KEY
-  const fromAddress = process.env.RESEND_FROM_ADDRESS ?? 'noreply@gixnexus.com'
+  const fromAddress = process.env.RESEND_FROM_ADDRESS ?? 'onboarding@resend.dev'
   const fromName = process.env.RESEND_FROM_NAME ?? 'GIX Nexus'
   const notifyEmail = process.env.INQUIRY_NOTIFY_EMAIL ?? 'gixnexustelecom@gmail.com'
 

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
+import { useContactModal } from '@/context/ContactModalContext'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -79,6 +80,7 @@ export function InquiryForm() {
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({})
   const [serverMessage, setServerMessage] = useState('')
   const [focusedField, setFocusedField] = useState<string | null>(null)
+  const { open: openModal } = useContactModal()
 
   const update = useCallback((field: keyof FormData, value: string) => {
     setForm(prev => ({ ...prev, [field]: value }))
@@ -141,9 +143,9 @@ export function InquiryForm() {
         <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--foreground-subtle)' }}>{serverMessage}</p>
         <p className="text-xs" style={{ color: 'var(--foreground-subtle)' }}>
           You can also reach us directly at{' '}
-          <a href="mailto:gixnexustelecom@gmail.com" className="hover:underline" style={{ color: 'var(--accent)' }}>
+          <button type="button" onClick={openModal} className="hover:underline font-medium" style={{ color: 'var(--accent)' }}>
             gixnexustelecom@gmail.com
-          </a>
+          </button>
         </p>
         <button
           type="button"

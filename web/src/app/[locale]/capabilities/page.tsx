@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { getPayload } from 'payload'
+import { EmailModalButton } from '@/components/ui/EmailModalButton'
 import configPromise from '@payload-config'
 import { InquiryForm } from '@/components/ui/InquiryForm'
 import type { TeamMember, Media } from '@/payload-types'
@@ -275,9 +276,9 @@ export default async function Page({ params }: Props) {
                     <a href="tel:+251911509555" className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
                       📞 +251 911 509 555
                     </a>
-                    <a href="mailto:gixnexustelecom@gmail.com" className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
+                    <EmailModalButton className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
                       ✉ gixnexustelecom@gmail.com
-                    </a>
+                    </EmailModalButton>
                   </div>
                 </div>
               </div>
@@ -394,7 +395,7 @@ export default async function Page({ params }: Props) {
               {/* Source: Company Profile PDF, Page 10 */}
               <a href="tel:+251911509555" className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors">+251 911 509 555</a>
               {' · '}
-              <a href="mailto:gixnexustelecom@gmail.com" className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors">gixnexustelecom@gmail.com</a>
+<EmailModalButton className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors">gixnexustelecom@gmail.com</EmailModalButton>
             </p>
           </div>
         </div>
