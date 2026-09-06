@@ -86,20 +86,14 @@ export function Navigation({ locale }: NavigationProps) {
               <Link
                 href={link.href}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className="nav-link relative inline-flex items-center px-3.5 py-2 text-sm rounded-lg"
+                className={`nav-link relative inline-flex items-center px-3.5 py-2 text-sm rounded-lg ${isActive(link.href) ? 'nav-link-active' : ''}`}
                 style={{
-                  color: isActive(link.href) ? '#00D4FF' : 'rgba(180,210,230,0.75)',
+                  color: isActive(link.href) ? '#FFFFFF' : 'rgba(180,210,230,0.75)',
                   background: isActive(link.href) ? 'rgba(0,212,255,0.08)' : 'transparent',
                   fontWeight: isActive(link.href) ? 600 : 400,
                 }}
               >
                 {link.label}
-                {isActive(link.href) && (
-                  <span
-                    className="absolute bottom-1 left-1/2 h-0.5 w-4 rounded-full -translate-x-1/2"
-                    style={{ background: 'var(--accent)' }}
-                  />
-                )}
               </Link>
             </li>
           ))}
@@ -160,11 +154,42 @@ export function Navigation({ locale }: NavigationProps) {
         </div>
       </nav>
 
-      {/* Scoped nav hover styles */}
+      {/* Scoped nav hover styles — left-to-right underline animation */}
       <style>{`
+        /* Base state — underline starts at left edge, width 0 */
+        .nav-link::after {
+          content: '';
+          position: absolute;
+          bottom: 4px;
+          left: 12px;        /* aligns with text padding */
+          right: auto;
+          width: 0;
+          height: 2px;
+          border-radius: 99px;
+          background: linear-gradient(90deg, #00D4FF 0%, #6600FF 100%);
+          box-shadow: 0 0 6px rgba(0,212,255,0.55);
+          transition: width 420ms cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* Hover — grows left → right smoothly */
+        .nav-link:hover::after {
+          width: calc(100% - 24px);   /* match padding */
+        }
         .nav-link:hover {
-          background: rgba(0,212,255,0.08) !important;
-          color: #00D4FF !important;
+          color: #FFFFFF !important;
+          background: rgba(0,212,255,0.05) !important;
+        }
+        /* Active — full width, brighter glow, stays put */
+        .nav-link-active::after {
+          content: '';
+          position: absolute;
+          bottom: 4px;
+          left: 12px;
+          width: calc(100% - 24px);
+          height: 2px;
+          border-radius: 99px;
+          background: linear-gradient(90deg, #00D4FF 0%, #6600FF 100%);
+          box-shadow: 0 0 10px rgba(0,212,255,0.80), 0 0 22px rgba(0,212,255,0.25);
+          /* No transition — active state is instant */
         }
         .nav-control:hover {
           background: rgba(0,212,255,0.08);

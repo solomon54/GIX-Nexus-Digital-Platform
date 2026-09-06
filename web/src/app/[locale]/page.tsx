@@ -115,33 +115,64 @@ function HomePage({
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative min-h-[92vh] flex items-center overflow-hidden" aria-labelledby="hero-heading">
         <HeroCarousel />
-        {/* Lighter overlay — image must be visible, not buried */}
+        {/* Minimized overlay — image as subtle bg texture */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-hero)', zIndex: 3 }} aria-hidden="true" />
-        {/* Subtle grid texture */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)', backgroundSize: '80px 80px', zIndex: 4 }} aria-hidden="true" />
+        {/* Left/right vignette — content area is clear, edges fade */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(6,18,54,0.55) 0%, transparent 20%, transparent 80%, rgba(6,18,54,0.55) 100%)', zIndex: 4 }} aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 w-full" style={{ zIndex: 5 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 mb-6 backdrop-blur-sm">
-                <span className="h-2 w-2 rounded-full bg-green-400 pulse-dot" />
-                <span className="text-sm font-medium text-white/80">{t('heroTagline')}</span>
+              {/* ── Glassmorphic "Across Ethiopia" badge ── */}
+              <div className="inline-flex items-center gap-2.5 rounded-full px-5 py-2 mb-6"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0,212,255,0.15) 0%, rgba(102,0,255,0.12) 100%)',
+                  border: '1px solid rgba(0,212,255,0.35)',
+                  backdropFilter: 'blur(12px)',
+                  WebkitBackdropFilter: 'blur(12px)',
+                  boxShadow: '0 0 18px rgba(0,212,255,0.18), inset 0 1px 0 rgba(255,255,255,0.10)',
+                }}
+              >
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                </span>
+                <span className="text-sm font-semibold tracking-wide" style={{
+                  background: 'linear-gradient(90deg, #00D4FF, #A78BFA)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}>
+                  Across Ethiopia
+                </span>
               </div>
               <h1 id="hero-heading" className="font-bold text-white drop-shadow-sm" style={{ fontSize: 'clamp(20px, 3.5vw, 40px)', lineHeight: '1.15', letterSpacing: '-0.022em' }}>
                 {t('heroTitle')}
               </h1>
               <p className="mt-4 text-[clamp(13px,1.5vw,16px)] text-white/90 max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
-              <div className="mt-5 grid grid-cols-3 gap-2 max-w-xs">
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-white">8+</div>
-                  <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.serviceDomainsLabel')}</div>
-                </div>
-                <div className="text-center border-x border-white/15">
-                  <div className="text-xl sm:text-2xl font-bold text-white">24/7</div>
-                  <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.supportLabel')}</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
-                  <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.safetyLabel')}</div>
+              {/* ── Stats row — glass border, subtle, left/right fade ── */}
+              <div className="relative mt-5 max-w-xs">
+                {/* Left fade edge */}
+                <div className="absolute left-0 top-0 bottom-0 w-4 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(6,18,54,0.6), transparent)', zIndex: 1 }} />
+                {/* Right fade edge */}
+                <div className="absolute right-0 top-0 bottom-0 w-4 pointer-events-none" style={{ background: 'linear-gradient(to left, rgba(6,18,54,0.6), transparent)', zIndex: 1 }} />
+                <div className="grid grid-cols-3 gap-0 rounded-xl overflow-hidden"
+                  style={{
+                    border: '1px solid rgba(0,212,255,0.18)',
+                    background: 'rgba(0,212,255,0.04)',
+                    backdropFilter: 'blur(8px)',
+                  }}
+                >
+                  <div className="text-center py-3 px-2">
+                    <div className="text-xl sm:text-2xl font-bold text-white">8+</div>
+                    <div className="text-[10px] text-white/70 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.serviceDomainsLabel')}</div>
+                  </div>
+                  <div className="text-center py-3 px-2" style={{ borderLeft: '1px solid rgba(0,212,255,0.15)', borderRight: '1px solid rgba(0,212,255,0.15)' }}>
+                    <div className="text-xl sm:text-2xl font-bold text-white">24/7</div>
+                    <div className="text-[10px] text-white/70 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.supportLabel')}</div>
+                  </div>
+                  <div className="text-center py-3 px-2">
+                    <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
+                    <div className="text-[10px] text-white/70 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.safetyLabel')}</div>
+                  </div>
                 </div>
               </div>
               <div className="mt-6 flex flex-wrap items-center gap-3">

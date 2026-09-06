@@ -562,6 +562,35 @@
     background-size: 100% 1.5px;
   }
 
+  /* ── Footer nav links — true left-to-right underline animation ──
+     Applied via className="footer-link" in Footer.tsx              */
+  .footer-link {
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #00D4FF 0%, #6600FF 100%);
+    box-shadow: 0 0 5px rgba(0, 212, 255, 0.50);
+    transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .footer-link:hover::after {
+    width: 100%;
+  }
+
+  .footer-link:hover {
+    color: #FFFFFF !important;
+  }
+
   /* ── Gradient buttons ── */
   .btn-primary {
     background: var(--btn-primary-bg);

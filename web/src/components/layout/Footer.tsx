@@ -83,7 +83,7 @@ export function Footer({ locale }: FooterProps) {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-[#94A3B8] hover:text-white transition-colors duration-200"
+                      className="footer-link text-sm text-[#94A3B8]"
                     >
                       {link.label}
                     </Link>
