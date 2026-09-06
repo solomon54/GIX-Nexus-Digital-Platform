@@ -1,13 +1,13 @@
 /**
  * GIX Nexus Digital Platform — Global Styles
- * Tailwind CSS v4 (CSS-first configuration)
- * Design direction: Professional Telecom & Engineering — Ethiopia
+ * Design direction: Fiber Optic Blue — Royal Cobalt base, cyan signal animation
  *
  * Color philosophy:
- *   Primary: Deep Navy #0A2540 — trust, authority, precision (Stripe, Cisco)
- *   Accent:  Signal Blue #0066FF — connectivity, technology
- *   Warm:    Steel White #F9FAFB base — clean, not harsh
- *   No dark mode — single focused light theme
+ *   Base:    Royal cobalt #061236 — recognisably BLUE, not black
+ *   Surface: stepped blues with real elevation contrast
+ *   Accent:  Signal Cyan #00D4FF — fiber optic light, RF signal
+ *   Motion:  Pure CSS pseudo-element wave — zero SVG overhead
+ *   Space:   Generous padding — never crowded
  */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Ethiopic:wght@400;500;600;700&display=swap');
@@ -18,26 +18,15 @@
   --font-ethiopic: "Noto Sans Ethiopic", Ethiopic, serif;
 
   /* Brand palette */
-  --color-navy: #0A2540;
-  --color-navy-mid: #0D3260;
-  --color-navy-deep: #071A2E;
-  --color-signal: #0066FF;
-  --color-signal-lt: #E8F0FF;
-  --color-steel: #4A6080;
-  --color-green: #0D7A3E;
-  --color-green-lt: #E6F4ED;
-  --color-amber: #B45309;
-  --color-amber-lt: #FEF3C7;
-
-  /* Neutral palette */
+  --color-cobalt: #061236;
+  --color-cobalt-mid: #0A1A4A;
+  --color-cobalt-hi: #0E2060;
+  --color-card: #0D1F55;
+  --color-cyan: #00D4FF;
+  --color-cyan-dim: #0099CC;
+  --color-green: #00C97A;
+  --color-amber: #F59E0B;
   --color-white: #FFFFFF;
-  --color-base: #F9FAFB;
-  --color-mist: #F1F5F9;
-  --color-slate-100: #E2E8F0;
-  --color-slate-300: #CBD5E1;
-  --color-slate-500: #64748B;
-  --color-slate-700: #334155;
-  --color-ink: #0D1B2A;
 
   --radius-sm: 4px;
   --radius: 8px;
@@ -53,124 +42,125 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   SINGLE LIGHT THEME — no dark mode
-   Professional telecom service company: authority + clarity
+   SINGLE THEME — Fiber Optic Royal Blue
+   Three distinct surface levels create hierarchy without jarring
+   Pure CSS wave animation — no SVG, no JS, no GPU stress
    ════════════════════════════════════════════════════════════════ */
 :root {
-  /* ── Surfaces ── */
-  --background: #F9FAFB;
-  /* Warm near-white — base layer */
-  --surface: #FFFFFF;
-  /* Cards, panels — white elevation */
-  --surface-raised: #FFFFFF;
-  /* Same — differentiated by shadow */
-  --surface-sunken: #F1F5F9;
-  /* Input bg, code blocks */
-  --surface-navy: #0A2540;
-  /* Dark feature panels — hero overlay bg */
 
-  /* ── Borders ── */
-  --border: #D1DCE8;
-  /* Standard — clear in daylight */
-  --border-subtle: #E8EEF5;
-  /* Dividers inside cards */
-  --border-strong: #9FB3C8;
-  /* Emphasis borders */
+  /* ── Page base — rich cobalt blue, clearly NOT black ── */
+  --background: #061236;
 
-  /* ── Typography ── */
-  --foreground: #0D1B2A;
-  /* Ink — maximum legibility */
-  --foreground-muted: #2E4A6A;
-  /* Secondary — dark blue-gray */
-  --foreground-sub: #4A6480;
-  /* Tertiary — labels, captions */
-  --foreground-faint: #8099B0;
-  /* Placeholder, disabled */
+  /* ── Section surfaces — 3 clearly distinct levels ──
+     Level 1: page base  #061236
+     Level 2: raised     #0A1A4A  (+visible lift)
+     Level 3: accent     #0E2060  (key feature strips)
+     Cards:   #0D1F55    (most elevated, readable against all levels)
+  */
+  --surface: #0D1F55;
+  /* Cards — clearly above all section bgs */
+  --surface-raised: #122370;
+  /* Modals, floating panels */
+  --surface-sunken: #040D28;
+  /* Input fields, code blocks */
+  --soft-surface: #091540;
+  /* Form header strip, inner panels */
+
+  /* ── Section rhythm — 3 levels rotate, never same adjacent ── */
+  --section-1: #061236;
+  /* Base — deepest cobalt */
+  --section-2: #0A1A4A;
+  /* Lifted — clearly lighter */
+  --section-3: #0E2060;
+  /* Accent strip — noticeably brighter */
+  --section-4: #040D28;
+  /* Deep panel (HSEQ, CTA) */
+  --section-odd: #061236;
+  --section-even: #0A1A4A;
+  --section-accent: #0E2060;
+
+  /* ── Borders — cyan glow, subtle → strong ── */
+  --border: rgba(0, 212, 255, 0.14);
+  --border-subtle: rgba(0, 212, 255, 0.07);
+  --border-strong: rgba(0, 212, 255, 0.35);
+  --border-white: rgba(255, 255, 255, 0.10);
+
+  /* ── Typography — white on blue reads beautifully ── */
+  --foreground: #EEF4FF;
+  --foreground-muted: #90B8D8;
+  --foreground-sub: #5A86AA;
+  --foreground-faint: #35567A;
+  --foreground-subtle: #5A86AA;
+  /* alias */
   --on-navy: #FFFFFF;
-  /* Text on navy backgrounds */
   --on-navy-sub: rgba(255, 255, 255, 0.72);
 
-  /* ── Brand ── */
-  --brand: #0A2540;
-  /* Primary navy — headings, logo area */
-  --accent: #0052CC;
-  /* Signal blue — CTAs, links, highlights */
-  --accent-hover: #003E99;
-  /* Darker on hover */
-  --accent-light: #E8F0FF;
-  /* Blue tint backgrounds */
-  --accent-mid: #4A90E2;
-  /* Mid blue for icons, tags */
-  --green: #0D7A3E;
-  /* Success, HSEQ, safety */
-  --green-light: #E6F4ED;
-  --amber: #B45309;
-  /* Warning accent — secondary brand */
-  --amber-light: #FEF3C7;
+  /* ── Brand accent ── */
+  --brand: #061236;
+  --accent: #00D4FF;
+  --accent-hover: #00B8E0;
+  --accent-light: rgba(0, 212, 255, 0.13);
+  --accent-mid: rgba(0, 212, 255, 0.38);
 
-  /* ── Section rhythm ── */
-  --section-1: #F9FAFB;
-  /* Base — page default */
-  --section-2: #FFFFFF;
-  /* Elevated white — card-dense sections */
-  --section-3: #EEF4FB;
-  /* Blue tint — key feature sections */
-  --section-4: #0A2540;
-  /* Navy — HSEQ, CTA panels */
-  --section-odd: #F9FAFB;
-  --section-even: #FFFFFF;
-  --section-accent: #EEF4FB;
+  /* ── Status colors ── */
+  --green: #00C97A;
+  --green-light: rgba(0, 201, 122, 0.13);
+  --amber: #F59E0B;
+  --amber-light: rgba(245, 158, 11, 0.13);
 
-  /* ── Shadows — multi-layer, realistic depth ── */
-  --shadow-xs: 0 1px 2px rgba(10, 37, 64, 0.04);
-  --shadow-sm: 0 1px 3px rgba(10, 37, 64, 0.05),
-    0 1px 8px rgba(10, 37, 64, 0.06);
-  --shadow-md: 0 2px 6px rgba(10, 37, 64, 0.06),
-    0 8px 24px rgba(10, 37, 64, 0.09);
-  --shadow-lg: 0 4px 12px rgba(10, 37, 64, 0.07),
-    0 20px 56px rgba(10, 37, 64, 0.13);
-  --shadow-xl: 0 8px 20px rgba(10, 37, 64, 0.08),
-    0 32px 72px rgba(10, 37, 64, 0.16);
-  --shadow-card: 0 1px 2px rgba(10, 37, 64, 0.05),
-    0 3px 12px rgba(10, 37, 64, 0.07);
-  --shadow-card-hover: 0 2px 6px rgba(10, 37, 64, 0.07),
-    0 10px 32px rgba(10, 37, 64, 0.11),
-    0 0 0 1px rgba(0, 82, 204, 0.07);
-  --shadow-glow: 0 0 0 3px rgba(0, 82, 204, 0.15),
-    0 4px 24px rgba(0, 82, 204, 0.18);
-  --shadow-navy: 0 4px 16px rgba(7, 26, 46, 0.30);
+  /* ── Aliases (backward compat) ── */
+  --gix-blue: #00D4FF;
+  --gix-blue-light: rgba(0, 212, 255, 0.13);
+  --gix-green: #00C97A;
+  --gix-green-light: rgba(0, 201, 122, 0.13);
 
-  /* ── Chip / badge ── */
-  --chip-bg: #E8F0FF;
-  --chip-text: #0052CC;
-  --chip-border: #C0D4F8;
+  /* ── Chips / badges ── */
+  --chip-bg: rgba(0, 212, 255, 0.11);
+  --chip-text: #00D4FF;
+  --chip-border: rgba(0, 212, 255, 0.28);
 
-  /* ── Aliases for backward compat ── */
-  --foreground-muted: #2E4A6A;
-  --foreground-subtle: #4A6480;
-  --border-subtle: #E8EEF5;
-  --gix-blue: #0052CC;
-  --gix-blue-light: #E8F0FF;
-  --gix-green: #0D7A3E;
-  --gix-green-light: #E6F4ED;
-  /* Soft surface — slightly tinted bg for inner card regions */
-  --soft-surface: #F5F8FC;
+  /* ── Shadows — blue-tinted depth ── */
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.40);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.55);
+  --shadow-xl: 0 16px 56px rgba(0, 0, 0, 0.65);
+  --shadow-card: 0 2px 8px rgba(0, 0, 30, 0.45),
+    0 0 0 1px rgba(0, 212, 255, 0.09);
+  --shadow-card-hover:
+    0 4px 20px rgba(0, 0, 30, 0.55),
+    0 0 0 1px rgba(0, 212, 255, 0.32),
+    0 0 24px rgba(0, 212, 255, 0.10);
+  --shadow-glow: 0 0 0 3px rgba(0, 212, 255, 0.22),
+    0 4px 24px rgba(0, 212, 255, 0.16);
+  --shadow-navy: 0 4px 20px rgba(0, 0, 0, 0.55);
 
   /* ── Gradients ── */
-  --gradient-brand: linear-gradient(135deg, #0A2540 0%, #0D3260 100%);
-  --gradient-accent: linear-gradient(135deg, #0052CC 0%, #0066FF 100%);
+  --gradient-brand: linear-gradient(135deg, #061236 0%, #0E2060 100%);
+  --gradient-accent: linear-gradient(135deg, #00A8CC 0%, #00D4FF 100%);
+
+  /* Hero overlay: reveals background photo while text stays readable */
   --gradient-hero: linear-gradient(to bottom,
-      rgba(7, 26, 46, 0.55) 0%,
-      rgba(7, 26, 46, 0.30) 60%,
-      rgba(7, 26, 46, 0.15) 100%);
-  --gradient-divider: linear-gradient(90deg, transparent 0%, var(--border) 20%, var(--border) 80%, transparent 100%);
+      rgba(6, 18, 54, 0.78) 0%,
+      rgba(6, 18, 54, 0.48) 50%,
+      rgba(6, 18, 54, 0.30) 100%);
+
+  /* Section divider: cyan glow line between sections */
+  --gradient-divider: linear-gradient(90deg,
+      transparent 0%,
+      rgba(0, 212, 255, 0.22) 20%,
+      rgba(0, 212, 255, 0.40) 50%,
+      rgba(0, 212, 255, 0.22) 80%,
+      transparent 100%);
 
   /* ── Focus ring ── */
-  --focus-ring: 0 0 0 3px rgba(0, 82, 204, 0.20);
+  --focus-ring: 0 0 0 3px rgba(0, 212, 255, 0.28);
 }
 
-/* ── Remove all dark mode styles — single focused theme ── */
-
+/* ════════════════════════════════════════════════════════════════
+   BODY — cobalt base + pure CSS wave animation
+   Wave = ::before pseudo on body, 100% CSS, zero JS/SVG
+   ════════════════════════════════════════════════════════════════ */
 @layer base {
 
   *,
@@ -188,7 +178,16 @@
   }
 
   body {
-    background-color: var(--background);
+    /* Radial gradient base — lighter centre-top like the fiber optic reference */
+    background:
+      radial-gradient(ellipse 120% 80% at 65% 20%,
+        rgba(14, 32, 96, 0.70) 0%,
+        transparent 65%),
+      radial-gradient(ellipse 80% 60% at 20% 70%,
+        rgba(0, 212, 255, 0.06) 0%,
+        transparent 55%),
+      #061236;
+    background-attachment: fixed;
     color: var(--foreground);
     font-family: var(--font-sans);
     font-size: 16px;
@@ -199,6 +198,61 @@
     overflow-x: hidden;
     word-break: break-word;
     overflow-wrap: break-word;
+    position: relative;
+  }
+
+  /* ── Pure CSS zigzag wave — body::before ──
+     No SVG, no JS, no extra DOM nodes.
+     Uses CSS gradient to draw repeating zigzag lines
+     that slowly drift across the viewport.
+     Subtle enough to not distract; visible on scroll. */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+
+    /* Zigzag pattern via repeating-linear-gradient */
+    background-image:
+      /* Wave ribbon 1 — primary cyan, slow drift */
+      repeating-linear-gradient(-45deg,
+        transparent,
+        transparent 60px,
+        rgba(0, 212, 255, 0.035) 60px,
+        rgba(0, 212, 255, 0.035) 62px),
+      /* Wave ribbon 2 — offset angle, fainter */
+      repeating-linear-gradient(45deg,
+        transparent,
+        transparent 90px,
+        rgba(0, 180, 240, 0.025) 90px,
+        rgba(0, 180, 240, 0.025) 92px),
+      /* Wave ribbon 3 — very subtle, widest spacing */
+      repeating-linear-gradient(-30deg,
+        transparent,
+        transparent 140px,
+        rgba(0, 140, 220, 0.018) 140px,
+        rgba(0, 140, 220, 0.018) 142px);
+
+    /* Animation: drift the whole pattern diagonally — smooth, slow, calm */
+    animation: wave-bg-drift 28s linear infinite;
+    will-change: background-position;
+  }
+
+  /* All content above the wave layer */
+  body>* {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes wave-bg-drift {
+    0% {
+      background-position: 0 0, 0 0, 0 0;
+    }
+
+    100% {
+      background-position: 200px 200px, -200px 200px, 300px -100px;
+    }
   }
 
   @media (max-width: 360px) {
@@ -229,6 +283,7 @@
     line-height: 1.8;
   }
 
+  /* ── Headings ── */
   h1 {
     font-size: clamp(28px, 4.5vw, 48px);
     line-height: 1.12;
@@ -288,7 +343,7 @@
     top: -40px;
     left: 0;
     background: var(--accent);
-    color: #fff;
+    color: #061236;
     padding: 8px 16px;
     text-decoration: none;
     z-index: 9999;
@@ -312,6 +367,12 @@
       transform 0.18s ease;
   }
 
+  input,
+  textarea,
+  select {
+    color-scheme: dark;
+  }
+
   @media (prefers-reduced-motion: reduce) {
 
     *,
@@ -328,38 +389,43 @@
   }
 }
 
+/* ════════════════════════════════════════════════════════════════
+   UTILITIES
+   ════════════════════════════════════════════════════════════════ */
 @layer utilities {
 
-  /* Section backgrounds */
+  /* ── Section backgrounds — semi-transparent so wave bleeds through ──
+     Each level is distinct: base → lifted → accent strip
+     Semi-transparent = wave animation remains visible across the page */
   .bg-section-odd {
-    background-color: var(--section-1);
+    background-color: rgba(6, 18, 54, 0.88);
   }
 
   .bg-section-even {
-    background-color: var(--section-2);
+    background-color: rgba(10, 26, 74, 0.82);
   }
 
   .bg-section-accent {
-    background-color: var(--section-3);
+    background-color: rgba(14, 32, 96, 0.78);
   }
 
   .bg-section-navy {
-    background-color: var(--section-4);
+    background-color: rgba(4, 13, 40, 0.92);
   }
 
   .bg-section-1 {
-    background-color: var(--section-1);
+    background-color: rgba(6, 18, 54, 0.88);
   }
 
   .bg-section-2 {
-    background-color: var(--section-2);
+    background-color: rgba(10, 26, 74, 0.82);
   }
 
   .bg-section-3 {
-    background-color: var(--section-3);
+    background-color: rgba(14, 32, 96, 0.78);
   }
 
-  /* Section divider */
+  /* ── Section divider — bright cyan line, clearly visible ── */
   .section-top-divide {
     position: relative;
   }
@@ -370,56 +436,57 @@
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 90%;
-    max-width: 1100px;
+    width: 85%;
+    max-width: 1000px;
     height: 1px;
     background: var(--gradient-divider);
-    opacity: 0.6;
   }
 
-  /* Card — standard floating card */
+  /* ── Card — elevated surface, generous padding, breathing room ── */
   .gix-card {
-    background: var(--surface);
+    background: rgba(13, 31, 85, 0.82);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: var(--shadow-card);
-    padding: clamp(20px, 3vw, 32px);
+    /* Generous internal space — never crowded */
+    padding: clamp(24px, 3.5vw, 40px);
     transition:
-      box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1),
-      border-color 250ms,
-      transform 250ms cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 280ms,
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .gix-card:hover {
     box-shadow: var(--shadow-card-hover);
-    transform: translateY(-2px);
+    border-color: var(--border-strong);
+    transform: translateY(-3px);
   }
 
-  /* Section padding */
+  /* ── Section padding — breathing room between sections ── */
   .section-pad {
-    padding-top: clamp(64px, 8vw, 120px);
-    padding-bottom: clamp(64px, 8vw, 120px);
+    padding-top: clamp(72px, 9vw, 128px);
+    padding-bottom: clamp(72px, 9vw, 128px);
   }
 
   .section-pad-sm {
-    padding-top: clamp(48px, 6vw, 88px);
-    padding-bottom: clamp(48px, 6vw, 88px);
+    padding-top: clamp(56px, 7vw, 96px);
+    padding-bottom: clamp(56px, 7vw, 96px);
   }
 
-  /* Container */
+  /* ── Container ── */
   .container-fluid {
     width: 100%;
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: clamp(16px, 4vw, 48px);
-    padding-right: clamp(16px, 4vw, 48px);
+    padding-left: clamp(20px, 5vw, 56px);
+    padding-right: clamp(20px, 5vw, 56px);
   }
 
-  /* Scroll reveal */
+  /* ── Scroll reveal ── */
   .reveal {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(24px);
     transition:
       opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
       transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
@@ -431,26 +498,26 @@
   }
 
   .delay-1 {
-    transition-delay: 0.05s;
+    transition-delay: 0.06s;
   }
 
   .delay-2 {
-    transition-delay: 0.12s;
+    transition-delay: 0.14s;
   }
 
   .delay-3 {
-    transition-delay: 0.19s;
+    transition-delay: 0.22s;
   }
 
   .delay-4 {
-    transition-delay: 0.26s;
+    transition-delay: 0.30s;
   }
 
   .delay-5 {
-    transition-delay: 0.33s;
+    transition-delay: 0.38s;
   }
 
-  /* Pulse dot */
+  /* ── Pulse dot ── */
   .pulse-dot {
     animation: pulse-dot 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
@@ -469,7 +536,7 @@
     }
   }
 
-  /* Animated underline link */
+  /* ── Animated underline link ── */
   .link-line {
     text-decoration: none;
     background-image: linear-gradient(var(--accent), var(--accent));
@@ -482,9 +549,26 @@
   .link-line:hover {
     background-size: 100% 1.5px;
   }
+
+  /* ── Cyan glow text ── */
+  .text-cyan-glow {
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.45);
+  }
+
+  /* ── Glass card — floating panel variant ── */
+  .glass-card {
+    background: rgba(10, 26, 74, 0.65);
+    border: 1px solid rgba(0, 212, 255, 0.18);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 18px;
+  }
 }
 
-/* Scrollbar */
+/* ════════════════════════════════════════════════════════════════
+   SCROLLBAR
+   ════════════════════════════════════════════════════════════════ */
 @supports selector(::-webkit-scrollbar) {
   ::-webkit-scrollbar {
     width: 5px;
@@ -496,17 +580,19 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: var(--border);
+    background: rgba(0, 212, 255, 0.28);
     border-radius: 99px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--border-strong);
+    background: rgba(0, 212, 255, 0.50);
   }
 }
 
-/* Selection */
+/* ════════════════════════════════════════════════════════════════
+   SELECTION
+   ════════════════════════════════════════════════════════════════ */
 ::selection {
-  background: rgba(0, 82, 204, 0.12);
-  color: var(--foreground);
+  background: rgba(0, 212, 255, 0.20);
+  color: #EEF4FF;
 }

@@ -44,12 +44,12 @@ export default async function Page({ params }: Props) {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#65D51A] mb-3">{t('pageSubtitle')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#00C97A] mb-3">{t('pageSubtitle')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-5 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('heroDescription')}</p>
+          <p className="mt-5 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>
         </div>
       </section>
 
@@ -68,9 +68,9 @@ export default async function Page({ params }: Props) {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.9), rgba(11,23,38,0.3))' }} />
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11,23,38,0.9), rgba(5,13,26,0.25))' }} />
                 <div className="absolute bottom-4 left-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#65D51A]">HSEQ Policy</p>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#00C97A]">HSEQ Policy</p>
                 </div>
               </div>
               <div className="p-6" style={{ background: 'var(--surface)' }}>
@@ -86,8 +86,8 @@ export default async function Page({ params }: Props) {
                 <div className="flex items-start gap-3">
                   <div className="text-2xl">🎯</div>
                   <div>
-                    <div className="inline-flex items-center gap-1.5 rounded-full border border-[#008CFF]/30 bg-[#008CFF]/10 px-2.5 py-0.5 mb-2">
-                      <span className="text-xs font-semibold text-[#008CFF]">{t('zeroAccidentBadge')}</span>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-2.5 py-0.5 mb-2">
+                      <span className="text-xs font-semibold text-[var(--accent)]">{t('zeroAccidentBadge')}</span>
                     </div>
                     <h3 className="font-semibold text-sm" style={{ color: 'var(--foreground)' }}>{t('zeroAccidentLabel')}</h3>
                     <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{t('zeroAccidentDescription')}</p>
@@ -100,8 +100,8 @@ export default async function Page({ params }: Props) {
                 <div className="flex items-start gap-3">
                   <div className="text-2xl">🛡</div>
                   <div>
-                    <div className="inline-flex items-center gap-1.5 rounded-full border border-[#65D51A]/30 bg-[#65D51A]/10 px-2.5 py-0.5 mb-2">
-                      <span className="text-xs font-semibold text-[#65D51A]">{t('safetyFirstBadge')}</span>
+                    <div className="inline-flex items-center gap-1.5 rounded-full border border-[#00C97A]/30 bg-[#00C97A]/10 px-2.5 py-0.5 mb-2">
+                      <span className="text-xs font-semibold text-[#00C97A]">{t('safetyFirstBadge')}</span>
                     </div>
                     <h3 className="font-semibold text-sm" style={{ color: 'var(--foreground)' }}>{t('safetyFirstLabel')}</h3>
                     <p className="mt-1 text-xs leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{t('safetyFirstDescription')}</p>
@@ -113,13 +113,13 @@ export default async function Page({ params }: Props) {
 
           {/* Program Elements — Source: Company Profile PDF, Page 8 */}
           <div className="mb-8 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Program Elements</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-2">Program Elements</p>
             <h2 className="text-2xl font-bold" style={{ color: 'var(--foreground)' }}>{t('programTitle')}</h2>
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {programElements.map((element, i) => (
               <div key={i} className="flex items-center gap-3 rounded-xl border p-4" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
-                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold text-white" style={{ background: '#65D51A' }}>
+                <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold text-white" style={{ background: '#00C97A' }}>
                   ✓
                 </span>
                 <span className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>{element}</span>

@@ -59,7 +59,7 @@ const inputBase: React.CSSProperties = {
   borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: 'var(--border)',
-  background: 'var(--background)',
+  background: 'var(--surface-sunken)',
   color: 'var(--foreground)',
   padding: '11px 14px',
   fontSize: '14px',
@@ -90,7 +90,7 @@ export function InquiryForm() {
 
   const focusStyle = (name: string): React.CSSProperties => ({
     ...(fieldErrors[name as keyof FieldErrors] ? inputError : inputBase),
-    ...(focusedField === name ? { borderColor: '#008CFF', boxShadow: '0 0 0 3px rgba(0,140,255,0.12)' } : {}),
+    ...(focusedField === name ? { borderColor: 'var(--accent)', boxShadow: '0 0 0 3px rgba(0,212,255,0.15)' } : {}),
   })
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -131,9 +131,9 @@ export function InquiryForm() {
   // ── Success state ────────────────────────────────────────────
   if (state === 'success') {
     return (
-      <div className="rounded-2xl border p-10 text-center" style={{ background: 'var(--surface)', borderColor: 'rgba(101,213,26,0.3)' }}>
-        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full" style={{ background: 'rgba(101,213,26,0.12)' }}>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#65D51A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8" aria-hidden="true">
+      <div className="rounded-2xl border p-10 text-center" style={{ background: 'var(--surface)', borderColor: 'rgba(0,201,122,0.3)' }}>
+        <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full" style={{ background: 'var(--green-light)' }}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--green)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="h-8 w-8" aria-hidden="true">
             <polyline points="20 6 9 17 4 12" />
           </svg>
         </div>
@@ -141,14 +141,14 @@ export function InquiryForm() {
         <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--foreground-subtle)' }}>{serverMessage}</p>
         <p className="text-xs" style={{ color: 'var(--foreground-subtle)' }}>
           You can also reach us directly at{' '}
-          <a href="mailto:gixnexustelecom@gmail.com" className="text-[#008CFF] hover:underline">
+          <a href="mailto:gixnexustelecom@gmail.com" className="hover:underline" style={{ color: 'var(--accent)' }}>
             gixnexustelecom@gmail.com
           </a>
         </p>
         <button
           type="button"
           onClick={() => { setState('idle'); setServerMessage('') }}
-          className="mt-6 inline-flex min-h-[40px] items-center rounded-lg border px-5 py-2 text-sm font-medium transition-colors hover:bg-[#008CFF]/8"
+          className="mt-6 inline-flex min-h-[40px] items-center rounded-lg border px-5 py-2 text-sm font-medium transition-colors"
           style={{ borderColor: 'var(--border)', color: 'var(--foreground)' }}
         >
           Submit another inquiry
@@ -407,16 +407,13 @@ export function InquiryForm() {
         <div className="px-7 py-5 border-t flex items-center justify-between gap-4" style={{ borderColor: 'var(--border)', background: 'var(--soft-surface)' }}>
           <p className="text-xs" style={{ color: 'var(--foreground-subtle)' }}>
             Or contact us directly:{' '}
-            <a href="tel:+251911509555" className="text-[#008CFF] hover:underline font-medium">+251 911 509 555</a>
+            <a href="tel:+251911509555" className="hover:underline font-medium" style={{ color: 'var(--accent)' }}>+251 911 509 555</a>
           </p>
           <button
             type="submit"
             disabled={state === 'submitting'}
-            className="inline-flex min-h-[44px] items-center gap-2 rounded-lg px-8 py-2.5 text-sm font-semibold text-white transition-all focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2"
-            style={{
-              background: state === 'submitting' ? '#465463' : '#008CFF',
-              cursor: state === 'submitting' ? 'not-allowed' : 'pointer',
-            }}
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-lg px-8 py-2.5 text-sm font-semibold transition-all focus:outline-none focus:ring-2 focus:ring-offset-2"
+            style={{ background: state === 'submitting' ? 'var(--surface-raised)' : 'var(--accent)', color: state === 'submitting' ? 'var(--foreground-sub)' : '#050D1A', cursor: state === 'submitting' ? 'not-allowed' : 'pointer' }}
           >
             {state === 'submitting' ? (
               <>

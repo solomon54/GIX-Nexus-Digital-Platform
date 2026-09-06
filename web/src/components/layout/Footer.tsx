@@ -25,14 +25,14 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer>
-      {/* ── Top boundary — gradient separator, highly visible ─── */}
+      {/* ── Top boundary — cyan signal line ─── */}
       <div style={{
         height: '1px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(63,171,255,0.4) 30%, rgba(0,128,240,0.6) 50%, rgba(63,171,255,0.4) 70%, transparent 100%)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.25) 25%, rgba(0,212,255,0.50) 50%, rgba(0,212,255,0.25) 75%, transparent 100%)',
       }} />
 
       {/* ── Main footer body ─────────────────────────────────── */}
-      <div style={{ background: '#07111C' }}>
+      <div style={{ background: '#030810' }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Top section — logo + tagline + links */}
@@ -50,7 +50,7 @@ export function Footer({ locale }: FooterProps) {
                 />
               </Link>
 
-              <p className="text-sm leading-relaxed mb-5" style={{ color: '#94A3B8', maxWidth: '280px' }}>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--foreground-muted)', maxWidth: '280px' }}>
                 {t('tagline')}
               </p>
 
@@ -58,9 +58,9 @@ export function Footer({ locale }: FooterProps) {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium"
                 style={{
-                  border: '1px solid rgba(63,171,255,0.25)',
-                  background: 'rgba(0,128,240,0.08)',
-                  color: '#60A5FA',
+                  border: '1px solid rgba(0,212,255,0.20)',
+                  background: 'rgba(0,212,255,0.06)',
+                  color: 'var(--accent)',
                 }}
               >
                 <span aria-hidden="true">🇪🇹</span>
@@ -70,7 +70,7 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Quick Links — 2 columns on large screens */}
             <div className="lg:col-span-4">
-              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: '#64748B' }}>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'var(--foreground-sub)' }}>
                 {t('linksTitle')}
               </h3>
               {/* Responsive 2-column grid for links */}
@@ -91,14 +91,14 @@ export function Footer({ locale }: FooterProps) {
             {/* Contact — 4 columns on large screens */}
             {/* Source: Company Profile PDF, Page 10 */}
             <div className="lg:col-span-4">
-              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: '#64748B' }}>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'var(--foreground-sub)' }}>
                 {t('contactTitle')}
               </h3>
               <address className="not-italic">
                 <ul className="flex flex-col gap-4" role="list">
                   <li>
                     <p className="text-sm font-semibold text-white">{CONTACT.name}</p>
-                    <p className="text-xs mt-0.5" style={{ color: '#64748B' }}>{CONTACT.title}</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'var(--foreground-sub)' }}>{CONTACT.title}</p>
                   </li>
                   <li>
                     <a
@@ -107,7 +107,7 @@ export function Footer({ locale }: FooterProps) {
                     >
                       <span
                         className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
-                        style={{ background: 'rgba(0,128,240,0.12)', color: '#60A5FA' }}
+                        style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
                       >
                         📞
                       </span>
@@ -121,7 +121,7 @@ export function Footer({ locale }: FooterProps) {
                     >
                       <span
                         className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
-                        style={{ background: 'rgba(0,128,240,0.12)', color: '#60A5FA' }}
+                        style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
                       >
                         ✉️
                       </span>
@@ -130,11 +130,11 @@ export function Footer({ locale }: FooterProps) {
                   </li>
                   <li
                     className="flex items-center gap-2.5 text-sm"
-                    style={{ color: '#94A3B8' }}
+                    style={{ color: 'var(--foreground-muted)' }}
                   >
                     <span
                       className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
-                      style={{ background: 'rgba(101,213,26,0.10)', color: '#4ADE80' }}
+                      style={{ background: 'var(--green-light)', color: 'var(--green)' }}
                     >
                       📍
                     </span>
@@ -148,13 +148,13 @@ export function Footer({ locale }: FooterProps) {
           {/* Bottom bar — copyright + secret admin gateway */}
           <div
             className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+            style={{ borderTop: '1px solid var(--border-white)' }}
           >
-            <p className="text-xs" style={{ color: '#475569' }}>
+            <p className="text-xs" style={{ color: 'var(--foreground-faint)' }}>
               &copy; 2026 {t('company')}. {t('rights')}
             </p>
             <div className="flex items-center gap-3">
-              <p className="text-xs" style={{ color: '#334155' }}>
+              <p className="text-xs" style={{ color: 'var(--foreground-faint)' }}>
                 {t('legalNote')}
               </p>
               {/* Secret admin gateway — small decorative dot, visible but subtle.

@@ -66,12 +66,12 @@ export default async function Page({ params }: Props) {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#65D51A] mb-3">{t('pageSubtitle')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#00C97A] mb-3">{t('pageSubtitle')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-5 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('heroDescription')}</p>
+          <p className="mt-5 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>
         </div>
       </section>
 
@@ -80,7 +80,7 @@ export default async function Page({ params }: Props) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* CRITICAL disclaimer — these are PLANNED objectives, not current achievements */}
-          <div className="mb-12 rounded-xl border border-[#65D51A]/30 bg-[#65D51A]/5 p-5 text-center">
+          <div className="mb-12 rounded-xl border border-[#00C97A]/30 bg-[#00C97A]/5 p-5 text-center">
             <p className="text-sm font-medium" style={{ color: 'var(--foreground)' }}>{t('disclaimerBanner')}</p>
           </div>
 
@@ -88,10 +88,10 @@ export default async function Page({ params }: Props) {
             {objectives.map((obj) => (
               <div key={obj.number} className="rounded-xl border p-6" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
                 {/* "Objective / Planned" badge — ALWAYS present per governance rules */}
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-[#65D51A]/30 bg-[#65D51A]/10 px-2.5 py-1 mb-4">
-                  <span className="text-xs font-semibold text-[#65D51A]">{t('objectiveBadge')}</span>
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-[#00C97A]/30 bg-[#00C97A]/10 px-2.5 py-1 mb-4">
+                  <span className="text-xs font-semibold text-[#00C97A]">{t('objectiveBadge')}</span>
                 </div>
-                <div className="text-3xl font-bold text-[#008CFF] mb-2">{obj.number}</div>
+                <div className="text-3xl font-bold text-[var(--accent)] mb-2">{obj.number}</div>
                 <h3 className="font-bold text-base mb-2" style={{ color: 'var(--foreground)' }}>{obj.title}</h3>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{obj.description}</p>
               </div>
@@ -104,7 +104,7 @@ export default async function Page({ params }: Props) {
               GIX Nexus Telecom and Power is committed to sustainable growth and continuous improvement, becoming a trusted telecommunications and power engineering partner in Ethiopia and the East African region.
             </p>
             <Link href={`/${locale}/contact`}
-              className="inline-flex min-h-[44px] items-center rounded-lg bg-[#008CFF] px-8 py-3 text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors">
+              className="inline-flex min-h-[44px] items-center rounded-lg bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors">
               Contact Us
             </Link>
           </div>

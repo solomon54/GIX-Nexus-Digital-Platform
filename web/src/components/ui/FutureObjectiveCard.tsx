@@ -41,7 +41,12 @@ export function FutureObjectiveCard({
 
         {/* "Objective / Planned" badge — ALWAYS visible */}
         <span
-          className="flex-shrink-0 rounded-full bg-amber-100 px-2.5 py-1 text-xs font-medium text-amber-700 dark:bg-amber-900/30 dark:text-amber-400"
+          className="flex-shrink-0 rounded-full px-2.5 py-1 text-xs font-medium"
+          style={{
+            background: 'var(--amber-light)',
+            color: 'var(--amber)',
+            border: '1px solid rgba(245,158,11,0.25)',
+          }}
           aria-label="This is a planned objective, not a current achievement"
         >
           {badgeLabel}

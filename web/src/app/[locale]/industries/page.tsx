@@ -65,12 +65,12 @@ export default async function Page({ params }: Props) {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-3">{t('pageSubtitle')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('pageSubtitle')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-5 max-w-2xl mx-auto text-sm italic text-[#B9C6D3] leading-relaxed">{t('disclaimer')}</p>
+          <p className="mt-5 max-w-2xl mx-auto text-sm italic text-[var(--foreground-muted)] leading-relaxed">{t('disclaimer')}</p>
         </div>
       </section>
 
@@ -80,7 +80,7 @@ export default async function Page({ params }: Props) {
             {sectors.map((sector, i) => (
               <div
                 key={i}
-                className="flex items-center gap-4 rounded-xl border p-5 sm:p-6 transition-colors hover:border-[#008CFF]/40"
+                className="flex items-center gap-4 rounded-xl border p-5 sm:p-6 transition-colors hover:border-[var(--accent)]/40"
                 style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-2xl" style={{ background: 'rgba(0,140,255,0.1)' }}>
@@ -91,7 +91,7 @@ export default async function Page({ params }: Props) {
                   {sector.description ? (
                     <p className="text-xs mt-0.5" style={{ color: 'var(--foreground-subtle)' }}>{sector.description}</p>
                   ) : (
-                    <p className="text-xs mt-0.5 text-[#008CFF]">Target Sector</p>
+                    <p className="text-xs mt-0.5 text-[var(--accent)]">Target Sector</p>
                   )}
                 </div>
               </div>
@@ -102,7 +102,7 @@ export default async function Page({ params }: Props) {
             <p className="text-sm mb-6 max-w-lg mx-auto" style={{ color: 'var(--foreground-subtle)' }}>
               GIX Nexus Telecom and Power welcomes opportunities to work as a contractor or subcontractor across all of these sectors throughout Ethiopia.
             </p>
-            <Link href={`/${locale}/contact`} className="inline-flex min-h-[44px] items-center rounded-lg bg-[#008CFF] px-8 py-3 text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors">
+            <Link href={`/${locale}/contact`} className="inline-flex min-h-[44px] items-center rounded-lg bg-[var(--accent)] px-8 py-3 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors">
               Get in Touch
             </Link>
           </div>

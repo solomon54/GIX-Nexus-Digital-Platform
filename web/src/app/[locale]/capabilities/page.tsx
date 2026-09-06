@@ -119,21 +119,21 @@ const EQUIPMENT = [
   {
     category: 'Test Instruments',
     image: '/images/capability/test-instruments.jpg',
-    color: '#008CFF',
+    color: 'var(--accent)',
     icon: '🔬',
     items: ['OTDR (Optical Time-Domain Reflectometer)', 'Digital Multimeters', 'Network Cable Testers (Fluke)', 'RF Signal Analyzers', 'Power Quality Analyzers', 'Tone Generator', 'Cable Finder'],
   },
   {
     category: 'Installation Tools',
     image: '/images/industries/instalation-tools.jpg',
-    color: '#12C8FF',
+    color: 'var(--accent-hover)',
     icon: '🔧',
     items: ['Fiber Optic Fusion Splicer', 'Cable Pulling Equipment', 'Crimping & Termination Tools', 'Electric Hammer Drill', 'Technician Hand Tool Kits', 'Antenna Alignment Tools', 'Extension Ladders'],
   },
   {
     category: 'Safety Equipment',
     image: '/images/industries/safety-equipment.jpg',
-    color: '#65D51A',
+    color: '#00C97A',
     icon: '🛡',
     items: ['Safety Helmets', 'Safety Harnesses', 'High-Visibility Vests', 'Safety Gloves', 'Safety Boots', 'Safety Glasses', 'First Aid Kit'],
   },
@@ -187,12 +187,12 @@ export default async function Page({ params }: Props) {
       <section className="relative py-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/capability/our-capabilities.webp" alt="" fill className="object-cover" priority aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-3">{t('heroEyebrow')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">{t('pageTitle')}</h1>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('heroDescription')}</p>
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>
           {/* Quick stats */}
           <div className="mt-10 flex flex-wrap justify-center gap-8 sm:gap-16">
             {[
@@ -201,8 +201,8 @@ export default async function Page({ params }: Props) {
               { label: 'Technical Support', value: '24/7' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold text-[#008CFF]">{stat.value}</div>
-                <div className="text-xs text-[#708090] mt-1 uppercase tracking-wide">{stat.label}</div>
+                <div className="text-3xl font-bold text-[var(--accent)]">{stat.value}</div>
+                <div className="text-xs text-[var(--foreground-sub)] mt-1 uppercase tracking-wide">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -214,7 +214,7 @@ export default async function Page({ params }: Props) {
       <section className="py-24 section-top-divide bg-section-odd">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-14 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Our People</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-2">Our People</p>
             <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('personnelTitle')}</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>
               A qualified team with practical field experience across telecommunications, satellite communications, network systems, and power engineering.
@@ -235,7 +235,7 @@ export default async function Page({ params }: Props) {
                       className="object-cover object-top"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #0B1726, #172331)' }}>
+                    <div className="absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #050D1A, #0D1829)' }}>
                       <div className="flex h-24 w-24 items-center justify-center rounded-full text-3xl font-bold text-white" style={{ background: 'rgba(0,140,255,0.15)', border: '2px solid rgba(0,140,255,0.3)' }}>
                         {member.initials}
                       </div>
@@ -253,7 +253,7 @@ export default async function Page({ params }: Props) {
                 {/* Info */}
                 <div className="lg:col-span-2 p-8" style={{ background: 'var(--surface)' }}>
                   <div className="mb-1">
-                    <span className="text-xs font-semibold uppercase tracking-widest text-[#008CFF]">{member.qualification}</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">{member.qualification}</span>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{member.bio}</p>
 
@@ -272,10 +272,10 @@ export default async function Page({ params }: Props) {
 
                   <div className="mt-6 pt-5 flex items-center gap-4" style={{ borderTop: '1px solid var(--border)' }}>
                     {/* Source: Company Profile PDF, Page 10 */}
-                    <a href="tel:+251911509555" className="inline-flex items-center gap-1.5 text-sm text-[#008CFF] hover:text-[#12C8FF] transition-colors">
+                    <a href="tel:+251911509555" className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
                       📞 +251 911 509 555
                     </a>
-                    <a href="mailto:gixnexustelecom@gmail.com" className="inline-flex items-center gap-1.5 text-sm text-[#008CFF] hover:text-[#12C8FF] transition-colors">
+                    <a href="mailto:gixnexustelecom@gmail.com" className="inline-flex items-center gap-1.5 text-sm text-[var(--accent)] hover:text-[var(--accent-hover)] transition-colors">
                       ✉ gixnexustelecom@gmail.com
                     </a>
                   </div>
@@ -287,9 +287,9 @@ export default async function Page({ params }: Props) {
           {/* Team grid — other professionals */}
           <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((member) => (
-              <div key={member.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[#008CFF]/30" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div key={member.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[var(--accent)]/30" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
                 {/* Avatar */}
-                <div className="relative h-48" style={{ background: 'linear-gradient(135deg, #0B1726, #172331)' }}>
+                <div className="relative h-48" style={{ background: 'linear-gradient(135deg, #050D1A, #0D1829)' }}>
                   {member.photoUrl ? (
                     <Image src={member.photoUrl} alt={member.name} fill className="object-cover" />
                   ) : (
@@ -297,14 +297,14 @@ export default async function Page({ params }: Props) {
                       <div className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold text-white" style={{ background: 'rgba(0,140,255,0.15)', border: '2px solid rgba(0,140,255,0.3)' }}>
                         {member.initials}
                       </div>
-                      <p className="mt-3 text-xs text-[#708090]">Photo coming soon</p>
+                      <p className="mt-3 text-xs text-[var(--foreground-sub)]">Photo coming soon</p>
                     </div>
                   )}
-                  <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(#008CFF 1px, transparent 1px), linear-gradient(90deg, #008CFF 1px, transparent 1px)', backgroundSize: '20px 20px' }} aria-hidden="true" />
+                  <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'linear-gradient(var(--accent) 1px, transparent 1px), linear-gradient(90deg, var(--accent) 1px, transparent 1px)', backgroundSize: '20px 20px' }} aria-hidden="true" />
                 </div>
 
                 <div className="p-5 sm:p-6">
-                  <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-3" style={{ background: 'rgba(0,140,255,0.08)', color: '#008CFF' }}>
+                  <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium mb-3" style={{ background: 'rgba(0,140,255,0.08)', color: 'var(--accent)' }}>
                     {member.qualification}
                   </span>
                   <h3 className="font-bold text-sm mb-2" style={{ color: 'var(--foreground)' }}>{member.role}</h3>
@@ -338,7 +338,7 @@ export default async function Page({ params }: Props) {
       <section className="py-24 section-top-divide bg-section-even">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-14 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Our Equipment</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-2">Our Equipment</p>
             <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('equipmentTitle')}</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>
               {/* Source: Company Profile PDF, Page 9 */}
@@ -380,7 +380,7 @@ export default async function Page({ params }: Props) {
       <section className="py-24 section-top-divide bg-section-odd" id="inquiry">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-2">Get in Touch</p>
+            <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-2">Get in Touch</p>
             <h2 className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Submit a Service Inquiry</h2>
             <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-subtle)' }}>
               Whether you need telecommunications infrastructure, fiber optic deployment, power systems, or maintenance support — describe your requirements and we will respond promptly.
@@ -392,9 +392,9 @@ export default async function Page({ params }: Props) {
             <p className="text-sm" style={{ color: 'var(--foreground-subtle)' }}>
               Prefer to speak directly?{' '}
               {/* Source: Company Profile PDF, Page 10 */}
-              <a href="tel:+251911509555" className="text-[#008CFF] hover:text-[#12C8FF] font-medium transition-colors">+251 911 509 555</a>
+              <a href="tel:+251911509555" className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors">+251 911 509 555</a>
               {' · '}
-              <a href="mailto:gixnexustelecom@gmail.com" className="text-[#008CFF] hover:text-[#12C8FF] font-medium transition-colors">gixnexustelecom@gmail.com</a>
+              <a href="mailto:gixnexustelecom@gmail.com" className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium transition-colors">gixnexustelecom@gmail.com</a>
             </p>
           </div>
         </div>

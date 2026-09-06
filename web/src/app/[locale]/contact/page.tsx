@@ -94,12 +94,12 @@ function ContactPage() {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-3">{t('heroEyebrow')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-5 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('heroDescription')}</p>
+          <p className="mt-5 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>
         </div>
       </section>
 
@@ -124,7 +124,7 @@ function ContactPage() {
                   <div className="absolute bottom-4 left-5">
                     {/* Source: Company Profile PDF, Page 10 */}
                     <p className="font-semibold text-white">{t('mdName')}</p>
-                    <p className="text-sm text-[#B9C6D3]">{t('mdLabel')}</p>
+                    <p className="text-sm text-[var(--foreground-muted)]">{t('mdLabel')}</p>
                   </div>
                 </div>
 
@@ -133,14 +133,14 @@ function ContactPage() {
 
                   {/* Phone — Source: Company Profile PDF, Page 10 */}
                   <a href={`tel:${t('phone')}`}
-                    className="flex items-center gap-4 p-4 rounded-xl border group hover:border-[#008CFF]/50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2"
+                    className="flex items-center gap-4 p-4 rounded-xl border group hover:border-[var(--accent)]/50 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
                     style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'rgba(0,140,255,0.12)' }}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'var(--accent-light)' }}>
                       📞
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-subtle)' }}>{t('phoneLabel')}</p>
-                      <p className="text-base font-semibold text-[#008CFF] group-hover:text-[#12C8FF] transition-colors">
+                      <p className="text-base font-semibold text-[var(--accent)] group-hover:text-[var(--accent-hover)] transition-colors">
                         {/* Source: Company Profile PDF, Page 10 */}
                         +251 911509555
                       </p>
@@ -149,14 +149,14 @@ function ContactPage() {
 
                   {/* Email — Source: Company Profile PDF, Page 10 */}
                   <a href={`mailto:${t('email')}`}
-                    className="flex items-center gap-4 p-4 rounded-xl border group hover:border-[#008CFF]/50 transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2"
+                    className="flex items-center gap-4 p-4 rounded-xl border group hover:border-[var(--accent)]/50 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2"
                     style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'rgba(0,140,255,0.12)' }}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'var(--accent-light)' }}>
                       ✉️
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-subtle)' }}>{t('emailLabel')}</p>
-                      <p className="text-base font-semibold text-[#008CFF] group-hover:text-[#12C8FF] transition-colors break-all">
+                      <p className="text-base font-semibold text-[var(--accent)] group-hover:text-[var(--accent-hover)] transition-colors break-all">
                         {/* Source: Company Profile PDF, Page 10 */}
                         gixnexustelecom@gmail.com
                       </p>
@@ -165,14 +165,14 @@ function ContactPage() {
 
                   {/* Address — Source: Company Profile PDF, Page 10 */}
                   <div className="flex items-center gap-4 p-4 rounded-xl border" style={{ background: 'var(--background)', borderColor: 'var(--border)' }}>
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'rgba(101,213,26,0.12)' }}>
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg text-lg" style={{ background: 'var(--green-light)' }}>
                       📍
                     </div>
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-wide" style={{ color: 'var(--foreground-subtle)' }}>{t('addressLabel')}</p>
                       {/* Source: Company Profile PDF, Page 10 */}
                       <p className="text-base font-semibold" style={{ color: 'var(--foreground)' }}>Addis Ababa, Ethiopia</p>
-                      <p className="text-xs text-[#65D51A]">Operating Across Ethiopia</p>
+                      <p className="text-xs text-[#00C97A]">Operating Across Ethiopia</p>
                     </div>
                   </div>
                 </div>
@@ -198,7 +198,7 @@ function ContactPage() {
                   </div>
                   <div className="flex items-center justify-between text-sm">
                     <span style={{ color: 'var(--foreground-subtle)' }}>Support</span>
-                    <span className="font-medium text-[#008CFF]">24/7 Technical</span>
+                    <span className="font-medium text-[var(--accent)]">24/7 Technical</span>
                   </div>
                   {/* Across Ethiopia — Source: Company Profile PDF, Page 1 */}
                   <div className="flex items-center justify-between text-sm">

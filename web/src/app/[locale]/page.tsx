@@ -100,7 +100,7 @@ function HomePage({
         }
         .btn-outline-blue:hover {
           background: var(--accent);
-          color: #FFFFFF;
+          color: #050D1A;
         }
         .btn-outline-muted {
           border: 1px solid var(--border);
@@ -145,7 +145,7 @@ function HomePage({
                 </div>
               </div>
               <div className="mt-8 flex items-center gap-3">
-                <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-all" style={{ background: '#0052CC' }}>
+                <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-semibold text-white transition-all" style={{ background: 'var(--accent)' }}>
                   {t('ctaServices')}
                 </Link>
                 <Link href={`/${locale}/company`} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/25 px-6 py-2.5 text-sm font-medium text-white/90 hover:bg-white/10 hover:border-white/40 transition-colors backdrop-blur-sm">
@@ -154,7 +154,7 @@ function HomePage({
               </div>
             </div>
             <div className="hidden lg:flex justify-end">
-              <div className="rounded-2xl p-7 border border-white/12 w-full max-w-xs backdrop-blur-md" style={{ background: 'rgba(10,37,64,0.72)' }}>
+              <div className="rounded-2xl p-7 border border-white/12 w-full max-w-xs backdrop-blur-md" style={{ background: 'rgba(5,13,26,0.80)' }}>
                 <Image src="/assets/company-logo.png" alt="GIX Nexus Telecom and Power" width={240} height={120} className="object-contain w-full" priority />
                 <div className="mt-5 pt-4 border-t border-white/10 space-y-1.5 text-center">
                   <p className="text-xs text-white/45 uppercase tracking-widest">Ethiopian-owned</p>
@@ -416,26 +416,26 @@ function HomePage({
       <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         <div className="absolute inset-0">
           <Image src="/images/hseq/hseq-policy.jpeg" alt="" fill className="object-cover" aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.82) 0%, rgba(5,13,26,0.65) 60%, rgba(5,13,26,0.50) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(11,23,38,0.6)', backdropFilter: 'blur(8px)' }}>
-              <div className="text-4xl font-bold text-[#65D51A] mb-2">HSEQ</div>
+            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.72)', backdropFilter: 'blur(12px)' }}>
+              <div className="text-4xl font-bold text-[#00C97A] mb-2">HSEQ</div>
               <div className="text-sm font-semibold text-white mb-1">Policy</div>
-              <p className="text-xs text-[#B9C6D3]">Health, Safety, Environment & Quality — applied to every project</p>
+              <p className="text-xs text-[#8AADCC]">Health, Safety, Environment & Quality — applied to every project</p>
             </div>
-            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(11,23,38,0.6)', backdropFilter: 'blur(8px)' }}>
+            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.72)', backdropFilter: 'blur(12px)' }}>
               {/* Source: PDF Page 8 — Zero Accident Objective is a GOAL, never a result */}
-              <div className="text-4xl font-bold text-[#008CFF] mb-2">Zero</div>
+              <div className="text-4xl font-bold text-[#00D4FF] mb-2">Zero</div>
               <div className="text-sm font-semibold text-white mb-1">Accident Objective</div>
-              <p className="text-xs text-[#B9C6D3]">Our stated safety commitment and goal on every project site</p>
+              <p className="text-xs text-[#8AADCC]">Our stated safety commitment and goal on every project site</p>
             </div>
-            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(11,23,38,0.6)', backdropFilter: 'blur(8px)' }}>
+            <div className="p-6 rounded-xl border border-white/10" style={{ background: 'rgba(5,13,26,0.72)', backdropFilter: 'blur(12px)' }}>
               {/* Source: PDF Page 3 — policy statement, not a metric */}
-              <div className="text-4xl font-bold text-[#65D51A] mb-2">100%</div>
+              <div className="text-4xl font-bold text-[#00C97A] mb-2">100%</div>
               <div className="text-sm font-semibold text-white mb-1">Safety-First Approach</div>
-              <p className="text-xs text-[#B9C6D3]">Policy commitment — safety first on every project, without exception</p>
+              <p className="text-xs text-[#8AADCC]">Policy commitment — safety first on every project, without exception</p>
             </div>
           </div>
           <div className="mt-8 text-center">
@@ -517,12 +517,12 @@ function HomePage({
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────────── */}
-      <section className="py-20" style={{ background: 'linear-gradient(135deg, #07111C, #0B1726)' }} aria-labelledby="cta-heading">
+      <section className="py-20" style={{ background: 'linear-gradient(135deg, #030810 0%, #050D1A 50%, #030810 100%)' }} aria-labelledby="cta-heading">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <h2 id="cta-heading" className="text-3xl font-bold text-white sm:text-4xl">{t('ctaTitle')}</h2>
-          <p className="mt-4 text-lg text-[#B9C6D3]">{t('ctaSubtitle')}</p>
+          <p className="mt-4 text-lg text-[#8AADCC]">{t('ctaSubtitle')}</p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link href={`/${locale}/contact`} className="inline-flex min-h-[44px] items-center rounded-lg bg-[#008CFF] px-10 py-3 text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors focus:outline-none focus:ring-2 focus:ring-[#008CFF] focus:ring-offset-2 focus:ring-offset-[#07111C]">
+            <Link href={`/${locale}/contact`} className="inline-flex min-h-[44px] items-center rounded-lg px-10 py-3 text-sm font-semibold text-[#050D1A] transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2" style={{ background: 'var(--accent)' }}>
               {t('ctaContact')}
             </Link>
             <Link href={`/${locale}/services`} className="inline-flex min-h-[44px] items-center rounded-lg border border-white/20 px-10 py-3 text-sm font-semibold text-white hover:bg-white/5 transition-colors">

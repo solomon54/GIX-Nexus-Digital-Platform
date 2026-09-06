@@ -24,33 +24,35 @@ export function HseqBadge({
 
   return (
     <div
-      className={cn(
-        'flex flex-col gap-4 rounded-xl border-2 p-6',
-        isObjective
-          ? 'border-[var(--gix-blue)] bg-[var(--gix-blue)]/5'
-          : 'border-[var(--gix-green)] bg-[var(--gix-green)]/5',
-        className,
-      )}
+      className={cn('flex flex-col gap-4 rounded-xl p-6', className)}
+      style={{
+        border: isObjective
+          ? '1px solid rgba(0,212,255,0.20)'
+          : '1px solid rgba(0,201,122,0.20)',
+        background: isObjective
+          ? 'rgba(0,212,255,0.05)'
+          : 'rgba(0,201,122,0.05)',
+      }}
       role="region"
       aria-label={label}
     >
       {/* Badge */}
       <span
-        className={cn(
-          'self-start rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide',
+        className="self-start rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-wide"
+        style={
           isObjective
-            ? 'bg-[var(--gix-blue)]/15 text-[var(--gix-blue)]'
-            : 'bg-[var(--gix-green)]/15 text-[var(--gix-green)]',
-        )}
+            ? { background: 'rgba(0,212,255,0.12)', color: 'var(--accent)' }
+            : { background: 'rgba(0,201,122,0.12)', color: 'var(--green)' }
+        }
       >
         {badgeText}
       </span>
 
       {/* Heading */}
-      <h3 className="text-xl font-bold text-[var(--foreground)]">{label}</h3>
+      <h3 className="text-xl font-bold" style={{ color: 'var(--foreground)' }}>{label}</h3>
 
       {/* Description */}
-      <p className="text-sm text-[var(--foreground-subtle)]">{description}</p>
+      <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>{description}</p>
     </div>
   )
 }

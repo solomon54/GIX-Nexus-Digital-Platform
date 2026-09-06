@@ -104,12 +104,12 @@ function ServicesPage({ locale }: { locale: string }) {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#008CFF] mb-3">What We Offer</p>
+          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">What We Offer</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-[#B9C6D3] leading-relaxed">{t('pageDescription')}</p>
+          <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('pageDescription')}</p>
         </div>
       </section>
 
@@ -138,7 +138,7 @@ function ServicesPage({ locale }: { locale: string }) {
 
                   {/* Content */}
                   <div className={isEven ? 'lg:order-2' : 'lg:order-1'}>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-[#008CFF] mb-2">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)] mb-2">
                       Service {String(index + 1).padStart(2, '0')} of 08
                     </p>
                     <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--foreground)' }}>
@@ -154,7 +154,7 @@ function ServicesPage({ locale }: { locale: string }) {
                       <ul className="space-y-2">
                         {capabilities.map((cap, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm" style={{ color: 'var(--foreground)' }}>
-                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#008CFF]" />
+                            <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[var(--accent)]" />
                             {cap}
                           </li>
                         ))}
@@ -174,7 +174,7 @@ function ServicesPage({ locale }: { locale: string }) {
                     </div>
 
                     <Link href={`/${locale}/contact`}
-                      className="mt-6 inline-flex min-h-[44px] items-center rounded-lg bg-[#008CFF] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[#3FABFF] transition-colors">
+                      className="mt-6 inline-flex min-h-[44px] items-center rounded-lg bg-[var(--accent)] px-6 py-2.5 text-sm font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors">
                       Enquire About This Service
                     </Link>
                   </div>
