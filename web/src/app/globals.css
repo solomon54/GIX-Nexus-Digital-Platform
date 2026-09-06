@@ -145,9 +145,9 @@
 
   /* Hero overlay: reveals background photo while text stays readable */
   --gradient-hero: linear-gradient(to bottom,
-      rgba(6, 18, 54, 0.55) 0%,
-      rgba(6, 18, 54, 0.30) 50%,
-      rgba(6, 18, 54, 0.12) 100%);
+      rgba(6, 18, 54, 0.88) 0%,
+      rgba(6, 18, 54, 0.76) 50%,
+      rgba(6, 18, 54, 0.62) 100%);
 
   /* Section divider: cyan glow line between sections */
   --gradient-divider: linear-gradient(90deg,
