@@ -416,7 +416,7 @@ function HomePage({
       <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         <div className="absolute inset-0">
           <Image src="/images/hseq/hseq-policy.jpeg" alt="" fill className="object-cover" aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(7,17,28,0.92), rgba(11,23,38,0.88))' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(7,17,28,0.70) 0%, rgba(11,23,38,0.50) 60%, rgba(7,17,28,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
