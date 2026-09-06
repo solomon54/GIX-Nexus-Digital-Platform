@@ -71,7 +71,7 @@ export function HeroCarousel({ className = '' }: { className?: string }) {
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(160deg, rgba(5,13,26,0.72) 0%, rgba(5,13,26,0.50) 55%, rgba(5,13,26,0.35) 100%)',
+          background: 'linear-gradient(160deg, rgba(6,18,54,0.85) 0%, rgba(6,18,54,0.62) 55%, rgba(6,18,54,0.42) 100%)',
           zIndex: 2,
         }}
       />

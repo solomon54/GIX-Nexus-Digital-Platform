@@ -129,19 +129,19 @@ function HomePage({
               <h1 id="hero-heading" className="font-bold text-white drop-shadow-sm" style={{ fontSize: 'clamp(30px, 4.5vw, 54px)', lineHeight: '1.12', letterSpacing: '-0.025em' }}>
                 {t('heroTitle')}
               </h1>
-              <p className="mt-5 text-[clamp(15px,1.8vw,18px)] text-white/75 max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
+              <p className="mt-5 text-[clamp(15px,1.8vw,18px)] text-white/90 max-w-lg leading-relaxed">{t('heroSubtitle')}</p>
               <div className="mt-8 grid grid-cols-3 gap-4 max-w-sm">
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white">8+</div>
-                  <div className="text-[11px] text-white/55 mt-1 uppercase tracking-wider">{t('stats.serviceDomainsLabel')}</div>
+                  <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.serviceDomainsLabel')}</div>
                 </div>
                 <div className="text-center border-x border-white/15">
                   <div className="text-3xl font-bold text-white">24/7</div>
-                  <div className="text-[11px] text-white/55 mt-1 uppercase tracking-wider">{t('stats.supportLabel')}</div>
+                  <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.supportLabel')}</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-white">100%</div>
-                  <div className="text-[11px] text-white/55 mt-1 uppercase tracking-wider">{t('stats.safetyLabel')}</div>
+                  <div className="text-[11px] text-white/80 mt-1 uppercase tracking-wider">{t('stats.safetyLabel')}</div>
                 </div>
               </div>
               <div className="mt-8 flex items-center gap-3">
@@ -157,9 +157,9 @@ function HomePage({
               <div className="rounded-2xl p-7 border border-white/12 w-full max-w-xs backdrop-blur-md" style={{ background: 'rgba(5,13,26,0.80)' }}>
                 <Image src="/assets/company-logo.png" alt="GIX Nexus Telecom and Power" width={240} height={120} className="object-contain w-full" priority />
                 <div className="mt-5 pt-4 border-t border-white/10 space-y-1.5 text-center">
-                  <p className="text-xs text-white/45 uppercase tracking-widest">Ethiopian-owned</p>
+                  <p className="text-xs text-white/65 uppercase tracking-widest">Ethiopian-owned</p>
                   <p className="text-sm font-semibold text-white">Telecom & Power Engineering</p>
-                  <p className="text-xs text-white/60">SATCOM · Fiber · RF · Network · Power</p>
+                  <p className="text-xs text-white/75">SATCOM · Fiber · RF · Network · Power</p>
                 </div>
               </div>
             </div>
@@ -169,30 +169,30 @@ function HomePage({
 
       {/* ── Services ─────────────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 5 — exactly 6 groupings */}
-      <section className="py-28 section-top-divide bg-section-odd" aria-labelledby="services-heading">
+      <section className="py-16 sm:py-20 md:py-28 section-top-divide bg-section-odd" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>What We Do</p>
             <h2 id="services-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('servicesTitle')}</h2>
-            <p className="mt-3 max-w-2xl mx-auto" style={{ color: 'var(--foreground-sub)' }}>{t('servicesSubtitle')}</p>
+            <p className="mt-3 max-w-2xl mx-auto" style={{ color: 'var(--foreground-muted)' }}>{t('servicesSubtitle')}</p>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {SERVICES_DATA.map((service) => {
               const capabilities = tServices.raw(`groups.${service.nameKey}.capabilities`) as string[]
               return (
                 <Link key={service.slug} href={`/${locale}/services/${service.slug}`}
                   className="svc-card group rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2"
                 >
-                  <div className="relative h-52 overflow-hidden">
+                  <div className="relative h-48 sm:h-52 overflow-hidden">
                     <Image src={service.image} alt={service.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.65) 0%, transparent 55%)' }} />
                   </div>
-                  <div className="p-6">
+                  <div className="p-5 sm:p-6">
                     <h3 className="font-semibold text-base" style={{ color: 'var(--foreground)' }}>{tServices(`groups.${service.nameKey}.name`)}</h3>
-                    <p className="mt-2 text-sm line-clamp-2 leading-relaxed" style={{ color: 'var(--foreground-sub)' }}>{tServices(`groups.${service.nameKey}.description`)}</p>
-                    <ul className="mt-3 space-y-1">
+                    <p className="mt-2 text-sm line-clamp-2 leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{tServices(`groups.${service.nameKey}.description`)}</p>
+                    <ul className="mt-3 space-y-1.5">
                       {capabilities.slice(0, 2).map((cap, i) => (
-                        <li key={i} className="flex items-start gap-2 text-xs" style={{ color: 'var(--foreground-sub)' }}>
+                        <li key={i} className="flex items-start gap-2 text-xs" style={{ color: 'var(--foreground-muted)' }}>
                           <span className="mt-1.5 h-1 w-1 flex-shrink-0 rounded-full" style={{ background: 'var(--accent)' }} />{cap}
                         </li>
                       ))}
@@ -221,7 +221,7 @@ function HomePage({
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>Why Partner with Us</p>
             <h2 id="features-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>{t('featureTitle')}</h2>
-            <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-sub)' }}>{t('featureSubtitle')}</p>
+            <p className="mt-3 max-w-xl mx-auto text-sm" style={{ color: 'var(--foreground-muted)' }}>{t('featureSubtitle')}</p>
           </div>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {([
@@ -260,7 +260,7 @@ function HomePage({
                   </svg>
                 </div>
                 <h3 className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>{t(`features.${key}.title`)}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-sub)' }}>{t(`features.${key}.description`)}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{t(`features.${key}.description`)}</p>
               </div>
             ))}
           </div>
@@ -316,7 +316,7 @@ function HomePage({
                         {item.title}
                       </h3>
                       {item.excerpt && (
-                        <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-sub)' }}>{item.excerpt}</p>
+                        <p className="text-sm leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-muted)' }}>{item.excerpt}</p>
                       )}
                       <div className="mt-4">
                         <span className="text-xs" style={{ color: 'var(--foreground-faint)' }}>{dateLabel}</span>
@@ -330,7 +330,7 @@ function HomePage({
             <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">📰</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>News & announcements coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>Published news will appear here. Add articles via the admin panel.</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-muted)' }}>Published news will appear here. Add articles via the admin panel.</p>
             </div>
           )}
         </div>
@@ -343,7 +343,7 @@ function HomePage({
             <div>
               <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>Our Work</p>
               <h2 id="projects-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Projects & Experience</h2>
-              <p className="mt-2 text-sm" style={{ color: 'var(--foreground-sub)' }}>
+              <p className="mt-2 text-sm" style={{ color: 'var(--foreground-muted)' }}>
                 Delivering telecommunications and power engineering projects across Ethiopia with careful planning, efficient execution, and quality standards.
               </p>
             </div>
@@ -394,7 +394,7 @@ function HomePage({
                         </p>
                       )}
                       {project.excerpt && (
-                        <p className="text-xs leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-sub)' }}>{project.excerpt}</p>
+                        <p className="text-xs leading-relaxed line-clamp-3" style={{ color: 'var(--foreground-muted)' }}>{project.excerpt}</p>
                       )}
                     </div>
                   </div>
@@ -405,7 +405,7 @@ function HomePage({
             <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">🏗</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Projects coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>Completed and ongoing project showcases will appear here. Add projects via the admin panel.</p>
+              <p className="text-sm" style={{ color: 'var(--foreground-muted)' }}>Completed and ongoing project showcases will appear here. Add projects via the admin panel.</p>
             </div>
           )}
         </div>
@@ -454,7 +454,7 @@ function HomePage({
           <div className="mb-12 text-center">
             <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--accent)' }}>What They Say</p>
             <h2 id="testimonials-heading" className="text-3xl font-bold sm:text-4xl" style={{ color: 'var(--foreground)' }}>Testimonials</h2>
-            <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: 'var(--foreground-sub)' }}>
+            <p className="mt-3 max-w-lg mx-auto text-sm" style={{ color: 'var(--foreground-muted)' }}>
               Feedback from the organisations and partners we have worked with across Ethiopia.
             </p>
           </div>
@@ -494,7 +494,7 @@ function HomePage({
                       <div className="min-w-0">
                         <p className="text-sm font-semibold truncate" style={{ color: 'var(--foreground)' }}>{t.authorName}</p>
                         {(t.authorRole || t.organisation || t.sector) && (
-                          <p className="text-xs truncate" style={{ color: 'var(--foreground-sub)' }}>
+                          <p className="text-xs truncate" style={{ color: 'var(--foreground-muted)' }}>
                             {[t.authorRole, t.organisation ?? t.sector].filter(Boolean).join(' · ')}
                           </p>
                         )}
@@ -508,7 +508,7 @@ function HomePage({
             <div className="rounded-2xl border-2 border-dashed p-12 text-center" style={{ borderColor: 'var(--border-subtle)' }}>
               <div className="text-4xl mb-4" aria-hidden="true">💬</div>
               <p className="font-semibold text-sm mb-2" style={{ color: 'var(--foreground)' }}>Testimonials coming soon</p>
-              <p className="text-sm" style={{ color: 'var(--foreground-sub)' }}>
+              <p className="text-sm" style={{ color: 'var(--foreground-muted)' }}>
                 Client and partner testimonials will appear here once published via the admin panel.
               </p>
             </div>

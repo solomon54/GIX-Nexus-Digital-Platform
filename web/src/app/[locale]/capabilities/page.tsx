@@ -41,7 +41,7 @@ const TEAM_FALLBACK = [
     qualification: 'SATCOM Specialist — RF Systems & VSAT Technology',
     bio: 'Brings practical experience in satellite communications including installation, operation, and preventive/corrective maintenance of SATCOM systems. Deep understanding of telecommunications engineering, RF systems, and VSAT technology.',
     skills: ['Satellite Communications (SATCOM)', 'RF Engineering', 'VSAT Technology', 'Project Coordination', 'Telecommunications Infrastructure'],
-    photoUrl: '/assets/leader-prof-img.png',
+    photoUrl: '/assets/team-members-img/leader-at-work.jpg',
     initials: 'GT',
     featured: true,
   },
@@ -187,7 +187,7 @@ export default async function Page({ params }: Props) {
       <section className="relative py-28 overflow-hidden">
         <div className="absolute inset-0">
           <Image src="/images/capability/our-capabilities.webp" alt="" fill className="object-cover" priority aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.72) 0%, rgba(11,23,38,0.50) 60%, rgba(5,13,26,0.35) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.88) 0%, rgba(6,18,54,0.65) 55%, rgba(6,18,54,0.40) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>

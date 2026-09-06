@@ -85,15 +85,14 @@
   --border-strong: rgba(0, 212, 255, 0.35);
   --border-white: rgba(255, 255, 255, 0.10);
 
-  /* ── Typography — white on blue reads beautifully ── */
-  --foreground: #EEF4FF;
-  --foreground-muted: #90B8D8;
-  --foreground-sub: #5A86AA;
-  --foreground-faint: #35567A;
-  --foreground-subtle: #5A86AA;
-  /* alias */
+  /* ── Typography — WCAG AA contrast on cobalt blue backgrounds ── */
+  --foreground: #FFFFFF;          /* Pure white — 21:1 max contrast */
+  --foreground-muted: #C0D8F4;    /* ~8:1 on cobalt — secondary text */
+  --foreground-sub: #88B8DA;      /* ~5.2:1 — labels, captions, AA */
+  --foreground-faint: #4E7A9E;    /* Placeholders — decorative only */
+  --foreground-subtle: #88B8DA;   /* alias */
   --on-navy: #FFFFFF;
-  --on-navy-sub: rgba(255, 255, 255, 0.72);
+  --on-navy-sub: rgba(255, 255, 255, 0.88);
 
   /* ── Brand accent ── */
   --brand: #061236;
@@ -444,7 +443,7 @@
 
   /* ── Card — elevated surface, generous padding, breathing room ── */
   .gix-card {
-    background: rgba(13, 31, 85, 0.82);
+    background: linear-gradient(145deg, rgba(14,34,92,0.88) 0%, rgba(10,26,72,0.85) 100%);
     border: 1px solid var(--border);
     border-radius: 16px;
     box-shadow: var(--shadow-card);
