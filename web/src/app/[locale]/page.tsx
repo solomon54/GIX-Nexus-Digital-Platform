@@ -121,7 +121,7 @@ function HomePage({
         {/* Minimized overlay — image as subtle bg texture */}
         <div className="absolute inset-0 pointer-events-none" style={{ background: 'var(--gradient-hero)', zIndex: 3 }} aria-hidden="true" />
         {/* Left/right vignette — content area is clear, edges fade */}
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(6,18,54,0.55) 0%, transparent 20%, transparent 80%, rgba(6,18,54,0.55) 100%)', zIndex: 4 }} aria-hidden="true" />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(6,18,54,0.55) 20%, transparent 40%, transparent 80%, rgba(6,18,54,0.55) 100%)', zIndex: 4 }} aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24 w-full" style={{ zIndex: 5 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             <div>
@@ -164,15 +164,15 @@ function HomePage({
                 >
                   <div className="text-center py-3 px-2">
                     <div className="text-xl sm:text-2xl font-bold text-white">8+</div>
-                    <div className="text-[10px] text-white/70 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.serviceDomainsLabel')}</div>
+                    <div className="text-[11px] text-white/80 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.serviceDomainsLabel')}</div>
                   </div>
                   <div className="text-center py-3 px-2" style={{ borderLeft: '1px solid rgba(0,212,255,0.15)', borderRight: '1px solid rgba(0,212,255,0.15)' }}>
                     <div className="text-xl sm:text-2xl font-bold text-white">24/7</div>
-                    <div className="text-[10px] text-white/70 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.supportLabel')}</div>
+                    <div className="text-[11px] text-white/80 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.supportLabel')}</div>
                   </div>
                   <div className="text-center py-3 px-2">
                     <div className="text-xl sm:text-2xl font-bold text-white">100%</div>
-                    <div className="text-[10px] text-white/70 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.safetyLabel')}</div>
+                    <div className="text-[11px] text-white/80 mt-0.5 uppercase tracking-wider leading-tight">{t('stats.safetyLabel')}</div>
                   </div>
                 </div>
               </div>
@@ -190,12 +190,18 @@ function HomePage({
               </div>
             </div>
             <div className="hidden lg:flex justify-end">
-              <div className="rounded-2xl p-7 border border-white/12 w-full max-w-xs backdrop-blur-md" style={{ background: 'rgba(5,13,26,0.80)' }}>
-                <Image src="/assets/company-logo.png" alt="GIX Nexus Telecom and Power" width={240} height={120} className="object-contain w-full" priority />
-                <div className="mt-5 pt-4 border-t border-white/10 space-y-1.5 text-center">
-                  <p className="text-xs text-white/65 uppercase tracking-widest">Ethiopian-owned</p>
-                  <p className="text-sm font-semibold text-white">Telecom & Power Engineering</p>
-                  <p className="text-xs text-white/75">SATCOM · Fiber · RF · Network · Power</p>
+              <div className="rounded-2xl p-8 border w-full max-w-xs"
+                style={{
+                  background: 'linear-gradient(145deg, rgba(8,20,60,0.90) 0%, rgba(4,12,38,0.95) 100%)',
+                  border: '1px solid rgba(0,212,255,0.22)',
+                  boxShadow: '0 0 40px rgba(0,212,255,0.08), inset 0 1px 0 rgba(255,255,255,0.06)',
+                }}
+              >
+                <Image src="/assets/company-logo.png" alt="GIX Nexus Telecom and Power" width={260} height={130} className="object-contain w-full" priority />
+                <div className="mt-6 pt-5 space-y-2 text-center" style={{ borderTop: '1px solid rgba(0,212,255,0.12)' }}>
+                  <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: 'var(--accent)', opacity: 0.8 }}>Ethiopian-Owned Company</p>
+                  <p className="text-sm font-bold text-white">Telecom & Power Engineering</p>
+                  <p className="text-xs text-white/65">SATCOM · Fiber · RF · Network · Power</p>
                 </div>
               </div>
             </div>

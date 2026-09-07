@@ -69,7 +69,7 @@ export default async function Page({ params }: Props) {
             priority
             aria-hidden="true"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.88) 0%, rgba(6,18,54,0.76) 55%, rgba(6,18,54,0.62) 100%)' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.75) 0%, rgba(6,18,54,0.55) 55%, rgba(6,18,54,0.35) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-[#00C97A] mb-3">{t('pageSubtitle')}</p>
