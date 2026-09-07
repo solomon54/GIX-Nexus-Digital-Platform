@@ -42,6 +42,7 @@ export default async function Page({ params }: Props) {
             src="/images/hseq/hseq-policy.jpeg"
             alt=""
             fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover"
             priority
             aria-hidden="true"
@@ -68,6 +69,7 @@ export default async function Page({ params }: Props) {
                   src="/images/hseq/hseq-policy.jpeg"
                   alt="Engineers working with safety protocols"
                   fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.60), rgba(6,18,54,0.08))' }} />

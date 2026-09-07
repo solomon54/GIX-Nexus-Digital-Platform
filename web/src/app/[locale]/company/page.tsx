@@ -53,6 +53,7 @@ function CompanyPage({ locale }: { locale: string }) {
             src="/images/hero/telecom-towers-night.jpg"
             alt=""
             fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover"
             priority
             aria-hidden="true"
@@ -84,6 +85,7 @@ function CompanyPage({ locale }: { locale: string }) {
                   src="/images/company/vission-logo.jpeg"
                   alt="GIX Nexus — company vision"
                   fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover"
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.62), rgba(6,18,54,0.10))' }} />
@@ -163,6 +165,7 @@ function CompanyPage({ locale }: { locale: string }) {
                   src="/assets/leader-prof-img.png"
                   alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
                   fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover object-top"
                 />
                 {/* Gradient overlay — name/role readable at bottom */}

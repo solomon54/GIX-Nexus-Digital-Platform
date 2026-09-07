@@ -220,7 +220,8 @@ function HomePage({
                   className="svc-card group rounded-xl overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2"
                 >
                   <div className="relative h-48 sm:h-52 overflow-hidden">
-                    <Image src={service.image} alt={service.imageAlt} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <Image src={service.image} alt={service.imageAlt} fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                     <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.65) 0%, transparent 55%)' }} />
                   </div>
                   <div className="p-5 sm:p-6">
@@ -338,7 +339,8 @@ function HomePage({
                   >
                     {coverUrl && (
                       <div className="relative h-44 overflow-hidden">
-                        <Image src={coverUrl} alt={item.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <Image src={coverUrl} alt={item.title} fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                       </div>
                     )}
                     <div className="p-6">
@@ -409,7 +411,8 @@ function HomePage({
                   >
                     <div className="relative h-48 overflow-hidden" style={{ background: 'var(--soft-surface)' }}>
                       {coverUrl ? (
-                        <Image src={coverUrl} alt={project.title} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                        <Image src={coverUrl} alt={project.title} fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                       ) : (
                         <div className="absolute inset-0 flex items-center justify-center">
                           <span className="text-4xl opacity-20">🏗</span>
@@ -451,7 +454,8 @@ function HomePage({
       {/* Source: Company Profile PDF, Pages 1, 3, 8 */}
       <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         <div className="absolute inset-0">
-          <Image src="/images/hseq/hseq-policy.jpeg" alt="" fill className="object-cover" aria-hidden="true" />
+          <Image src="/images/hseq/hseq-policy.jpeg" alt="" fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" aria-hidden="true" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.90) 0%, rgba(5,13,26,0.82) 60%, rgba(5,13,26,0.70) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

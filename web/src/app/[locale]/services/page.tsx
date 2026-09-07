@@ -102,6 +102,7 @@ function ServicesPage({ locale }: { locale: string }) {
             src="/images/hero/telecom-towers-night.jpg"
             alt=""
             fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover"
             priority
             aria-hidden="true"
@@ -132,6 +133,7 @@ function ServicesPage({ locale }: { locale: string }) {
                         src={service.image}
                         alt={service.imageAlt}
                         fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover"
                       />
                       <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(7,17,28,0.6) 0%, transparent 50%)' }} />

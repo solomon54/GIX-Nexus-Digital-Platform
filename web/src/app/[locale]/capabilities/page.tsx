@@ -189,7 +189,8 @@ export default async function Page({ params }: Props) {
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-28 overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="/images/capability/our-capabilities.webp" alt="" fill className="object-cover" priority aria-hidden="true" />
+          <Image src="/images/capability/our-capabilities.webp" alt="" fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" priority aria-hidden="true" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.88) 0%, rgba(6,18,54,0.76) 55%, rgba(6,18,54,0.62) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -235,6 +236,7 @@ export default async function Page({ params }: Props) {
                       src={member.photoUrl}
                       alt={`${member.name} — ${member.role}`}
                       fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-cover object-top"
                     />
                   ) : (
@@ -294,7 +296,8 @@ export default async function Page({ params }: Props) {
                 {/* Avatar */}
                 <div className="relative h-48" style={{ background: 'linear-gradient(135deg, #050D1A, #0D1829)' }}>
                   {member.photoUrl ? (
-                    <Image src={member.photoUrl} alt={member.name} fill className="object-cover" />
+                    <Image src={member.photoUrl} alt={member.name} fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" />
                   ) : (
                     <div className="absolute inset-0 flex flex-col items-center justify-center">
                       <div className="flex h-20 w-20 items-center justify-center rounded-full text-2xl font-bold text-white" style={{ background: 'rgba(0,140,255,0.15)', border: '2px solid rgba(0,140,255,0.3)' }}>
@@ -353,7 +356,8 @@ export default async function Page({ params }: Props) {
               <div key={cat.category} className="rounded-2xl overflow-hidden border" style={{ borderColor: 'var(--border)' }}>
                 {/* Category image */}
                 <div className="relative h-48">
-                  <Image src={cat.image} alt={cat.category} fill className="object-cover" />
+                  <Image src={cat.image} alt={cat.category} fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" />
                   <div className="absolute inset-0" style={{ background: 'rgba(6,18,54,0.50)' }} />
                   <div className="absolute inset-0 flex items-center justify-center flex-col">
                     <span className="text-4xl mb-2" aria-hidden="true">{cat.icon}</span>

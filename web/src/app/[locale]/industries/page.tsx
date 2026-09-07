@@ -63,6 +63,7 @@ export default async function Page({ params }: Props) {
             src="/images/industries/companies-we-serve.webp"
             alt=""
             fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover"
             priority
             aria-hidden="true"

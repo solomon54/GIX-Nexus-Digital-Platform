@@ -60,6 +60,7 @@ export function HeroCarousel({ className = '' }: { className?: string }) {
               src={slide.src}
               alt={slide.alt}
               fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover"
               priority={i === 0}
             />

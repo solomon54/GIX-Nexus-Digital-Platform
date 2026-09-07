@@ -33,7 +33,8 @@ export function ContactPageClient() {
       {/* ── Hero ── */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="/images/hero/hero-1.jpeg" alt="" fill className="object-cover object-center" priority aria-hidden="true" />
+          <Image src="/images/hero/hero-1.jpeg" alt="" fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center" priority aria-hidden="true" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.88) 0%, rgba(6,18,54,0.76) 55%, rgba(6,18,54,0.62) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -65,6 +66,7 @@ export function ContactPageClient() {
                     src="/assets/leader-prof-img.png"
                     alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
                     fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover object-top"
                   />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.65), transparent 60%)' }} />

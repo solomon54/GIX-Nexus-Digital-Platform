@@ -213,53 +213,8 @@
     position: relative;
   }
 
-  /* ── Pure CSS zigzag wave — body::before ──
-     No SVG, no JS, no extra DOM nodes.
-     Uses CSS gradient to draw repeating zigzag lines
-     that slowly drift across the viewport.
-     Subtle enough to not distract; visible on scroll. */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-
-    /* Zigzag pattern via repeating-linear-gradient */
-    background-image:
-      /* Wave ribbon 1 — primary cyan, slow drift */
-      repeating-linear-gradient(-45deg,
-        transparent,
-        transparent 60px,
-        rgba(0, 212, 255, 0.035) 60px,
-        rgba(0, 212, 255, 0.035) 62px),
-      /* Wave ribbon 2 — offset angle, fainter */
-      repeating-linear-gradient(45deg,
-        transparent,
-        transparent 90px,
-        rgba(0, 180, 240, 0.025) 90px,
-        rgba(0, 180, 240, 0.025) 92px),
-      /* Wave ribbon 3 — very subtle, widest spacing */
-      repeating-linear-gradient(-30deg,
-        transparent,
-        transparent 140px,
-        rgba(0, 140, 220, 0.018) 140px,
-        rgba(0, 140, 220, 0.018) 142px);
-
-    /* Animation: drift the whole pattern diagonally — smooth, slow, calm */
-    animation: wave-bg-drift 28s linear infinite;
-  }
-
-  /* All content above the wave layer */
-  body>* {
-    position: relative;
-    z-index: 1;
-  }
-
-  @keyframes wave-bg-drift {
-    0% {
-      background-position: 0 0, 0 0, 0 0;
-    }
+  /* Wave animation removed — was causing hero image blur */
+  /* Background depth achieved via radial gradient on body */
 
     100% {
       background-position: 200px 200px, -200px 200px, 300px -100px;
