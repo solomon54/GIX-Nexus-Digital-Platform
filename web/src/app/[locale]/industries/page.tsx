@@ -64,7 +64,7 @@ export default async function Page({ params }: Props) {
             alt=""
             fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover hero-pan"
             priority
             aria-hidden="true"
           />

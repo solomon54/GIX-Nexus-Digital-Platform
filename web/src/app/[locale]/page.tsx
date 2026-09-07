@@ -461,7 +461,7 @@ function HomePage({
       <section className="relative py-20 overflow-hidden section-top-divide" aria-label="HSEQ Safety commitment">
         <div className="absolute inset-0">
           <Image src="/images/hseq/hseq-policy.jpeg" alt="" fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover" aria-hidden="true" />
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover hero-pan" aria-hidden="true" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(5,13,26,0.90) 0%, rgba(5,13,26,0.82) 60%, rgba(5,13,26,0.70) 100%)' }} />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

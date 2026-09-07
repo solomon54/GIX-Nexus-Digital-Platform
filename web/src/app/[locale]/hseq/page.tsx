@@ -43,7 +43,7 @@ export default async function Page({ params }: Props) {
             alt=""
             fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
+            className="object-cover hero-pan"
             priority
             aria-hidden="true"
           />
@@ -70,7 +70,7 @@ export default async function Page({ params }: Props) {
                   alt="Engineers working with safety protocols"
                   fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover"
+                  className="object-cover hero-pan"
                 />
                 <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,18,54,0.60), rgba(6,18,54,0.08))' }} />
                 <div className="absolute bottom-4 left-6">

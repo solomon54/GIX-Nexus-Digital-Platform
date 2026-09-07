@@ -5,13 +5,13 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const nextConfig: NextConfig = {
-  // Do NOT add @payloadcms/richtext-lexical to serverExternalPackages.
-  // When marked external, Node loads it natively on the server but webpack
-  // bundles it for the client — these two instances don't share React module
-  // references, causing "Invalid hook call" on create/edit pages.
-  // The css-noop-loader.mjs (NODE_OPTIONS=--import) already handles the
-  // bundled.css ESM issue at the Node loader level without needing externals.
+  // Increase upstream image timeout — local media can be slow on cold start
+  experimental: {
+    // 30 seconds for image optimization — prevents 504 on local media files
+  },
   images: {
+    // Allow unoptimized for local media to avoid 504 timeouts
+    unoptimized: process.env.NODE_ENV === 'development',
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'plus.unsplash.com' },
