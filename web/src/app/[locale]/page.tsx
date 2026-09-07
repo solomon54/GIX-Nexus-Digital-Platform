@@ -8,6 +8,9 @@ import configPromise from '@payload-config'
 import { HeroCarousel } from '@/components/ui/HeroCarousel'
 import type { Testimonial, News, Project, Media } from '@/payload-types'
 
+// Cache DB results — revalidate every hour. Instant page loads between revalidations.
+export const revalidate = 3600
+
 interface HomePageProps {
   params: Promise<{ locale: string }>
 }
@@ -127,8 +130,6 @@ function HomePage({
                 style={{
                   background: 'linear-gradient(135deg, rgba(0,212,255,0.15) 0%, rgba(102,0,255,0.12) 100%)',
                   border: '1px solid rgba(0,212,255,0.35)',
-                  backdropFilter: 'blur(12px)',
-                  WebkitBackdropFilter: 'blur(12px)',
                   boxShadow: '0 0 18px rgba(0,212,255,0.18), inset 0 1px 0 rgba(255,255,255,0.10)',
                 }}
               >
@@ -157,8 +158,8 @@ function HomePage({
                 <div className="grid grid-cols-3 gap-0 rounded-xl overflow-hidden"
                   style={{
                     border: '1px solid rgba(0,212,255,0.18)',
-                    background: 'rgba(0,212,255,0.04)',
-                    backdropFilter: 'blur(8px)',
+                    background: 'rgba(0,212,255,0.06)',
+                    /* No backdrop-filter here — causes hero image blur in browsers */
                   }}
                 >
                   <div className="text-center py-3 px-2">

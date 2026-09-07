@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { SERVICE_SLUGS } from '@/lib/constants'
 
+export const revalidate = 3600
+
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
 
 type ServiceSlug = (typeof SERVICE_SLUGS)[number]

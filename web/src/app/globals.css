@@ -248,7 +248,6 @@
 
     /* Animation: drift the whole pattern diagonally — smooth, slow, calm */
     animation: wave-bg-drift 28s linear infinite;
-    will-change: background-position;
   }
 
   /* All content above the wave layer */

@@ -8,6 +8,8 @@ import configPromise from '@payload-config'
 import { InquiryForm } from '@/components/ui/InquiryForm'
 import type { TeamMember, Media } from '@/payload-types'
 
+export const revalidate = 3600
+
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
 
 interface Props { params: Promise<{ locale: string }> }

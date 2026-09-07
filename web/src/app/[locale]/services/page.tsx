@@ -4,6 +4,8 @@ import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
 
+export const revalidate = 3600
+
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
 
 interface Props { params: Promise<{ locale: string }> }
