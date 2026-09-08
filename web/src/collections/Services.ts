@@ -16,63 +16,78 @@ export const Services: CollectionConfig = {
   },
   fields: [
     {
-      name: 'name',
-      type: 'text',
-      required: true,
-      localized: true,
-    },
-    {
-      name: 'slug',
-      type: 'select',
-      required: true,
-      unique: true,
-      options: [
-        { label: 'Telecommunications Infrastructure', value: 'telecommunications-infrastructure' },
-        { label: 'Fiber Optic Solutions', value: 'fiber-optic-solutions' },
-        { label: 'Satellite & Wireless Communications', value: 'satellite-wireless-communications' },
-        { label: 'RF Engineering', value: 'rf-engineering' },
-        { label: 'Network Infrastructure', value: 'network-infrastructure' },
-        { label: 'Telecom Power Systems', value: 'telecom-power-systems' },
-        { label: 'SMATV / MATV Solutions', value: 'smatv-matv-solutions' },
-        { label: 'Maintenance & Technical Support', value: 'maintenance-technical-support' },
-      ],
-      admin: {
-        description: 'Must match the URL slug. Do not change after creation.',
-      },
-    },
-    {
-      name: 'description',
-      type: 'textarea',
-      localized: true,
-    },
-    {
-      name: 'capabilities',
-      type: 'array',
-      localized: true,
-      fields: [
+      type: 'tabs',
+      tabs: [
         {
-          name: 'capability',
-          type: 'text',
-          required: true,
+          label: 'Service Info & Capabilities',
+          fields: [
+            {
+              name: 'name',
+              type: 'text',
+              required: true,
+              localized: true,
+            },
+            {
+              name: 'description',
+              type: 'textarea',
+              localized: true,
+            },
+            {
+              name: 'capabilities',
+              type: 'array',
+              localized: true,
+              fields: [
+                {
+                  name: 'capability',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Configuration & Settings',
+          fields: [
+            {
+              name: 'slug',
+              type: 'select',
+              required: true,
+              unique: true,
+              options: [
+                { label: 'Telecommunications Infrastructure', value: 'telecommunications-infrastructure' },
+                { label: 'Fiber Optic Solutions', value: 'fiber-optic-solutions' },
+                { label: 'Satellite & Wireless Communications', value: 'satellite-wireless-communications' },
+                { label: 'RF Engineering', value: 'rf-engineering' },
+                { label: 'Network Infrastructure', value: 'network-infrastructure' },
+                { label: 'Telecom Power Systems', value: 'telecom-power-systems' },
+                { label: 'SMATV / MATV Solutions', value: 'smatv-matv-solutions' },
+                { label: 'Maintenance & Technical Support', value: 'maintenance-technical-support' },
+              ],
+              admin: {
+                description: 'Must match the URL slug. Do not change after creation.',
+              },
+            },
+            {
+              name: 'icon',
+              type: 'text',
+              admin: {
+                description: 'Lucide icon name (e.g. "Radio", "Network", "Zap", "Tv")',
+              },
+            },
+            {
+              name: 'order',
+              type: 'number',
+              required: true,
+              min: 1,
+              max: 8,
+              admin: {
+                description: 'Display order (1–8)',
+              },
+            },
+          ],
         },
       ],
-    },
-    {
-      name: 'icon',
-      type: 'text',
-      admin: {
-        description: 'Lucide icon name (e.g. "Radio", "Network", "Zap", "Tv")',
-      },
-    },
-    {
-      name: 'order',
-      type: 'number',
-      required: true,
-      min: 1,
-      max: 8,
-      admin: {
-        description: 'Display order (1–8)',
-      },
     },
     {
       name: '_status',
@@ -83,6 +98,9 @@ export const Services: CollectionConfig = {
         { label: 'Published', value: 'published' },
       ],
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
   ],
 }

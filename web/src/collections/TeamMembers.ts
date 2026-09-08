@@ -16,43 +16,58 @@ export const TeamMembers: CollectionConfig = {
     delete: ({ req: { user } }) => Boolean(user),
   },
   fields: [
-    { name: 'name', type: 'text', required: true },
     {
-      name: 'role',
-      type: 'text',
-      required: true,
-      localized: true,
-      admin: { description: 'e.g. "Managing Director", "Fiber Optic Technician"' },
-    },
-    {
-      name: 'qualification',
-      type: 'text',
-      localized: true,
-      admin: { description: 'e.g. "Cisco Certified Network Professional", "SATCOM specialist"' },
-    },
-    {
-      name: 'bio',
-      type: 'textarea',
-      localized: true,
-      admin: { description: 'Short professional summary (2-3 sentences).' },
-    },
-    {
-      name: 'specializations',
-      type: 'array',
-      localized: true,
-      fields: [{ name: 'item', type: 'text' }],
-      admin: { description: 'Key technical skills / areas of expertise.' },
-    },
-    {
-      name: 'photo',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'order',
-      type: 'number',
-      defaultValue: 99,
-      admin: { description: 'Display order — Managing Director should be 1.' },
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Personal & Role Info',
+          fields: [
+            { name: 'name', type: 'text', required: true },
+            {
+              name: 'role',
+              type: 'text',
+              required: true,
+              localized: true,
+              admin: { description: 'e.g. "Managing Director", "Fiber Optic Technician"' },
+            },
+            {
+              name: 'qualification',
+              type: 'text',
+              localized: true,
+              admin: { description: 'e.g. "Cisco Certified Network Professional", "SATCOM specialist"' },
+            },
+            {
+              name: 'bio',
+              type: 'textarea',
+              localized: true,
+              admin: { description: 'Short professional summary (2-3 sentences).' },
+            },
+            {
+              name: 'specializations',
+              type: 'array',
+              localized: true,
+              fields: [{ name: 'item', type: 'text' }],
+              admin: { description: 'Key technical skills / areas of expertise.' },
+            },
+          ],
+        },
+        {
+          label: 'Photo & Display',
+          fields: [
+            {
+              name: 'photo',
+              type: 'upload',
+              relationTo: 'media',
+            },
+            {
+              name: 'order',
+              type: 'number',
+              defaultValue: 99,
+              admin: { description: 'Display order — Managing Director should be 1.' },
+            },
+          ],
+        },
+      ],
     },
     {
       name: '_status',
@@ -63,6 +78,9 @@ export const TeamMembers: CollectionConfig = {
         { label: 'Draft', value: 'draft' },
       ],
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
   ],
 }

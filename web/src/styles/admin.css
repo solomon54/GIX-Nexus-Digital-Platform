@@ -1,7 +1,4 @@
 /* ── CRITICAL: Force nav visible ─────────────────────────────── */
-/* Payload sets .nav { opacity: 0 } and only restores it with    */
-/* .nav--nav-open { opacity: 1 }. If nav preference is "closed", */
-/* the sidebar never appears. We force it always visible.         */
 .nav,
 .nav--nav-open,
 .nav--nav-animate,
@@ -12,74 +9,84 @@
 
 /* ================================================================
    GIX Nexus — Payload Admin Theme
-   Balanced dark theme — visible but not harsh
+   Gradient Palette: Deep Cobalt → Slate Steel → Signal Cyan
+   Lighter, vibrant — not pitch-black
    ================================================================ */
 
 :root,
 [data-theme="dark"] {
-  /* Backgrounds — lighter than before, actually visible */
-  --theme-bg:              #111827;
-  --theme-input-bg:        #1a2535;
+  /* ── Gradient elevation scale (light → rich, not black) ── */
+  --theme-bg:              #0d1b2a;
+  --theme-input-bg:        #1a2f45;
 
-  /* Elevation scale */
-  --theme-elevation-0:     #111827;
-  --theme-elevation-50:    #151e2d;
-  --theme-elevation-100:   #1a2535;
-  --theme-elevation-150:   #1f2d3f;
-  --theme-elevation-200:   #243449;
-  --theme-elevation-250:   #2a3c52;
-  --theme-elevation-300:   #30455c;
-  --theme-elevation-400:   #3d5570;
-  --theme-elevation-500:   #4e6882;
-  --theme-elevation-600:   #637d97;
-  --theme-elevation-700:   #82a0b8;
-  --theme-elevation-800:   #a8c2d4;
-  --theme-elevation-900:   #cddee9;
-  --theme-elevation-1000:  #eaf3f8;
+  --theme-elevation-0:     #0d1b2a;
+  --theme-elevation-50:    #112233;
+  --theme-elevation-100:   #162d42;
+  --theme-elevation-150:   #1c3650;
+  --theme-elevation-200:   #22405f;
+  --theme-elevation-250:   #2a4d70;
+  --theme-elevation-300:   #335b82;
+  --theme-elevation-400:   #3f6e9b;
+  --theme-elevation-500:   #5283b4;
+  --theme-elevation-600:   #6a9bcc;
+  --theme-elevation-700:   #88b5e0;
+  --theme-elevation-800:   #afd0ef;
+  --theme-elevation-900:   #d6eaf8;
+  --theme-elevation-1000:  #eef6fc;
 
-  /* Text — readable, not too bright */
-  --theme-text:            #e2e8f0;
+  /* Text */
+  --theme-text:            #e8f4fd;
 
-  /* Brand accent — GIX teal */
-  --gix-accent:            #22d3ee;
+  /* Brand accent — GIX Signal Cyan */
+  --gix-accent:            #00d4ff;
   --gix-accent-hover:      #67e8f9;
-  --gix-accent-dim:        rgba(34, 211, 238, 0.1);
-  --gix-accent-glow:       rgba(34, 211, 238, 0.2);
+  --gix-accent-dim:        rgba(0, 212, 255, 0.10);
+  --gix-accent-glow:       rgba(0, 212, 255, 0.22);
 
   /* Status colors */
   --theme-success-500:     #10b981;
   --theme-warning-500:     #f59e0b;
   --theme-error-500:       #ef4444;
-  --theme-success-100:     rgba(16,185,129,0.1);
-  --theme-warning-100:     rgba(245,158,11,0.1);
-  --theme-error-100:       rgba(239,68,68,0.1);
+  --theme-success-100:     rgba(16,185,129,0.12);
+  --theme-warning-100:     rgba(245,158,11,0.12);
+  --theme-error-100:       rgba(239,68,68,0.12);
 }
 
-/* ── Body ─────────────────────────────────────────────────────── */
+/* ── Body — gradient instead of flat dark ─────────────────────── */
 body {
-  background: var(--theme-bg) !important;
-  font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif !important;
+  background:
+    radial-gradient(ellipse 70% 50% at 85% 5%,  rgba(0, 140, 255, 0.22) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 5%  90%, rgba(0, 212, 255, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%, rgba(14, 48, 90, 0.70)  0%, transparent 70%),
+    linear-gradient(160deg, #0b1828 0%, #122030 35%, #0f2540 65%, #0b1c34 100%) !important;
+  background-attachment: fixed !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans', 'Inter', 'Segoe UI', sans-serif !important;
   color: var(--theme-text) !important;
 }
 
 /* ── Sidebar ──────────────────────────────────────────────────── */
 .nav {
-  background: #0f1724 !important;
-  border-right: 1px solid rgba(34,211,238,0.1) !important;
+  background: linear-gradient(180deg,
+    rgba(11, 24, 42, 0.97) 0%,
+    rgba(13, 30, 52, 0.97) 60%,
+    rgba(9, 22, 38, 0.97) 100%) !important;
+  border-right: 1px solid rgba(0, 212, 255, 0.14) !important;
+  backdrop-filter: blur(20px) !important;
 }
 
 .nav__header {
-  border-bottom: 1px solid rgba(34,211,238,0.08) !important;
-  padding: 16px !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.10) !important;
+  padding: 18px 16px !important;
+  background: linear-gradient(90deg, rgba(0,212,255,0.04), transparent) !important;
 }
 
 /* Nav group title */
 .nav-group__label {
-  color: rgba(34,211,238,0.45) !important;
+  color: rgba(0, 212, 255, 0.55) !important;
   font-size: 10px !important;
-  letter-spacing: 0.1em !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
 }
 
 /* Nav links */
@@ -87,7 +94,7 @@ body {
   border-radius: 8px !important;
   margin: 2px 8px !important;
   padding: 8px 12px !important;
-  color: rgba(203,213,225,0.75) !important;
+  color: rgba(200, 220, 240, 0.72) !important;
   font-size: 13px !important;
   transition: all 0.15s !important;
   display: flex !important;
@@ -100,36 +107,38 @@ body {
   color: var(--gix-accent) !important;
 }
 
-.nav__link.active {
-  background: rgba(34,211,238,0.12) !important;
-  color: var(--gix-accent) !important;
-  border-left: 2px solid var(--gix-accent) !important;
-  font-weight: 500 !important;
-}
-
 /* ── App header ───────────────────────────────────────────────── */
 .app-header {
-  background: rgba(15,23,36,0.92) !important;
-  border-bottom: 1px solid rgba(34,211,238,0.08) !important;
-  backdrop-filter: blur(12px) !important;
+  background: linear-gradient(90deg,
+    rgba(11, 26, 44, 0.95) 0%,
+    rgba(14, 32, 56, 0.95) 100%) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.09) !important;
+  backdrop-filter: blur(14px) !important;
 }
 
 /* Breadcrumb */
-.step-nav a { color: rgba(34,211,238,0.65) !important; font-size:13px !important; }
+.step-nav a { color: rgba(0, 212, 255, 0.60) !important; font-size: 13px !important; }
 .step-nav__label { color: var(--theme-text) !important; }
 
 /* ── Login page ───────────────────────────────────────────────── */
 .template-minimal {
-  background: linear-gradient(135deg, #0d1520 0%, #111827 50%, #0d1520 100%) !important;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(0, 140, 255, 0.24) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 45% at 15% 85%, rgba(0, 212, 255, 0.14) 0%, transparent 55%),
+    linear-gradient(160deg, #091520 0%, #0f2030 50%, #091826 100%) !important;
   min-height: 100vh !important;
 }
 
 .template-minimal__wrap {
-  background: rgba(26,37,53,0.95) !important;
-  border: 1px solid rgba(34,211,238,0.15) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 25px 60px rgba(0,0,0,0.4), 0 0 40px rgba(34,211,238,0.05) !important;
-  padding: 40px !important;
+  background: linear-gradient(145deg,
+    rgba(20, 38, 60, 0.97) 0%,
+    rgba(14, 30, 50, 0.97) 100%) !important;
+  border: 1px solid rgba(0, 212, 255, 0.18) !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.45),
+    0 0 50px rgba(0, 212, 255, 0.06) !important;
+  padding: 44px !important;
 }
 
 /* ── Inputs ───────────────────────────────────────────────────── */
@@ -141,8 +150,8 @@ input[type="url"],
 input[type="number"],
 select,
 textarea {
-  background: rgba(26,37,53,0.7) !important;
-  border: 1px solid rgba(34,211,238,0.15) !important;
+  background: rgba(18, 35, 58, 0.75) !important;
+  border: 1px solid rgba(0, 212, 255, 0.16) !important;
   border-radius: 8px !important;
   color: var(--theme-text) !important;
   transition: border-color 0.2s, box-shadow 0.2s !important;
@@ -152,19 +161,20 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: var(--gix-accent) !important;
-  box-shadow: 0 0 0 3px rgba(34,211,238,0.12) !important;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.13) !important;
   outline: none !important;
+  background: rgba(20, 40, 65, 0.85) !important;
 }
 
 /* Labels */
 .field-label, label {
-  color: rgba(148,163,184,0.9) !important;
+  color: rgba(160, 190, 220, 0.85) !important;
   font-size: 12px !important;
   font-weight: 500 !important;
 }
 
 .field-description {
-  color: rgba(34,211,238,0.45) !important;
+  color: rgba(0, 212, 255, 0.42) !important;
   font-size: 12px !important;
 }
 
@@ -177,168 +187,187 @@ textarea:focus {
 }
 
 .btn--style-primary {
-  background: linear-gradient(135deg, #0891b2, #22d3ee) !important;
+  background: linear-gradient(135deg, #0077cc 0%, #00d4ff 100%) !important;
   border: none !important;
   color: #fff !important;
-  box-shadow: 0 4px 12px rgba(34,211,238,0.2) !important;
+  box-shadow: 0 4px 14px rgba(0, 212, 255, 0.25) !important;
 }
 
 .btn--style-primary:hover {
-  background: linear-gradient(135deg, #0e7490, #67e8f9) !important;
-  box-shadow: 0 4px 16px rgba(34,211,238,0.3) !important;
+  background: linear-gradient(135deg, #0062aa 0%, #00bbee 100%) !important;
+  box-shadow: 0 6px 20px rgba(0, 212, 255, 0.35) !important;
   transform: translateY(-1px) !important;
 }
 
 .btn--style-secondary {
   background: transparent !important;
-  border: 1px solid rgba(34,211,238,0.2) !important;
+  border: 1px solid rgba(0, 212, 255, 0.22) !important;
   color: var(--gix-accent) !important;
 }
 
 .btn--style-secondary:hover {
   background: var(--gix-accent-dim) !important;
+  border-color: rgba(0, 212, 255, 0.45) !important;
 }
 
 /* ── Document controls ────────────────────────────────────────── */
 .doc-controls {
-  background: rgba(15,23,36,0.7) !important;
-  border-bottom: 1px solid rgba(34,211,238,0.07) !important;
-  backdrop-filter: blur(8px) !important;
+  background: linear-gradient(90deg,
+    rgba(12, 24, 42, 0.85) 0%,
+    rgba(15, 28, 48, 0.85) 100%) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.08) !important;
+  backdrop-filter: blur(10px) !important;
 }
 
-.doc-controls__meta { color: rgba(34,211,238,0.45) !important; font-size:12px !important; }
+.doc-controls__meta { color: rgba(0, 212, 255, 0.42) !important; font-size: 12px !important; }
 
 /* ── Tables ───────────────────────────────────────────────────── */
 .table {
-  border-radius: 12px !important;
+  border-radius: 14px !important;
   overflow: hidden !important;
-  border: 1px solid rgba(34,211,238,0.1) !important;
+  border: 1px solid rgba(0, 212, 255, 0.10) !important;
   display: block !important;
   width: 100% !important;
+  background: linear-gradient(180deg,
+    rgba(16, 32, 52, 0.70) 0%,
+    rgba(12, 26, 44, 0.70) 100%) !important;
 }
 
-.table thead tr { background: rgba(34,211,238,0.05) !important; }
+.table thead tr {
+  background: linear-gradient(90deg,
+    rgba(0, 212, 255, 0.06) 0%,
+    rgba(0, 140, 255, 0.04) 100%) !important;
+}
+
 .table th {
-  color: rgba(34,211,238,0.65) !important;
+  color: rgba(0, 212, 255, 0.62) !important;
   font-size: 11px !important;
   font-weight: 600 !important;
-  letter-spacing: 0.08em !important;
+  letter-spacing: 0.09em !important;
   text-transform: uppercase !important;
-  border-bottom: 1px solid rgba(34,211,238,0.1) !important;
-  padding: 12px 16px !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.10) !important;
+  padding: 13px 16px !important;
 }
 
 .table td {
-  border-bottom: 1px solid rgba(34,211,238,0.05) !important;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.05) !important;
   padding: 12px 16px !important;
   font-size: 13px !important;
-  color: rgba(203,213,225,0.9) !important;
+  color: rgba(200, 220, 240, 0.90) !important;
 }
 
-.table tr:hover td { background: rgba(34,211,238,0.05) !important; }
+.table tr:hover td {
+  background: rgba(0, 212, 255, 0.04) !important;
+}
+
 .table tr:last-child td { border-bottom: none !important; }
 
 /* ── Dashboard cards ──────────────────────────────────────────── */
 .card {
-  background: rgba(26,37,53,0.8) !important;
-  border: 1px solid rgba(34,211,238,0.1) !important;
-  border-radius: 12px !important;
-  transition: all 0.2s !important;
+  background: linear-gradient(145deg,
+    rgba(18, 36, 58, 0.88) 0%,
+    rgba(14, 28, 48, 0.88) 100%) !important;
+  border: 1px solid rgba(0, 212, 255, 0.11) !important;
+  border-radius: 14px !important;
+  transition: all 0.22s !important;
 }
 
 .card:hover {
-  border-color: rgba(34,211,238,0.3) !important;
+  border-color: rgba(0, 212, 255, 0.32) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25), 0 0 18px rgba(0, 212, 255, 0.06) !important;
 }
 
 /* ── Select (react-select) ────────────────────────────────────── */
 .rs__control {
-  background: rgba(26,37,53,0.7) !important;
-  border-color: rgba(34,211,238,0.15) !important;
+  background: rgba(18, 35, 58, 0.75) !important;
+  border-color: rgba(0, 212, 255, 0.16) !important;
   border-radius: 8px !important;
 }
 .rs__control--is-focused {
   border-color: var(--gix-accent) !important;
-  box-shadow: 0 0 0 3px rgba(34,211,238,0.12) !important;
+  box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.13) !important;
 }
 .rs__menu {
-  background: #1a2535 !important;
-  border: 1px solid rgba(34,211,238,0.15) !important;
-  border-radius: 8px !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+  background: #162538 !important;
+  border: 1px solid rgba(0, 212, 255, 0.16) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45) !important;
 }
-.rs__option { color: rgba(203,213,225,0.85) !important; }
+.rs__option { color: rgba(200, 220, 240, 0.85) !important; }
 .rs__option--is-focused { background: var(--gix-accent-dim) !important; color: var(--gix-accent) !important; }
-.rs__option--is-selected { background: rgba(34,211,238,0.15) !important; color: var(--gix-accent) !important; }
+.rs__option--is-selected { background: rgba(0, 212, 255, 0.14) !important; color: var(--gix-accent) !important; }
 .rs__single-value { color: var(--theme-text) !important; }
-.rs__placeholder { color: rgba(148,163,184,0.4) !important; }
+.rs__placeholder { color: rgba(160, 190, 220, 0.38) !important; }
 
 /* ── Upload / dropzone ────────────────────────────────────────── */
 .dropzone {
-  background: rgba(34,211,238,0.02) !important;
-  border: 2px dashed rgba(34,211,238,0.2) !important;
+  background: rgba(0, 212, 255, 0.02) !important;
+  border: 2px dashed rgba(0, 212, 255, 0.20) !important;
   border-radius: 12px !important;
   transition: all 0.2s !important;
 }
 .dropzone:hover {
   border-color: var(--gix-accent) !important;
-  background: var(--gix-accent-dim) !important;
+  background: rgba(0, 212, 255, 0.07) !important;
 }
 
 /* ── Modals ───────────────────────────────────────────────────── */
 .modal-item {
-  background: #141f2e !important;
-  border: 1px solid rgba(34,211,238,0.15) !important;
-  border-radius: 16px !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5) !important;
+  background: linear-gradient(145deg, #12253d, #0f1e32) !important;
+  border: 1px solid rgba(0, 212, 255, 0.17) !important;
+  border-radius: 18px !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55) !important;
 }
 
 /* ── Toasts ───────────────────────────────────────────────────── */
 .payload-toast-item {
-  background: rgba(26,37,53,0.97) !important;
-  border: 1px solid rgba(34,211,238,0.2) !important;
-  border-radius: 10px !important;
-  backdrop-filter: blur(12px) !important;
+  background: rgba(18, 35, 58, 0.97) !important;
+  border: 1px solid rgba(0, 212, 255, 0.22) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(14px) !important;
   color: var(--theme-text) !important;
 }
 
 /* ── Collapsible ──────────────────────────────────────────────── */
 .collapsible__toggle {
-  background: rgba(26,37,53,0.6) !important;
-  border: 1px solid rgba(34,211,238,0.1) !important;
+  background: rgba(18, 35, 58, 0.65) !important;
+  border: 1px solid rgba(0, 212, 255, 0.11) !important;
   border-radius: 8px !important;
 }
-.collapsible__toggle:hover { border-color: rgba(34,211,238,0.25) !important; }
+.collapsible__toggle:hover { border-color: rgba(0, 212, 255, 0.28) !important; }
 
 /* ── Popups ───────────────────────────────────────────────────── */
 .popup__content {
-  background: #1a2535 !important;
-  border: 1px solid rgba(34,211,238,0.15) !important;
+  background: #162538 !important;
+  border: 1px solid rgba(0, 212, 255, 0.16) !important;
   border-radius: 12px !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4) !important;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45) !important;
 }
-.popup-button-list__button:hover { background: var(--gix-accent-dim) !important; color: var(--gix-accent) !important; }
+.popup-button-list__button:hover {
+  background: var(--gix-accent-dim) !important;
+  color: var(--gix-accent) !important;
+}
 
 /* ── Progress bar ─────────────────────────────────────────────── */
 .progress-bar__progress {
-  background: linear-gradient(90deg, #0891b2, #22d3ee) !important;
+  background: linear-gradient(90deg, #0077cc, #00d4ff) !important;
 }
 
 /* ── Scrollbars ───────────────────────────────────────────────── */
-* { scrollbar-width: thin; scrollbar-color: rgba(34,211,238,0.2) transparent; }
+* { scrollbar-width: thin; scrollbar-color: rgba(0, 212, 255, 0.20) transparent; }
 ::-webkit-scrollbar { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(34,211,238,0.2); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(34,211,238,0.4); }
+::-webkit-scrollbar-thumb { background: rgba(0, 212, 255, 0.20); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0, 212, 255, 0.42); }
 
-/* ── NavUserCard (afterNavLinks slot) ─────────────────────────── */
+/* ── NavUserCard ──────────────────────────────────────────────── */
 .nav-user-card {
   margin: 8px 8px 4px;
   padding: 10px 12px;
   border-radius: 10px;
-  border: 1px solid rgba(34,211,238,0.1);
-  background: rgba(34,211,238,0.04);
+  border: 1px solid rgba(0, 212, 255, 0.10);
+  background: rgba(0, 212, 255, 0.04);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -347,40 +376,48 @@ textarea:focus {
   cursor: pointer;
 }
 .nav-user-card:hover {
-  background: rgba(34,211,238,0.1) !important;
-  border-color: rgba(34,211,238,0.25) !important;
+  background: rgba(0, 212, 255, 0.10) !important;
+  border-color: rgba(0, 212, 255, 0.26) !important;
 }
 
-/* ── Style the built-in account button (top-right "G"/"N") ───── */
-/* Make it look like a proper avatar button */
+/* ── Account nav button (top-right avatar) ────────────────────── */
 .account-nav-item__button,
 button[class*="account-nav"] {
-  width: 34px !important;
-  height: 34px !important;
+  width: 36px !important;
+  height: 36px !important;
   border-radius: 50% !important;
-  background: linear-gradient(135deg, #0891b2, #22d3ee) !important;
-  border: 2px solid rgba(34,211,238,0.4) !important;
+  background: linear-gradient(135deg, #0077cc, #00d4ff) !important;
+  border: 2px solid rgba(0, 212, 255, 0.45) !important;
   color: #fff !important;
   font-weight: 700 !important;
   font-size: 13px !important;
-  box-shadow: 0 0 8px rgba(34,211,238,0.25) !important;
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.28) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   transition: all 0.2s !important;
   overflow: hidden !important;
+  padding: 0 !important;
 }
 
 .account-nav-item__button:hover,
 button[class*="account-nav"]:hover {
   border-color: var(--gix-accent) !important;
-  box-shadow: 0 0 14px rgba(34,211,238,0.4) !important;
+  box-shadow: 0 0 18px rgba(0, 212, 255, 0.45) !important;
   transform: scale(1.05) !important;
 }
 
+/* Make child img fill the avatar button */
+.account-nav-item__button img,
+button[class*="account-nav"] img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+}
 
-/* ── Sidebar nav icons (via CSS — no React component needed) ──── */
-/* Uses nav link id attributes set by Payload: nav-{slug}          */
+/* ── Sidebar nav icons (CSS-only) ─────────────────────────────── */
 .nav__link { position: relative; padding-left: 36px !important; }
 
 .nav__link::before {
@@ -394,7 +431,7 @@ button[class*="account-nav"]:hover {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 15px 15px;
-  opacity: 0.55;
+  opacity: 0.52;
   transition: opacity 0.15s, filter 0.15s;
   pointer-events: none;
 }
@@ -405,7 +442,7 @@ button[class*="account-nav"]:hover {
   filter: brightness(0) saturate(100%) invert(77%) sepia(48%) saturate(400%) hue-rotate(152deg);
 }
 
-/* Individual icons per collection */
+/* Individual icons */
 .nav__link[id="nav-users"]::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='none' stroke='%2394a3b8' stroke-width='1.5' viewBox='0 0 24 24'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
 }
@@ -440,8 +477,7 @@ button[class*="account-nav"]:hover {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' fill='none' stroke='%2394a3b8' stroke-width='1.5' viewBox='0 0 24 24'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E");
 }
 
-/* ── Force nav-group content always visible ───────────────────── */
-/* NavGroup collapses with CSS height:0. Force it open always.    */
+/* ── Force nav-group always visible ───────────────────────────── */
 .nav-group .animate-height > div,
 .nav-group__content,
 [class*="nav-group"] [class*="content"] {
@@ -449,10 +485,11 @@ button[class*="account-nav"]:hover {
   overflow: visible !important;
 }
 
-/* ── Active nav link — elegant teal highlight ─────────────────── */
-/* Payload marks active link with .nav__link-indicator inside it  */
+/* ── Active nav link ──────────────────────────────────────────── */
 .nav__link:has(.nav__link-indicator) {
-  background: linear-gradient(90deg, rgba(34,211,238,0.15), rgba(34,211,238,0.05)) !important;
+  background: linear-gradient(90deg,
+    rgba(0, 212, 255, 0.14),
+    rgba(0, 212, 255, 0.04)) !important;
   color: #22d3ee !important;
   border-radius: 8px !important;
   border-left: 2px solid #22d3ee !important;
@@ -464,16 +501,288 @@ button[class*="account-nav"]:hover {
   filter: brightness(0) saturate(100%) invert(77%) sepia(48%) saturate(400%) hue-rotate(152deg) !important;
 }
 
-/* The active indicator dot itself */
-.nav__link-indicator {
-  display: none !important; /* Hide the dot — the highlight is enough */
-}
+.nav__link-indicator { display: none !important; }
 
 /* ── Hover state ──────────────────────────────────────────────── */
 .nav a.nav__link:hover,
 .nav a.nav__link:focus-visible {
   text-decoration: none !important;
-  background: rgba(34,211,238,0.08) !important;
+  background: rgba(0, 212, 255, 0.08) !important;
   color: #67e8f9 !important;
   border-radius: 8px !important;
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────── */
+.tabs-field {
+  margin-top: 16px !important;
+  margin-bottom: 24px !important;
+}
+
+.tabs-field__navigation,
+.tabs-nav {
+  display: flex !important;
+  gap: 8px !important;
+  border-bottom: 2px solid rgba(0, 212, 255, 0.14) !important;
+  padding-bottom: 8px !important;
+  margin-bottom: 24px !important;
+}
+
+.tabs-field__tab-button,
+.tabs-nav__button,
+button[class*="tabs-field__tab-button"],
+button[class*="tabs-nav__button"] {
+  background: rgba(18, 35, 58, 0.65) !important;
+  border: 1px solid rgba(0, 212, 255, 0.16) !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  color: rgba(220, 235, 248, 0.78) !important;
+  font-weight: 500 !important;
+  font-size: 13px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.tabs-field__tab-button:hover,
+.tabs-nav__button:hover {
+  background: rgba(0, 212, 255, 0.11) !important;
+  color: #00d4ff !important;
+  border-color: rgba(0, 212, 255, 0.35) !important;
+}
+
+.tabs-field__tab-button--active,
+.tabs-nav__button--active,
+.tabs-field__tab-button[aria-selected="true"],
+.tabs-nav__button[aria-selected="true"] {
+  background: linear-gradient(135deg,
+    rgba(0, 119, 204, 0.28),
+    rgba(0, 212, 255, 0.22)) !important;
+  color: #ffffff !important;
+  border-color: #00d4ff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 0 14px rgba(0, 212, 255, 0.22) !important;
+}
+
+/* ── Field group cards ────────────────────────────────────────── */
+.field-type.group,
+.field-type.collapsible,
+.field-type.array {
+  background: linear-gradient(145deg,
+    rgba(18, 36, 58, 0.60) 0%,
+    rgba(14, 28, 48, 0.60) 100%) !important;
+  border: 1px solid rgba(0, 212, 255, 0.13) !important;
+  border-radius: 12px !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18) !important;
+}
+
+.field-type.group .field-type.group__title,
+.field-type.collapsible .collapsible__toggle-text {
+  color: #00d4ff !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  letter-spacing: 0.02em !important;
+}
+
+/* ── Custom GIX Admin Dashboard ───────────────────────────────── */
+.gix-admin-dashboard {
+  padding: 32px;
+  min-height: 100vh;
+}
+
+.gix-admin-welcome {
+  margin-bottom: 36px;
+}
+
+.gix-admin-welcome__greeting {
+  font-size: 26px;
+  font-weight: 700;
+  color: #e8f4fd;
+  margin: 0 0 6px;
+  background: linear-gradient(90deg, #e8f4fd, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gix-admin-welcome__sub {
+  font-size: 14px;
+  color: rgba(160, 200, 230, 0.65);
+  margin: 0;
+}
+
+.gix-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.gix-cms-card {
+  background: linear-gradient(145deg,
+    rgba(18, 38, 62, 0.90) 0%,
+    rgba(12, 28, 50, 0.90) 100%);
+  border: 1px solid rgba(0, 212, 255, 0.12);
+  border-radius: 16px;
+  padding: 22px;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.gix-cms-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,212,255,0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.22s;
+}
+
+.gix-cms-card:hover {
+  border-color: rgba(0, 212, 255, 0.30);
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.28), 0 0 20px rgba(0, 212, 255, 0.07);
+}
+
+.gix-cms-card:hover::before { opacity: 1; }
+
+.gix-cms-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.gix-cms-card__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0, 212, 255, 0.10);
+  border: 1px solid rgba(0, 212, 255, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.gix-cms-card__badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(0, 212, 255, 0.10);
+  color: rgba(0, 212, 255, 0.75);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.gix-cms-card__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e8f4fd;
+  margin: 0 0 6px;
+}
+
+.gix-cms-card__desc {
+  font-size: 13px;
+  color: rgba(160, 200, 230, 0.60);
+  margin: 0 0 18px;
+  line-height: 1.55;
+}
+
+.gix-cms-card__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.gix-cms-card__field-chip {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: rgba(200, 220, 240, 0.65);
+}
+
+.gix-cms-card__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.gix-cms-card__btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s;
+  cursor: pointer;
+  border: none;
+}
+
+.gix-cms-card__btn--primary {
+  background: linear-gradient(135deg, #0077cc, #00d4ff);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 212, 255, 0.20);
+}
+
+.gix-cms-card__btn--primary:hover {
+  box-shadow: 0 6px 18px rgba(0, 212, 255, 0.32);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.gix-cms-card__btn--secondary {
+  background: rgba(0, 212, 255, 0.07);
+  border: 1px solid rgba(0, 212, 255, 0.18);
+  color: rgba(0, 212, 255, 0.85);
+}
+
+.gix-cms-card__btn--secondary:hover {
+  background: rgba(0, 212, 255, 0.14);
+  border-color: rgba(0, 212, 255, 0.35);
+  color: #00d4ff;
+}
+
+/* ── Stats bar ────────────────────────────────────────────────── */
+.gix-admin-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.gix-stat-item {
+  background: linear-gradient(145deg,
+    rgba(18, 38, 62, 0.80),
+    rgba(12, 28, 50, 0.80));
+  border: 1px solid rgba(0, 212, 255, 0.10);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.gix-stat-item__value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00d4ff;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.gix-stat-item__label {
+  font-size: 11px;
+  color: rgba(160, 200, 230, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
 }

@@ -32,6 +32,7 @@ export default buildConfig({
 
   admin: {
     user: Users.slug,
+    avatar: { Component: '/components/admin/Avatar' },
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -41,6 +42,13 @@ export default buildConfig({
       graphics: {
         Logo: '/components/admin/Logo',
         Icon: '/components/admin/Icon',
+      },
+      views: {
+        // Custom dashboard — replaces the default Payload dashboard with
+        // a beautiful card-based CMS overview with view + edit flow.
+        dashboard: {
+          Component: '/components/admin/Dashboard',
+        },
       },
       // NOTE: afterNavLinks / beforeNavLinks components that use React hooks
       // (useAuth, usePathname) crash the nav RSC render in Payload 3.88.

@@ -17,43 +17,61 @@ export const News: CollectionConfig = {
   },
   fields: [
     {
-      name: 'title',
-      type: 'text',
-      required: true,
-      localized: true,
-    },
-    {
-      name: 'excerpt',
-      type: 'textarea',
-      localized: true,
-      admin: { description: 'Short summary shown in cards (2–3 sentences max).' },
-    },
-    {
-      name: 'body',
-      type: 'richText',
-      editor: lexicalEditor(),
-      localized: true,
-    },
-    {
-      name: 'coverImage',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'category',
-      type: 'select',
-      options: [
-        { label: 'Announcement', value: 'announcement' },
-        { label: 'Project Update', value: 'project-update' },
-        { label: 'Company News', value: 'company-news' },
-        { label: 'Partnership', value: 'partnership' },
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Article Content',
+          fields: [
+            {
+              name: 'title',
+              type: 'text',
+              required: true,
+              localized: true,
+            },
+            {
+              name: 'excerpt',
+              type: 'textarea',
+              localized: true,
+              admin: { description: 'Short summary shown in cards (2–3 sentences max).' },
+            },
+            {
+              name: 'body',
+              type: 'richText',
+              editor: lexicalEditor(),
+              localized: true,
+            },
+          ],
+        },
+        {
+          label: 'Media & Category',
+          fields: [
+            {
+              name: 'coverImage',
+              type: 'upload',
+              relationTo: 'media',
+            },
+            {
+              name: 'category',
+              type: 'select',
+              options: [
+                { label: 'Announcement', value: 'announcement' },
+                { label: 'Project Update', value: 'project-update' },
+                { label: 'Company News', value: 'company-news' },
+                { label: 'Partnership', value: 'partnership' },
+              ],
+              defaultValue: 'company-news',
+            },
+          ],
+        },
       ],
-      defaultValue: 'company-news',
     },
     {
       name: 'publishedAt',
       type: 'date',
-      admin: { date: { pickerAppearance: 'dayAndTime' } },
+      admin: {
+        position: 'sidebar',
+        date: { pickerAppearance: 'dayAndTime' },
+      },
     },
     {
       name: '_status',
@@ -64,6 +82,9 @@ export const News: CollectionConfig = {
         { label: 'Published', value: 'published' },
       ],
       required: true,
+      admin: {
+        position: 'sidebar',
+      },
     },
   ],
 }
