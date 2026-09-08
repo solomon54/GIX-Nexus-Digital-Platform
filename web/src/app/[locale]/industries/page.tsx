@@ -5,6 +5,7 @@ import { getTranslations } from 'next-intl/server'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import type { Sector } from '@/payload-types'
+import { PageHeroCarousel } from '@/components/ui/PageHeroCarousel'
 
 export const revalidate = 3600
 
@@ -58,19 +59,12 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/images/industries/companies-we-serve.webp"
-            alt=""
-            fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover hero-pan"
-            priority
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.75) 0%, rgba(6,18,54,0.55) 55%, rgba(6,18,54,0.35) 100%)' }} />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <PageHeroCarousel slides={[
+          { src: '/images/industries/companies-we-serve.webp', motion: 'hero-drift-tr' },
+          { src: '/images/hero/datacenter-solution.jpg', motion: 'hero-drift-up' },
+          { src: '/images/services/telecom-infrastructure.jpg', motion: 'hero-drift-left' },
+        ]} />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('pageSubtitle')}</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
           <p className="mt-5 max-w-2xl mx-auto text-sm italic text-[var(--foreground-muted)] leading-relaxed">{t('disclaimer')}</p>

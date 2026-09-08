@@ -44,13 +44,14 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Brand — spans 4 columns on large screens */}
             <div className="lg:col-span-4">
-              <Link href={`/${locale}`} className="inline-flex items-center mb-5">
+              <Link href={`/${locale}`} className="inline-flex items-center mb-5 shrink-0">
                 <Image
                   src="/assets/company-logo.png"
                   alt="GIX Nexus Telecom and Power"
                   width={140}
                   height={40}
-                  className="h-8 w-auto object-contain"
+                  style={{ height: '36px', width: 'auto', maxHeight: '36px' }}
+                  className="object-contain"
                 />
               </Link>
 

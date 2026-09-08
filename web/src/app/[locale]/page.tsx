@@ -32,9 +32,9 @@ const SERVICES_DATA = [
   { slug: 'satellite-wireless-communications', nameKey: 'satelliteWireless', image: '/images/services/satellite-dish.jpg', imageAlt: 'Satellite dish and wireless systems' },
   { slug: 'rf-engineering', nameKey: 'rfEngineering', image: '/images/services/rf-engineering.jpg', imageAlt: 'RF engineering and antenna systems' },
   { slug: 'network-infrastructure', nameKey: 'networkInfrastructure', image: '/images/services/network-infrastructure.jpg', imageAlt: 'Network infrastructure and cabling' },
-  { slug: 'telecom-power-systems', nameKey: 'telecomPower', image: '/images/services/telecom-power-systems-dc-power-systems.png', imageAlt: 'Telecom power systems' },
+  { slug: 'telecom-power-systems', nameKey: 'telecomPower', image: '/images/hero/services-page-hero/power-substation.webp', imageAlt: 'Telecom power systems' },
   { slug: 'smatv-matv-solutions', nameKey: 'smatvMatv', image: '/images/services/smatv-matv.jpg', imageAlt: 'SMATV/MATV satellite TV distribution systems' },
-  { slug: 'maintenance-technical-support', nameKey: 'maintenance', image: '/images/services/maintenance-and-tehnical-suport.webp', imageAlt: 'Field maintenance and technical support' },
+  { slug: 'maintenance-technical-support', nameKey: 'maintenance', image: '/images/services/maintenance-and-technical-support.webp', imageAlt: 'Field maintenance and technical support' },
 ] as const
 
 // Category label maps for display

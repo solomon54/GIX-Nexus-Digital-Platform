@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
 import { useContactModal } from '@/context/ContactModalContext'
+import { PageHeroCarousel } from '@/components/ui/PageHeroCarousel'
 
 const BASE_URL = typeof window !== 'undefined'
   ? window.location.origin
@@ -32,12 +33,12 @@ export function ContactPageClient() {
 
       {/* ── Hero ── */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          <Image src="/images/hero/hero-1.jpeg" alt="" fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-center" priority aria-hidden="true" />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.75) 0%, rgba(6,18,54,0.55) 55%, rgba(6,18,54,0.35) 100%)' }} />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <PageHeroCarousel slides={[
+          { src: '/images/hero/hero-1.jpeg', motion: 'hero-drift-tr' },
+          { src: '/images/capability/our-capabilities.webp', motion: 'hero-drift-up' },
+          { src: '/images/hero/services-page-hero/engineers-data-center.webp', motion: 'hero-drift-left' },
+        ]} />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>
           <h1 className="text-3xl font-bold text-white sm:text-4xl">{t('pageTitle')}</h1>
           <p className="mt-4 max-w-2xl mx-auto text-base text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>

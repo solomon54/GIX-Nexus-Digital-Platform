@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
+import { PageHeroCarousel } from '@/components/ui/PageHeroCarousel'
 
 export const revalidate = 3600
 
@@ -69,7 +70,7 @@ const SERVICES = [
   {
     slug: 'telecom-power-systems',
     nameKey: 'telecomPower',
-    image: '/images/services/telecom-power-systems-dc-power-systems.png',
+    image: '/images/hero/services-page-hero/power-substation.webp',
     imageAlt: 'Telecom power system installation',
     highlights: ['DC power system installation', 'Rectifier and UPS installation', 'Battery bank installation', 'Solar-powered telecom sites'],
   },
@@ -83,7 +84,7 @@ const SERVICES = [
   {
     slug: 'maintenance-technical-support',
     nameKey: 'maintenance',
-    image: '/images/services/maintenance-and-tehnical-suport.webp',
+    image: '/images/services/maintenance-and-technical-support.webp',
     imageAlt: 'Field maintenance and technical support',
     highlights: ['Preventive and corrective maintenance', 'Emergency fault response', '24/7 technical support', 'Equipment replacement and upgrades'],
   },
@@ -94,22 +95,15 @@ function ServicesPage({ locale }: { locale: string }) {
 
   return (
     <>
-      {/* ── Hero ─────────────────────────────────────────────────── */}
+      {/* ── Hero — 4-image carousel: engineers, substation, power towers, UPS power backup ── */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0">
-          {/* Background: telecom towers at night */}
-          <Image
-            src="/images/hero/telecom-towers-night.jpg"
-            alt=""
-            fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover hero-pan"
-            priority
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.75) 0%, rgba(6,18,54,0.55) 55%, rgba(6,18,54,0.35) 100%)' }} />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        <PageHeroCarousel slides={[
+          { src: '/images/hero/services-page-hero/engineers-data-center.webp', motion: 'hero-drift-up' },
+          { src: '/images/hero/services-page-hero/power-substation.webp', motion: 'hero-drift-tr' },
+          { src: '/images/hero/services-page-hero/power-towers-digital.jpg', motion: 'hero-drift-left' },
+          { src: '/images/hero/ups-for-telecom-base-station-power-backup.webp', motion: 'hero-drift-tl' },
+        ]} />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">What We Offer</p>
           <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('pageDescription')}</p>

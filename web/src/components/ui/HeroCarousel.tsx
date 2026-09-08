@@ -99,7 +99,7 @@ export function HeroCarousel({ className = '' }: { className?: string }) {
             key={slide.src}
             className="absolute inset-0"
             style={{
-              opacity: isActive ? 1 : 0,
+              opacity: isActive ? 0.65 : 0,
               transitionProperty: 'opacity',
               transitionDuration: `${FADE_MS}ms`,
               transitionTimingFunction: 'ease-in-out',
@@ -123,11 +123,11 @@ export function HeroCarousel({ className = '' }: { className?: string }) {
         )
       })}
 
-      {/* Overlay */}
+      {/* Deep overlay to guarantee text visibility */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'linear-gradient(160deg, rgba(6,18,54,0.72) 0%, rgba(6,18,54,0.52) 55%, rgba(6,18,54,0.30) 100%)',
+          background: 'linear-gradient(160deg, rgba(3,8,20,0.68) 0%, rgba(5,13,26,0.48) 55%, rgba(6,18,54,0.85) 100%)',
           zIndex: 2,
         }}
       />

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { getTranslations } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
+import { PageHeroCarousel } from '@/components/ui/PageHeroCarousel'
 
 export const revalidate = 3600
 
@@ -43,24 +44,22 @@ const CORE_VALUES = [
 function CompanyPage({ locale }: { locale: string }) {
   const t = useTranslations('company')
 
+  // Company hero slides — satellite/space imagery, each with distinct movement direction
+  const COMPANY_SLIDES = [
+    { src: '/images/hero/company-page-hero/satellite-station-orbit.jpg', motion: 'hero-drift-tr' },
+    { src: '/images/hero/company-page-hero/nasa-satellite-fleet.jpg',    motion: 'hero-drift-up' },
+    { src: '/images/hero/company-page-hero/satellite-earth-blue.jpg',    motion: 'hero-drift-left' },
+    { src: '/images/hero/company-page-hero/satellite-in-orbit.jpg',      motion: 'hero-drift-tl' },
+  ] as const
+
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden" aria-labelledby="company-heading">
-        {/* Background: professional telecom environment */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero/telecom-towers-night.jpg"
-            alt=""
-            fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover hero-pan"
-            priority
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.75) 0%, rgba(6,18,54,0.55) 55%, rgba(6,18,54,0.35) 100%)' }} />
-        </div>
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+        {/* Carousel background — fades between 4 satellite images */}
+        <PageHeroCarousel slides={COMPANY_SLIDES} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.80) 0%, rgba(6,18,54,0.58) 55%, rgba(6,18,54,0.35) 100%)', zIndex: 3 }} />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
           <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">About Us</p>
           <h1 id="company-heading" className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
           <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('overviewText')}</p>
@@ -70,7 +69,6 @@ function CompanyPage({ locale }: { locale: string }) {
           </div>
         </div>
       </section>
-
       {/* ── Vision & Mission ─────────────────────────────────────── */}
       {/* Source: Company Profile PDF, Page 4 — verbatim, attributed */}
       <section className="py-20 section-top-divide bg-section-odd">

@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 
-const DISMISSED_KEY  = 'gix-pwa-dismissed-forever'
-const VERSION_KEY    = 'gix-pwa-installed-version'
-const APP_VERSION    = '1.1.0'   // bump this to trigger update notification on installed users
+const DISMISSED_COUNT_KEY = 'gix-pwa-dismissed-count'  // increments each dismissal
+const DISMISSED_AT_KEY    = 'gix-pwa-dismissed-at'     // timestamp of last dismissal
+const VERSION_KEY         = 'gix-pwa-installed-version'
+const APP_VERSION         = '1.1.0'
+const DISMISS_DELAY_MS    = 3 * 24 * 60 * 60 * 1000  // 3 days between shows
+const PERMANENT_AFTER     = 3  // permanently hidden after 3 dismissals
 
 export function PwaInstallPrompt() {
   const [prompt, setPrompt]   = useState<any>(null)
@@ -14,25 +17,27 @@ export function PwaInstallPrompt() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const dismissed   = localStorage.getItem(DISMISSED_KEY)
-    const isInstalled = window.matchMedia('(display-mode: standalone)').matches ||
-                        (window.navigator as any).standalone === true
+    const dismissCount = parseInt(localStorage.getItem(DISMISSED_COUNT_KEY) ?? '0', 10)
+    const dismissedAt  = parseInt(localStorage.getItem(DISMISSED_AT_KEY) ?? '0', 10)
+    const isInstalled  = window.matchMedia('(display-mode: standalone)').matches ||
+                         (window.navigator as any).standalone === true
 
-    // Already installed — check if there's an update
+    // Already installed — check for updates
     if (isInstalled) {
       const storedVersion = localStorage.getItem(VERSION_KEY)
       if (storedVersion && storedVersion !== APP_VERSION) {
-        setMode('update')
-        setVisible(true)
-      } else {
-        // First time running as installed — store version
-        if (!storedVersion) localStorage.setItem(VERSION_KEY, APP_VERSION)
+        setMode('update'); setVisible(true)
+      } else if (!storedVersion) {
+        localStorage.setItem(VERSION_KEY, APP_VERSION)
       }
       return
     }
 
-    // User said never — respect forever
-    if (dismissed) return
+    // Permanently dismissed after 3 times
+    if (dismissCount >= PERMANENT_AFTER) return
+
+    // Dismissed recently — wait 3 days before showing again
+    if (dismissedAt && Date.now() - dismissedAt < DISMISS_DELAY_MS) return
 
     // Wait for browser install prompt
     const handler = (e: Event) => {
@@ -65,7 +70,9 @@ export function PwaInstallPrompt() {
   }
 
   const handleDismiss = () => {
-    localStorage.setItem(DISMISSED_KEY, 'true')
+    const count = parseInt(localStorage.getItem(DISMISSED_COUNT_KEY) ?? '0', 10) + 1
+    localStorage.setItem(DISMISSED_COUNT_KEY, String(count))
+    localStorage.setItem(DISMISSED_AT_KEY, String(Date.now()))
     setVisible(false)
   }
 
@@ -235,7 +242,7 @@ export function PwaInstallPrompt() {
               )}
 
               <p style={{ fontSize: '11px', color: 'rgba(180,210,230,0.35)', textAlign: 'center', marginTop: '12px', lineHeight: 1.4 }}>
-                "Not Now" removes this permanently
+                "Not Now" hides this for 3 days
               </p>
             </>
           )}

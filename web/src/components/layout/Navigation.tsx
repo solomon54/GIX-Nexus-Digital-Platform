@@ -60,37 +60,39 @@ export function Navigation({ locale }: NavigationProps) {
       }}
     >
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2.5 sm:px-6 lg:px-8"
+        className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-3.5 lg:px-8"
         aria-label="Main navigation"
       >
         {/* Logo */}
         <Link
           href={`/${locale}`}
           aria-label="GIX Nexus Telecom and Power — Home"
-          className="flex min-h-[44px] items-center"
+          className="flex min-h-[44px] items-center shrink-0"
         >
           <Image
             src="/assets/company-logo.png"
             alt="GIX Nexus Telecom and Power"
-            width={180}
-            height={52}
-            className="h-11 w-auto object-contain"
+            width={170}
+            height={48}
+            style={{ height: '46px', width: 'auto', maxHeight: '46px' }}
+            className="object-contain"
             priority
           />
         </Link>
 
-        {/* Desktop nav links */}
+        {/* Desktop nav links — tight spacing to fit 8 links */}
         <ul className="hidden lg:flex items-center gap-0.5" role="list">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className={`nav-link relative inline-flex items-center px-3.5 py-2 text-sm rounded-lg ${isActive(link.href) ? 'nav-link-active' : ''}`}
+                className={`nav-link relative inline-flex items-center px-3 py-2 text-[14px] rounded-lg ${isActive(link.href) ? 'nav-link-active' : ''}`}
                 style={{
-                  color: isActive(link.href) ? '#FFFFFF' : 'rgba(180,210,230,0.75)',
-                  background: isActive(link.href) ? 'rgba(0,212,255,0.08)' : 'transparent',
+                  color: isActive(link.href) ? '#FFFFFF' : 'rgba(180,210,230,0.85)',
+                  background: isActive(link.href) ? 'rgba(0,212,255,0.09)' : 'transparent',
                   fontWeight: isActive(link.href) ? 600 : 400,
+                  whiteSpace: 'nowrap',
                 }}
               >
                 {link.label}
@@ -106,10 +108,13 @@ export function Navigation({ locale }: NavigationProps) {
             href={getLocaleSwitchHref()}
             hrefLang={otherLocale}
             aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
-            className="hidden sm:inline-flex min-h-[36px] items-center justify-center rounded-lg px-3 text-sm font-medium border nav-control"
+            className="hidden sm:inline-flex items-center justify-center rounded-lg border nav-control whitespace-nowrap"
             style={{
               borderColor: 'rgba(0,212,255,0.18)',
               color: 'rgba(180,210,230,0.75)',
+              fontSize: '12px',
+              padding: '6px 10px',
+              minHeight: '32px',
             }}
           >
             {locale === 'en' ? tCommon('languageToggle') : 'EN'}
@@ -118,8 +123,13 @@ export function Navigation({ locale }: NavigationProps) {
           {/* Contact CTA — gradient button, desktop only */}
           <Link
             href={`/${locale}/contact`}
-            className="hidden sm:inline-flex btn-primary text-xs px-4 py-1.5 min-h-[34px]"
-            style={{ fontSize: '13px', padding: '6px 16px', minHeight: '34px' }}
+            className="hidden sm:inline-flex items-center rounded-lg text-white font-semibold whitespace-nowrap"
+            style={{
+              background: 'var(--btn-primary-bg)',
+              fontSize: '13px',
+              padding: '7px 14px',
+              minHeight: '32px',
+            }}
           >
             {t('contact')}
           </Link>
