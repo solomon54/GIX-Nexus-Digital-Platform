@@ -11,6 +11,12 @@ export const Sectors: CollectionConfig = {
       'Target sectors (prospective). NOT existing clients — display as "Sectors We Serve".',
     defaultColumns: ['name', 'order'],
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'name',

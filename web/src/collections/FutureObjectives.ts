@@ -11,6 +11,12 @@ export const FutureObjectives: CollectionConfig = {
       'PLANNED objectives only. Always shown with "Objective / Planned" label. Never mixed with current services.',
     defaultColumns: ['number', 'title'],
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'number',

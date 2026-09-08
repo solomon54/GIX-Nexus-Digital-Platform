@@ -9,6 +9,12 @@ export const Testimonials: CollectionConfig = {
     defaultColumns: ['authorName', 'organisation', '_status'],
     description: 'Client and partner testimonials. Only publish verified, real statements. Never fabricate.',
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'quote',

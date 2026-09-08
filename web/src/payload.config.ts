@@ -25,6 +25,11 @@ export default buildConfig({
   // serverURL tells Payload where the app is hosted.
   serverURL: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
 
+  csrf: [
+    ...(process.env.NEXT_PUBLIC_APP_URL ? [process.env.NEXT_PUBLIC_APP_URL] : []),
+    'http://localhost:3000',
+  ],
+
   admin: {
     user: Users.slug,
     importMap: {

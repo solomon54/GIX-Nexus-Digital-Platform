@@ -10,6 +10,12 @@ export const Projects: CollectionConfig = {
     defaultColumns: ['title', 'serviceCategory', 'location', '_status'],
     description: 'Completed and ongoing projects. Never invent client names — use sector categories only unless explicitly provided.',
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'title',

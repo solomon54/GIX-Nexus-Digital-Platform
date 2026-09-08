@@ -10,6 +10,12 @@ export const Users: CollectionConfig = {
     description: 'Internal CMS admin users only. Not visible to public site visitors.',
     defaultColumns: ['name', 'email', 'role', 'updatedAt'],
   },
+  access: {
+    read: ({ req: { user } }) => Boolean(user),
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     // ── Avatar ──────────────────────────────────────────────────
     {

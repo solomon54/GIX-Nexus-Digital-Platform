@@ -8,6 +8,12 @@ export const Services: CollectionConfig = {
     description: 'The 8 service domains. Slugs must match constants.ts SERVICE_SLUGS exactly.',
     defaultColumns: ['name', 'order', '_status'],
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'name',

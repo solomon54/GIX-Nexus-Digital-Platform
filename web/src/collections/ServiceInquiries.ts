@@ -9,6 +9,12 @@ export const ServiceInquiries: CollectionConfig = {
     defaultColumns: ['organisation', 'contactName', 'serviceType', 'status', 'submittedAt'],
     description: 'Inquiry form submissions from the Capabilities page. Review and respond here.',
   },
+  access: {
+    read: ({ req: { user } }) => Boolean(user),
+    create: () => true,
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   // No create/update from admin — submissions only via form
   // Admins can read, update status, add notes, delete
   fields: [

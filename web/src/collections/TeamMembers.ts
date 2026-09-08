@@ -9,6 +9,12 @@ export const TeamMembers: CollectionConfig = {
     defaultColumns: ['name', 'role', 'order', '_status'],
     description: 'GIX Nexus professional staff profiles. Only publish verified, real staff members.',
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     { name: 'name', type: 'text', required: true },
     {

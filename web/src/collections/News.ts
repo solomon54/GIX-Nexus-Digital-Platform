@@ -9,6 +9,12 @@ export const News: CollectionConfig = {
     defaultColumns: ['title', 'publishedAt', '_status'],
     description: 'Company news, announcements and press releases.',
   },
+  access: {
+    read: () => true,
+    create: ({ req: { user } }) => Boolean(user),
+    update: ({ req: { user } }) => Boolean(user),
+    delete: ({ req: { user } }) => Boolean(user),
+  },
   fields: [
     {
       name: 'title',
