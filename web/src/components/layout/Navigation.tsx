@@ -50,20 +50,23 @@ export function Navigation({ locale }: NavigationProps) {
     <header
       className="sticky top-0 z-50 w-full"
       style={{
-        /* Always deep navy — brand identity, logo visibility */
-        background: scrolled ? 'rgba(255,255,255,0.95)' : 'rgba(240,247,255,0.98)',
-        backdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
-        borderBottom: '1px solid rgba(0,102,204,0.12)',
-        boxShadow: scrolled ? '0 2px 16px rgba(0,22,80,0.08)' : 'none',
-        transition: 'box-shadow 300ms ease, backdrop-filter 300ms ease',
+        background: scrolled
+          ? 'rgba(10, 24, 54, 0.97)'   /* slightly transparent when scrolled */
+          : '#0D1B3E',                  /* solid deep navy always */
+        backdropFilter: scrolled ? 'blur(20px) saturate(1.6)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.6)' : 'none',
+        borderBottom: '1px solid rgba(14,165,201,0.18)',
+        boxShadow: scrolled
+          ? '0 4px 24px rgba(0,0,0,0.30), 0 1px 0 rgba(14,165,201,0.12)'
+          : '0 2px 16px rgba(0,0,0,0.20)',
+        transition: 'box-shadow 300ms ease, background 300ms ease',
       }}
     >
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 sm:py-3.5 lg:px-8"
         aria-label="Main navigation"
       >
-        {/* Logo */}
+        {/* ── Logo ── */}
         <Link
           href={`/${locale}`}
           aria-label="GIX Nexus Telecom and Power — Home"
@@ -80,17 +83,19 @@ export function Navigation({ locale }: NavigationProps) {
           />
         </Link>
 
-        {/* Desktop nav links — tight spacing to fit 8 links */}
+        {/* ── Desktop nav links ── */}
         <ul className="hidden lg:flex items-center gap-0.5" role="list">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
                 aria-current={isActive(link.href) ? 'page' : undefined}
-                className={`nav-link relative inline-flex items-center px-3 py-2 text-[14px] rounded-lg ${isActive(link.href) ? 'nav-link-active' : ''}`}
+                className={`nav-link relative inline-flex items-center px-3 py-2 text-[13.5px] rounded-lg transition-colors ${
+                  isActive(link.href) ? 'nav-link-active' : ''
+                }`}
                 style={{
-                  color: isActive(link.href) ? '#FFFFFF' : 'rgba(180,210,230,0.85)',
-                  background: isActive(link.href) ? 'rgba(0,212,255,0.09)' : 'transparent',
+                  color: isActive(link.href) ? '#22D3EE' : 'rgba(255,255,255,0.78)',
+                  background: isActive(link.href) ? 'rgba(14,165,201,0.14)' : 'transparent',
                   fontWeight: isActive(link.href) ? 600 : 400,
                   whiteSpace: 'nowrap',
                 }}
@@ -101,17 +106,17 @@ export function Navigation({ locale }: NavigationProps) {
           ))}
         </ul>
 
-        {/* Controls */}
+        {/* ── Controls ── */}
         <div className="flex items-center gap-2">
           {/* Language toggle */}
           <Link
             href={getLocaleSwitchHref()}
             hrefLang={otherLocale}
             aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
-            className="hidden sm:inline-flex items-center justify-center rounded-lg border nav-control whitespace-nowrap"
+            className="hidden sm:inline-flex items-center justify-center rounded-lg nav-control whitespace-nowrap"
             style={{
-              borderColor: 'rgba(0,102,204,0.25)',
-              color: '#4A6A8A',
+              border: '1px solid rgba(14,165,201,0.35)',
+              color: 'rgba(255,255,255,0.70)',
               fontSize: '12px',
               padding: '6px 10px',
               minHeight: '32px',
@@ -120,15 +125,17 @@ export function Navigation({ locale }: NavigationProps) {
             {locale === 'en' ? tCommon('languageToggle') : 'EN'}
           </Link>
 
-          {/* Contact CTA — gradient button, desktop only */}
+          {/* Contact CTA — teal gradient button */}
           <Link
             href={`/${locale}/contact`}
-            className="hidden sm:inline-flex items-center rounded-lg text-white font-semibold whitespace-nowrap"
+            className="hidden sm:inline-flex items-center rounded-lg font-semibold whitespace-nowrap transition-all"
             style={{
-              background: 'var(--btn-primary-bg)',
+              background: 'linear-gradient(135deg, #0EA5C9 0%, #22D3EE 100%)',
+              color: '#0D1B3E',
               fontSize: '13px',
-              padding: '7px 14px',
+              padding: '7px 16px',
               minHeight: '32px',
+              boxShadow: '0 2px 12px rgba(14,165,201,0.35)',
             }}
           >
             {t('contact')}
@@ -141,12 +148,23 @@ export function Navigation({ locale }: NavigationProps) {
             aria-label={mobileOpen ? tCommon('closeMenu') : tCommon('openMenu')}
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
-            className="inline-flex lg:hidden min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border nav-control"
-            style={{ borderColor: 'rgba(0,102,204,0.25)', color: '#4A6A8A' }}
+            className="inline-flex lg:hidden min-h-[36px] min-w-[36px] items-center justify-center rounded-lg nav-control"
+            style={{
+              border: '1px solid rgba(14,165,201,0.35)',
+              color: 'rgba(255,255,255,0.80)',
+            }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-              className="h-5 w-5" aria-hidden="true">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="h-5 w-5"
+              aria-hidden="true"
+            >
               {mobileOpen ? (
                 <>
                   <line x1="18" y1="6" x2="6" y2="18" />
@@ -164,51 +182,53 @@ export function Navigation({ locale }: NavigationProps) {
         </div>
       </nav>
 
-      {/* Scoped nav hover styles — left-to-right underline animation */}
+      {/* ── Scoped nav styles ── */}
       <style>{`
-        /* Base state — underline starts at left edge, width 0 */
+        /* Hover state */
+        .nav-link:hover {
+          color: #22D3EE !important;
+          background: rgba(14,165,201,0.10) !important;
+        }
+
+        /* Animated teal underline — grows left → right on hover */
         .nav-link::after {
           content: '';
           position: absolute;
           bottom: 4px;
-          left: 12px;        /* aligns with text padding */
-          right: auto;
+          left: 12px;
           width: 0;
-          height: 2px;
+          height: 1.5px;
           border-radius: 99px;
-          background: linear-gradient(90deg, #0066CC 0%, #0099EE 100%);
-          box-shadow: 0 0 6px rgba(0,212,255,0.55);
-          transition: width 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          background: linear-gradient(90deg, #0EA5C9 0%, #22D3EE 100%);
+          box-shadow: 0 0 8px rgba(34,211,238,0.60);
+          transition: width 600ms cubic-bezier(0.25,0.46,0.45,0.94);
         }
-        /* Hover — grows left → right smoothly */
         .nav-link:hover::after {
-          width: calc(100% - 24px);   /* match padding */
+          width: calc(100% - 24px);
         }
-        .nav-link:hover {
-          color: #0066CC !important;
-          background: rgba(0,102,204,0.08) !important;
-        }
-        /* Active — full width, brighter glow, stays put */
+
+        /* Active — full underline, stays put */
         .nav-link-active::after {
           content: '';
           position: absolute;
           bottom: 4px;
           left: 12px;
           width: calc(100% - 24px);
-          height: 2px;
+          height: 1.5px;
           border-radius: 99px;
-          background: linear-gradient(90deg, #0066CC 0%, #0099EE 100%);
-          box-shadow: 0 0 10px rgba(0,212,255,0.80), 0 0 22px rgba(0,212,255,0.25);
-          /* No transition — active state is instant */
+          background: linear-gradient(90deg, #0EA5C9 0%, #22D3EE 100%);
+          box-shadow: 0 0 12px rgba(34,211,238,0.80), 0 0 24px rgba(34,211,238,0.25);
         }
+
+        /* Controls hover */
         .nav-control:hover {
-          background: rgba(0,102,204,0.08);
-          color: #0066CC;
-          border-color: rgba(0,102,204,0.35) !important;
+          background: rgba(14,165,201,0.12) !important;
+          color: #22D3EE !important;
+          border-color: rgba(14,165,201,0.55) !important;
         }
       `}</style>
 
-      {/* Mobile drawer */}
+      {/* ── Mobile drawer — dark navy, same palette ── */}
       <div
         id="mobile-nav"
         className="lg:hidden overflow-hidden"
@@ -216,8 +236,8 @@ export function Navigation({ locale }: NavigationProps) {
           maxHeight: mobileOpen ? '600px' : '0',
           opacity: mobileOpen ? 1 : 0,
           transition: 'max-height 300ms ease, opacity 200ms ease',
-          borderTop: mobileOpen ? '1px solid rgba(0,102,204,0.15)' : 'none',
-          background: '#F0F7FF',
+          borderTop: mobileOpen ? '1px solid rgba(14,165,201,0.18)' : 'none',
+          background: '#0A2444',
         }}
       >
         <div className="px-4 pb-5 pt-3">
@@ -228,10 +248,10 @@ export function Navigation({ locale }: NavigationProps) {
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
                   aria-current={isActive(link.href) ? 'page' : undefined}
-                  className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium"
+                  className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium transition-colors"
                   style={{
-                    color: isActive(link.href) ? '#0066CC' : '#2C4A6E',
-                    background: isActive(link.href) ? 'rgba(0,102,204,0.08)' : 'transparent',
+                    color: isActive(link.href) ? '#22D3EE' : 'rgba(255,255,255,0.78)',
+                    background: isActive(link.href) ? 'rgba(14,165,201,0.14)' : 'transparent',
                   }}
                 >
                   {link.label}
@@ -239,12 +259,16 @@ export function Navigation({ locale }: NavigationProps) {
               </li>
             ))}
           </ul>
-          <div className="mt-3 pt-3 flex flex-col gap-2" style={{ borderTop: '1px solid rgba(0,102,204,0.12)' }}>
+
+          <div
+            className="mt-3 pt-3 flex flex-col gap-2"
+            style={{ borderTop: '1px solid rgba(14,165,201,0.15)' }}
+          >
             <Link
               href={getLocaleSwitchHref()}
               onClick={() => setMobileOpen(false)}
               className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium"
-              style={{ color: '#4A6A8A' }}
+              style={{ color: 'rgba(255,255,255,0.60)' }}
               hrefLang={otherLocale}
             >
               {locale === 'en' ? tCommon('languageToggle') : 'English'}
@@ -252,7 +276,11 @@ export function Navigation({ locale }: NavigationProps) {
             <Link
               href={`/${locale}/contact`}
               onClick={() => setMobileOpen(false)}
-              className="btn-primary flex justify-center text-sm"
+              className="flex justify-center min-h-[44px] items-center rounded-lg font-semibold text-sm"
+              style={{
+                background: 'linear-gradient(135deg, #0EA5C9 0%, #22D3EE 100%)',
+                color: '#0D1B3E',
+              }}
             >
               {t('contact')}
             </Link>
