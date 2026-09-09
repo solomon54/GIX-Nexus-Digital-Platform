@@ -56,7 +56,6 @@ function CompanyPage({ locale }: { locale: string }) {
     <>
       {/* ── Hero ─────────────────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden" aria-labelledby="company-heading">
-        {/* Carousel background — fades between 4 satellite images */}
         <PageHeroCarousel slides={COMPANY_SLIDES} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
           <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>About Us</p>
