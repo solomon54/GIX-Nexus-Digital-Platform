@@ -104,9 +104,9 @@ function ServicesPage({ locale }: { locale: string }) {
           { src: '/images/hero/ups-for-telecom-base-station-power-backup.webp', motion: 'hero-drift-tl' },
         ]} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">What We Offer</p>
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('pageDescription')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>What We Offer</p>
+          <h1 className="text-4xl font-bold sm:text-5xl" style={{ color: 'var(--foreground)' }}>{t('pageTitle')}</h1>
+          <p className="mt-6 max-w-3xl mx-auto text-lg leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{t('pageDescription')}</p>
         </div>
       </section>
 

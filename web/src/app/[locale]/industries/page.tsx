@@ -65,9 +65,9 @@ export default async function Page({ params }: Props) {
           { src: '/images/services/telecom-infrastructure.jpg', motion: 'hero-drift-left' },
         ]} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('pageSubtitle')}</p>
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-5 max-w-2xl mx-auto text-sm italic text-[var(--foreground-muted)] leading-relaxed">{t('disclaimer')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>{t('pageSubtitle')}</p>
+          <h1 className="text-4xl font-bold sm:text-5xl" style={{ color: 'var(--foreground)' }}>{t('pageTitle')}</h1>
+          <p className="mt-5 max-w-2xl mx-auto text-sm italic leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{t('disclaimer')}</p>
         </div>
       </section>
 

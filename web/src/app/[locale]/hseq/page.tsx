@@ -44,9 +44,9 @@ export default async function Page({ params }: Props) {
           { src: '/images/hero/services-page-hero/engineers-data-center.webp', motion: 'hero-drift-left' },
         ]} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[#00C97A] mb-3">{t('pageSubtitle')}</p>
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-5 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--green)' }}>{t('pageSubtitle')}</p>
+          <h1 className="text-4xl font-bold sm:text-5xl" style={{ color: 'var(--foreground)' }}>{t('pageTitle')}</h1>
+          <p className="mt-5 max-w-3xl mx-auto text-lg leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{t('heroDescription')}</p>
         </div>
       </section>
 

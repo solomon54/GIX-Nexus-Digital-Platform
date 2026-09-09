@@ -196,9 +196,9 @@ export default async function Page({ params }: Props) {
           { src: '/images/industries/installation-tools.jpg', motion: 'hero-drift-left' },
         ]} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">{t('heroEyebrow')}</p>
-          <h1 className="text-4xl font-bold text-white sm:text-5xl lg:text-6xl">{t('pageTitle')}</h1>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('heroDescription')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>{t('heroEyebrow')}</p>
+          <h1 className="text-4xl font-bold sm:text-5xl lg:text-6xl" style={{ color: 'var(--foreground)' }}>{t('pageTitle')}</h1>
+          <p className="mt-6 max-w-3xl mx-auto text-lg leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{t('heroDescription')}</p>
           {/* Quick stats */}
           <div className="mt-10 flex flex-wrap justify-center gap-8 sm:gap-16">
             {[
@@ -207,8 +207,8 @@ export default async function Page({ params }: Props) {
               { label: 'Technical Support', value: '24/7' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
-                <div className="text-3xl font-bold text-[var(--accent)]">{stat.value}</div>
-                <div className="text-xs text-[var(--foreground-sub)] mt-1 uppercase tracking-wide">{stat.label}</div>
+                <div className="text-3xl font-bold" style={{ color: 'var(--accent)' }}>{stat.value}</div>
+                <div className="text-xs mt-1 uppercase tracking-wide" style={{ color: 'var(--foreground-sub)' }}>{stat.label}</div>
               </div>
             ))}
           </div>

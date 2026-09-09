@@ -58,11 +58,10 @@ function CompanyPage({ locale }: { locale: string }) {
       <section className="relative py-24 overflow-hidden" aria-labelledby="company-heading">
         {/* Carousel background — fades between 4 satellite images */}
         <PageHeroCarousel slides={COMPANY_SLIDES} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(6,18,54,0.80) 0%, rgba(6,18,54,0.58) 55%, rgba(6,18,54,0.35) 100%)', zIndex: 3 }} />
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center" style={{ zIndex: 4 }}>
-          <p className="text-sm font-semibold uppercase tracking-widest text-[var(--accent)] mb-3">About Us</p>
-          <h1 id="company-heading" className="text-4xl font-bold text-white sm:text-5xl">{t('pageTitle')}</h1>
-          <p className="mt-6 max-w-3xl mx-auto text-lg text-[var(--foreground-muted)] leading-relaxed">{t('overviewText')}</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: 'var(--accent)' }}>About Us</p>
+          <h1 id="company-heading" className="text-4xl font-bold sm:text-5xl" style={{ color: 'var(--foreground)' }}>{t('pageTitle')}</h1>
+          <p className="mt-6 max-w-3xl mx-auto text-lg leading-relaxed" style={{ color: 'var(--foreground-muted)' }}>{t('overviewText')}</p>
           {/* GVF-certified credential badge — Source: Company Profile PDF, Page 1 */}
           <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 px-4 py-1.5">
             <span className="text-sm font-medium text-[var(--accent)]">GVF-Certified · 20+ Years SATCOM Experience</span>
