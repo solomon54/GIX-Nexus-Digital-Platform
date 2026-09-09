@@ -86,18 +86,18 @@ function HomePage({
     transform: translateY(-4px);
   }
 
-  /* ── News cards — on light section-5 bg ── */
+  /* ── News cards — teal-tinted surface ── */
   .news-card {
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-card);
+    background: rgba(255,255,255,0.82);
+    border: 1px solid rgba(14,165,201,0.22);
+    box-shadow: 0 2px 12px rgba(10,37,64,0.10), 0 0 0 1px rgba(14,165,201,0.08);
     transition:
       box-shadow 250ms cubic-bezier(0.16,1,0.3,1),
       transform 250ms,
       border-color 250ms;
   }
   .news-card:hover {
-    box-shadow: var(--shadow-card-hover);
+    box-shadow: 0 8px 28px rgba(10,37,64,0.14), 0 0 0 1px rgba(14,165,201,0.28);
     border-color: var(--accent);
     transform: translateY(-3px);
   }
@@ -170,18 +170,18 @@ function HomePage({
     box-shadow: 0 12px 32px rgba(0,0,0,0.20);
   }
 
-  /* ── Project cards — on light section-6 bg ── */
+  /* ── Project cards — teal-tinted surface ── */
   .project-card {
-    background: #FFFFFF;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-card);
+    background: rgba(255,255,255,0.82);
+    border: 1px solid rgba(14,165,201,0.22);
+    box-shadow: 0 2px 12px rgba(10,37,64,0.10), 0 0 0 1px rgba(14,165,201,0.08);
     transition:
       box-shadow 250ms,
       border-color 250ms,
       transform 250ms;
   }
   .project-card:hover {
-    box-shadow: var(--shadow-card-hover);
+    box-shadow: 0 8px 28px rgba(10,37,64,0.14), 0 0 0 1px rgba(14,165,201,0.28);
     border-color: var(--accent);
     transform: translateY(-3px);
   }
@@ -398,8 +398,13 @@ function HomePage({
               </div>
             </div>
 
-            {/* Antenna — mp4 played as silent looping video */}
-            <div className="relative flex justify-center">
+            {/* Antenna — mp4 played as silent looping video.
+                Mix-blend-mode: lighten removes the black bg by blending it
+                into the dark card, leaving only the bright antenna visible. */}
+            <div
+              className="relative flex justify-center rounded-xl overflow-hidden"
+              style={{ background: 'linear-gradient(160deg, #061428 0%, #0A2444 100%)' }}
+            >
               <video
                 src="/assets/antenna-compressed.gif.mp4"
                 autoPlay
@@ -408,7 +413,7 @@ function HomePage({
                 playsInline
                 aria-label="GIX Nexus antenna — telecom and satellite services"
                 className="relative z-10 h-[300px] w-full object-contain"
-                style={{ maxWidth: '380px' }}
+                style={{ maxWidth: '380px', mixBlendMode: 'lighten' }}
               />
             </div>
 
@@ -624,7 +629,7 @@ function HomePage({
     ════════════════════════════════════════════════════════════ */}
 <section
   className="py-24"
-  style={{ background: 'linear-gradient(160deg, #D9F2FC 0%, #EBF8FF 100%)' }}
+  style={{ background: 'linear-gradient(160deg, #9DD8F0 0%, #B8E9F8 100%)' }}
   aria-labelledby="news-heading"
 >
   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -694,7 +699,7 @@ function HomePage({
     ════════════════════════════════════════════════════════════ */}
 <section
   className="py-24"
-  style={{ background: 'linear-gradient(160deg, #EBF8FF 0%, #F0FAFF 100%)' }}
+  style={{ background: 'linear-gradient(160deg, #B8E9F8 0%, #CEF1FF 100%)' }}
   aria-labelledby="projects-heading"
 >
   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
