@@ -91,7 +91,7 @@ function CompanyPage({ locale }: { locale: string }) {
                   <p className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">Our Vision</p>
                 </div>
               </div>
-              <div className="p-6" style={{ background: 'var(--surface)' }}>
+              <div className="p-6" style={{ background: '#FFFFFF' }}>
                 {/* Source: Company Profile PDF, Page 4 — verbatim company self-statement */}
                 <blockquote className="text-base font-medium leading-relaxed" style={{ color: 'var(--foreground)' }}>
                   &ldquo;{t('vision')}&rdquo;
@@ -101,7 +101,7 @@ function CompanyPage({ locale }: { locale: string }) {
             </div>
 
             {/* Mission */}
-            <div className="rounded-2xl p-6 border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+            <div className="rounded-2xl p-6 border" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
               <p className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)] mb-4">Our Mission</p>
               <h2 className="text-xl font-bold mb-6" style={{ color: 'var(--foreground)' }}>{t('missionTitle')}</h2>
               {/* Source: Company Profile PDF, Page 4 — 5 mission points */}
@@ -182,7 +182,7 @@ function CompanyPage({ locale }: { locale: string }) {
               </div>
 
               {/* Quote — below photo, clean white card */}
-              <div className="p-6" style={{ background: 'var(--surface)' }}>
+              <div className="p-6" style={{ background: '#FFFFFF' }}>
                 {/* Source: Company Profile PDF, Page 2 — verbatim MD statement */}
                 <blockquote className="text-sm italic leading-relaxed border-l-2 border-[var(--accent)] pl-4" style={{ color: 'var(--foreground-muted)' }}>
                   &ldquo;{t('mdMessage')}&rdquo;

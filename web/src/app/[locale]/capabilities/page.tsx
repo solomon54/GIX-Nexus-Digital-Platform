@@ -258,7 +258,7 @@ export default async function Page({ params }: Props) {
                 </div>
 
                 {/* Info */}
-                <div className="lg:col-span-2 p-8" style={{ background: 'var(--surface)' }}>
+                <div className="lg:col-span-2 p-8" style={{ background: '#FFFFFF' }}>
                   <div className="mb-1">
                     <span className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)]">{member.qualification}</span>
                   </div>
@@ -294,7 +294,7 @@ export default async function Page({ params }: Props) {
           {/* Team grid — other professionals */}
           <div className="grid grid-cols-1 gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {others.map((member) => (
-              <div key={member.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[var(--accent)]/30" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div key={member.id} className="rounded-xl border overflow-hidden group transition-all hover:border-[var(--accent)]/30" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
                 {/* Avatar */}
                 <div className="relative h-48" style={{ background: 'linear-gradient(135deg, #050D1A, #0D1829)' }}>
                   {member.photoUrl ? (
@@ -369,7 +369,7 @@ export default async function Page({ params }: Props) {
                   <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: cat.color }} />
                 </div>
                 {/* Items list */}
-                <div className="p-5 sm:p-6" style={{ background: 'var(--surface)' }}>
+                <div className="p-5 sm:p-6" style={{ background: '#FFFFFF' }}>
                   <ul className="space-y-2.5">
                     {cat.items.map((item) => (
                       <li key={item} className="flex items-center gap-2.5 text-sm" style={{ color: 'var(--foreground)' }}>

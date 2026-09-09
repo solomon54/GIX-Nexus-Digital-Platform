@@ -32,11 +32,11 @@ export function Footer({ locale }: FooterProps) {
       {/* ── Top boundary — cyan signal line ─── */}
       <div style={{
         height: '1px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0,212,255,0.25) 25%, rgba(0,212,255,0.50) 50%, rgba(0,212,255,0.25) 75%, transparent 100%)',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(0,102,204,0.20) 25%, rgba(0,102,204,0.40) 50%, rgba(0,102,204,0.20) 75%, transparent 100%)',
       }} />
 
       {/* ── Main footer body ─────────────────────────────────── */}
-      <div style={{ background: '#030810' }}>
+      <div style={{ background: '#0A1628' }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Top section — logo + tagline + links */}
@@ -63,9 +63,9 @@ export function Footer({ locale }: FooterProps) {
               <div
                 className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-medium"
                 style={{
-                  border: '1px solid rgba(0,212,255,0.20)',
-                  background: 'rgba(0,212,255,0.06)',
-                  color: 'var(--accent)',
+                  border: '1px solid rgba(0,150,255,0.28)',
+                  background: 'rgba(0,120,220,0.10)',
+                  color: '#60B0FF',
                 }}
               >
                 <span aria-hidden="true">🇪🇹</span>
@@ -75,7 +75,7 @@ export function Footer({ locale }: FooterProps) {
 
             {/* Quick Links — 2 columns on large screens */}
             <div className="lg:col-span-4">
-              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'var(--foreground-sub)' }}>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'rgba(150,185,220,0.65)' }}>
                 {t('linksTitle')}
               </h3>
               {/* Responsive 2-column grid for links */}
@@ -96,14 +96,14 @@ export function Footer({ locale }: FooterProps) {
             {/* Contact — 4 columns on large screens */}
             {/* Source: Company Profile PDF, Page 10 */}
             <div className="lg:col-span-4">
-              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'var(--foreground-sub)' }}>
+              <h3 className="text-xs font-semibold uppercase tracking-widest mb-5" style={{ color: 'rgba(150,185,220,0.65)' }}>
                 {t('contactTitle')}
               </h3>
               <address className="not-italic">
                 <ul className="flex flex-col gap-4" role="list">
                   <li>
                     <p className="text-sm font-semibold text-white">{CONTACT.name}</p>
-                    <p className="text-xs mt-0.5" style={{ color: 'var(--foreground-sub)' }}>{CONTACT.title}</p>
+                    <p className="text-xs mt-0.5" style={{ color: 'rgba(150,185,220,0.65)' }}>{CONTACT.title}</p>
                   </li>
                   <li>
                     <a
@@ -112,7 +112,7 @@ export function Footer({ locale }: FooterProps) {
                     >
                       <span
                         className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
-                        style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
+                        style={{ background: 'rgba(0,120,220,0.12)', color: '#60B0FF' }}
                       >
                         📞
                       </span>
@@ -127,7 +127,7 @@ export function Footer({ locale }: FooterProps) {
                     >
                       <span
                         className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
-                        style={{ background: 'var(--accent-light)', color: 'var(--accent)' }}
+                        style={{ background: 'rgba(0,120,220,0.12)', color: '#60B0FF' }}
                       >
                         ✉️
                       </span>

@@ -71,7 +71,7 @@ export default async function Page({ params }: Props) {
                   <p className="text-xs font-semibold uppercase tracking-widest text-[#00C97A]">HSEQ Policy</p>
                 </div>
               </div>
-              <div className="p-6" style={{ background: 'var(--surface)' }}>
+              <div className="p-6" style={{ background: '#FFFFFF' }}>
                 <h2 className="text-xl font-bold mb-3" style={{ color: 'var(--foreground)' }}>{t('policyHeading')}</h2>
                 <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{t('policyText')}</p>
               </div>
@@ -80,7 +80,7 @@ export default async function Page({ params }: Props) {
             {/* Key commitments */}
             <div className="space-y-4">
               {/* Source: Company Profile PDF, Page 8 — Zero Accident Objective is a GOAL, not a result */}
-              <div className="rounded-xl p-5 border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div className="rounded-xl p-5 border" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
                 <div className="flex items-start gap-3">
                   <div className="text-2xl">🎯</div>
                   <div>
@@ -94,7 +94,7 @@ export default async function Page({ params }: Props) {
               </div>
 
               {/* Source: Company Profile PDF, Page 3 — 100% Safety-first is a POLICY STATEMENT, not a metric */}
-              <div className="rounded-xl p-5 border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div className="rounded-xl p-5 border" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
                 <div className="flex items-start gap-3">
                   <div className="text-2xl">🛡</div>
                   <div>
@@ -116,7 +116,7 @@ export default async function Page({ params }: Props) {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {programElements.map((element, i) => (
-              <div key={i} className="flex items-center gap-3 rounded-xl border p-4" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div key={i} className="flex items-center gap-3 rounded-xl border p-4" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
                 <span className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-bold text-white" style={{ background: '#00C97A' }}>
                   ✓
                 </span>

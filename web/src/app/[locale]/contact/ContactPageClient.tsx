@@ -77,7 +77,7 @@ export function ContactPageClient() {
                   </div>
                 </div>
 
-                <div className="p-6 space-y-4" style={{ background: 'var(--surface)' }}>
+                <div className="p-6 space-y-4" style={{ background: '#FFFFFF' }}>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--foreground-subtle)' }}>{t('intro')}</p>
 
                   {/* Phone — tap to call */}
@@ -124,7 +124,7 @@ export function ContactPageClient() {
 
             {/* Right: info + CTA */}
             <div className="space-y-5">
-              <div className="rounded-2xl p-6 border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div className="rounded-2xl p-6 border" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
                 <h2 className="text-base font-bold mb-3" style={{ color: 'var(--foreground)' }}>About GIX Nexus</h2>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--foreground-subtle)' }}>
                   An Ethiopian-owned telecommunications and power engineering company delivering reliable, innovative, and cost-effective infrastructure solutions across Ethiopia — from site surveys and installation to commissioning, maintenance, and 24/7 technical support.

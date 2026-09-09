@@ -51,11 +51,11 @@ export function Navigation({ locale }: NavigationProps) {
       className="sticky top-0 z-50 w-full"
       style={{
         /* Always deep navy — brand identity, logo visibility */
-        background: scrolled ? 'rgba(3,8,16,0.92)' : '#050D1A',
-        backdropFilter: scrolled ? 'blur(20px) saturate(1.6)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.6)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(0,212,255,0.10)' : '1px solid rgba(0,212,255,0.06)',
-        boxShadow: scrolled ? '0 1px 0 rgba(0,212,255,0.06), 0 4px 20px rgba(0,0,0,0.5)' : 'none',
+        background: scrolled ? 'rgba(255,255,255,0.95)' : 'rgba(240,247,255,0.98)',
+        backdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.8)' : 'none',
+        borderBottom: '1px solid rgba(0,102,204,0.12)',
+        boxShadow: scrolled ? '0 2px 16px rgba(0,22,80,0.08)' : 'none',
         transition: 'box-shadow 300ms ease, backdrop-filter 300ms ease',
       }}
     >
@@ -110,8 +110,8 @@ export function Navigation({ locale }: NavigationProps) {
             aria-label={`Switch to ${otherLocale === 'am' ? 'Amharic' : 'English'}`}
             className="hidden sm:inline-flex items-center justify-center rounded-lg border nav-control whitespace-nowrap"
             style={{
-              borderColor: 'rgba(0,212,255,0.18)',
-              color: 'rgba(180,210,230,0.75)',
+              borderColor: 'rgba(0,102,204,0.25)',
+              color: '#4A6A8A',
               fontSize: '12px',
               padding: '6px 10px',
               minHeight: '32px',
@@ -142,7 +142,7 @@ export function Navigation({ locale }: NavigationProps) {
             aria-expanded={mobileOpen}
             aria-controls="mobile-nav"
             className="inline-flex lg:hidden min-h-[36px] min-w-[36px] items-center justify-center rounded-lg border nav-control"
-            style={{ borderColor: 'rgba(0,212,255,0.18)', color: 'rgba(180,210,230,0.75)' }}
+            style={{ borderColor: 'rgba(0,102,204,0.25)', color: '#4A6A8A' }}
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
@@ -176,7 +176,7 @@ export function Navigation({ locale }: NavigationProps) {
           width: 0;
           height: 2px;
           border-radius: 99px;
-          background: linear-gradient(90deg, #00D4FF 0%, #6600FF 100%);
+          background: linear-gradient(90deg, #0066CC 0%, #0099EE 100%);
           box-shadow: 0 0 6px rgba(0,212,255,0.55);
           transition: width 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -185,8 +185,8 @@ export function Navigation({ locale }: NavigationProps) {
           width: calc(100% - 24px);   /* match padding */
         }
         .nav-link:hover {
-          color: #FFFFFF !important;
-          background: rgba(0,212,255,0.05) !important;
+          color: #0066CC !important;
+          background: rgba(0,102,204,0.08) !important;
         }
         /* Active — full width, brighter glow, stays put */
         .nav-link-active::after {
@@ -197,14 +197,14 @@ export function Navigation({ locale }: NavigationProps) {
           width: calc(100% - 24px);
           height: 2px;
           border-radius: 99px;
-          background: linear-gradient(90deg, #00D4FF 0%, #6600FF 100%);
+          background: linear-gradient(90deg, #0066CC 0%, #0099EE 100%);
           box-shadow: 0 0 10px rgba(0,212,255,0.80), 0 0 22px rgba(0,212,255,0.25);
           /* No transition — active state is instant */
         }
         .nav-control:hover {
-          background: rgba(0,212,255,0.08);
-          color: #00D4FF;
-          border-color: rgba(0,212,255,0.35) !important;
+          background: rgba(0,102,204,0.08);
+          color: #0066CC;
+          border-color: rgba(0,102,204,0.35) !important;
         }
       `}</style>
 
@@ -216,8 +216,8 @@ export function Navigation({ locale }: NavigationProps) {
           maxHeight: mobileOpen ? '600px' : '0',
           opacity: mobileOpen ? 1 : 0,
           transition: 'max-height 300ms ease, opacity 200ms ease',
-          borderTop: mobileOpen ? '1px solid rgba(0,212,255,0.10)' : 'none',
-          background: '#050D1A',
+          borderTop: mobileOpen ? '1px solid rgba(0,102,204,0.15)' : 'none',
+          background: '#F0F7FF',
         }}
       >
         <div className="px-4 pb-5 pt-3">
@@ -230,8 +230,8 @@ export function Navigation({ locale }: NavigationProps) {
                   aria-current={isActive(link.href) ? 'page' : undefined}
                   className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium"
                   style={{
-                    color: isActive(link.href) ? '#00D4FF' : 'rgba(180,210,230,0.75)',
-                    background: isActive(link.href) ? 'rgba(0,212,255,0.08)' : 'transparent',
+                    color: isActive(link.href) ? '#0066CC' : '#2C4A6E',
+                    background: isActive(link.href) ? 'rgba(0,102,204,0.08)' : 'transparent',
                   }}
                 >
                   {link.label}
@@ -239,12 +239,12 @@ export function Navigation({ locale }: NavigationProps) {
               </li>
             ))}
           </ul>
-          <div className="mt-3 pt-3 flex flex-col gap-2" style={{ borderTop: '1px solid rgba(0,212,255,0.08)' }}>
+          <div className="mt-3 pt-3 flex flex-col gap-2" style={{ borderTop: '1px solid rgba(0,102,204,0.12)' }}>
             <Link
               href={getLocaleSwitchHref()}
               onClick={() => setMobileOpen(false)}
               className="flex min-h-[44px] items-center rounded-lg px-3 py-2.5 text-sm font-medium"
-              style={{ color: 'rgba(180,200,220,0.75)' }}
+              style={{ color: '#4A6A8A' }}
               hrefLang={otherLocale}
             >
               {locale === 'en' ? tCommon('languageToggle') : 'English'}

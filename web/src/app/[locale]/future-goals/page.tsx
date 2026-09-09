@@ -83,7 +83,7 @@ export default async function Page({ params }: Props) {
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {objectives.map((obj) => (
-              <div key={obj.number} className="rounded-xl border p-6" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+              <div key={obj.number} className="rounded-xl border p-6" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
                 {/* "Objective / Planned" badge — ALWAYS present per governance rules */}
                 <div className="inline-flex items-center gap-1.5 rounded-full border border-[#00C97A]/30 bg-[#00C97A]/10 px-2.5 py-1 mb-4">
                   <span className="text-xs font-semibold text-[#00C97A]">{t('objectiveBadge')}</span>

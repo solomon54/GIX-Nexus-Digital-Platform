@@ -735,7 +735,7 @@ function HomePage({
                 key={key}
                 className="rounded-xl p-6 transition-all duration-250"
                 style={{
-                  background: '#FFFFFF',
+                  background: 'var(--surface)',
                   border: '1px solid var(--border)',
                   boxShadow: 'var(--shadow-card)',
                 }}
@@ -855,7 +855,7 @@ function HomePage({
                     key={project.id}
                     className="rounded-xl overflow-hidden group"
                     style={{
-                      background: '#FFFFFF',
+                      background: 'var(--surface)',
                       border: '1px solid var(--border)',
                       boxShadow: 'var(--shadow-card)',
                     }}

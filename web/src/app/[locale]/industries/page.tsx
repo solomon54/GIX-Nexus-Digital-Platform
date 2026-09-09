@@ -78,7 +78,7 @@ export default async function Page({ params }: Props) {
               <div
                 key={i}
                 className="flex items-center gap-4 rounded-xl border p-5 sm:p-6 transition-colors hover:border-[var(--accent)]/40"
-                style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}
+                style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}
               >
                 <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl text-2xl" style={{ background: 'rgba(0,140,255,0.1)' }}>
                   {SECTOR_ICONS[i % SECTOR_ICONS.length]}
@@ -94,7 +94,7 @@ export default async function Page({ params }: Props) {
               </div>
             ))}
           </div>
-          <div className="mt-16 rounded-2xl p-8 text-center border" style={{ background: 'var(--surface)', borderColor: 'var(--border)' }}>
+          <div className="mt-16 rounded-2xl p-8 text-center border" style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}>
             <h2 className="text-xl font-bold mb-3" style={{ color: 'var(--foreground)' }}>Is Your Organization in One of These Sectors?</h2>
             <p className="text-sm mb-6 max-w-lg mx-auto" style={{ color: 'var(--foreground-subtle)' }}>
               GIX Nexus Telecom and Power welcomes opportunities to work as a contractor or subcontractor across all of these sectors throughout Ethiopia.
