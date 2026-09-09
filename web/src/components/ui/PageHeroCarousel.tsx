@@ -13,7 +13,7 @@ interface Slide {
 
 interface PageHeroBannerProps {
   /** Legacy slides prop — ignored, kept for API compatibility */
-  slides?: Slide[]
+  slides?: readonly Slide[]
   title?: string
   subtitle?: string
   /** Extra className on the outer section */
