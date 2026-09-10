@@ -23,10 +23,15 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   // serverURL tells Payload where the app is hosted.
-  serverURL: process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000',
+  // Strip trailing slash — Payload constructs media URLs by appending paths
+  // directly, so a trailing slash would produce double-slash URLs.
+  serverURL: (process.env.NEXT_PUBLIC_APP_URL ?? 'http://localhost:3000').replace(/\/$/, ''),
 
   csrf: [
-    ...(process.env.NEXT_PUBLIC_APP_URL ? [process.env.NEXT_PUBLIC_APP_URL] : []),
+    ...(process.env.NEXT_PUBLIC_APP_URL
+      ? [process.env.NEXT_PUBLIC_APP_URL.replace(/\/$/, '')]
+      : []
+    ),
     'http://localhost:3000',
   ],
 

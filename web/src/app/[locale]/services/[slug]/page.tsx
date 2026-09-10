@@ -7,7 +7,7 @@ import { SERVICE_SLUGS } from '@/lib/constants'
 
 export const revalidate = 3600
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
 
 type ServiceSlug = (typeof SERVICE_SLUGS)[number]
 

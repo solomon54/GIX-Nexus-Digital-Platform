@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { getTranslations } from 'next-intl/server'
 import { ContactPageClient } from './ContactPageClient'
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
 
 interface Props { params: Promise<{ locale: string }> }
 

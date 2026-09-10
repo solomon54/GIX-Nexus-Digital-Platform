@@ -19,7 +19,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
 }
 
-const BASE_URL = process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com'
+const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
 
 export async function generateMetadata({
   params,

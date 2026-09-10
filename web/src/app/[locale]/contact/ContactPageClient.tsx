@@ -7,7 +7,7 @@ import { PageHeroCarousel } from '@/components/ui/PageHeroCarousel'
 
 const BASE_URL = typeof window !== 'undefined'
   ? window.location.origin
-  : (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com')
+  : (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
 
 export function ContactPageClient() {
   const t = useTranslations('contact')
