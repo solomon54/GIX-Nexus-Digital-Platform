@@ -10,8 +10,6 @@ const nextConfig: NextConfig = {
     // 30 seconds for image optimization — prevents 504 on local media files
   },
   images: {
-    // Allow unoptimized for local media to avoid 504 timeouts
-    unoptimized: process.env.NODE_ENV === 'development',
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'plus.unsplash.com' },
@@ -19,10 +17,11 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: '*.public.blob.vercel-storage.com' },
       // Payload CMS absolute URLs (old Vercel deployment)
       { protocol: 'https', hostname: 'gix-nexus-digitalplatform.vercel.app' },
-      // Dokploy deployment
+      // Dokploy deployments — old IP-based domain kept for existing DB URLs
       { protocol: 'https', hostname: '185.170.198.250.nip.io' },
-      // Any custom domain — add your domain here when you have one
-      // { protocol: 'https', hostname: 'gixnexustelecom.com' },
+      // Production domain
+      { protocol: 'https', hostname: 'gixnexus.net.et' },
+      { protocol: 'https', hostname: 'www.gixnexus.net.et' },
       // Localhost — Payload media files in development
       { protocol: 'http', hostname: 'localhost' },
     ],
