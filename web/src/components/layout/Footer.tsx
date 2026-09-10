@@ -29,14 +29,14 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer>
-      {/* ── Top boundary — cyan signal line ─── */}
+      {/* ── Top boundary — smooth teal fade into footer ─── */}
       <div style={{
-        height: '1px',
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0,102,204,0.20) 25%, rgba(0,102,204,0.40) 50%, rgba(0,102,204,0.20) 75%, transparent 100%)',
+        height: '2px',
+        background: 'linear-gradient(90deg, transparent 0%, rgba(14,165,201,0.18) 25%, rgba(14,165,201,0.38) 50%, rgba(14,165,201,0.18) 75%, transparent 100%)',
       }} />
 
       {/* ── Main footer body ─────────────────────────────────── */}
-      <div style={{ background: '#0A1628' }}>
+      <div style={{ background: 'linear-gradient(180deg, #0C1E40 0%, #0A1628 60%, #091422 100%)' }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* Top section — logo + tagline + links */}
@@ -55,7 +55,7 @@ export function Footer({ locale }: FooterProps) {
                 />
               </Link>
 
-              <p className="text-sm leading-relaxed mb-5" style={{ color: 'var(--foreground-muted)', maxWidth: '280px' }}>
+              <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(148,185,220,0.75)', maxWidth: '280px' }}>
                 {t('tagline')}
               </p>
 
@@ -136,7 +136,7 @@ export function Footer({ locale }: FooterProps) {
                   </li>
                   <li
                     className="flex items-center gap-2.5 text-sm"
-                    style={{ color: 'var(--foreground-muted)' }}
+                    style={{ color: 'rgba(148,185,220,0.75)' }}
                   >
                     <span
                       className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md text-xs"
@@ -154,13 +154,13 @@ export function Footer({ locale }: FooterProps) {
           {/* Bottom bar — copyright + secret admin gateway */}
           <div
             className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3"
-            style={{ borderTop: '1px solid var(--border-white)' }}
+            style={{ borderTop: '1px solid rgba(14,165,201,0.12)' }}
           >
-            <p className="text-xs" style={{ color: 'var(--foreground-faint)' }}>
+            <p className="text-xs" style={{ color: 'rgba(148,185,220,0.50)' }}>
               &copy; 2026 {t('company')}. {t('rights')}
             </p>
             <div className="flex items-center gap-3">
-              <p className="text-xs" style={{ color: 'var(--foreground-faint)' }}>
+              <p className="text-xs" style={{ color: 'rgba(148,185,220,0.50)' }}>
                 {t('legalNote')}
               </p>
               {/* Secret admin gateway — small decorative dot, visible but subtle.

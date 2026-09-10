@@ -51,14 +51,14 @@ export function Navigation({ locale }: NavigationProps) {
       className="sticky top-0 z-50 w-full"
       style={{
         background: scrolled
-          ? 'rgba(10, 24, 54, 0.97)'   /* slightly transparent when scrolled */
-          : '#0D1B3E',                  /* solid deep navy always */
+          ? 'rgba(10, 22, 50, 0.96)'
+          : 'linear-gradient(180deg, #0D1B3E 0%, #0A2244 100%)',
         backdropFilter: scrolled ? 'blur(20px) saturate(1.6)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(20px) saturate(1.6)' : 'none',
-        borderBottom: '1px solid rgba(14,165,201,0.18)',
+        borderBottom: '1px solid rgba(14,165,201,0.14)',
         boxShadow: scrolled
-          ? '0 4px 24px rgba(0,0,0,0.30), 0 1px 0 rgba(14,165,201,0.12)'
-          : '0 2px 16px rgba(0,0,0,0.20)',
+          ? '0 4px 24px rgba(0,0,0,0.28), 0 1px 0 rgba(14,165,201,0.10)'
+          : '0 2px 12px rgba(0,0,0,0.18)',
         transition: 'box-shadow 300ms ease, background 300ms ease',
       }}
     >
