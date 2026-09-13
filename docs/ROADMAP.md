@@ -73,25 +73,13 @@ These require GIX Nexus to provide content or make decisions. No new code is nee
 
 ---
 
-## Phase 3 — Later
-
-These require separate decisions, planning, and budget before any work begins.
-
-- [ ] Vendor portal — digital intake for vendors/subcontractors wanting to register with GIX Nexus
-- [ ] Document management — version-controlled HSEQ documents and policy files with lifecycle tracking
-- [ ] GIS / project map — displaying project locations or coverage areas across Ethiopia
-- [ ] AI/semantic search — searching across service descriptions, capabilities, and technical content
-- [ ] Analytics dashboard — internal reporting on site traffic, inquiry volumes, and content engagement
-
----
-
 ## Open decisions needed
 
 | Decision | Status |
 |---|---|
-| Production hosting platform | Not decided |
-| Domain name for live site | Not decided |
+| Production hosting platform | ✅ **Dokploy (self-hosted)** — deployed |
+| Domain name for live site | ✅ **https://gixnexus.net.et** — live |
 | First admin user login credentials | Not created |
 | Amharic reviewer | Not identified |
 | Real project data to publish | Not provided |
-| Inquiry email notification recipient | Not decided |
+| Inquiry email notification recipient | Not decided (Resend integration is live) |

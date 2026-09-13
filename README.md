@@ -1,12 +1,14 @@
 # GIX Nexus Digital Platform
 
-**Live Application:** [https://gix-nexus-digitalplatform.vercel.app](https://gix-nexus-digitalplatform.vercel.app)
+**Live Application:** [https://gixnexus.net.et](https://gixnexus.net.et)
 
 ![GIX Nexus Home Page](web/public/assets/gix-home-page.png)
 
 Bilingual informational website and content management system for **GIX Nexus Telecom and Power**, an Ethiopian-owned telecommunications and power engineering company headquartered in Addis Ababa.
 
 The platform gives GIX Nexus a professional public presence — showcasing services, team, HSEQ commitment, and target sectors in both English and Amharic — with a full CMS for staff to manage content without touching code.
+
+**Hosting:** Self-hosted on Dokploy (production). See `docs/DEPLOY-DOKPLOY.md` for deployment details.
 
 ---
 
@@ -25,13 +27,14 @@ GIX-Nexus-Digital-Platform/
 │   │   └── payload.config.ts     # CMS configuration
 │   ├── messages/                 # Translation strings (en.json, am.json)
 │   ├── public/                   # Static assets (images, icons)
-│   └── .nvmrc                    # Node version pin: 20
+│   └── .nvmrc                    # Node version pin: 24
 └── docs/
     ├── COMPANY.md                # Company facts reference
     ├── PRODUCT.md                # What the platform is and does
     ├── TECHNICAL.md              # Architecture, stack, conventions
     ├── CONTENT.md                # CMS user guide for staff
-    ├── ROADMAP.md                # Phase 1 done, Phase 2 next, Phase 3 later
+    ├── ROADMAP.md                # Phase 1 done, Phase 2 next
+    ├── DEPLOY-DOKPLOY.md         # Dokploy self-host deployment guide
     └── source-files/             # Original PDFs and assets (do not edit)
 ```
 
@@ -39,17 +42,17 @@ GIX-Nexus-Digital-Platform/
 
 ## Tech stack
 
-| Layer | Technology | Version |
-|---|---|---|
-| Framework | Next.js (App Router) | 15.5.23 |
-| CMS | Payload CMS | 3.88.0 |
-| Database | PostgreSQL (Supabase) | — |
-| Language | TypeScript | 5.8.3 |
-| Styling | Tailwind CSS v4 | 4.3.3 |
-| Localization | next-intl | 4.9.1 |
-| Theming | next-themes | 0.4.4 |
-| Email | Resend | — |
-| Runtime | Node.js | **20 (required)** |
+| Layer        | Technology            | Version           |
+| ------------ | --------------------- | ----------------- |
+| Framework    | Next.js (App Router)  | 15.5.23           |
+| CMS          | Payload CMS           | 3.88.0            |
+| Database     | PostgreSQL (Supabase) | —                 |
+| Language     | TypeScript            | 5.8.3             |
+| Styling      | Tailwind CSS v4       | 4.3.3             |
+| Localization | next-intl             | 4.9.1             |
+| Theming      | next-themes           | 0.4.4             |
+| Email        | Resend                | —                 |
+| Runtime      | Node.js               | **24 (required)** |
 
 ---
 
@@ -77,15 +80,15 @@ npm install
 
 Copy `.env.local` and fill in your values (the file already has a working dev configuration):
 
-| Variable | Purpose |
-|---|---|
-| `DATABASE_URL` | PostgreSQL connection string |
-| `PAYLOAD_SECRET` | Payload CMS encryption secret (long random string) |
-| `NEXT_PUBLIC_APP_URL` | App base URL (e.g. `http://localhost:3000`) |
-| `RESEND_API_KEY` | Resend API key for outbound email |
-| `RESEND_FROM_ADDRESS` | Sender address (e.g. `noreply@gixnexus.com`) |
-| `RESEND_FROM_NAME` | Sender name (e.g. `GIX Nexus`) |
-| `NODE_ENV` | `development` or `production` |
+| Variable              | Purpose                                            |
+| --------------------- | -------------------------------------------------- |
+| `DATABASE_URL`        | PostgreSQL connection string                       |
+| `PAYLOAD_SECRET`      | Payload CMS encryption secret (long random string) |
+| `NEXT_PUBLIC_APP_URL` | App base URL (e.g. `http://localhost:3000`)        |
+| `RESEND_API_KEY`      | Resend API key for outbound email                  |
+| `RESEND_FROM_ADDRESS` | Sender address (e.g. `noreply@gixnexus.com`)       |
+| `RESEND_FROM_NAME`    | Sender name (e.g. `GIX Nexus`)                     |
+| `NODE_ENV`            | `development` or `production`                      |
 
 ### Start dev server
 

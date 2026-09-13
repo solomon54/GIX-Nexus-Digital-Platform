@@ -6,7 +6,7 @@ Audience: GIX Nexus staff. No technical knowledge required to use this guide.
 
 ## Accessing the admin panel
 
-Go to: **`https://gix-nexus-telecom.vercel.app/admin`**  
+Go to: **`https://gixnexus.net.et/admin`**  
 During development: `http://localhost:3000/admin`
 
 Log in with your admin email and password. If you don't have an account yet, ask whoever set up the platform to create one for you.
@@ -15,18 +15,18 @@ Log in with your admin email and password. If you don't have an account yet, ask
 
 ## What you can manage
 
-| Section | What it does |
-|---|---|
-| **Services** | The 6 service groupings shown on the Services page. Edit descriptions and capabilities. Do not add a 7th service. |
-| **Sectors** | The 14 target-client sectors shown on the Industries page. Edit names and descriptions. |
+| Section               | What it does                                                                                                                            |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **Services**          | The 6 service groupings shown on the Services page. Edit descriptions and capabilities. Do not add a 7th service.                       |
+| **Sectors**           | The 14 target-client sectors shown on the Industries page. Edit names and descriptions.                                                 |
 | **Future Objectives** | The 8 planned objectives shown on the Future Goals page. Edit titles and descriptions. Always shown with a "Planned" label on the site. |
-| **News** | Company news and announcements. Add, edit, and publish articles. |
-| **Projects** | Completed and ongoing projects. Add project details, photos, and descriptions. |
-| **Testimonials** | Client and partner testimonials. Only publish real, verified quotes — never fabricated ones. |
-| **Team Members** | Staff profiles for the Company page. Add photos and short bios. |
-| **Media** | All uploaded files (images, documents). Reused across collections. |
-| **Service Inquiries** | Submissions from the inquiry form on the Capabilities page. Read and respond here. |
-| **Users** | Admin panel user accounts. Add or remove staff access. |
+| **News**              | Company news and announcements. Add, edit, and publish articles.                                                                        |
+| **Projects**          | Completed and ongoing projects. Add project details, photos, and descriptions.                                                          |
+| **Testimonials**      | Client and partner testimonials. Only publish real, verified quotes — never fabricated ones.                                            |
+| **Team Members**      | Staff profiles for the Company page. Add photos and short bios.                                                                         |
+| **Media**             | All uploaded files (images, documents). Reused across collections.                                                                      |
+| **Service Inquiries** | Submissions from the inquiry form on the Capabilities page. Read and respond here.                                                      |
+| **Users**             | Admin panel user accounts. Add or remove staff access.                                                                                  |
 
 ---
 
@@ -108,14 +108,14 @@ Go to **Service Inquiries**. The default view shows the most recent submissions.
 
 Use the **Status** field to track where the inquiry is in your process:
 
-| Status | Meaning |
-|---|---|
-| 🆕 New | Just received, not yet reviewed |
-| 👀 Under Review | Someone is looking at it |
-| 📞 Contacted | You've reached out to the person |
-| 📋 Proposal Sent | You've sent them a proposal or quote |
-| ✅ Converted | This inquiry became a project |
-| ❌ Closed | No longer active (declined, no response, etc.) |
+| Status           | Meaning                                        |
+| ---------------- | ---------------------------------------------- |
+| 🆕 New           | Just received, not yet reviewed                |
+| 👀 Under Review  | Someone is looking at it                       |
+| 📞 Contacted     | You've reached out to the person               |
+| 📋 Proposal Sent | You've sent them a proposal or quote           |
+| ✅ Converted     | This inquiry became a project                  |
+| ❌ Closed        | No longer active (declined, no response, etc.) |
 
 ### Internal notes
 
@@ -160,11 +160,11 @@ If an Amharic value isn't set for a field, the site automatically falls back to 
 
 ## Who approves what
 
-| Content type | Who can draft | Who should approve before publishing |
-|---|---|---|
-| Services, HSEQ, Future Objectives | Any admin | Managing Director (technical accuracy matters here) |
-| News and announcements | Any admin | Managing Director or General Manager |
-| Projects | Any admin | Project Engineer or Managing Director (verify accuracy) |
-| Testimonials | Any admin | Managing Director (ensure client consent is confirmed) |
-| Team Members | Any admin | Managing Director |
-| Service Inquiry responses | Any admin | Handle directly — no approval needed for internal status updates |
+| Content type                      | Who can draft | Who should approve before publishing                             |
+| --------------------------------- | ------------- | ---------------------------------------------------------------- |
+| Services, HSEQ, Future Objectives | Any admin     | Managing Director (technical accuracy matters here)              |
+| News and announcements            | Any admin     | Managing Director or General Manager                             |
+| Projects                          | Any admin     | Project Engineer or Managing Director (verify accuracy)          |
+| Testimonials                      | Any admin     | Managing Director (ensure client consent is confirmed)           |
+| Team Members                      | Any admin     | Managing Director                                                |
+| Service Inquiry responses         | Any admin     | Handle directly — no approval needed for internal status updates |
