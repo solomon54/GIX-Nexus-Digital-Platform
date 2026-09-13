@@ -84,27 +84,48 @@
   --amber-light: rgba(180, 83, 9, 0.10);
 
   /* ── Section backgrounds
-     Flowing light palette — clearly different, never dark
-     Hero    : vivid sky      #C8EEFF → #DFF5FF
-     S-2     : pale sky       #DFF5FF → #EBF9FF
-     S-3     : white-sky      #EBF9FF → #F4FCFF
-     S-4     : near-white     #F4FCFF → #FAFEFF
-     S-5     : pure white     #FFFFFF
-     CTA     : navy accent    #0A2540 → #0C3560  (only dark section)
-  ── */
-  --section-hero: linear-gradient(160deg, #C8EEFF 0%, #DFF5FF 100%);
-  --section-2: linear-gradient(160deg, #DFF5FF 0%, #EBF9FF 100%);
-  --section-3: linear-gradient(160deg, #EBF9FF 0%, #F4FCFF 100%);
-  --section-4: linear-gradient(160deg, #F4FCFF 0%, #FAFEFF 100%);
-  --section-5: #FFFFFF;
-  --section-cta: linear-gradient(155deg, #0A2540 0%, #0C3560 100%);
+     ══════════════════════════════════════════════════════
+     FIX: vibrant saturated sky (NOT near-white).
+     Previously: #F8FCFF was indistinguishable from white
+     paper → looked blank on sub-pages.
 
-  /* legacy aliases */
-  --section-1: linear-gradient(160deg, #DFF5FF 0%, #EBF9FF 100%);
-  --section-odd: linear-gradient(160deg, #EBF9FF 0%, #F4FCFF 100%);
-  --section-even: #FFFFFF;
-  --section-accent: linear-gradient(160deg, #DFF5FF 0%, #EBF9FF 100%);
-  --section-navy: linear-gradient(135deg, #0A2540 0%, #0C3560 100%);
+     Now: Saturated light sky palette that visibly reads
+     as GIX Nexus teal theme (NOT blank white).
+
+     Every section END = next START. No seam pixels.
+
+     hero END  = #D8EEFB
+     S-2 START = #D8EEFB   ✔ MATCH
+     S-2 END   = #CDE7F6
+     S-3 START = #CDE7F6   ✔ MATCH
+     S-3 END   = #D8EEFB
+     S-4 START = #D8EEFB   ✔ MATCH
+     S-4 END   = #E3F4FF
+     S-5 START = #E3F4FF   ✔ MATCH
+  ── */
+  --section-hero: linear-gradient(160deg, #CBE8F8 0%, #D8EEFB 100%);
+  --section-2: linear-gradient(160deg, #D8EEFB 0%, #CDE7F6 100%);
+  --section-3: linear-gradient(160deg, #CDE7F6 0%, #D8EEFB 100%);
+  --section-4: linear-gradient(160deg, #D8EEFB 0%, #E3F4FF 100%);
+  --section-5: linear-gradient(160deg, #E3F4FF 0%, #D8EEFB 100%);
+  --section-cta: linear-gradient(155deg, #0A2642 0%, #0D1F3A 100%);
+
+  /* legacy aliases — same vibrant seamless palette */
+  --section-1: linear-gradient(160deg, #D8EEFB 0%, #CDE7F6 100%);
+  --section-odd: linear-gradient(160deg, #D8EEFB 0%, #CDE7F6 100%);
+  --section-even: linear-gradient(160deg, #CDE7F6 0%, #D8EEFB 100%);
+  --section-accent: linear-gradient(160deg, #CBE8F8 0%, #D8EEFB 100%);
+  --section-navy: linear-gradient(135deg, #0A2642 0%, #0D1F3A 100%);
+
+  /* ── Pre-footer darken blend — matches footer start navy.
+       Apply this to the LAST section of inner pages so the
+       page background darkens smoothly into the navy footer,
+       not the harsh pale-sky → navy jump. */
+  --pre-footer-blend: linear-gradient(180deg,
+      transparent 0%,
+      rgba(12, 30, 64, 0.08) 55%,
+      rgba(12, 30, 64, 0.35) 82%,
+      rgba(12, 30, 64, 0.68) 100%);
 
   /* ── Chips ── */
   --chip-bg: rgba(14, 165, 201, 0.10);
@@ -129,11 +150,13 @@
   --gradient-brand: linear-gradient(135deg, #0A2540 0%, #0C3560 100%);
   --gradient-accent: linear-gradient(135deg, #0EA5C9 0%, #22D3EE 100%);
   --gradient-hero: linear-gradient(160deg, #C8EEFF 0%, #DFF5FF 100%);
+  /* ── Gradient divider — 0 opacity, NEVER visible.
+     Section flow is now seamless through matching colors. */
   --gradient-divider: linear-gradient(90deg,
       transparent 0%,
-      rgba(14, 165, 201, 0.18) 20%,
-      rgba(14, 165, 201, 0.32) 50%,
-      rgba(14, 165, 201, 0.18) 80%,
+      rgba(14, 165, 201, 0.00) 20%,
+      rgba(14, 165, 201, 0.00) 50%,
+      rgba(14, 165, 201, 0.00) 80%,
       transparent 100%);
 
   /* ── Buttons ── */
@@ -157,16 +180,59 @@
   }
 
   html {
+    /* ✅ GIX palette PAINTED DIRECTLY on <html> so the browser NEVER
+          falls back to default white on the root element.
+          Eliminates white flashes on: overscroll bounce, momentum fast
+          scroll, sub-pixel paint gaps, right side when scrollbar is
+          visible, painting before layout is ready on page load.
+          Vertical color stops match the common page flow: navy (nav
+          area) down to pale sky (content) down to navy (footer area).
+          Even if sections briefly lag during fast scroll, the root is
+          already the correct colour = ZERO white visible. */
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    width: 100%;
+    /* ⚠️ IMPORTANT: NO `overflow-x: hidden` on <html>!
+          Setting any overflow (even just x-axis) on html/body in WebKit
+          breaks the root scroll container — position: sticky SILENTLY
+          stops working.  Horizontal clipping is handled on body instead
+          via overflow-x: clip below. */
+    overflow-x: visible;
+    overflow-y: auto;
+    background: linear-gradient(180deg,
+        #0D1B3E 0%,
+        /* navbar top (deep navy, matches nav bg) */
+        #0B2A50 2%,
+        /* nav bottom band (smooth into hero start) */
+        #0E3A66 4%,
+        /* hero top region */
+        #D8EEFB 14%,
+        /* body/content (matches body bg) */
+        #D8EEFB 84%,
+        /* content is always pale sky (sections paint over) */
+        #5B83A8 95%,
+        /* pre-footer darken begin */
+        #0C1E40 100%);
+    /* footer region (matches footer start navy) */
+    background-attachment: scroll;
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: 72px;
     -webkit-overflow-scrolling: touch;
+    color-scheme: light;
   }
 
   body {
-    background: linear-gradient(180deg, #D8F2FF 0%, #EBF9FF 40%, #F5FCFF 100%);
-    background-attachment: fixed;
+    /* Sections own their own gradients, but we give body a matching
+       pale-sky base fill so no white gap can open up. */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    background: #D8EEFB;
     color: var(--foreground);
     font-family: var(--font-sans);
     font-size: 16px;
@@ -174,9 +240,18 @@
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* ✅ overflow-x: CLIP (not HIDDEN) — key for sticky safety:
+          hidden = establishes new formatting context, breaks sticky
+          clip   = clips overflow, DOES NOT break scroll container
+          Keep scroll container on <html> (the default root scroller)
+          so position:sticky nav detects scroll position correctly. */
+    overflow-x: clip;
+    overflow-y: visible;
+    /* let html own the root vertical scrollbar */
     word-break: break-word;
     overflow-wrap: break-word;
+    position: relative;
+    isolation: isolate;
   }
 
   /* NO decorative ::before / ::after rings or shapes */
@@ -328,42 +403,84 @@
    ════════════════════════════════════════════════════════════════ */
 @layer utilities {
 
-  /* ── Section backgrounds ── */
+  /* ── Section backgrounds ──
+     Each section NOW includes a top feather (from previous color) AND
+     a bottom feather (towards next color). This means section boundaries
+     are NEVER visible — regardless of responsive height changes. ── */
   .bg-section-hero {
-    background: var(--section-hero);
+    background: linear-gradient(180deg,
+        #CBE8F8 0%,
+        #D0E9F9 25%,
+        #D4EBFA 50%,
+        #D8EEFB 85%,
+        #D8EEFB 100%);
   }
 
   .bg-section-2 {
-    background: var(--section-2);
+    background: linear-gradient(180deg,
+        #D8EEFB 0%,
+        #D2E9F8 20%,
+        #CCE5F5 50%,
+        #CDE7F6 85%,
+        #CDE7F6 100%);
   }
 
   .bg-section-3 {
-    background: var(--section-3);
+    background: linear-gradient(180deg,
+        #CDE7F6 0%,
+        #D0E9F7 20%,
+        #D5ECF9 50%,
+        #D8EEFB 85%,
+        #D8EEFB 100%);
   }
 
   .bg-section-4 {
-    background: var(--section-4);
+    background: linear-gradient(180deg,
+        #D8EEFB 0%,
+        #DDF1FC 25%,
+        #E3F4FF 55%,
+        #E8F6FF 85%,
+        #E8F6FF 100%);
   }
 
   .bg-section-5 {
-    background: var(--section-5);
+    background: linear-gradient(180deg,
+        #E8F6FF 0%,
+        #EAF7FF 25%,
+        #EDF8FF 55%,
+        #EBF7FF 85%,
+        #E8F6FF 100%);
   }
 
   .bg-section-cta {
     background: var(--section-cta);
   }
 
-  /* legacy */
+  /* legacy — each includes top+bottom feather now */
   .bg-section-odd {
-    background: var(--section-odd);
+    background: linear-gradient(180deg,
+        #D8EEFB 0%,
+        #D2E9F8 20%,
+        #CCE5F5 50%,
+        #CDE7F6 85%,
+        #CDE7F6 100%);
   }
 
   .bg-section-even {
-    background: var(--section-even);
+    background: linear-gradient(180deg,
+        #CDE7F6 0%,
+        #D0E9F7 20%,
+        #D5ECF9 50%,
+        #D8EEFB 85%,
+        #D8EEFB 100%);
   }
 
   .bg-section-accent {
-    background: var(--section-accent);
+    background: linear-gradient(180deg,
+        #CBE8F8 0%,
+        #CFE9F9 30%,
+        #D4EBFA 60%,
+        #D8EEFB 100%);
   }
 
   .bg-section-navy {
@@ -371,24 +488,27 @@
   }
 
   .bg-section-1 {
-    background: var(--section-1);
+    background: linear-gradient(180deg,
+        #D8EEFB 0%,
+        #D2E9F8 20%,
+        #CCE5F5 50%,
+        #CDE7F6 85%,
+        #CDE7F6 100%);
   }
 
-  /* ── Divider ── */
   .section-top-divide {
     position: relative;
   }
 
   .section-top-divide::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 85%;
-    max-width: 1000px;
-    height: 1px;
-    background: var(--gradient-divider);
+    content: none;
+    display: none;
+  }
+
+  /* Dark-section variant — also fully removed */
+  .section-top-divide-dark::before {
+    content: none !important;
+    display: none !important;
   }
 
   /* ── Cards ── */
