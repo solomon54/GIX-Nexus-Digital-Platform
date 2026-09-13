@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import { SERVICE_SLUGS } from '@/lib/constants'
 
-const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
+const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexus.net.et').replace(/\/$/, '')
 const LOCALES = ['en', 'am'] as const
 
 const STATIC_PAGES = [

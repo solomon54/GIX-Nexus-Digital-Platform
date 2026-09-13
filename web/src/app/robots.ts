@@ -1,17 +1,19 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
 
-const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
+const BASE_URL = (
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://gixnexus.net.et"
+).replace(/\/$/, "");
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
       {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/admin', '/api/'],
+        userAgent: "*",
+        allow: "/",
+        disallow: ["/admin", "/api/"],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
     host: BASE_URL,
-  }
+  };
 }
