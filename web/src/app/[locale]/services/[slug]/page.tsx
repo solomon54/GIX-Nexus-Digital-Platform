@@ -1,56 +1,60 @@
-import type { Metadata } from 'next'
-import Link from 'next/link'
-import { notFound } from 'next/navigation'
-import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
-import { SERVICE_SLUGS } from '@/lib/constants'
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { SERVICE_SLUGS } from "@/lib/constants";
 
-export const revalidate = 3600
+export const revalidate = 3600;
 
-const BASE_URL = (process.env.NEXT_PUBLIC_APP_URL ?? 'https://gixnexustelecom.com').replace(/\/$/, '')
+const BASE_URL = (
+  process.env.NEXT_PUBLIC_APP_URL ?? "https://gixnexus.net.et"
+).replace(/\/$/, "");
 
-type ServiceSlug = (typeof SERVICE_SLUGS)[number]
+type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
 interface ServiceDetailPageProps {
-  params: Promise<{ locale: string; slug: string }>
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 // Source: Company Profile PDF — 8 service domains
 const SLUG_TO_KEY: Record<ServiceSlug, string> = {
-  'telecommunications-infrastructure': 'telecomInfrastructure',
-  'fiber-optic-solutions': 'fiberOptic',
-  'satellite-wireless-communications': 'satelliteWireless',
-  'rf-engineering': 'rfEngineering',
-  'network-infrastructure': 'networkInfrastructure',
-  'telecom-power-systems': 'telecomPower',
-  'smatv-matv-solutions': 'smatvMatv',
-  'maintenance-technical-support': 'maintenance',
-}
+  "telecommunications-infrastructure": "telecomInfrastructure",
+  "fiber-optic-solutions": "fiberOptic",
+  "satellite-wireless-communications": "satelliteWireless",
+  "rf-engineering": "rfEngineering",
+  "network-infrastructure": "networkInfrastructure",
+  "telecom-power-systems": "telecomPower",
+  "smatv-matv-solutions": "smatvMatv",
+  "maintenance-technical-support": "maintenance",
+};
 
 const SLUG_TO_ICON: Record<ServiceSlug, string> = {
-  'telecommunications-infrastructure': 'Tower',
-  'fiber-optic-solutions': 'Cable',
-  'satellite-wireless-communications': 'Radio',
-  'rf-engineering': 'Antenna',
-  'network-infrastructure': 'Network',
-  'telecom-power-systems': 'Zap',
-  'smatv-matv-solutions': 'Tv',
-  'maintenance-technical-support': 'Wrench',
-}
+  "telecommunications-infrastructure": "Tower",
+  "fiber-optic-solutions": "Cable",
+  "satellite-wireless-communications": "Radio",
+  "rf-engineering": "Antenna",
+  "network-infrastructure": "Network",
+  "telecom-power-systems": "Zap",
+  "smatv-matv-solutions": "Tv",
+  "maintenance-technical-support": "Wrench",
+};
 
 export function generateStaticParams() {
   return SERVICE_SLUGS.flatMap((slug) =>
-    ['en', 'am'].map((locale) => ({ locale, slug })),
-  )
+    ["en", "am"].map((locale) => ({ locale, slug })),
+  );
 }
 
-export async function generateMetadata({ params }: ServiceDetailPageProps): Promise<Metadata> {
-  const { locale, slug } = await params
-  const nameKey = SLUG_TO_KEY[slug as ServiceSlug]
-  if (!nameKey) return { title: 'Service Not Found' }
-  const t = await getTranslations({ locale, namespace: 'services' })
-  const name = t(`groups.${nameKey}.name`)
-  const description = `${t(`groups.${nameKey}.description`)} GIX Nexus Telecom and Power — GVF-certified telecommunications and engineering company operating across Ethiopia.`
+export async function generateMetadata({
+  params,
+}: ServiceDetailPageProps): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const nameKey = SLUG_TO_KEY[slug as ServiceSlug];
+  if (!nameKey) return { title: "Service Not Found" };
+  const t = await getTranslations({ locale, namespace: "services" });
+  const name = t(`groups.${nameKey}.name`);
+  const description = `${t(`groups.${nameKey}.description`)} GIX Nexus Telecom and Power — GVF-certified telecommunications and engineering company operating across Ethiopia.`;
   return {
     title: name,
     description,
@@ -66,38 +70,45 @@ export async function generateMetadata({ params }: ServiceDetailPageProps): Prom
       description,
       url: `${BASE_URL}/${locale}/services/${slug}`,
     },
-  }
+  };
 }
 
 function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
-  const t = useTranslations('services')
-  const tCommon = useTranslations('common')
-  const tNav = useTranslations('nav')
+  const t = useTranslations("services");
+  const tCommon = useTranslations("common");
+  const tNav = useTranslations("nav");
 
-  const nameKey = SLUG_TO_KEY[slug as ServiceSlug]
-  if (!nameKey) notFound()
+  const nameKey = SLUG_TO_KEY[slug as ServiceSlug];
+  if (!nameKey) notFound();
 
-  const capabilities = t.raw(`groups.${nameKey}.capabilities`) as string[]
-  const name = t(`groups.${nameKey}.name`)
-  const description = t(`groups.${nameKey}.description`)
+  const capabilities = t.raw(`groups.${nameKey}.capabilities`) as string[];
+  const name = t(`groups.${nameKey}.name`);
+  const description = t(`groups.${nameKey}.description`);
 
   return (
-    <div className="py-12 sm:py-16">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    /* (LAST and ONLY SECTION before footer)
+       Responsive bottom padding 160→256px + pre-footer navy blend.
+       Footer upward feather overlaps empty padding, never list content. */
+    <div
+      className="pt-12 pb-40 sm:pt-16 sm:pb-48 md:pb-56 lg:pb-64 pre-footer-wrap"
+      style={{ position: "relative" }}>
+      <div
+        className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 relative z-[1]"
+        style={{ position: "relative", zIndex: 1 }}>
         {/* Breadcrumb */}
-        <nav className="mb-8 flex items-center gap-2 text-sm text-[var(--foreground-subtle)]" aria-label="Breadcrumb">
+        <nav
+          className="mb-8 flex items-center gap-2 text-sm text-[var(--foreground-subtle)]"
+          aria-label="Breadcrumb">
           <Link
             href={`/${locale}`}
-            className="hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
-          >
+            className="hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded">
             Home
           </Link>
           <span aria-hidden="true">/</span>
           <Link
             href={`/${locale}/services`}
-            className="hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded"
-          >
-            {tNav('services')}
+            className="hover:text-[var(--gix-blue)] transition-colors focus:outline-none focus:ring-1 focus:ring-[var(--gix-blue)] rounded">
+            {tNav("services")}
           </Link>
           <span aria-hidden="true">/</span>
           <span className="text-[var(--foreground)]">{name}</span>
@@ -105,28 +116,29 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
 
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">{name}</h1>
-          <p className="mt-4 text-lg text-[var(--foreground-subtle)]">{description}</p>
+          <h1 className="text-4xl font-extrabold text-[var(--foreground)] sm:text-5xl">
+            {name}
+          </h1>
+          <p className="mt-4 text-lg text-[var(--foreground-subtle)]">
+            {description}
+          </p>
         </div>
 
         {/* Capabilities */}
         <section aria-labelledby="capabilities-heading">
           <h2
             id="capabilities-heading"
-            className="mb-6 text-xl font-bold text-[var(--foreground)]"
-          >
-            {t('capabilitiesLabel')}
+            className="mb-6 text-xl font-bold text-[var(--foreground)]">
+            {t("capabilitiesLabel")}
           </h2>
           <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2" role="list">
             {capabilities.map((cap, i) => (
               <li
                 key={i}
-                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4"
-              >
+                className="flex items-start gap-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] p-4">
                 <span
                   className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-[var(--gix-blue)]/10"
-                  aria-hidden="true"
-                >
+                  aria-hidden="true">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -136,8 +148,7 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     className="h-3.5 w-3.5 text-[var(--gix-blue)]"
-                    aria-hidden="true"
-                  >
+                    aria-hidden="true">
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </span>
@@ -151,8 +162,7 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
         <div className="mt-12">
           <Link
             href={`/${locale}/services`}
-            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[var(--gix-blue)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded"
-          >
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-medium text-[var(--gix-blue)] hover:underline focus:outline-none focus:ring-2 focus:ring-[var(--gix-blue)] focus:ring-offset-2 rounded">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -162,23 +172,22 @@ function ServiceDetailPage({ locale, slug }: { locale: string; slug: string }) {
               strokeLinecap="round"
               strokeLinejoin="round"
               className="h-4 w-4"
-              aria-hidden="true"
-            >
+              aria-hidden="true">
               <path d="M19 12H5M12 5l-7 7 7 7" />
             </svg>
-            {tNav('services')}
+            {tNav("services")}
           </Link>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default async function Page({ params }: ServiceDetailPageProps) {
-  const { locale, slug } = await params
+  const { locale, slug } = await params;
   // Validate slug
   if (!SERVICE_SLUGS.includes(slug as ServiceSlug)) {
-    notFound()
+    notFound();
   }
-  return <ServiceDetailPage locale={locale} slug={slug} />
+  return <ServiceDetailPage locale={locale} slug={slug} />;
 }
