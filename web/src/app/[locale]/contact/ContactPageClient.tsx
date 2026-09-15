@@ -75,36 +75,52 @@ export function ContactPageClient() {
         className="pt-20 pb-40 sm:pb-48 md:pb-56 lg:pb-64 pre-footer-wrap section-top-divide bg-section-odd"
         style={{ position: "relative" }}>
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+            <div className="w-full">
               <div
                 className="rounded-2xl overflow-hidden border"
                 style={{ borderColor: "var(--border)" }}>
-                <div className="relative h-64">
+                <div
+                  className="relative w-full overflow-hidden"
+                  style={{
+                    aspectRatio: "3/4",
+                    background:
+                      "linear-gradient(160deg, #0F2352 0%, #0B1834 55%, #070F26 100%)",
+                  }}>
                   <Image
-                    src="/assets/leader-prof-img.png"
+                    src="/assets/managing-director.webp"
                     alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover object-top"
+                    className="object-contain object-center"
+                    priority
                   />
                   <div
-                    className="absolute inset-0"
+                    className="absolute inset-0 pointer-events-none"
                     style={{
                       background:
-                        "linear-gradient(to top, rgba(6,18,54,0.65), transparent 60%)",
+                        "linear-gradient(to top, rgba(6,18,54,0.18) 0%, transparent 55%)",
                     }}
                   />
-                  <div className="absolute bottom-4 left-5">
-                    <p className="font-semibold text-white">{t("mdName")}</p>
-                    <p className="text-sm text-[var(--foreground-muted)]">
+                  <div
+                    className="absolute inset-x-0 top-0 h-px"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(72, 187, 202, 0.55), transparent)",
+                    }}
+                  />
+                  <div className="absolute bottom-4 left-5 right-5">
+                    <p className="font-semibold text-white text-base sm:text-lg">
+                      {t("mdName")}
+                    </p>
+                    <p className="text-sm text-[var(--accent)] mt-0.5">
                       {t("mdLabel")}
                     </p>
                   </div>
                 </div>
 
                 <div
-                  className="p-6 space-y-4"
+                  className="p-4 sm:p-5 space-y-3"
                   style={{ background: "#FFFFFF" }}>
                   <p
                     className="text-sm leading-relaxed"
