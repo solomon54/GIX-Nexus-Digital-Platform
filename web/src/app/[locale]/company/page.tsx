@@ -227,59 +227,119 @@ function CompanyPage({ locale }: { locale: string }) {
               {t("leadershipTitle")}
             </h2>
           </div>
-          <div className="max-w-2xl mx-auto">
-            <div
-              className="rounded-2xl overflow-hidden shadow-lg"
-              style={{ boxShadow: "var(--shadow-lg)" }}>
-              <div className="relative" style={{ aspectRatio: "4/3" }}>
-                <Image
-                  src="/assets/leader-prof-img.png"
-                  alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover object-top"
-                />
-
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-10 items-center">
+              <div className="lg:col-span-2">
                 <div
-                  className="absolute inset-0"
+                  className="relative rounded-2xl overflow-hidden mx-auto"
                   style={{
+                    maxWidth: "340px",
+                    aspectRatio: "3/4",
                     background:
-                      "linear-gradient(to top, rgba(5,13,26,0.65) 0%, rgba(5,13,26,0.25) 40%, transparent 70%)",
-                  }}
-                />
-
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[var(--accent)] mb-1">
-                    {t("mdTitle")}
-                  </p>
-                  <h3 className="text-xl font-bold text-white">
-                    {t("mdName")}
-                  </h3>
-                  <div className="flex items-center gap-3 mt-2 text-xs text-[var(--foreground-muted)]">
-                    <span>📍 {t("hqValue")}</span>
-                    <span className="opacity-40">·</span>
-                    <span>🌍 {t("operationsValue")}</span>
-                  </div>
+                      "linear-gradient(160deg, #0F2352 0%, #0B1834 55%, #070F26 100%)",
+                    border: "1px solid rgba(72, 187, 202, 0.18)",
+                    boxShadow:
+                      "0 30px 60px -20px rgba(5, 13, 38, 0.55), 0 0 0 1px rgba(72, 187, 202, 0.06) inset",
+                  }}>
+                  <Image
+                    src="/assets/managing-director.webp"
+                    alt="Getachew Teshome — Managing Director, GIX Nexus Telecom and Power"
+                    fill
+                    sizes="(max-width: 1024px) 320px, 340px"
+                    className="object-contain object-center"
+                    priority
+                  />
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(5,13,26,0.18) 0%, transparent 55%)",
+                    }}
+                  />
+                  <div
+                    className="absolute inset-x-0 top-0 h-px"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(72, 187, 202, 0.55), transparent)",
+                    }}
+                  />
                 </div>
               </div>
 
-              <div className="p-6" style={{ background: "#FFFFFF" }}>
-                <blockquote
-                  className="text-sm italic leading-relaxed border-l-2 border-[var(--accent)] pl-4"
-                  style={{ color: "var(--foreground-muted)" }}>
-                  &ldquo;{t("mdMessage")}&rdquo;
-                </blockquote>
-                <div
-                  className="mt-5 pt-4 flex items-center justify-between"
-                  style={{ borderTop: "1px solid var(--border)" }}>
-                  <span className="text-xs text-[var(--accent)] font-medium">
-                    Managing Director · GIX Nexus Telecom and Power
-                  </span>
-                  <Link
-                    href={`/${locale}/contact`}
-                    className="inline-flex min-h-[36px] items-center rounded-lg bg-[var(--accent)] px-5 py-2 text-xs font-semibold text-white hover:bg-[var(--accent-hover)] transition-colors">
-                    Get in Touch
-                  </Link>
+              <div className="lg:col-span-3">
+                <div className="space-y-5">
+                  <div>
+                    <p
+                      className="text-xs font-semibold uppercase tracking-widest mb-2"
+                      style={{ color: "var(--accent)" }}>
+                      {t("mdTitle")}
+                    </p>
+                    <h3
+                      className="text-2xl sm:text-3xl font-bold"
+                      style={{ color: "var(--foreground)" }}>
+                      {t("mdName")}
+                    </h3>
+                    <div
+                      className="flex flex-wrap items-center gap-3 mt-3 text-sm"
+                      style={{ color: "var(--foreground-muted)" }}>
+                      <span>📍 {t("hqValue")}</span>
+                      <span className="opacity-40 hidden sm:inline">·</span>
+                      <span>🌍 {t("operationsValue")}</span>
+                    </div>
+                  </div>
+
+                  <div
+                    className="h-px w-full"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(72, 187, 202, 0.35), transparent)",
+                    }}
+                  />
+
+                  <blockquote
+                    className="text-base sm:text-lg leading-relaxed border-l-2 pl-5"
+                    style={{
+                      color: "var(--foreground)",
+                      borderColor: "var(--accent)",
+                      background: "var(--background)",
+                      paddingTop: "1rem",
+                      paddingBottom: "1rem",
+                      paddingRight: "1.25rem",
+                      borderRadius: "0 0.75rem 0.75rem 0",
+                    }}>
+                    {t("mdMessage")}
+                  </blockquote>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
+                    <div className="flex items-center gap-3">
+                      <div
+                        className="h-10 w-10 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                        style={{ background: "var(--accent)" }}>
+                        GT
+                      </div>
+                      <div>
+                        <p
+                          className="text-sm font-semibold"
+                          style={{ color: "var(--foreground)" }}>
+                          GIX Nexus Telecom and Power
+                        </p>
+                        <p
+                          className="text-xs"
+                          style={{ color: "var(--foreground-subtle)" }}>
+                          Managing Director · Office of the Director
+                        </p>
+                      </div>
+                    </div>
+                    <Link
+                      href={`/${locale}/contact`}
+                      className="inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-semibold text-white transition-colors shadow-md"
+                      style={{
+                        background: "var(--accent)",
+                        boxShadow: "0 10px 24px -12px rgba(72, 187, 202, 0.55)",
+                      }}>
+                      Get in Touch
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
