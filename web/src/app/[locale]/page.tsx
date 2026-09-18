@@ -105,12 +105,11 @@ function HomePage({
   return (
     <>
       <style>{`
-  /* ── Service cards — on dark section-2 bg ── */
+  /* ── Service cards — on light sky section bg ── */
   .svc-card {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
     transition:
       box-shadow 250ms cubic-bezier(0.16,1,0.3,1),
       transform 250ms cubic-bezier(0.16,1,0.3,1),
@@ -118,41 +117,26 @@ function HomePage({
       background 250ms;
   }
   .svc-card:hover {
-    background: rgba(255,255,255,0.12);
-    border-color: rgba(34,211,238,0.40);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25), 0 0 0 1px rgba(34,211,238,0.18);
+    background: #FFFFFF;
+    border-color: var(--accent);
+    box-shadow: var(--shadow-card-hover);
     transform: translateY(-4px);
   }
 
   /* ── News cards — teal-tinted surface ── */
   .news-card {
-    background: rgba(255,255,255,0.82);
+    background: #FFFFFF;
     border: 1px solid rgba(14,165,201,0.22);
-    box-shadow: 0 2px 12px rgba(10,37,64,0.10), 0 0 0 1px rgba(14,165,201,0.08);
+    box-shadow: var(--shadow-card);
     transition:
       box-shadow 250ms cubic-bezier(0.16,1,0.3,1),
       transform 250ms,
       border-color 250ms;
   }
   .news-card:hover {
-    box-shadow: 0 8px 28px rgba(10,37,64,0.14), 0 0 0 1px rgba(14,165,201,0.28);
+    box-shadow: var(--shadow-card-hover);
     border-color: var(--accent);
     transform: translateY(-3px);
-  }
-
-  /* ── Outline buttons — on dark bg ── */
-  .btn-outline-white {
-    border: 1.5px solid rgba(255,255,255,0.35);
-    color: rgba(255,255,255,0.90);
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(8px);
-    transition: background 200ms, border-color 200ms, color 200ms, transform 200ms;
-  }
-  .btn-outline-white:hover {
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(34,211,238,0.60);
-    color: #22D3EE;
-    transform: translateY(-1px);
   }
 
   /* ── Outline buttons — on light bg ── */
@@ -168,33 +152,28 @@ function HomePage({
     transform: translateY(-1px);
   }
 
-  /* ── Hero glass card ── */
+  /* ── Hero stat & glass surfaces (light palette) ── */
   .hero-glass {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.16);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow:
-      0 24px 64px rgba(0,0,0,0.30),
-      inset 0 1px 0 rgba(255,255,255,0.12);
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-lg),
+      inset 0 1px 0 rgba(255,255,255,0.60);
   }
 
-  /* ── Hero stat cells ── */
   .hero-stat {
-    background: rgba(255,255,255,0.05);
+    background: var(--soft-surface);
     transition: background 200ms, transform 200ms;
   }
   .hero-stat:hover {
-    background: rgba(14,165,201,0.14);
+    background: var(--accent-light);
     transform: translateY(-2px);
   }
 
-  /* ── Feature cards — on section-3 mid-teal bg ── */
+  /* ── Feature cards — on light sky bg ── */
   .feature-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.13);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: #FFFFFF;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
     transition:
       background 250ms,
       border-color 250ms,
@@ -202,43 +181,30 @@ function HomePage({
       box-shadow 250ms;
   }
   .feature-card:hover {
-    background: rgba(255,255,255,0.14);
-    border-color: rgba(34,211,238,0.35);
+    background: #FFFFFF;
+    border-color: var(--accent);
     transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(0,0,0,0.20);
+    box-shadow: var(--shadow-card-hover);
   }
 
   /* ── Project cards — teal-tinted surface ── */
   .project-card {
-    background: rgba(255,255,255,0.82);
+    background: #FFFFFF;
     border: 1px solid rgba(14,165,201,0.22);
-    box-shadow: 0 2px 12px rgba(10,37,64,0.10), 0 0 0 1px rgba(14,165,201,0.08);
+    box-shadow: var(--shadow-card);
     transition:
       box-shadow 250ms,
       border-color 250ms,
       transform 250ms;
   }
   .project-card:hover {
-    box-shadow: 0 8px 28px rgba(10,37,64,0.14), 0 0 0 1px rgba(14,165,201,0.28);
+    box-shadow: var(--shadow-card-hover);
     border-color: var(--accent);
     transform: translateY(-3px);
   }
 
-  /* ── Section label pill ── */
-  .section-label-dark {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(34,211,238,0.12);
-    border: 1px solid rgba(34,211,238,0.25);
-    border-radius: 99px;
-    padding: 3px 12px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #22D3EE;
-  }
+  /* ── Section label pill — light bg ── */
+  .section-label-dark,
   .section-label-light {
     display: inline-flex;
     align-items: center;
@@ -261,16 +227,109 @@ function HomePage({
     color: #0369A1;
     border: 1px solid rgba(14,165,201,0.25);
   }
+
+  /* ── Antenna panel — subtle near-black stage ── */
+  .antenna-stage {
+    background:
+      radial-gradient(ellipse at 50% 34%,
+        rgba(30,58,85,0.70) 0%,
+        rgba(18,40,66,0.78) 28%,
+        rgba(10,26,48,0.90) 60%,
+        rgba(06,18,36,0.95) 100%),
+      linear-gradient(180deg,
+        #0C1830 0%,
+        #0A1428 55%,
+        #070F22 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .antenna-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 22% 76%, rgba(34,211,238,0.14) 0%, transparent 52%),
+      radial-gradient(circle at 78% 22%, rgba(14,165,201,0.22) 0%, transparent 48%);
+    pointer-events: none;
+  }
+  .antenna-stage::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 38%;
+    background:
+      linear-gradient(180deg, transparent 0%,
+        rgba(14,165,201,0.10) 55%,
+        rgba(14,165,201,0.20) 100%);
+    pointer-events: none;
+  }
+  .antenna-video {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* ── Service marquee — rotate hero subtitle area ── */
+  .service-rotate {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    vertical-align: baseline;
+    position: relative;
+  }
+  .service-rotate .rotator {
+    display: inline-block;
+    position: relative;
+    height: 1.35em;
+    line-height: 1.35;
+    min-width: 0;
+    vertical-align: baseline;
+  }
+  .service-rotate .rotator > span {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    line-height: 1.35;
+    width: max-content;
+    opacity: 0;
+    transform: translateY(55%);
+    filter: blur(4px);
+  }
+  @keyframes serviceCycle {
+    0%    { opacity: 0; transform: translateY(55%);  filter: blur(5px); }
+    5.5%  { opacity: 1; transform: translateY(0%);   filter: blur(0);   }
+    15.5% { opacity: 1; transform: translateY(0%);   filter: blur(0);   }
+    19.5% { opacity: 0; transform: translateY(-40%); filter: blur(4px); }
+    100%  { opacity: 0; transform: translateY(-40%); filter: blur(4px); }
+  }
+  .service-rotate .rotator > span:nth-child(1) { animation: serviceCycle 13.5s cubic-bezier(0.65,0.05,0.36,1) 0.00s   infinite; }
+  .service-rotate .rotator > span:nth-child(2) { animation: serviceCycle 13.5s cubic-bezier(0.65,0.05,0.36,1) 2.25s   infinite; }
+  .service-rotate .rotator > span:nth-child(3) { animation: serviceCycle 13.5s cubic-bezier(0.65,0.05,0.36,1) 4.50s   infinite; }
+  .service-rotate .rotator > span:nth-child(4) { animation: serviceCycle 13.5s cubic-bezier(0.65,0.05,0.36,1) 6.75s   infinite; }
+  .service-rotate .rotator > span:nth-child(5) { animation: serviceCycle 13.5s cubic-bezier(0.65,0.05,0.36,1) 9.00s   infinite; }
+  .service-rotate .rotator > span:nth-child(6) { animation: serviceCycle 13.5s cubic-bezier(0.65,0.05,0.36,1) 11.25s  infinite; }
+
+  .service-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 99px;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(14,165,201,0.18);
+    flex-shrink: 0;
+  }
 `}</style>
       <section
         className="relative min-h-[92vh] flex items-center overflow-hidden"
         aria-labelledby="hero-heading"
         style={{
           background: `linear-gradient(180deg,
-              #0D1B3E    0%,
-              #0B2855   30%,
-              #0A3A58   72%,
-              #0B4462  100%)`,
+              #CBE8F8    0%,
+              #D0E9F9   25%,
+              #D4EBFA   50%,
+              #D8EEFB   85%,
+              #D8EEFB  100%)`,
         }}>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 lg:gap-16 items-center">
@@ -278,43 +337,43 @@ function HomePage({
               <div
                 className="inline-flex items-center gap-3 rounded-full px-4 py-2 mb-8"
                 style={{
-                  background: "rgba(14,165,201,0.12)",
-                  border: "1px solid rgba(14,165,201,0.28)",
+                  background: "rgba(14,165,201,0.10)",
+                  border: "1px solid rgba(14,165,201,0.25)",
                 }}>
                 <span className="relative flex h-2 w-2">
                   <span
                     className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-60"
-                    style={{ background: "#22D3EE" }}
+                    style={{ background: "var(--accent)" }}
                   />
                   <span
                     className="relative inline-flex h-2 w-2 rounded-full"
-                    style={{ background: "#22D3EE" }}
+                    style={{ background: "var(--accent)" }}
                   />
                 </span>
                 <span
                   className="text-sm font-medium tracking-wide"
-                  style={{ color: "#22D3EE" }}>
+                  style={{ color: "var(--accent)" }}>
                   Across Ethiopia
                 </span>
                 <span
                   className="h-4 w-px"
-                  style={{ background: "rgba(34,211,238,0.30)" }}
+                  style={{ background: "rgba(14,165,201,0.30)" }}
                 />
                 <span
                   className="text-xs"
-                  style={{ color: "rgba(255,255,255,0.55)" }}>
+                  style={{ color: "var(--foreground-subtle)" }}>
                   Telecom & Power
                 </span>
               </div>
 
-              {/* Heading */}
               <h1
                 id="hero-heading"
-                className="font-bold text-white"
+                className="font-bold"
                 style={{
                   fontSize: "clamp(2.4rem, 5vw, 4.2rem)",
                   lineHeight: "1.05",
                   letterSpacing: "-0.03em",
+                  color: "var(--foreground)",
                 }}>
                 {t("heroTitle")}
               </h1>
@@ -324,32 +383,88 @@ function HomePage({
                   className="h-[3px] w-16 rounded-full"
                   style={{
                     background:
-                      "linear-gradient(90deg, #22D3EE, rgba(34,211,238,0))",
+                      "linear-gradient(90deg, var(--accent), rgba(14,165,201,0))",
                   }}
                 />
                 <span
                   className="text-xs uppercase tracking-[0.22em]"
-                  style={{ color: "rgba(34,211,238,0.70)" }}>
+                  style={{ color: "var(--accent)" }}>
                   Satellite Services
                 </span>
               </div>
 
-              {/* Subtitle */}
               <p
                 className="mt-6 max-w-xl leading-relaxed"
                 style={{
                   fontSize: "clamp(14px,1.5vw,17px)",
-                  color: "rgba(255,255,255,0.78)",
+                  color: "var(--foreground-muted)",
                 }}>
                 {t("heroSubtitle")}
               </p>
+
+              <div
+                className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2"
+                aria-label="Our services: SATCOM, VSAT, RF, Fiber Optic, Networking, Power.">
+                <span
+                  className="h-1.5 w-1.5 rounded-full"
+                  style={{ background: "var(--accent)" }}
+                  aria-hidden="true"
+                />
+                <ul
+                  className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12px] font-medium"
+                  style={{ color: "var(--foreground-subtle)" }}>
+                  <li
+                    className="svc-pill"
+                    style={{
+                      background: "var(--accent-light)",
+                      border: "1px solid var(--accent-mid)",
+                      color: "var(--accent)",
+                    }}>
+                    SATCOM & VSAT
+                  </li>
+                  <li className="svc-pill">RF Engineering</li>
+                  <li className="svc-pill">Fiber Optic</li>
+                  <li className="svc-pill">Networking</li>
+                  <li className="svc-pill">Power Systems</li>
+                  <li className="svc-pill">24/7 Field Support</li>
+                </ul>
+              </div>
+
+              <style>{`
+                .svc-pill {
+                  display: inline-flex;
+                  align-items: center;
+                  padding: 3px 11px;
+                  border-radius: 99px;
+                  background: var(--soft-surface);
+                  border: 1px solid var(--border-subtle);
+                  opacity: 0;
+                  transform: translateY(6px);
+                  animation: svcPillIn 680ms cubic-bezier(0.22,1,0.36,1) forwards,
+                             svcPillPulse 4.6s ease-in-out infinite;
+                }
+                @keyframes svcPillIn {
+                  to { opacity: 1; transform: translateY(0); }
+                }
+                @keyframes svcPillPulse {
+                  0%, 100%  { box-shadow: 0 0 0 0 rgba(14,165,201,0.00); }
+                  52%       { box-shadow: 0 0 0 5px rgba(14,165,201,0.08); }
+                }
+                .svc-pill:nth-child(1) { animation-delay: 120ms,  0.00s; }
+                .svc-pill:nth-child(2) { animation-delay: 240ms,  0.70s; }
+                .svc-pill:nth-child(3) { animation-delay: 360ms,  1.40s; }
+                .svc-pill:nth-child(4) { animation-delay: 480ms,  2.10s; }
+                .svc-pill:nth-child(5) { animation-delay: 600ms,  2.80s; }
+                .svc-pill:nth-child(6) { animation-delay: 720ms,  3.50s; }
+              `}</style>
 
               <div className="mt-8 max-w-xl">
                 <div
                   className="grid grid-cols-3 overflow-hidden rounded-2xl"
                   style={{
-                    background: "rgba(255,255,255,0.06)",
-                    border: "1px solid rgba(255,255,255,0.10)",
+                    background: "#FFFFFF",
+                    border: "1px solid var(--border)",
+                    boxShadow: "var(--shadow-sm)",
                   }}>
                   {[
                     { value: "8+", label: t("stats.serviceDomainsLabel") },
@@ -362,19 +477,19 @@ function HomePage({
                       style={
                         i === 1 ?
                           {
-                            borderLeft: "1px solid rgba(255,255,255,0.08)",
-                            borderRight: "1px solid rgba(255,255,255,0.08)",
+                            borderLeft: "1px solid var(--border-subtle)",
+                            borderRight: "1px solid var(--border-subtle)",
                           }
                         : {}
                       }>
                       <div
                         className="text-2xl sm:text-3xl font-bold"
-                        style={{ color: "#22D3EE" }}>
+                        style={{ color: "var(--accent)" }}>
                         {stat.value}
                       </div>
                       <div
                         className="mt-1 text-[9px] sm:text-[10px] uppercase tracking-[0.14em]"
-                        style={{ color: "rgba(255,255,255,0.45)" }}>
+                        style={{ color: "var(--foreground-subtle)" }}>
                         {stat.label}
                       </div>
                     </div>
@@ -389,8 +504,8 @@ function HomePage({
                   style={{
                     background:
                       "linear-gradient(135deg, #0EA5C9 0%, #22D3EE 100%)",
-                    color: "#0D1B3E",
-                    boxShadow: "0 8px 28px rgba(14,165,201,0.40)",
+                    color: "#FFFFFF",
+                    boxShadow: "0 8px 28px rgba(14,165,201,0.35)",
                   }}>
                   {t("ctaServices")}
                   <span className="transition-transform duration-300 group-hover:translate-x-1">
@@ -400,7 +515,7 @@ function HomePage({
 
                 <Link
                   href={`/${locale}/company`}
-                  className="btn-outline-white inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium">
+                  className="btn-outline-teal inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-medium">
                   {t("ctaProfile")}
                 </Link>
               </div>
@@ -422,63 +537,56 @@ function HomePage({
                     <div>
                       <p
                         className="text-[10px] uppercase tracking-[0.22em]"
-                        style={{ color: "rgba(255,255,255,0.40)" }}>
+                        style={{ color: "var(--foreground-faint)" }}>
                         Technology
                       </p>
-                      <p className="mt-0.5 text-sm font-semibold text-white">
+                      <p
+                        className="mt-0.5 text-sm font-semibold"
+                        style={{ color: "var(--foreground)" }}>
                         Connected Infrastructure
                       </p>
                     </div>
                     <div
                       className="flex items-center gap-2 rounded-full px-3 py-1.5"
                       style={{
-                        background: "rgba(14,165,201,0.15)",
-                        border: "1px solid rgba(14,165,201,0.28)",
+                        background: "var(--accent-light)",
+                        border: "1px solid var(--accent-mid)",
                       }}>
                       <span
                         className="h-1.5 w-1.5 rounded-full"
-                        style={{ background: "#22D3EE" }}
+                        style={{ background: "var(--accent)" }}
                       />
                       <span
                         className="text-[10px]"
-                        style={{ color: "#22D3EE" }}>
+                        style={{ color: "var(--accent)" }}>
                         24/7
                       </span>
                     </div>
                   </div>
 
                   <div
-                    className="relative mx-auto w-full flex justify-center items-center"
+                    className="antenna-stage relative mx-auto w-full flex justify-center items-center"
                     style={{
                       height: "clamp(260px, 32vw, 320px)",
                       maxWidth: "400px",
                       borderRadius: "1.25rem",
                       overflow: "hidden",
+                      border: "1px solid rgba(255,255,255,0.10)",
+                      boxShadow:
+                        "inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.40)",
                     }}>
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 z-0"
-                      style={{
-                        background: `radial-gradient(ellipse at 50% 35%,
-                            rgba(20,90,130,0.90) 0%,
-                            rgba(12,60,95,0.78) 32%,
-                            rgba(8,38,66,0.62) 60%,
-                            rgba(8,28,52,0.00) 92%)`,
-                      }}
-                    />
-
                     <div
                       aria-hidden="true"
                       className="absolute z-0"
                       style={{
-                        top: "12%",
+                        top: "14%",
                         left: "50%",
-                        width: "70%",
-                        height: "60%",
+                        width: "72%",
+                        height: "62%",
                         transform: "translateX(-50%)",
                         background:
-                          "radial-gradient(circle, rgba(34,211,238,0.20) 0%, rgba(34,211,238,0.00) 68%)",
-                        filter: "blur(18px)",
+                          "radial-gradient(circle, rgba(14,165,201,0.22) 0%, rgba(14,165,201,0.00) 70%)",
+                        filter: "blur(14px)",
                       }}
                     />
                     <video
@@ -488,61 +596,67 @@ function HomePage({
                       muted
                       playsInline
                       aria-label="GIX Nexus antenna — telecom and satellite services"
-                      className="relative z-10 h-full w-full object-contain"
+                      className="antenna-video h-full w-full object-contain"
                       style={{
                         mixBlendMode: "screen",
+                        opacity: 0.98,
                         filter:
-                          "brightness(1.18) contrast(1.08) saturate(1.05)",
+                          "brightness(1.08) contrast(1.04) saturate(1.06)",
                       }}
                     />
                   </div>
 
                   <div
                     className="pt-4 mt-1 text-center"
-                    style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
-                    <p className="text-sm font-semibold text-white">
+                    style={{ borderTop: "1px solid var(--border-subtle)" }}>
+                    <p
+                      className="text-sm font-semibold"
+                      style={{ color: "var(--foreground)" }}>
                       Telecom & Satellite Services
                     </p>
                     <p
                       className="mt-1.5 text-xs"
-                      style={{ color: "rgba(255,255,255,0.45)" }}>
+                      style={{ color: "var(--foreground-faint)" }}>
                       SATCOM · Fiber · RF · Network · Power
                     </p>
                   </div>
 
                   <div
                     className="absolute left-5 top-24 h-1.5 w-1.5 rounded-full"
-                    style={{ background: "rgba(34,211,238,0.60)" }}
+                    style={{ background: "var(--accent)" }}
                   />
                   <div
                     className="absolute right-6 bottom-16 h-1.5 w-1.5 rounded-full"
-                    style={{ background: "rgba(255,255,255,0.30)" }}
+                    style={{ background: "var(--border-strong)" }}
                   />
                 </div>
 
                 <div
                   className="absolute -bottom-4 -left-6 rounded-2xl px-4 py-3"
                   style={{
-                    background: "rgba(13,27,62,0.90)",
-                    border: "1px solid rgba(14,165,201,0.30)",
-                    boxShadow: "0 12px 32px rgba(0,0,0,0.30)",
-                    backdropFilter: "blur(12px)",
+                    background: "#FFFFFF",
+                    border: "1px solid var(--border)",
+                    boxShadow: "var(--shadow-md)",
                   }}>
                   <div className="flex items-center gap-3">
                     <div
                       className="flex h-8 w-8 items-center justify-center rounded-xl"
-                      style={{ background: "rgba(14,165,201,0.15)" }}>
-                      <span className="text-base" style={{ color: "#22D3EE" }}>
+                      style={{ background: "var(--accent-light)" }}>
+                      <span
+                        className="text-base"
+                        style={{ color: "var(--accent)" }}>
                         ⌁
                       </span>
                     </div>
                     <div>
                       <p
                         className="text-[9px] uppercase tracking-wider"
-                        style={{ color: "rgba(255,255,255,0.45)" }}>
+                        style={{ color: "var(--foreground-faint)" }}>
                         Network
                       </p>
-                      <p className="text-xs font-semibold text-white">
+                      <p
+                        className="text-xs font-semibold"
+                        style={{ color: "var(--foreground)" }}>
                         Reliable Infrastructure
                       </p>
                     </div>
@@ -559,24 +673,26 @@ function HomePage({
         aria-labelledby="services-heading"
         style={{
           background: `linear-gradient(180deg,
-              #0B4462    0%,
-              #0B4C6B   18%,
-              #0B4C6B   78%,
-              #0E6080  100%)`,
+              #D8EEFB    0%,
+              #D2E9F8   20%,
+              #CCE5F5   50%,
+              #CDE7F6   85%,
+              #CDE7F6  100%)`,
         }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <span className="section-label-dark mb-4 inline-flex">
+            <span className="section-label-light mb-4 inline-flex">
               What We Do
             </span>
             <h2
               id="services-heading"
-              className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              className="text-3xl font-bold tracking-tight sm:text-4xl"
+              style={{ color: "var(--foreground)" }}>
               {t("servicesTitle")}
             </h2>
             <p
               className="mx-auto mt-4 max-w-xl text-sm leading-relaxed sm:text-base"
-              style={{ color: "rgba(255,255,255,0.65)" }}>
+              style={{ color: "var(--foreground-muted)" }}>
               {t("servicesSubtitle")}
             </p>
           </div>
@@ -610,9 +726,9 @@ function HomePage({
                     <div
                       className="absolute left-4 top-4 flex h-7 w-7 items-center justify-center rounded-lg text-[10px] font-bold"
                       style={{
-                        background: "rgba(14,165,201,0.25)",
-                        border: "1px solid rgba(34,211,238,0.40)",
-                        color: "#22D3EE",
+                        background: "var(--accent-light)",
+                        border: "1px solid var(--accent-mid)",
+                        color: "var(--accent)",
                       }}>
                       {String(index + 1).padStart(2, "0")}
                     </div>
@@ -627,7 +743,7 @@ function HomePage({
                   <div className="p-4">
                     <p
                       className="line-clamp-2 text-xs leading-relaxed"
-                      style={{ color: "rgba(255,255,255,0.60)" }}>
+                      style={{ color: "var(--foreground-subtle)" }}>
                       {tServices(`groups.${service.nameKey}.description`)}
                     </p>
 
@@ -636,12 +752,12 @@ function HomePage({
                         <li
                           key={i}
                           className="flex items-center gap-2 text-[11px]"
-                          style={{ color: "rgba(255,255,255,0.55)" }}>
+                          style={{ color: "var(--foreground-muted)" }}>
                           <span
                             className="flex h-3.5 w-3.5 flex-shrink-0 items-center justify-center rounded-full text-[8px]"
                             style={{
-                              background: "rgba(34,211,238,0.18)",
-                              color: "#22D3EE",
+                              background: "var(--accent-light)",
+                              color: "var(--accent)",
                             }}>
                             ✓
                           </span>
@@ -652,7 +768,7 @@ function HomePage({
 
                     <div
                       className="mt-4 flex items-center gap-1.5 text-[11px] font-semibold"
-                      style={{ color: "#22D3EE" }}>
+                      style={{ color: "var(--accent)" }}>
                       Explore
                       <span className="transition-transform duration-200 group-hover:translate-x-1">
                         →
@@ -667,7 +783,7 @@ function HomePage({
           <div className="mt-12 text-center">
             <Link
               href={`/${locale}/services`}
-              className="btn-outline-white inline-flex min-h-[44px] items-center rounded-lg px-7 py-2.5 text-sm font-semibold">
+              className="btn-outline-teal inline-flex min-h-[44px] items-center rounded-lg px-7 py-2.5 text-sm font-semibold">
               View All Services →
             </Link>
           </div>
@@ -679,27 +795,26 @@ function HomePage({
         aria-labelledby="features-heading"
         style={{
           background: `linear-gradient(180deg,
-              #0E6080    0%,
-              #0F6A88   22%,
-              #11728F   50%,
-              #157C98   68%,
-              #2B88A8   82%,
-              #4D9FBE   92%,
-              #79BCD4  100%)`,
+              #CDE7F6    0%,
+              #D0E9F7   20%,
+              #D5ECF9   50%,
+              #D8EEFB   85%,
+              #D8EEFB  100%)`,
         }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <span className="section-label-dark mb-4 inline-flex">
+            <span className="section-label-light mb-4 inline-flex">
               Why Partner with Us
             </span>
             <h2
               id="features-heading"
-              className="text-3xl font-bold text-white sm:text-4xl">
+              className="text-3xl font-bold sm:text-4xl"
+              style={{ color: "var(--foreground)" }}>
               {t("featureTitle")}
             </h2>
             <p
               className="mt-3 max-w-xl mx-auto text-sm"
-              style={{ color: "rgba(255,255,255,0.65)" }}>
+              style={{ color: "var(--foreground-muted)" }}>
               {t("featureSubtitle")}
             </p>
           </div>
@@ -752,8 +867,8 @@ function HomePage({
                 <div
                   className="flex h-10 w-10 items-center justify-center rounded-xl mb-4"
                   style={{
-                    background: "rgba(34,211,238,0.14)",
-                    color: "#22D3EE",
+                    background: "var(--accent-light)",
+                    color: "var(--accent)",
                   }}>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -768,12 +883,14 @@ function HomePage({
                     {icon}
                   </svg>
                 </div>
-                <h3 className="font-semibold text-sm mb-2 text-white">
+                <h3
+                  className="font-semibold text-sm mb-2"
+                  style={{ color: "var(--foreground)" }}>
                   {t(`features.${key}.title`)}
                 </h3>
                 <p
                   className="text-sm leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.60)" }}>
+                  style={{ color: "var(--foreground-subtle)" }}>
                   {t(`features.${key}.description`)}
                 </p>
               </div>
@@ -783,7 +900,7 @@ function HomePage({
           <div className="mt-10 text-center">
             <Link
               href={`/${locale}/company`}
-              className="btn-outline-white inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-medium">
+              className="btn-outline-teal inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-medium">
               About GIX Nexus →
             </Link>
           </div>
@@ -795,13 +912,11 @@ function HomePage({
         aria-labelledby="news-heading"
         style={{
           background: `linear-gradient(180deg,
-              #79BCD4    0%,
-              #A3D1E6    8%,
-              #C7E3F1   16%,
-              #DCF0FA   25%,
-              #E5F3FB   45%,
-              #EEF7FC   75%,
-              #F2F8FC  100%)`,
+              #D8EEFB    0%,
+              #DDF1FC   25%,
+              #E3F4FF   55%,
+              #E8F6FF   85%,
+              #E8F6FF  100%)`,
         }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4 flex-wrap">
@@ -909,14 +1024,11 @@ function HomePage({
         aria-labelledby="projects-heading"
         style={{
           background: `linear-gradient(180deg,
-              #F2F8FC    0%,
-              #F3F9FC   45%,
-              #F3F9FC   55%,
-              #E5F3FB   70%,
-              #D4ECF7   78%,
-              #A6D4E7   86%,
-              #6CB2D1   94%,
-              #3E92B5  100%)`,
+              #E8F6FF    0%,
+              #EAF7FF   25%,
+              #EDF8FF   55%,
+              #EBF7FF   85%,
+              #E8F6FF  100%)`,
         }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-12 flex items-end justify-between gap-4 flex-wrap">
@@ -1038,20 +1150,20 @@ function HomePage({
         aria-label="HSEQ Safety commitment"
         style={{
           background: `linear-gradient(180deg,
-              #3E92B5    0%,
-              #197193   12%,
-              #0E5978   22%,
-              #0C4F6C   35%,
-              #0C4F6C   65%,
-              #0B4866   78%,
-              #0B3B60  100%)`,
+              #E8F6FF    0%,
+              #E5F3FB   20%,
+              #D8EEFB   50%,
+              #D2E9F8   85%,
+              #CDE7F6  100%)`,
         }}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
-            <span className="section-label-dark mb-4 inline-flex">
+            <span className="section-label-light mb-4 inline-flex">
               Our Commitment
             </span>
-            <h2 className="text-2xl font-bold text-white sm:text-3xl">
+            <h2
+              className="text-2xl font-bold sm:text-3xl"
+              style={{ color: "var(--foreground)" }}>
               Health, Safety, Environment & Quality
             </h2>
           </div>
@@ -1062,19 +1174,19 @@ function HomePage({
                 value: "HSEQ",
                 label: "Policy",
                 desc: "Health, Safety, Environment & Quality — applied to every project",
-                color: "#22D3EE",
+                color: "var(--accent)",
               },
               {
                 value: "Zero",
                 label: "Accident Objective",
                 desc: "Our stated safety commitment and goal on every project site",
-                color: "#22D3EE",
+                color: "var(--accent)",
               },
               {
                 value: "100%",
                 label: "Safety-First Approach",
                 desc: "Policy commitment — safety first on every project, without exception",
-                color: "#4ADE80",
+                color: "var(--green)",
               },
             ].map(({ value, label, desc, color }) => (
               <div
@@ -1083,12 +1195,14 @@ function HomePage({
                 <div className="text-4xl font-bold mb-2" style={{ color }}>
                   {value}
                 </div>
-                <div className="text-sm font-semibold text-white mb-2">
+                <div
+                  className="text-sm font-semibold mb-2"
+                  style={{ color: "var(--foreground)" }}>
                   {label}
                 </div>
                 <p
                   className="text-xs leading-relaxed"
-                  style={{ color: "rgba(255,255,255,0.60)" }}>
+                  style={{ color: "var(--foreground-subtle)" }}>
                   {desc}
                 </p>
               </div>
@@ -1098,7 +1212,7 @@ function HomePage({
           <div className="mt-8 text-center">
             <Link
               href={`/${locale}/hseq`}
-              className="btn-outline-white inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-medium">
+              className="btn-outline-teal inline-flex min-h-[44px] items-center rounded-lg px-6 py-2.5 text-sm font-medium">
               View HSEQ Policy →
             </Link>
           </div>
@@ -1106,25 +1220,34 @@ function HomePage({
       </section>
 
       <section
-        className="pt-20 sm:pt-24 pb-32 sm:pb-40 relative overflow-hidden"
+        className="pt-20 sm:pt-24 pb-32 sm:pb-40 relative overflow-hidden pre-footer-wrap section-top-divide"
         aria-labelledby="cta-heading"
         style={{
           background: `linear-gradient(180deg,
-              #0B3B60    0%,
-              #0A2E52   35%,
-              #0A2A50   60%,
-              #0B2348   82%,
-              #0C1E40  100%)`,
+              #CDE7F6    0%,
+              #D0E9F7   20%,
+              #D5ECF9   50%,
+              #D8EEFB   80%,
+              #D8EEFB  100%)`,
+          position: "relative",
         }}>
-        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{ background: "var(--pre-footer-blend)" }}
+        />
+        <div
+          className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
+          style={{ position: "relative" }}>
           <h2
             id="cta-heading"
-            className="text-2xl font-bold text-white sm:text-3xl">
+            className="text-2xl font-bold sm:text-3xl"
+            style={{ color: "var(--foreground)" }}>
             {t("ctaTitle")}
           </h2>
           <p
             className="mt-4 text-base"
-            style={{ color: "rgba(255,255,255,0.70)" }}>
+            style={{ color: "var(--foreground-muted)" }}>
             {t("ctaSubtitle")}
           </p>
           <div className="mt-8 sm:mt-10 flex flex-wrap justify-center gap-4">
@@ -1135,7 +1258,7 @@ function HomePage({
             </Link>
             <Link
               href={`/${locale}/services`}
-              className="btn-outline-white inline-flex min-h-[44px] items-center rounded-lg px-8 py-2.5 text-sm font-semibold">
+              className="btn-outline-teal inline-flex min-h-[44px] items-center rounded-lg px-8 py-2.5 text-sm font-semibold">
               {t("ctaServices")}
             </Link>
           </div>
