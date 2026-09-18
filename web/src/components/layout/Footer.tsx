@@ -28,30 +28,57 @@ export function Footer({ locale }: FooterProps) {
 
   return (
     <footer className="relative" style={{ background: "#091422" }}>
+      {/* Gentle light→dark transition compound (20px):
+            bottom of light section has its own 22px fade descending INTO dark;
+            top of footer has its own 20px fade STARTING from 60% opacity navy → full navy,
+            so the two fades meet in the middle and the transition is invisible / unnoticeable. */}
       <div
         aria-hidden="true"
         style={{
-          marginTop: "-1px",
-          height: "1px",
+          height: "20px",
           width: "100%",
           pointerEvents: "none",
           position: "relative",
           zIndex: 2,
-          background: `linear-gradient(90deg,
-              transparent 0%,
-              rgba(34,211,238,0.08) 18%,
-              rgba(34,211,238,0.26) 42%,
-              rgba(34,211,238,0.36) 50%,
-              rgba(34,211,238,0.26) 58%,
-              rgba(34,211,238,0.08) 82%,
-              transparent 100%)`,
-        }}
-      />
+        }}>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: "1px",
+            background: `linear-gradient(90deg,
+                transparent 0%,
+                rgba(34,211,238,0.06) 16%,
+                rgba(34,211,238,0.18) 38%,
+                rgba(34,211,238,0.30) 50%,
+                rgba(34,211,238,0.18) 62%,
+                rgba(34,211,238,0.06) 84%,
+                transparent 100%)`,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            top: "1px",
+            left: 0,
+            right: 0,
+            height: "19px",
+            background: `linear-gradient(180deg,
+                rgba(12, 30, 64, 0.56) 0%,
+                rgba(12, 30, 64, 0.74) 28%,
+                rgba(12, 30, 64, 0.90) 60%,
+                rgba(12, 30, 64, 1.00) 100%)`,
+            filter: "blur(0.3px)",
+          }}
+        />
+      </div>
 
       <div
         style={{
           background:
-            "linear-gradient(180deg, #0C1E40 0%, #0A1628 60%, #091422 100%)",
+            "linear-gradient(180deg, #0D2348 0%, #0C1E40 18%, #0A1628 68%, #091422 100%)",
           position: "relative",
           zIndex: 3,
         }}>
