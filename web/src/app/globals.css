@@ -120,12 +120,15 @@
   /* ── Pre-footer darken blend — matches footer start navy.
        Apply this to the LAST section of inner pages so the
        page background darkens smoothly into the navy footer,
-       not the harsh pale-sky → navy jump. */
+       not the harsh pale-sky → navy jump.
+
+       NOTE: kept GENTLE (peak ~0.24 opacity at very bottom)
+       so it reads as a "color shift" not a trapped dark band. */
   --pre-footer-blend: linear-gradient(180deg,
       transparent 0%,
-      rgba(12, 30, 64, 0.08) 55%,
-      rgba(12, 30, 64, 0.35) 82%,
-      rgba(12, 30, 64, 0.68) 100%);
+      rgba(12, 30, 64, 0.04) 60%,
+      rgba(12, 30, 64, 0.14) 84%,
+      rgba(12, 30, 64, 0.24) 100%);
 
   /* ── Chips ── */
   --chip-bg: rgba(14, 165, 201, 0.10);
