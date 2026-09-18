@@ -154,18 +154,20 @@ function HomePage({
 
   /* ── Hero stat & glass surfaces (light palette) ── */
   .hero-glass {
-    background: #FFFFFF;
-    border: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(244,250,255,0.90) 0%, rgba(226,242,253,0.84) 60%, rgba(214,234,248,0.80) 100%);
+    border: 1px solid rgba(14,165,201,0.18);
     box-shadow: var(--shadow-lg),
-      inset 0 1px 0 rgba(255,255,255,0.60);
+      inset 0 1px 0 rgba(255,255,255,0.36);
+    backdrop-filter: blur(14px) saturate(1.6);
+    -webkit-backdrop-filter: blur(14px) saturate(1.6);
   }
 
   .hero-stat {
-    background: var(--soft-surface);
+    background: linear-gradient(180deg, rgba(244,250,255,0.64) 0%, rgba(224,240,250,0.48) 100%);
     transition: background 200ms, transform 200ms;
   }
   .hero-stat:hover {
-    background: var(--accent-light);
+    background: linear-gradient(180deg, rgba(232,246,255,0.82) 0%, rgba(212,232,248,0.62) 100%);
     transform: translateY(-2px);
   }
 
@@ -462,9 +464,12 @@ function HomePage({
                 <div
                   className="grid grid-cols-3 overflow-hidden rounded-2xl"
                   style={{
-                    background: "#FFFFFF",
-                    border: "1px solid var(--border)",
-                    boxShadow: "var(--shadow-sm)",
+                    background:
+                      "linear-gradient(180deg, rgba(244,250,255,0.92) 0%, rgba(224,240,250,0.86) 100%)",
+                    border: "1px solid rgba(14,165,201,0.18)",
+                    boxShadow: "0 6px 22px rgba(14,120,170,0.10)",
+                    backdropFilter: "blur(10px) saturate(1.5)",
+                    WebkitBackdropFilter: "blur(10px) saturate(1.5)",
                   }}>
                   {[
                     { value: "8+", label: t("stats.serviceDomainsLabel") },
@@ -634,9 +639,12 @@ function HomePage({
                 <div
                   className="absolute -bottom-4 -left-6 rounded-2xl px-4 py-3"
                   style={{
-                    background: "#FFFFFF",
-                    border: "1px solid var(--border)",
-                    boxShadow: "var(--shadow-md)",
+                    background:
+                      "linear-gradient(135deg, rgba(246,251,255,0.92) 0%, rgba(228,242,252,0.86) 100%)",
+                    border: "1px solid rgba(14,165,201,0.18)",
+                    boxShadow: "0 6px 20px rgba(14,120,170,0.14)",
+                    backdropFilter: "blur(10px) saturate(1.5)",
+                    WebkitBackdropFilter: "blur(10px) saturate(1.5)",
                   }}>
                   <div className="flex items-center gap-3">
                     <div
@@ -1220,15 +1228,16 @@ function HomePage({
       </section>
 
       <section
-        className="pt-20 sm:pt-24 pb-32 sm:pb-40 relative overflow-hidden pre-footer-wrap section-top-divide"
+        className="pt-20 sm:pt-24 pb-36 sm:pb-44 relative overflow-hidden pre-footer-wrap section-top-divide"
         aria-labelledby="cta-heading"
         style={{
           background: `linear-gradient(180deg,
               #CDE7F6    0%,
               #D0E9F7   20%,
-              #D5ECF9   50%,
-              #D8EEFB   80%,
-              #D8EEFB  100%)`,
+              #D5ECF9   48%,
+              #CFE6F5   72%,
+              #C2DAEC   88%,
+              #B3CCE1  100%)`,
           position: "relative",
         }}>
         <div
@@ -1262,6 +1271,54 @@ function HomePage({
               {t("ctaServices")}
             </Link>
           </div>
+        </div>
+
+        {/* gentle section boundary compound — soft 7-stop bell + 22px vertical fade
+             sits at the very bottom of the light section so handoff to dark navy is invisible. */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "22px",
+            pointerEvents: "none",
+            zIndex: 4,
+          }}>
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "1px",
+              background: `linear-gradient(90deg,
+                  transparent 0%,
+                  rgba(34,211,238,0.08) 16%,
+                  rgba(34,211,238,0.20) 38%,
+                  rgba(34,211,238,0.30) 50%,
+                  rgba(34,211,238,0.20) 62%,
+                  rgba(34,211,238,0.08) 84%,
+                  transparent 100%)`,
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: "1px",
+              left: 0,
+              right: 0,
+              height: "21px",
+              background: `linear-gradient(180deg,
+                  rgba(186, 214, 238, 0.00) 0%,
+                  rgba(44, 82, 130, 0.10) 32%,
+                  rgba(24, 62, 108, 0.20) 60%,
+                  rgba(14, 46, 90, 0.32) 82%,
+                  rgba(12, 38, 80, 0.44) 100%)`,
+              filter: "blur(0.4px)",
+            }}
+          />
         </div>
       </section>
     </>
